@@ -142,6 +142,13 @@ img {
 .color_11 a {
   color: inherit;
 }
+.color_12 {
+  color: #FF6600;
+}
+.color_12 a {
+  color: inherit;
+}
+
 /*============  Backgrounds  =============*/
 .bg_1 {
   background: #fdfdfc;
