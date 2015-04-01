@@ -1,0 +1,40 @@
+[id*="-error"] {
+    display: inline-block;
+    background-color: #d95c5c!important;
+    border-color: #d95c5c!important;
+    color: #fff!important;
+    font-size: .8571rem;
+    vertical-align: middle;
+    line-height: 1;
+    margin: 0 auto 2% 0;
+    background-image: none;
+    text-transform: none;
+    font-weight: 700;
+    border-bottom-left-radius: .2857rem;
+    border-bottom-right-radius: .2857rem;
+    transition: background .2s ease;
+    text-align: center;
+    box-sizing: inherit;
+    width: 100%;
+    height: 30px;
+    padding-top: 5px;
+}
+[class*="grid_"].error label{
+    margin-bottom: 0;
+}
+[class*="grid_"].error input, [class*="grid_"].error textarea {
+    border-color: #d95c5c!important;
+}
+
+[class*="grid_"] input, [class*="grid_"].error textarea {
+    border-color: #ababa9;
+}
+
+form label {
+    margin-bottom: 21px;
+}
+
+.ui.segment {
+    margin: 0;
+    padding: 0;
+}
