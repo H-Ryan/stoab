@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "NYHETER"
+AuthUserFile "/home/tolktjan/.htpasswds/public_html/news/EDIT/passwd"
+require valid-user

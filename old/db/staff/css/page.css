@@ -1,0 +1,173 @@
+/*
+=================================================================
+Structure
+=================================================================
+*/
+
+#container {
+	width:100%;
+	margin:0 auto;
+}
+
+#main_div {
+	width:98%;
+	margin:0 auto;
+}
+
+#clearzone {
+	clear:both;
+}
+
+.copyright {
+	color : #808080;
+	font-size : 12px;
+	margin-top : 10px;
+}
+
+/*
+=================================================================
+Link
+=================================================================
+*/
+
+a:link {
+	color: #525960;
+	text-decoration:none;
+}
+
+a:visited {
+	color: #525960;
+	text-decoration:none;
+}
+
+a:active {
+	color: #525960;
+	text-decoration:none;
+}
+
+a:hover {
+	color: #00b000;
+	text-decoration:underline;
+}
+
+/*
+=================================================================
+Page Header
+=================================================================
+*/
+
+#page_header {
+	margin: 0px 0px 0px 0px;
+	padding: 2px 5px 2px 5px;
+	background:#cccccc;
+	border-top:1px solid #000000;
+	border-bottom:1px solid #000000;
+}
+
+#page_header .page_title {
+	margin-right:0px;
+	color:#000000;
+	font-size:100%;
+	font-weight:bold;
+}
+
+#page_header .login_user_caption {
+	font-size:100%;
+	font-weight:normal;
+	color:#000000;
+}
+
+#page_header .login_user_name {
+	font-size:100%;
+	font-weight:bold;
+	color:#000000;
+}
+
+/*
+=================================================================
+Detail Page
+=================================================================
+*/
+
+td.column_caption {
+	width: 200px;
+	font-size: 100%;
+	text-align: right;
+	padding: 5px 5px;
+}
+
+td.column_value {
+	font-size: 100%;
+	text-align: left;
+	padding: 5px 5px;
+}
+
+.required {
+	color: #FF0000;
+}
+
+/*
+=================================================================
+Info Box
+=================================================================
+*/
+
+div.info_box {
+	margin:20px 20px 10px 20px;
+	padding:10px 10px 10px 10px;
+	font-weight:bold;
+	text-align:left;
+	color:#008000;
+	border:1px #008000 solid;
+	background-color:#e0ffe0
+}
+
+div.err_box {
+	margin:20px 20px 10px 20px;
+	padding:10px 10px 10px 10px;
+	font-weight:bold;
+	text-align:left;
+	color:#ff0000;
+	border:1px #ff0000 solid;
+	background-color:#ffe0e0
+}
+
+/*
+=================================================================
+Section
+=================================================================
+*/
+
+.sect_title {
+	margin-left:20px;
+	padding:5px;
+	color:#525960;
+	background-color:white;
+	position:relative;
+	top:10px;
+	font-weight: bold;
+}
+
+/* Rounded Corner Box */
+
+.sect_outer_box { margin-top:0px; margin-bottom:0px; }
+.sect_inner_box { padding:15px 15px 15px 15px; }
+
+
+
+/*
+=================================================================
+Icon Buttons
+=================================================================
+*/
+
+.btn_icon_edit {
+	margin:2px 0 0 0;
+	/* border:1px solid red; */
+}
+
+/*
+=================================================================
+END OF FILE
+=================================================================
+*/
