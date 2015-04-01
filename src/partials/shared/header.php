@@ -12,11 +12,11 @@
                     </div>
                     <nav class="nav put-right">
                         <ul class="sf-menu">
-                            <li class="current"><a href="hemsida.html">Tjänster</a></li>
+                            <li><a href="hemsida.html">Tjänster</a></li>
                             <li><a href="omoss.html">Om oss</a></li>
                             <li><a href="kvalitet.html">Kvalitetspolicy</a></li>
                             <li><a href="utbildning.html">Utbildning</a></li>
-                            <li><a href="kontakt.html">Kontakt</a></li>
+                            <li class="current"><a href="kontakt.php">Kontakt</a></li>
                             <li><a class="fa fa-user" href="bokning.html"> Boka tolk</a></li>
                         </ul>
                     </nav>

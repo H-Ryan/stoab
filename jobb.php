@@ -2,22 +2,28 @@
 <html lang="sv">
 <head>
     <title>
-		STÖ AB - Sarvari tolkning och översättning / Kontakt
-	</title>
+        STÖ AB - Sarvari tolkning och översättning / Kontakt
+    </title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no"/>
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/contact-form.css"/>
+
+    <link rel="stylesheet" type="text/css" href="lib/semantic/semantic.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/custom/form.css"/>
+
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src="js/jquery.equalheights.js"></script>
-    <script src='js/modal.js'></script>
-    <script src='js/TMForm.js'></script>
+
+    <script src="lib/semantic/semantic.min.js"></script>
+    <script src="lib/jq-validate/jquery.validate.min.js"></script>
+    <script src="lib/jq-validate/additional-methods.min.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -35,36 +41,11 @@
     <!--========================================================
                               HEADER
     =========================================================-->
-    <header id="header">
-        <div id="stuck_container">
-            <div class="container">
-                <div class="row">
-                    <div class="grid_12">
-                        <div class="brand put-left">
-                            <h1>
-                                <a href="index.html">
-                                    <img src="images/logo.png" alt="Logo"/>
-                                </a>
-                            </h1>
-                        </div>
-                    <nav class="nav put-right">
-                        <ul class="sf-menu">
-                            <li><a href="hemsida.html">Tjänster</a></li>
-                            <li class="current"><a href="omoss.html">Om oss</a></li>
-                            <li><a href="kvalitet.html">Kvalitetspolicy</a></li>
-                            <li><a href="utbildning.html">Utbildning</a></li>
-                            <li><a href="kontakt.html">Kontakt</a></li>
-							<li><a class="fa fa-user" href="bokning.html"> Boka tolk</a></li>
-                        </ul>
-                    </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <?php include("src/partials/shared/header.php"); ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
+    <section>
         <div class="bg_1 wrap_17 wrap_19">
             <div class="container">
                 <div class="row">
@@ -73,28 +54,35 @@
                             <h2 class="header_2 indent_5">
                                 Jobba med oss
                             </h2>
-                                <p class="text_7 color_6">
-									<b>Är du tolk eller vill du bli tolk hos STÖ AB</b><br/><br/>
-									Vi söker auktoriserade och utbildade tolkar för kontakt- och distanstolkning. Våra tolkar anlitas på timbasis vid behov. Arvodet varierar beroende på typen av uppdrag.
-                                </p>
+
+                            <p class="text_7 color_6">
+                                <b>Är du tolk eller vill du bli tolk hos STÖ AB</b><br/><br/>
+                                Vi söker auktoriserade och utbildade tolkar för kontakt- och distanstolkning. Våra
+                                tolkar anlitas på timbasis vid behov. Arvodet varierar beroende på typen av uppdrag.
+                            </p>
                         </div>
-						<div class="wrap_18">
+                        <div class="wrap_18">
                             <h2 class="header_2 indent_5">
                                 Tolktaxan!
                             </h2>
-                                <p class="text_7 color_6">
-									Tillämpningsområde Enligt förordningen (1979:291) om tolktaxa Gäller taxan för tolkning vid allmän domstol.<br/><br/>
-                                </p>
-								<a class="btn_2" href=http://tolktjanst.com/PDF/Tolktaxan.pdf target="_blank">Klick här</a>
+
+                            <p class="text_7 color_6">
+                                Tillämpningsområde Enligt förordningen (1979:291) om tolktaxa Gäller taxan för tolkning
+                                vid allmän domstol.<br/><br/>
+                            </p>
+                            <a class="btn_2" href=http://tolktjanst.com/PDF/Tolktaxan.pdf target="_blank">Klick här</a>
                         </div>
-						<div class="wrap_18">
+                        <div class="wrap_18">
                             <h2 class="header_2 indent_5">
                                 Polisens belastningsregister
                             </h2>
-                                <p class="text_7 color_6">
-									<br/><br/>
-                                </p>
-								<a class="btn_2" href="https://polisen.se/Global/www%20och%20Intrapolis/Blanketter/Registerutdrag/Enkla%20blanketter%20i%20Acrobat%204.0/RPS_442_3_1401_Utdrag_ur_BR_for_enskild_paragraf_9_1st_Skriv_ut_och_fyll_i.pdf" target="_blank">Klick här</a>
+
+                            <p class="text_7 color_6">
+                                <br/><br/>
+                            </p>
+                            <a class="btn_2"
+                               href="https://polisen.se/Global/www%20och%20Intrapolis/Blanketter/Registerutdrag/Enkla%20blanketter%20i%20Acrobat%204.0/RPS_442_3_1401_Utdrag_ur_BR_for_enskild_paragraf_9_1st_Skriv_ut_och_fyll_i.pdf"
+                               target="_blank">Klick här</a>
                         </div>
                     </div>
                     <div class="grid_6">
@@ -102,118 +90,257 @@
                             <h2 class="header_2 indent_2">
                                 Intresseanmälan
                             </h2>
-                            <form id="contact-form" method="post" action="old/old-very-old/beferest.php">
-                                <div class="contact-form-loader"></div>
-                                <fieldset>
+
+                            <form id="contact-form">
+                                <fieldset class="ui basic segment">
+                                    <div class="row">
+                                        <div class="grid_3">
+                                            <label>
+                                                <input type="text" class="" name="name" placeholder="Namn:" value=""/>
+                                            </label>
+                                        </div>
+                                        <div class="grid_3">
+                                            <label>
+                                                <input type="text" name="personalNumber" placeholder="Personnummer:"
+                                                       value=""/>
+                                            </label>
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="grid_2">
-                                            <label class="name">
-                                                <input type="text" name="name" placeholder="Namn:" value=""
-                                                       data-constraints="@Required @JustLetters"/>
-                                                <span class="empty-message">*This field is required.</span>
-                                                <span class="error-message">*This is not a valid name.</span>
+                                            <p class="text_7 color_6">Kön:</p>
+
+                                            <div class="ui radio checkbox">
+                                                <label for="genderWoman">Kvinna</label>
+                                                <input id="genderWoman" type="radio" name="gender" checked=""
+                                                       value="Kvinna">
+                                            </div>
+                                            <div class="ui radio checkbox">
+                                                <label for="genderMan">Man</label>
+                                                <input id="genderMan" type="radio" name="gender" value="Man">
+                                            </div>
+                                        </div>
+                                        <div class="grid_2">
+                                            <p class="text_7 color_6">Jag har:</p>
+
+                                            <div class="ui radio checkbox">
+                                                <label for="taxA">A-skatt</label>
+                                                <input id="taxA" type="radio" name="tax" checked="" value="A-skatt">
+                                            </div>
+                                            <div class="ui radio checkbox">
+                                                <label for="taxF">F-skatt</label>
+                                                <input id="taxF" type="radio" name="tax" value="F-skatt">
+                                            </div>
+                                        </div>
+
+                                        <div class="grid_2">
+                                            <p class="text_7 color_6">Egen bil:</p>
+
+                                            <div class="ui radio checkbox">
+                                                <label for="carYes">Ja</label>
+                                                <input id="carYes" type="radio" name="car" checked="" value="Ja">
+                                            </div>
+                                            <div class="ui radio checkbox">
+                                                <label for="carNo">Nej</label>
+                                                <input id="carNo" type="radio" name="car" value="Ney">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_2">
+                                            <label>
+                                                <input type="text" name="email" placeholder="E-post:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_2">
-                                            <label class="name">
-                                                <input type="text" name="foretagsnamn" placeholder="Företagsnamn:" value=""
-                                                       data-constraints="@Required @JustLetters"/>
-                                                <span class="empty-message">*This field is required.</span>
-                                                <span class="error-message">*This is not a valid email.</span>
+                                            <label>
+                                                <input type="text" name="phoneHome" placeholder="Telefon (bostad):"
+                                                       value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_2">
-                                            <label class="phone">
-                                                <input type="text" name="phone" placeholder="Telefon:" value=""
-                                                       data-constraints="@JustNumbers"/>
-                                                <span class="empty-message">*This field is required.</span>
-                                                <span class="error-message">*This is not a valid phone.</span>
+                                            <label>
+                                                <input type="text" name="phoneMobile" placeholder="Mobiltelefon:"
+                                                       value=""/>
                                             </label>
                                         </div>
                                     </div>
-									<div class="row">
-										<div class="grid_3">
-                                            <label class="name">
-                                                <input type="text" name="subject" placeholder="Ämne:" value=""
-                                                       data-constraints="@Required @JustLetters"/>
-                                                <span class="empty-message">*This field is required.</span>
-                                                <span class="error-message">*This is not a valid name.</span>
+                                    <div class="row">
+                                        <div class="grid_6">
+                                            <label>
+                                                <input type="text" name="address" placeholder="Gatuadress:" value=""/>
                                             </label>
                                         </div>
-										<div class="grid_3">
-                                            <label class="name">
-                                                <input type="text" name="email" placeholder="E-post:" value=""
-                                                       data-constraints="@Required @Email"/>
-                                                <span class="empty-message">*This field is required.</span>
-                                                <span class="error-message">*This is not a valid name.</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_3">
+                                            <label>
+                                                <input type="text" name="postNumber" placeholder="Postnummer:"
+                                                       value=""/>
                                             </label>
                                         </div>
-									</div>
-                                    <label class="message">
-                                        <textarea name="message" placeholder="Meddelande:"
-                                                  data-constraints='@Required @Length(min=20,max=999999)'></textarea>
-                                        <span class="empty-message">*This field is required.</span>
-                                        <span class="error-message">*The message is too short.</span>
-                                    </label>
-                                    <div class="btn-wrap">
-                                        <a class="btn_3" href="#" data-type="reset">Rensa</a>
-                                        <a class="btn_3" href="#" data-type="submit">Skicka</a>
+                                        <div class="grid_3">
+                                            <label>
+                                                <input type="text" name="city" placeholder="Postort:" value=""/>
+                                            </label>
+                                        </div>
                                     </div>
                                 </fieldset>
-                                <div class="modal fade response-message">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Modal title</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                You message has been sent! We will be in touch soon.
-                                            </div>
+                                <fieldset class="ui basic segment">
+                                    <h2 class="header_2 indent_2">
+                                        Språk och kompetens:
+                                    </h2>
+                                    <p class="text_5 color_6"> Du kan ange flera språk. Börja med ditt
+                                        förstahandsspråk.</p>
+                                    <div class="row">
+                                        <div class="grid_3">
+                                            <label>
+                                                <input type="text" name="languageOne" placeholder="Språk 1:" value=""/>
+                                            </label>
+                                        </div>
+                                        <div class="grid_3">
+                                            <label>
+                                                <select class="ui fluid dropdown" name="langCompetenceOne">
+                                                    <option value="">Kompetens:</option>
+                                                    <option value="AT- Auktoriserad tolk">AT- Auktoriserad tolk</option>
+                                                    <option value="ST - Auktoriserad sjukvårdstolk">ST - Auktoriserad
+                                                        sjukvårdstolk
+                                                    </option>
+                                                    <option value="RT - Auktoriserad rättstolk">RT - Auktoriserad
+                                                        rättstolk
+                                                    </option>
+                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">ST
+                                                        &amp; RT
+                                                        -
+                                                        Auktoriserad sjukvårds- och rättstolk
+                                                    </option>
+                                                    <option value="GT - Godkänd Tolk">GT - Godkänd tolk
+                                                    </option>
+                                                    <option value="ÖT - Övriga Tolk">ÖT - Övrig tolk</option>
+                                                </select>
+                                            </label>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="grid_3">
+                                            <label>
+                                                <input type="text" name="languageTwo" placeholder="Språk 2:" value=""/>
+                                            </label>
+                                        </div>
+                                        <div class="grid_3">
+                                            <label>
+                                                <select class="ui fluid dropdown" name="langCompetenceTwo">
+                                                    <option value="">Kompetens:</option>
+                                                    <option value="AT- Auktoriserad tolk">AT- Auktoriserad tolk</option>
+                                                    <option value="ST - Auktoriserad sjukvårdstolk">ST - Auktoriserad
+                                                        sjukvårdstolk
+                                                    </option>
+                                                    <option value="RT - Auktoriserad rättstolk">RT - Auktoriserad
+                                                        rättstolk
+                                                    </option>
+                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">ST
+                                                        &amp; RT
+                                                        -
+                                                        Auktoriserad sjukvårds- och rättstolk
+                                                    </option>
+                                                    <option value="GT - Godkänd Tolk">GT - Godkänd tolk
+                                                    </option>
+                                                    <option value="ÖT - Övriga Tolk">ÖT - Övrig tolk</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_3">
+                                            <label>
+                                                <input type="text" name="languageThree" placeholder="Språk 3:" value=""/>
+                                            </label>
+                                        </div>
+                                        <div class="grid_3">
+                                            <label>
+                                                <select class="ui fluid dropdown" name="langCompetenceThree">
+                                                    <option value="">Kompetens:</option>
+                                                    <option value="AT- Auktoriserad tolk">AT- Auktoriserad tolk</option>
+                                                    <option value="ST - Auktoriserad sjukvårdstolk">ST - Auktoriserad
+                                                        sjukvårdstolk
+                                                    </option>
+                                                    <option value="RT - Auktoriserad rättstolk">RT - Auktoriserad
+                                                        rättstolk
+                                                    </option>
+                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">ST
+                                                        &amp; RT
+                                                        -
+                                                        Auktoriserad sjukvårds- och rättstolk
+                                                    </option>
+                                                    <option value="GT - Godkänd Tolk">GT - Godkänd tolk
+                                                    </option>
+                                                    <option value="ÖT - Övriga Tolk">ÖT - Övrig tolk</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_3">
+                                            <label>
+                                                <input type="text" name="languageFour" placeholder="Språk 4:" value=""/>
+                                            </label>
+                                        </div>
+                                        <div class="grid_3">
+                                            <label>
+                                                <select class="ui fluid dropdown" name="langCompetenceFour">
+                                                    <option value="">Kompetens:</option>
+                                                    <option value="AT- Auktoriserad tolk">AT- Auktoriserad tolk</option>
+                                                    <option value="ST - Auktoriserad sjukvårdstolk">ST - Auktoriserad
+                                                        sjukvårdstolk
+                                                    </option>
+                                                    <option value="RT - Auktoriserad rättstolk">RT - Auktoriserad
+                                                        rättstolk
+                                                    </option>
+                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">ST
+                                                        &amp; RT
+                                                        -
+                                                        Auktoriserad sjukvårds- och rättstolk
+                                                    </option>
+                                                    <option value="GT - Godkänd Tolk">GT - Godkänd tolk
+                                                    </option>
+                                                    <option value="ÖT - Övriga Tolk">ÖT - Övrig tolk</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="btn-wrap">
+                                        <button type="button" class="btn_3" id="btnReset">Rensa</button>
+                                        <button type="button" class="btn_3" id="btnSubmit">Skicka</button>
+                                    </div>
+                                </fieldset>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row wrap_9 wrap_4 wrap_10">
-                <div class="grid_12">
-                    <div class="header_1 wrap_3 color_3">
-                        Följ oss
-                    </div>
-                    <div class="box_3">
-                        <ul class="list_1">
-							<li><a target="_blank" class="fa fa-twitter" href="https://twitter.com/SarvariAb"></a></li>
-							<li><a target="_blank" class="fa fa-facebook" href="https://www.facebook.com/Tolktjanst"></a></li>
-							<li><a target="_blank" class="fa fa-google-plus" href="https://plus.google.com/u/0/+nematsarvariSTÖ/posts"></a></li>
-							<li><a target="_blank" class="fa fa-linkedin" href="https://www.linkedin.com/profile/view?id=293568347&trk=nav_responsive_tab_profile_pic"></a></li>
-						</ul>
-                    </div>
+        <div class="ui standard small modal">
+            <i class="close icon"></i>
+
+            <div class="header">
+            </div>
+            <div class="content">
+                <div class="description">
                 </div>
             </div>
+            <div class="actions">
+                <div class="ui positive button">OK</div>
+            </div>
         </div>
+        <?php include("src/partials/shared/follow-us.html") ?>
     </section>
 </div>
 <!--========================================================
                           FOOTER
 =========================================================-->
-<footer id="footer" class="color_9">
-    <div class="container">
-        <div class="row">
-            <div class="grid_12">
-                <p class="info text_4 color_4">
-                    © <span id="copyright-year"></span> | <a href="#">TolkTjänst.se </a>| Alla rättigheter är reserverade. <br/>
-                    Telefon: 0451 742055 | E-post: <a href="mailto:info@tolktjanst.se?subject=Hej,">info@tolktjanst.se</a>
-                </p>
-            </div>
-        </div>
-    </div>
-</footer>
+<?php include("src/partials/shared/footer.html"); ?>
 <script src="js/script.js"></script>
+<script src="js/custom/jobb.js"></script>
 </body>
 </html>
