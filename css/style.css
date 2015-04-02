@@ -625,63 +625,143 @@ img {
   display: inline-block;
   width: 200px;
   height: 200px;
-  color: #365f91;
-  border: 3px solid #365f91;
-  background: #eaeff4;
+  color: #7F8690;
+  border: 3px solid #7F8690;
+  background: #E2E3E4;
   text-align: center;
   border-radius: 100px;
 }
 .box_1-1 .icon_3:before {
   content: '\f095';
-  font: 700 120px/210px 'FontAwesome';
-  display: inline-block;
-  width: 200px;
-  height: 200px;
-  color: #008000;
-  border: 3px solid #008000;
-  background: #cce5cc;
-  text-align: center;
-  border-radius: 100px;
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
 .box_1-1 .icon_4:before {
   content: '\f0c0';
-  font: 700 120px/210px 'FontAwesome';
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
 .box_1-1 .icon_5:before {
   content: '\f19c';
-  font: 700 120px/210px 'FontAwesome';
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
 .box_1-1 .icon_6:before {
   content: '\f1e0';
-  font: 700 120px/210px 'FontAwesome';
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
 .box_1-1 .icon_7:before {
   content: '\f079';
-  font: 700 120px/210px 'FontAwesome';
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
 .box_1-1 .icon_8:before {
   content: '\f1d7';
-  font: 700 120px/210px 'FontAwesome';
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
 .box_1-1 .icon_9:before {
   content: '\f0e8';
-  font: 700 120px/210px 'FontAwesome';
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
-.box_1-1 .icon_10:before {
+.box_1-1 .icon_91:before {
   content: '\f1e4';
-  font: 700 120px/210px 'FontAwesome';
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
-.box_1-1 .icon_11:before {
+.box_1-1 .icon_92:before {
   content: '\f00c';
-  font: 700 120px/210px 'FontAwesome';
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
-.box_1-1 .icon_12:before {
+.box_1-1 .icon_93:before {
   content: '\f037';
-  font: 700 120px/210px 'FontAwesome';
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
-.box_1-1 .icon_13:before {
+.box_1-1 .icon_94:before {
   content: '\f0f0';
-  font: 700 120px/210px 'FontAwesome';
+    font: 700 120px/210px 'FontAwesome';
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    color: #7F8690;
+    border: 3px solid #7F8690;
+    background: #E2E3E4;
+    text-align: center;
+    border-radius: 100px;
 }
 /*End of Tolkning Icons*/
 .box_1-2 .icon_2:before {
