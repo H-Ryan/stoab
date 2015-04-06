@@ -1,0 +1,193 @@
+/* Contact Form Basic Styles 
+========================================================*/
+[id*="-form"] {
+    position: relative;
+    padding-top: 8px;
+}
+
+[id*="-form"] label {
+    position: relative;
+    letter-spacing: normal;
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+[id*="-form"] label.message {
+    max-width: 100%;
+    margin-left: 0;
+    width: 100%;
+}
+
+[id*="-form"] fieldset {
+    border: none;
+}
+
+/* Contact Form Placeholder Styles
+========================================================*/
+[id*="-form"] ._placeholder {
+    width: 100% !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    line-height: 19px;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    padding: 6px 27px 6px;
+    color: #363535;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 0;
+    cursor: text;
+}
+
+[id*="-form"] ._placeholder.focused {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+[id*="-form"] ._placeholder.hidden {
+    display: none;
+}
+
+[id*="-form"] .file ._placeholder {
+    display: none;
+}
+
+/* Contact Form Input
+========================================================*/
+[id*="-form"] input[type='text'] {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0;
+    line-height: 19px;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    padding: 6px 27px 6px;
+    color: #363535;
+    outline: none;
+    height: 31px;
+    border: 1px solid #ababa9;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+/* Contact Form Buttons
+========================================================*/
+[id*="-form"] .btn-wrap {
+    margin-top: 5px;
+    text-align: right;
+    letter-spacing: normal;
+}
+
+[id*="-form"] .btn-wrap .btn_3 {
+    margin-left: 5px;
+    padding-left: 37px;
+    padding-right: 37px;
+}
+
+/* Contact Form Textarea
+========================================================*/
+[id*="-form"] textarea {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0;
+    line-height: 19px;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    padding: 6px 27px 6px;
+    color: #363535;
+    outline: none;
+    border: 1px solid #ababa9;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    resize: none;
+    height: 221px !important;
+    -webkit-appearance: none;
+    overflow: auto;
+}
+
+/* Contact Form Error messages
+========================================================*/
+[id*="-form"] .empty-message,
+[id*="-form"] .error-message {
+    position: absolute;
+    right: 3px;
+    top: 2px;
+    color: red;
+    height: 0;
+    overflow: hidden;
+    font-size: 11px;
+    -webkit-transition: 0.3s ease-in height;
+    transition: 0.3s ease-in height;
+    z-index: 99;
+}
+
+[id*="-form"] .invalid .error-message,
+[id*="-form"] .empty .empty-message {
+    height: 20px;
+}
+
+/* Contact Form Processing Box
+========================================================*/
+[id*="-form"] .contact-form-loader {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(247, 247, 247, 0.48) url('../images/form-loader.gif');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 5%;
+    opacity: 0;
+}
+
+[id*="-form"].processing .contact-form-loader {
+    opacity: .7;
+    z-index: 99;
+    -webkit-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+}
+
+/* Contact Form Close icon 
+========================================================*/
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000000;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
+
+.close:hover,
+.close:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}

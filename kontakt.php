@@ -1,3 +1,10 @@
+<?php
+
+ini_set("session.use_only_cookies", TRUE);
+ini_set("session.use_trans_sid", FALSE);
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -12,7 +19,7 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/contact-form.css"/>
+    <link rel="stylesheet" href="css/form.css"/>
 
     <link rel="stylesheet" type="text/css" href="lib/semantic/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="css/custom/form.css" />
@@ -47,7 +54,7 @@
                               CONTENT
     =========================================================-->
     <section>
-        <div class="bg_1 wrap_17 wrap_19">
+        <div class="bg_1 wrap_6 wrap_8">
             <div class="container">
                 <div class="row">
                     <div class="grid_6">
@@ -63,7 +70,7 @@
                                     <div class="row">
                                         <div class="grid_2">
                                             <p class="text_8">
-                                                <i class="fa fa-phone-square"></i> <a href="tel:0046101616163">010 16 16 163</a><br/>
+                                                <i class="fa fa-phone-square"></i> <a href="tel:0046101661010"> 010 166 10 10</a><br/>
                                                 <br/>
 
                                                 <i class="fa fa-envelope-square"></i> info@tolktjanst.se

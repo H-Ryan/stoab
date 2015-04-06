@@ -1,3 +1,10 @@
+<?php
+
+ini_set("session.use_only_cookies", TRUE);
+ini_set("session.use_trans_sid", FALSE);
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -12,7 +19,7 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/contact-form.css"/>
+    <link rel="stylesheet" href="css/form.css"/>
 
     <link rel="stylesheet" type="text/css" href="lib/semantic/semantic.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/custom/form.css"/>
@@ -46,7 +53,7 @@
                               CONTENT
     =========================================================-->
     <section>
-        <div class="bg_1 wrap_17 wrap_19">
+        <div class="bg_1 wrap_3 wrap_4">
             <div class="container">
                 <div class="row">
                     <div class="grid_6">
@@ -92,7 +99,7 @@
                                 Intresseanmälan
                             </h2>
 
-                            <form id="contact-form">
+                            <form id="job-form">
                                 <fieldset class="ui basic segment">
                                     <div class="row">
                                         <div class="grid_3">
@@ -157,13 +164,13 @@
                                         <div class="grid_2">
                                             <label>
                                                 <input type="text" name="phoneHome" placeholder="Telefon (bostad):"
-                                                       value=""/>
+                                                       value="" class="phone-group"/>
                                             </label>
                                         </div>
                                         <div class="grid_2">
                                             <label>
                                                 <input type="text" name="phoneMobile" placeholder="Mobiltelefon:"
-                                                       value=""/>
+                                                       value="" class="phone-group"/>
                                             </label>
                                         </div>
                                     </div>
@@ -197,7 +204,7 @@
                                     <div class="row">
                                         <div class="grid_3">
                                             <label>
-                                                <input type="text" name="languageOne" placeholder="Språk 1:" value=""/>
+                                                <input type="text" id="languageOne" name="languageOne" placeholder="Språk 1:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_3">
@@ -226,7 +233,7 @@
                                     <div class="row">
                                         <div class="grid_3">
                                             <label>
-                                                <input type="text" name="languageTwo" placeholder="Språk 2:" value=""/>
+                                                <input type="text" id="languageTwo" name="languageTwo" placeholder="Språk 2:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_3">
@@ -255,7 +262,7 @@
                                     <div class="row">
                                         <div class="grid_3">
                                             <label>
-                                                <input type="text" name="languageThree" placeholder="Språk 3:" value=""/>
+                                                <input type="text" id="languageThree" name="languageThree" placeholder="Språk 3:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_3">
@@ -284,7 +291,7 @@
                                     <div class="row">
                                         <div class="grid_3">
                                             <label>
-                                                <input type="text" name="languageFour" placeholder="Språk 4:" value=""/>
+                                                <input type="text" id="languageFour" name="languageFour" placeholder="Språk 4:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_3">
@@ -308,6 +315,23 @@
                                                     <option value="ÖT - Övriga Tolk">ÖT - Övrig tolk</option>
                                                 </select>
                                             </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_6">
+                                            <div class="ui divider"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_6">
+                                            <div>
+                                                Ja, jag samtycker till och är fullt införstådd
+                                                med att den information jag skickar kan registreras
+                                                och lagras av Semantix enligt personuppgiftslagen (1998:204).
+                                            </div>
+                                        </div>
+                                        <div class="grid_6">
+                                            <label for="terms"><input id="terms" type="checkbox" name="terms" /> Ja, jag samtycker</label>
                                         </div>
                                     </div>
                                     <div class="btn-wrap">

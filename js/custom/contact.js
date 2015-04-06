@@ -96,7 +96,7 @@ $(document).ready(function () {
         if (contactForm.valid()) {
             $.ajax({
                 type: "POST",
-                url: "src/shared/contact.php",
+                url: "src/services/contact.php",
                 data: contactForm.serialize(),
                 dataType: "json",
                 beforeSend: function () {

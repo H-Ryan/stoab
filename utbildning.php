@@ -1,3 +1,10 @@
+<?php
+
+ini_set("session.use_only_cookies", TRUE);
+ini_set("session.use_trans_sid", FALSE);
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="sv">
 <head>
