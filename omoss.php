@@ -52,7 +52,7 @@ session_start();
                     <h2 class="header_2 indent_1">Om oss</h2>
 
                     <div class="box_4">
-                        <p class="text_5">
+                        <p class="text_3">
                             <i class="fa fa-chevron-right"></i> STÖ är ett företag vars affärsidé är att skapa
                             kommunikation mellan människor och kulturer. Genom innovativa kommunikationslösningar
                             anpassar vi våra tjänster till modern tid. Våra tjänster lämpar sig främst till skolor,
@@ -61,13 +61,13 @@ session_start();
                         </p>
                         <br/>
 
-                        <p class="text_5">
+                        <p class="text_3">
                             <i class="fa fa-chevron-right"></i> Vår vision är att skapa ett ett samhälle där alla kan
                             kommunicera med varandra.
                         </p>
                         <br/>
 
-                        <p class="text_5">
+                        <p class="text_3">
                             <i class="fa fa-chevron-right"></i> Vi på STÖ levererar kompletta kommunikationslösningar
                             inom tolkning, översättning, språkstöd, utbildningar samt förmedling av kontaktpersoner.
                             Våra uppdrag utförs till högsta kvalitet men till konkurrenskraftiga priser. Detta
@@ -103,7 +103,6 @@ session_start();
                             <div class="put-left">
                                 <div class="caption">
                                     <img src="images/index-3_img01.jpg" alt="Image 1"/>
-
                                     <p class="text_2 color_1">
                                         Jobba med oss
                                     </p>
@@ -138,7 +137,7 @@ session_start();
                 <div class="row">
                     <div class="grid_6">
                         <div class="box_4">
-                            <p class="text_5">
+                            <p class="text_3">
                                 På STÖ arbetar vi som ett team för att ni som kund fullt ut ska kunna tillgodogöra all
                                 den kunskap, kompetens och erfarenhet som våra medarbetarna har. Vårt gemensamma mål är
                                 att alltid erbjuda bästa möjliga service för våra kunder. Nedan finner ni

@@ -57,35 +57,36 @@ $(document).ready(function () {
         },
         messages: {
             name: {
-                required: "hhhhhhhhh",
-                maxlength: "Den kund området bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Den kund området bör<br />innehålla mer än {0} tecken."
+                required: "Skriv ditt namn.",
+                maxlength: "Fält namn bör<br />innehålla mindre än {0} tecken.",
+                minlength: "Fält namn bör<br />innehålla mer än {0} tecken."
             },
             foretagsnamn: {
-                required: "Fält Företagsnamn krävs.",
+                required: "Skriv ditt företagsnamn.",
                 maxlength: "Fält Företagsnamn bör<br />innehålla mindre än {0} tecken.",
                 minlength: "Fält Företagsnamn bör<br />innehålla mer än {0} tecken."
             },
             phone: {
-                required: "ddddddddd",
-                number: "Fält telefon är ogiltig.",
+                required: "Skriv ditt telefon nummer.",
+                number: "Det ska feiyll nummer.",
                 maxlength: "Fältet Telefon bör<br />innehålla mindre än {0} tecken.",
                 minlength: "Fältet Telefon bör<br />innehålla mer än {0} tecken."
             },
             subject: {
-                required: "",
-                maxlength: "Fältet Telefon bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fältet Telefon bör<br />innehålla mer än {0} tecken."
+                required: "Skriv ditt e-post ämne.",
+                maxlength: "Fältet ämne bör<br />innehålla mindre än {0} tecken.",
+                minlength: "Fältet ämne bör<br />innehålla mer än {0} tecken."
             },
             email: {
-                required: "Fält e-postadress krävs.",
+                required: "Skriv ditt e-post adress.",
                 email: "Den här e-post är inte giltig.",
                 maxlength: "Fältet e-postadress ska<br />innehålla mindre än {0} tecken."
             },
             messageC: {
-                required: "ssssssss",
-                maxlength: "Fält plats bör<br />innehålla mindre än {0} tecken."
+                required: "Skriv ditt medelande.",
+                maxlength: "Fält medelande bör<br />innehålla mindre än {0} tecken."
             }
+
         }
     });
     $("#contact-form input, select, textarea").on('input',function(){

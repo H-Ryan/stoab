@@ -60,7 +60,7 @@ include_once "src/db/dbConfig.php";
                 <div class="column">
                     <div class="ui basic horizontal segment">
                         <h2 class="header_2 indent_1">Tolkning</h2>
-                        <p class="text_5">
+                        <p class="text_3">
                             <i class="fa fa-chevron-right"></i> När människor från olika länder
                             och kulturer möts är det
                             ofrånkomligt att de ibland inte talar samma språk. Då behövs en

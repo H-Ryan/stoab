@@ -52,13 +52,13 @@ if (isset($_POST['name']) && isset($_POST['personalNumber'])
     $emailContent .= "<div><p><h3>Gatuadress:</h3> $address</p></div>";
     $emailContent .= "<div><p><h3>Postnummer:</h3> $postNumber</p></div>";
     $emailContent .= "<div><p><h3>Postort:</h3> $city</p></div>";
-    $emailContent .= "<div><p><h3>Språk 1:</h3> $languageOne - $langOneCompetence</p></div>";
+    $emailContent .= "<div><p><h3>Språk:</h3> $languageOne - $langOneCompetence</p></div>";
     $langs = ["Two", "Three", "Four"];
     for ($i = 0; $i < sizeof($langs); $i++) {
-        if (isset($_POST['language'.$langs[$i]])) {
+        if (!empty(isset($_POST['language'.$langs[$i]]))) {
             $lang = $_POST['language'.$langs[$i]];
             $langComp = $_POST['langCompetence'.$langs[$i]];
-            $emailContent .= "<div><p><h3>Språk 1:</h3> $lang - $langComp</p></div>";
+            $emailContent .= "<div><p><h3>Språk:</h3> $lang - $langComp</p></div>";
         }
     }
     $emailContent .= "</body></html>";

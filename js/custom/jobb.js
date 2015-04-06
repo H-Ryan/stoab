@@ -9,8 +9,12 @@ $(document).ready(function () {
     var jobForm = $('#job-form');
     var resultModal = $('.ui.modal');
     var validator = jobForm.validate({
-        errorPlacement: function(error, element) {
-            error.appendTo( element.closest('form div') );
+        errorPlacement: function (error, element) {
+            if (element.is($("select[name*='langCompetence']"))) {
+                error.appendTo(element.closest('form [class*="grid_"]'));
+            } else {
+                error.appendTo(element.closest('form div'));
+            }
         },
         ignore: ":hidden:not(select)",
         errorElement: "div",
@@ -20,10 +24,10 @@ $(document).ready(function () {
             this.element(element);
         },
         onkeyup: false,
-        highlight: function(element, errorClass, validClass) {
+        highlight: function (element, errorClass, validClass) {
             $(element).closest('[class*="grid_"]').removeClass(validClass).addClass(errorClass);
         },
-        unhighlight: function(element, errorClass, validClass) {
+        unhighlight: function (element, errorClass, validClass) {
             $(element).closest('[class*="grid_"]').removeClass(errorClass).addClass(validClass);
         },
         groups: {
@@ -37,9 +41,7 @@ $(document).ready(function () {
             },
             personalNumber: {
                 required: true,
-                digits: true,
-                minlength: 10,
-                maxlength: 12
+                personalNumber: true
             },
             gender: {
                 required: true
@@ -91,94 +93,106 @@ $(document).ready(function () {
                 required: true
             },
             langCompetenceTwo: {
-                required: function(element) { return $("#languageTwo").text().length > 3;}
+                required: function () {
+                    return $("#languageTwo").val().length > 3;
+                }
             },
             langCompetenceThree: {
-                required: function(element) { return $("#languageThree").text().length > 3;}
+                required: function () {
+                    return $("#languageThree").val().length > 3;
+                }
             },
             langCompetenceFour: {
-                required: function(element) { return $("#languageFour").text().length > 3;}
+                required: function () {
+                    return $("#languageFour").val().length > 3;
+                }
             }
         },
         messages: {
             name: {
-                required: "",
-                maxlength: "",
-                minlength: ""
+                required: "Skriv ditt namn.",
+                maxlength: "Fält namn bör<br />innehålla mindre än {0} tecken.",
+                minlength: "Fält namn bör<br />innehålla mer än {0} tecken."
             },
             personalNumber: {
-                required: "",
-                digits: "",
-                minlength: "",
-                maxlength: ""
+                required: "Skriv ditt personnummer.",
+                personalNumber: "Ditt personnummer måste vara i det här formatet \"ÅÅÅÅMMDD-NNNN\""
             },
             gender: {
-                required: ""
+                required: "Välja ditt kön."
             },
             tax: {
-                required: ""
+                required: "Välja ditt jrkebevis."
             },
             car: {
-                required: ""
+                required: "Välj din bil status."
             },
             email: {
-                required: "",
-                maxlength: "",
-                email: ""
+                required: "Skriv ditt e-postadress.",
+                maxlength: "Fält e-postadress bör<br />innehålla mindre än {0} tecken.",
+                email: "Din e-postadress måste vara i det här formatet \"DITTNAMN@EXEMPEL.COM\"."
             },
             phoneHome: {
-                require_from_group: "",
-                minlength: "",
-                maxlength: "",
-                digits: ""
+                require_from_group: "Du måste ange antingen hemnummer eller mobilnummer eller både.",
+                maxlength: "Fältet telefon bör<br />innehålla mindre än {0} tecken.",
+                minlength: "Fältet telefon bör<br />innehålla mer än {0} tecken.",
+                digits: "Det ska feiyll nummer."
             },
             phoneMobile: {
-                require_from_group: "",
-                minlength: "",
-                maxlength: "",
-                digits: ""
+                require_from_group: "Du måste ange antingen hemnummer eller mobilnummer eller både.",
+                maxlength: "Fältet mobil bör<br />innehålla mindre än {0} tecken.",
+                minlength: "Fältet mobil bör<br />innehålla mer än {0} tecken.",
+                digits: "Det ska feiyll nummer."
             },
             address: {
-                required: "",
-                maxlength: "",
-                minlength: ""
+                required: "Skriv ditt adress.",
+                maxlength: "Fält adress bör<br />innehålla mindre än {0} tecken.",
+                minlength: "Fält adress bör<br />innehålla mer än {0} tecken."
             },
             postNumber: {
-                required: "",
-                digits: "",
-                maxlength: "",
-                minlength: ""
+                required: "Skriv ditt post nummer.",
+                digits: "Det ska feiyll nummer.",
+                maxlength: "Fält post nummer bör<br />innehålla mindre än {0} tecken.",
+                minlength: "Fält post nummer bör<br />innehålla mer än {0} tecken."
             },
             city: {
-                required: ""
+                required: "Skriv ditt stad."
             },
             terms: {
-                required: ""
+                required: "Du måste trycka på pul och samtycka."
             },
             languageOne: {
-                required: ""
+                required: "Du måste välja minst ett språk."
             },
             langCompetenceOne: {
-                required: ""
+                required: "Välj ett språk från listan."
             },
             langCompetenceTwo: {
-                required: ""
+                required: "Välj ett språk från listan."
             },
             langCompetenceThree: {
-                required: ""
+                required: "Välj ett språk från listan."
             },
             langCompetenceFour: {
-                required: ""
+                required: "Välj ett språk från listan."
             }
+
         }
     });
     jQuery.extend(jQuery.validator.messages, {
         require_from_group: "Fyll i minst ett av dessa områden."
     });
-    $("#contact-form input, select, textarea").on('input', function(){
+    jQuery.validator.addMethod("personalNumber", function (value, element) {
+        // allow any non-whitespace characters as the host part
+        return this.optional(element) || /^\d{8}-?\d{4}$/.test(value);
+    }, 'Please enter a valid personal number.');
+
+    $("#job-form input, select, textarea").on('input', function () {
         $(this).valid();
     });
-    $("#btnSubmit").on("click", function() {
+
+
+    $("#btnSubmit").on("click", function () {
         jobForm.validate();
         if (jobForm.valid()) {
             $.ajax({
@@ -190,7 +204,7 @@ $(document).ready(function () {
                     jobForm.find(".segment").addClass("loading");
                 }
             }).done(function (data) {
-                if(data.error === false) {
+                if (data.error === false) {
                     resultModal.find(".header").text("Klart");
                     resultModal.find(".content").text("Ditt meddelande är sänt!");
                     jobForm.get(0).reset();
@@ -205,7 +219,7 @@ $(document).ready(function () {
             return false;
         }
     });
-    $("#btnReset").on("click", function() {
+    $("#btnReset").on("click", function () {
         jobForm.get(0).reset();
         validator.resetForm();
         jobForm.find('[class*="grid_"]').removeClass("error");
