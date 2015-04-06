@@ -31,6 +31,7 @@ session_start();
     <script src="lib/semantic/semantic.min.js"></script>
     <script src="lib/jq-validate/jquery.validate.min.js"></script>
     <script src="lib/jq-validate/additional-methods.min.js"></script>
+    <script src="js/custom/jobb.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -85,7 +86,8 @@ session_start();
                             </h2>
 
                             <p class="text_7 color_6">
-                                För att du ska få bli registrerad som tolk hos oss krävs det att vi får ta del av ditt belastningsregister. Blanketten du ska fylla i finner du nedan.
+                                För att du ska få bli registrerad som tolk hos oss krävs det att vi får ta del av ditt
+                                belastningsregister. Blanketten du ska fylla i finner du nedan.
                                 <br/><br/>
                             </p>
                             <a class="btn_2"
@@ -199,12 +201,15 @@ session_start();
                                     <h2 class="header_2 indent_2">
                                         Språk och kompetens:
                                     </h2>
+
                                     <p class="text_5 color_6"> Du kan ange flera språk. Börja med ditt
                                         förstahandsspråk.</p>
+
                                     <div class="row">
                                         <div class="grid_3">
                                             <label>
-                                                <input type="text" id="languageOne" name="languageOne" placeholder="Språk 1:" value=""/>
+                                                <input type="text" id="languageOne" name="languageOne"
+                                                       placeholder="Språk 1:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_3">
@@ -218,7 +223,8 @@ session_start();
                                                     <option value="RT - Auktoriserad rättstolk">RT - Auktoriserad
                                                         rättstolk
                                                     </option>
-                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">ST
+                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">
+                                                        ST
                                                         &amp; RT
                                                         -
                                                         Auktoriserad sjukvårds- och rättstolk
@@ -233,7 +239,8 @@ session_start();
                                     <div class="row">
                                         <div class="grid_3">
                                             <label>
-                                                <input type="text" id="languageTwo" name="languageTwo" placeholder="Språk 2:" value=""/>
+                                                <input type="text" id="languageTwo" name="languageTwo"
+                                                       placeholder="Språk 2:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_3">
@@ -247,7 +254,8 @@ session_start();
                                                     <option value="RT - Auktoriserad rättstolk">RT - Auktoriserad
                                                         rättstolk
                                                     </option>
-                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">ST
+                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">
+                                                        ST
                                                         &amp; RT
                                                         -
                                                         Auktoriserad sjukvårds- och rättstolk
@@ -262,7 +270,8 @@ session_start();
                                     <div class="row">
                                         <div class="grid_3">
                                             <label>
-                                                <input type="text" id="languageThree" name="languageThree" placeholder="Språk 3:" value=""/>
+                                                <input type="text" id="languageThree" name="languageThree"
+                                                       placeholder="Språk 3:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_3">
@@ -276,7 +285,8 @@ session_start();
                                                     <option value="RT - Auktoriserad rättstolk">RT - Auktoriserad
                                                         rättstolk
                                                     </option>
-                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">ST
+                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">
+                                                        ST
                                                         &amp; RT
                                                         -
                                                         Auktoriserad sjukvårds- och rättstolk
@@ -291,7 +301,8 @@ session_start();
                                     <div class="row">
                                         <div class="grid_3">
                                             <label>
-                                                <input type="text" id="languageFour" name="languageFour" placeholder="Språk 4:" value=""/>
+                                                <input type="text" id="languageFour" name="languageFour"
+                                                       placeholder="Språk 4:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_3">
@@ -305,7 +316,8 @@ session_start();
                                                     <option value="RT - Auktoriserad rättstolk">RT - Auktoriserad
                                                         rättstolk
                                                     </option>
-                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">ST
+                                                    <option value="ST &amp; RT - Auktoriserad sjukvårds- och rättstolk">
+                                                        ST
                                                         &amp; RT
                                                         -
                                                         Auktoriserad sjukvårds- och rättstolk
@@ -331,7 +343,8 @@ session_start();
                                             </div>
                                         </div>
                                         <div class="grid_6">
-                                            <label for="terms"><input id="terms" type="checkbox" name="terms" /> Ja, jag samtycker</label>
+                                            <label for="terms"><input id="terms" type="checkbox" name="terms"/> Ja, jag
+                                                samtycker</label>
                                         </div>
                                     </div>
                                     <div class="btn-wrap">
@@ -366,6 +379,5 @@ session_start();
 =========================================================-->
 <?php include("src/partials/shared/footer.html"); ?>
 <script src="js/script.js"></script>
-<script src="js/custom/jobb.js"></script>
 </body>
 </html>

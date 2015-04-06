@@ -101,7 +101,7 @@ $(document).ready(function () {
                 data: contactForm.serialize(),
                 dataType: "json",
                 beforeSend: function () {
-                    contactForm.find(".segment").addClass("loading");
+                    contactForm.find("fieldset .segment").addClass("loading");
                 }
             }).done(function (data) {
                 if(data.error === false) {
@@ -115,7 +115,7 @@ $(document).ready(function () {
                 }
                 resultModal.modal("show");
             });
-            contactForm.find(".segment").removeClass("loading");
+            //contactForm.find(".segment").removeClass("loading");
             return false;
         }
     });

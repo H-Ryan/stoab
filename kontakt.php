@@ -31,7 +31,7 @@ session_start();
     <script src="lib/semantic/semantic.min.js"></script>
     <script src="lib/jq-validate/jquery.validate.min.js"></script>
     <script src="lib/jq-validate/additional-methods.min.js"></script>
-
+    <script src="js/custom/contact.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -165,6 +165,5 @@ session_start();
 =========================================================-->
 <?php include("src/partials/shared/footer.html"); ?>
 <script src="js/script.js"></script>
-<script src="js/custom/contact.js"></script>
 </body>
 </html>
