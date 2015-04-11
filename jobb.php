@@ -97,10 +97,14 @@ session_start();
                     </div>
                     <div class="grid_6">
                         <div class="wrap_18">
-                            <h2 class="header_2 indent_2">
+                            <h2 class="header_2 indent_8">
                                 Intresseanmälan
                             </h2>
-
+                            <div class="row">
+                                <div class="grid_6">
+                                    <div class="ui divider"></div>
+                                </div>
+                            </div>
                             <form id="job-form">
                                 <fieldset class="ui basic segment">
                                     <div class="row">
@@ -198,13 +202,16 @@ session_start();
                                     </div>
                                 </fieldset>
                                 <fieldset class="ui basic segment">
-                                    <h2 class="header_2 indent_2">
+                                    <h2 class="header_2 indent_8">
                                         Språk och kompetens:
                                     </h2>
-
                                     <p class="text_5 color_6"> Du kan ange flera språk. Börja med ditt
                                         förstahandsspråk.</p>
-
+                                    <div class="row">
+                                        <div class="grid_6">
+                                            <div class="ui divider"></div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="grid_3">
                                             <label>
@@ -329,6 +336,36 @@ session_start();
                                             </label>
                                         </div>
                                     </div>
+                                </fieldset>
+                                <fieldset class="ui basic segment">
+                                    <h2 class="header_2 indent_8">
+                                        Ytterligare information:
+                                    </h2>
+                                    <div class="row">
+                                        <div class="grid_6">
+                                            <div class="ui divider"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_6">
+                                            <label class="text_3 color_6">Tidigare erfarenhet:<textarea name="experience"></textarea></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_6">
+                                            <label class="text_3 color_6">Tolkutbildning:<textarea name="education"></textarea></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_6">
+                                            <label class="text_3 color_6">Referens 1:<textarea name="referenceOne"></textarea></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_6">
+                                            <label class="text_3 color_6">Referens 2:<textarea name="referenceTwo"></textarea></label>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="grid_6">
                                             <div class="ui divider"></div>
@@ -337,13 +374,18 @@ session_start();
                                     <div class="row">
                                         <div class="grid_6">
                                             <div>
-                                                Ja, jag samtycker till och är fullt införstådd
-                                                med att den information jag skickar kan registreras
-                                                och lagras av Semantix enligt personuppgiftslagen (1998:204).
+                                                <p class="text_4 color_6">
+                                                    Ja, jag samtycker till och är fullt införstådd
+                                                    med att den information jag skickar kan registreras
+                                                    och lagras av STÖ AB enligt personuppgiftslagen (1998:204).
+                                                </p>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="grid_6">
-                                            <label for="terms"><input id="terms" type="checkbox" name="terms"/> Ja, jag
+                                            <br />
+                                            <label for="terms" class="text_4 color_6"><input id="terms" type="checkbox" name="terms"/> Ja, jag
                                                 samtycker</label>
                                         </div>
                                     </div>
