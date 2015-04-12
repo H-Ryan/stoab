@@ -3,6 +3,9 @@
  */
 $(document).ready(function () {
     "use strict";
+    var formDimmer = $(".ui.dimmer").dimmer({
+        closable: false
+    });
     $('.ui.radio.checkbox').checkbox();
     $('select.dropdown').dropdown();
 
@@ -195,13 +198,14 @@ $(document).ready(function () {
     $("#btnSubmit").on("click", function () {
         jobForm.validate();
         if (jobForm.valid()) {
+            $("#btnSubmit").css('background-color', '#f1f045');
             $.ajax({
                 type: "POST",
                 url: "src/services/job.php",
                 data: jobForm.serialize(),
                 dataType: "json",
                 beforeSend: function () {
-                    jobForm.find(".segment").addClass("loading");
+                    formDimmer.dimmer('show');
                 }
             }).done(function (data) {
                 if (data.error === false) {
@@ -213,11 +217,13 @@ $(document).ready(function () {
                     resultModal.find(".header").text(data.emailErrorHeader);
                     resultModal.find(".content").text(data.emailErrorMessage);
                 }
+                formDimmer.dimmer('hide');
                 resultModal.modal("show");
             });
-            jobForm.find(".segment").removeClass("loading");
-            return false;
+        } else {
+            $("#btnSubmit").css('background-color', '#d95c5c');
         }
+        return false;
     });
     $("#btnReset").on("click", function () {
         jobForm.get(0).reset();

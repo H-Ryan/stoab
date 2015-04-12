@@ -139,22 +139,29 @@ session_start();
                                         <button type="button" class="btn_3" id="btnSubmit" >Skicka</button>
                                     </div>
                                 </fieldset>
-                                <div class="ui standard small modal">
-                                    <i class="close icon"></i>
-                                    <div class="header">
-                                    </div>
+                                <div class="ui inverted dimmer">
                                     <div class="content">
-                                        <div class="description">
+                                        <div class="ui text loader">
+                                            Loading
                                         </div>
-                                    </div>
-                                    <div class="actions">
-                                        <div class="ui positive button">OK</div>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="ui standard small modal">
+            <i class="close icon"></i>
+            <div class="header">
+            </div>
+            <div class="content">
+                <div class="description">
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui positive button">OK</div>
             </div>
         </div>
         <?php include("src/partials/shared/follow-us.html") ?>

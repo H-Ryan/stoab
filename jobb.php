@@ -394,6 +394,13 @@ session_start();
                                         <button type="button" class="btn_3" id="btnSubmit">Skicka</button>
                                     </div>
                                 </fieldset>
+                                <div class="ui inverted dimmer">
+                                    <div class="content">
+                                        <div class="ui text loader">
+                                            Loading
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -4,6 +4,9 @@
 $(document).ready(function () {
     var contactForm = $('#contact-form');
     var resultModal = $('.ui.modal');
+    var formDimmer = $(".ui.dimmer").dimmer({
+        closable: false
+    });
     var validator = contactForm.validate({
         errorPlacement: function(error, element) {
             error.appendTo( element.closest('form div') );
@@ -95,13 +98,14 @@ $(document).ready(function () {
     $("#btnSubmit").on("click", function() {
         contactForm.validate();
         if (contactForm.valid()) {
+            $("#btnSubmit").css('background-color', '#f1f045');
             $.ajax({
                 type: "POST",
                 url: "src/services/contact.php",
                 data: contactForm.serialize(),
                 dataType: "json",
                 beforeSend: function () {
-                    contactForm.find("fieldset .segment").addClass("loading");
+                    formDimmer.dimmer('show');
                 }
             }).done(function (data) {
                 if(data.error === false) {
@@ -113,11 +117,13 @@ $(document).ready(function () {
                     resultModal.find(".header").text(data.emailErrorHeader);
                     resultModal.find(".content").text(data.emailErrorMessage);
                 }
+                formDimmer.dimmer('hide');
                 resultModal.modal("show");
             });
-            //contactForm.find(".segment").removeClass("loading");
-            return false;
+        } else {
+            $("#btnSubmit").css('background-color', '#d95c5c');
         }
+        return false;
     });
     $("#btnReset").on("click", function() {
         contactForm.get(0).reset();
