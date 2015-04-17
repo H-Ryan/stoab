@@ -8,6 +8,9 @@ $(document).ready(function () {
         success: "valid"
     });
 
+    CKEDITOR.replace( 'newsLetter' );
+    //var editor_data = CKEDITOR.instances.editor1.getData();
+
     var startHour = $("#starttid");
     var endHour = $("#sluttid");
     var startMinute = $("#starttid1");

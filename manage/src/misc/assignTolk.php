@@ -160,7 +160,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                         <hr style='width: 80%;margin-left: auto; margin-right: auto;'/>
                         <div>
                             <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
-                                Kontakta oss om hi har några frågor.
+                                Kontakta oss om ni har några frågor.
                             </p>
                         </div>
                         <hr style='width: 80%;
@@ -168,13 +168,13 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                         <footer style='margin-left: 10%; width:80%'>
                             <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
 
-                            <p><label style='font-weight:bold;'>ADRESS:</label> Transportgatan 4-5, 281 52 Hässleholm</p>
+                            <p><label style='font-weight:bold;'>ADRESS:</label> Nya Boulevarden 10, 291 31 Kristianstad </p>
 
-                            <p><label style='font-weight:bold;'>EPOST:</label> <a href='mailto:info@tolktjanst.se'>info@tolktjanst.se</a></p>
+                            <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@tolktjanst.se'> info@tolktjanst.se</a></p>
 
-                            <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'>www.tolktjanst.com</a></p>
+                            <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'> www.tolktjanst.com</a></p>
 
-                            <p><label style='font-weight:bold;'>TELEFON:</label> 0451-742055</p>
+                            <p><label style='font-weight:bold;'>TELEFON:</label> 010 166 10 10</p>
 
                             <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
 
@@ -268,13 +268,13 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                         <footer style='margin-left: 10%; width:80%'>
                             <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
 
-                            <p><label style='font-weight:bold;'>ADRESS:</label> Transportgatan 4-5, 281 52 Hässleholm</p>
+                            <p><label style='font-weight:bold;'>ADRESS:</label> Nya Boulevarden 10, 291 31 Kristianstad </p>
 
-                            <p><label style='font-weight:bold;'>EPOST:</label> <a href='mailto:info@tolktjanst.se'>info@tolktjanst.se</a></p>
+                            <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@tolktjanst.se'> info@tolktjanst.se</a></p>
 
-                            <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'>www.tolktjanst.com</a></p>
+                            <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'> www.tolktjanst.com</a></p>
 
-                            <p><label style='font-weight:bold;'>TELEFON:</label> 0451-742055</p>
+                            <p><label style='font-weight:bold;'>TELEFON:</label> 010 166 10 10</p>
 
                             <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
 

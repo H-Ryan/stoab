@@ -58,6 +58,7 @@ try {
     <script type="text/javascript" src="../lib/jq-validate/additional-methods.min.js"></script>
     <script type="text/javascript" src="../lib/semantic/semantic.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="../lib/ckeditor/ckeditor.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -82,6 +83,7 @@ try {
                         <a class="item" data-tab="third">Manage Order</a>
                         <a class="item" data-tab="fourth">Order history</a>
                         <a class="item" data-tab="fifth">Manage Customers</a>
+                        <a class="item" data-tab="sixth">News letter</a>
                     </div>
                     <div class="right menu">
                         <div class="item">
@@ -113,6 +115,9 @@ try {
     </div>
     <div class="ui bottom attached tab" data-tab="fifth">
         <?php include('src/partials/manage-customers.php'); ?>
+    </div>
+    <div class="ui bottom attached tab" data-tab="sixth">
+        <?php include('src/partials/news-letter.php'); ?>
     </div>
 </div>
 </body>

@@ -210,7 +210,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                                         <p>$organization</p>
                                     </div>
                                     <div>
-                                        <span style='font-weight:bold;'>Epostadress:</span>
+                                        <span style='font-weight:bold;'>E-postadress:</span>
                                         <p>$email</p>
                                     </div>
                                     <div>
@@ -289,18 +289,19 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                     </div>
                     <hr style='width: 80%; margin-left: auto;margin-right: auto;'/>
                     <footer style='margin-left: 10%; width:80%'>
-                        <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
+                            <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
 
-                        <p><label style='font-weight:bold;'>ADRESS:</label> Transportgatan 4-5, 281 52 Hässleholm</p>
+                            <p><label style='font-weight:bold;'>ADRESS:</label> Nya Boulevarden 10, 291 31 Kristianstad </p>
 
-                        <p><label style='font-weight:bold;'>EPOST:</label> <a href='mailto:info@tolktjanst.se'>info@tolktjanst.se</a></p>
+                            <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@tolktjanst.se'> info@tolktjanst.se</a></p>
 
-                        <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'>www.tolktjanst.com</a></p>
+                            <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'> www.tolktjanst.com</a></p>
 
-                        <p><label style='font-weight:bold;'>TELEFON:</label> 0451-742055</p>
+                            <p><label style='font-weight:bold;'>TELEFON:</label> 010 166 10 10</p>
 
-                        <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
-                    </footer>
+                            <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
+
+                            </footer>
                     </body>
                     </html>";
                     $bodyToCompany = "<!DOCTYPE html><html>
@@ -313,7 +314,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                                     margin-left: 10%;'/>
                     <h2 style='text-align: center; margin-top: 5%;'>Beställning:</h2>
 
-                    <h2 style='text-align: center; margin-top: 5%;'>Uppdragsnr:" . $orderNumber. "</h2>
+                    <h2 style='text-align: center; margin-top: 5%;'>Uppdragsnr: " . $orderNumber. "</h2>
                     <table style='width: 80%;
                                     margin-left: 10%;
                                     margin-right: 10%;
@@ -347,15 +348,15 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                                     border: 1px solid #a9c6c9; width: 50%;'>
                                 <div style='vertical-align:top; margin-top:5%;'>
                                     <div>
-                                        <span style='font-weight:bold;'>Beställare:</span>
+                                        <span style='font-weight:bold;'>Beställare: </span>
                                         <p>$contactPerson</p>
                                     </div>
                                     <div>
-                                        <span style='font-weight:bold;'>Företag/ Organisation:</span>
+                                        <span style='font-weight:bold;'>Företag/ Organisation: </span>
                                         <p>$organization</p>
                                     </div>
                                     <div>
-                                        <span style='font-weight:bold;'>Epostadress:</span>
+                                        <span style='font-weight:bold;'>E-postadress: </span>
                                         <p>$email</p>
                                     </div>
                                     <div>
@@ -363,19 +364,19 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                                         <p>$telephone</p>
                                     </div>
                                     <div>
-                                        <span style='font-weight:bold;'>Mobil:</span>
+                                        <span style='font-weight:bold;'>Mobil: </span>
                                         <p>$mobile</p>
                                     </div>
                                     <div>
-                                        <span style='font-weight:bold;'>Plats:</span>
+                                        <span style='font-weight:bold;'>Plats: </span>
                                         <p>$address</p>
                                     </div>
                                     <div>
-                                        <span style='font-weight:bold;'>Postnummer:</span>
+                                        <span style='font-weight:bold;'>Postnummer: </span>
                                         <p>$post_code</p>
                                     </div>
                                     <div>
-                                        <span style='font-weight:bold;'>Ort:</span>
+                                        <span style='font-weight:bold;'>Ort: </span>
                                         <p>$city</p>
                                     </div>
                                 </div>

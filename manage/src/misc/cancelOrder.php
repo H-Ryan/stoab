@@ -76,7 +76,7 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                                             margin-left: 10%;'/>
                             <h2 style='text-align: center; margin-top: 5%;'>Tolkuppdrag</h2>
 
-                            <h2 style='text-align: center; margin-top: 5%;'>Uppdrag Nummer:" . $orderUpdated->o_orderNumber . "</h2>
+                            <h2 style='text-align: center; margin-top: 5%;'>Uppdrag Nummer: " . $orderUpdated->o_orderNumber . "</h2>
                             <table style='width: 80%;
                                             margin-left: 10%;
                                             margin-right: 10%;
@@ -123,7 +123,7 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
 
                                         <p><span style='font-weight:bold;'>Mobile:</span> " . $orderUpdated->o_mobile . "</p>
 
-                                        <p><span style='font-weight:bold;'>Epostadress:</span> " . $orderUpdated->o_email . "</p>
+                                        <p><span style='font-weight:bold;'>E-postadress:</span> " . $orderUpdated->o_email . "</p>
                                     </td>
                                     <td style='background-color: #d4e3e5;padding: 8px;border: 1px solid #a9c6c9;'>
                                         <p><span style='font-weight:bold;'>Namn:</span> " . $tolk->u_firstName . " " . $tolk->u_lastName . "</p>
@@ -132,7 +132,7 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
 
                                         <p><span style='font-weight:bold;'>Mobile:</span> " . $tolk->u_mobile . "</p>
 
-                                        <p><span style='font-weight:bold;'>Epostadress:</span> " . $tolk->u_email . "</p>
+                                        <p><span style='font-weight:bold;'>E-postadress:</span> " . $tolk->u_email . "</p>
 
                                         <p><span style='font-weight:bold;'>Hemort:</span> " . $tolk->u_city . "</p>
                                     </td>
@@ -149,17 +149,17 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                             <hr style='width: 80%;
                                             margin-left: 10%;'/>
                             <footer style='margin-left: 10%; width:80%'>
-                                <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
+                            <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
 
-                                <p><label style='font-weight:bold;'>ADRESS:</label> Transportgatan 4-5, 281 52 Hässleholm</p>
+                            <p><label style='font-weight:bold;'>ADRESS:</label> Nya Boulevarden 10, 291 31 Kristianstad </p>
 
-                                <p><label style='font-weight:bold;'>EPOST:</label> <a href='mailto:info@tolkjanst.se'>info@tolkjanst.se</a></p>
+                            <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@tolktjanst.se'> info@tolktjanst.se</a></p>
 
-                                <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolkjanst.se'>www.tolkjanst.se</a></p>
+                            <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'> www.tolktjanst.com</a></p>
 
-                                <p><label style='font-weight:bold;'>TELEFON:</label> 0451-742055</p>
+                            <p><label style='font-weight:bold;'>TELEFON:</label> 010 166 10 10</p>
 
-                                <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
+                            <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
 
                             </footer>
                             </body>
@@ -244,7 +244,7 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                                 </tr>
                                 <tr>
                                     <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
-                                        <p><span style='font-weight:bold;'>Epostadress:</span> " . $order->o_email . "</p>
+                                        <p><span style='font-weight:bold;'>E-postadress:</span> " . $order->o_email . "</p>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -258,17 +258,17 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                             <hr style='width: 80%;
                                             margin-left: 10%;'/>
                             <footer style='margin-left: 10%; width:80%'>
-                                <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
+                            <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
 
-                                <p><label style='font-weight:bold;'>ADRESS:</label> Transportgatan 4-5, 281 52 Hässleholm</p>
+                            <p><label style='font-weight:bold;'>ADRESS:</label> Nya Boulevarden 10, 291 31 Kristianstad </p>
 
-                                <p><label style='font-weight:bold;'>EPOST:</label> <a href='mailto:info@tolkjanst.se'>info@tolkjanst.se</a></p>
+                            <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@tolktjanst.se'> info@tolktjanst.se</a></p>
 
-                                <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolkjanst.se'>www.tolkjanst.se</a></p>
+                            <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'> www.tolktjanst.com</a></p>
 
-                                <p><label style='font-weight:bold;'>TELEFON:</label> 0451-742055</p>
+                            <p><label style='font-weight:bold;'>TELEFON:</label> 010 166 10 10</p>
 
-                                <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
+                            <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
 
                             </footer>
                             </body>
