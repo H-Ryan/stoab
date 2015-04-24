@@ -32,15 +32,8 @@ if (isset($_POST['name']) && isset($_POST['personalNumber'])
         <body style='
             width: 100%;
             height: 100%;
-            font-family: Lato,\"Helvetica Neue\",Arial,Helvetica,sans-serif;'>
-        <table style='
-            border-collapse: collapse;
-            border: 1px solid gray;
-            display: table;
-            border-spacing: 2px;
-            font-size: 1em;
-            color: rgba(0,0,0,.8);'>";
-    $emailContent .= "<thead><tr><th colspan='2' style='height: 50px; border: 1px solid gray;'><h2>Intresseanmälan</h2></th></tr></thead><tbody>";
+            font-family: Lato,\"Helvetica Neue\",Arial,Helvetica,sans-serif;'>";
+    $emailContent .= "<h2>Intresseanmälan</h2>";
     $emailContent .= printRow("Namn:", $name);
     $emailContent .= printRow("Personnummer:", $personalNumber);
     $emailContent .= printRow("Kön:", $gender);
@@ -92,14 +85,11 @@ if (isset($_POST['name']) && isset($_POST['personalNumber'])
         $referenceTwo = $_POST['referenceTwo'];
         $emailContent .= printRow("Referens 2:", $referenceTwo);
     }
-    $emailContent .= "</tbody></table></body></html>";
+    $emailContent .= "</body></html>";
     $emailer->send_email("info@tolktjanst.se", "STÖ AB", "Kontaktformulär", $emailContent);
     echo json_encode($data);
 }
 
 function printRow($label, $data) {
-    return "<tr>
-                <td style='border: 1px solid gray; padding: 15px;'><p style='font-weight: bold;'>$label</p></td>
-                <td style='border: 1px solid gray; padding: 15px;'>$data</td>
-            </tr>";
+    return "<p><span><b>$label</b></span> <span>$data</span></p>";
 }

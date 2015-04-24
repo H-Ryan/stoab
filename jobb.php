@@ -157,7 +157,7 @@ session_start();
                                             </div>
                                             <div class="ui radio checkbox">
                                                 <label for="carNo">Nej</label>
-                                                <input id="carNo" type="radio" name="car" value="Ney">
+                                                <input id="carNo" type="radio" name="car" value="Nej">
                                             </div>
                                         </div>
                                     </div>
