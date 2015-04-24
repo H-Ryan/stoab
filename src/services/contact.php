@@ -20,6 +20,7 @@ if (isset($_POST['name']) && isset($_POST['foretagsnamn'])
 
     $emailer = new Emails();
     $emailContent = "<html><head></head><body>
+	<div><h2>Kontaktformulär</h2>
     <div><p><h3>Namn:</h3> $name</p></div>
     <div><p><h3>Företagsnamn:</h3> $foretagsnamn</p></div>
     <div><p><h3>Telefon:</h3> $phone</p></div>

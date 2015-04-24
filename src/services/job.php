@@ -86,7 +86,7 @@ if (isset($_POST['name']) && isset($_POST['personalNumber'])
         $emailContent .= printRow("Referens 2:", $referenceTwo);
     }
     $emailContent .= "</body></html>";
-    $emailer->send_email("info@tolktjanst.se", "STÖ AB", "Kontaktformulär", $emailContent);
+    $emailer->send_email("info@tolktjanst.se", "STÖ AB", "Intresseanmälan", $emailContent);
     echo json_encode($data);
 }
 
