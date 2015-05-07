@@ -4,9 +4,8 @@
 * Time: 10:34 PM
 -->
 <form class="ui form orderForm" onsubmit="return false;">
-    <div class="ui stackable three column grid">
-        <div class="column"></div>
-        <div class="fixed column">
+    <div class="ui grid">
+        <div class="centered seven wide column">
             <fieldset id="order">
                 <h3>Beställ Tolk<br/>1. Uppdrag</h3>
                 <input type="hidden" name="organizationNumber" value="<?php echo $organizationNumber; ?>">
@@ -36,21 +35,56 @@
                 <div class="ui basic segment">
                     <div class="required inline fields">
                         <label for="type">Typ av tolkning.</label>
+
                         <div class="ui segment">
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <label for="KT">Kontakttolkning</label>
-                                    <input id="KT" type="radio" name="type" value="KT" checked>
+                            <div class="ui grid">
+                                <div class="two column row">
+                                    <div class="left floated column">
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <label for="KT">Kontakttolkning</label>
+                                                <input id="KT" type="radio" name="type" value="KT" checked>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="left floated column">
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <label for="TT">Telefontolkning</label>
+                                                <input id="TT" type="radio" name="type" value="TT">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <label for="TT">Telefontolkning</label>
-                                    <input id="TT" type="radio" name="type" value="TT">
+                                <div class="two column row">
+                                    <div class="left floated column">
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <label for="KP">Kontaktperson</label>
+                                                <input id="KP" type="radio" name="type" value="KP">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <label for="SH">Studiehandledning</label>
+                                                <input id="SH" type="radio" name="type" value="SH">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="one column row">
+                                    <div class="field">
+                                        <div class="ui radio checkbox">
+                                            <label for="SS">Språkstöd</label>
+                                            <input id="SS" type="radio" name="type" value="SS">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" value="NI" name="tolk_type" />
+                        <input type="hidden" value="NI" name="tolk_type"/>
                     </div>
                 </div>
                 <div class="required field">
@@ -234,6 +268,5 @@
                 </div>
             </fieldset>
         </div>
-        <div class="column"></div>
     </div>
 </form>

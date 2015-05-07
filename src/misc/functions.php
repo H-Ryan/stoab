@@ -12,6 +12,14 @@ function encrypt_password($str){
 	return hash("sha512", $salt1.$str.$salt2); //(algo, msg, binary(true)/hexa(false))
 }
 
+function getFullTolkningType($str) {
+    return ($str == 'KT') ? 'Kontakttolkning'
+        : ($str == 'TT') ? 'Telefontolkning'
+            : ($str == 'KP') ? 'Kontaktperson'
+                : ($str == 'SH') ? 'Studiehandledning'
+                    : "Språkstöd";
+}
+
 function genOrderNumber() {
 	$characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	$numbers = '0123456789';

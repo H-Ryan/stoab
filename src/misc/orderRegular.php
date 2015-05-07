@@ -150,7 +150,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                         'NI' => 'Inte viktigt'
                     );
                     $tolkType = $tolkType[$tolk_type];
-                    $interpType = (($type == 'KT') ? 'Kontakttolkning' : 'Telefontolkning');
+                    $interpType = getFullTolkningType($type);
                     $timeStart = convertTime($startTime);
                     $timeEnd = convertTime($endTime);
                     $bodyToClient = "<!DOCTYPE html><html>

@@ -5,9 +5,8 @@
  * Time: 3:45 PM
  */
 ?>
-<div class="ui stackable three column grid">
-    <div class="column"></div>
-    <div class="fixed column">
+<div class="ui grid">
+    <div class="centered seven wide column">
         <form class="ui form orderForm">
             <fieldset id="order" class="segment">
                 <h3>Beställ Tolk<br/>1. Uppdrag</h3>
@@ -50,6 +49,24 @@
                                     <div class="ui radio checkbox">
                                         <label for="TT">Telefontolkning</label>
                                         <input id="TT" type="radio" name="type" value="TT">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <label for="KP">Kontaktperson</label>
+                                        <input id="KP" type="radio" name="type" value="KP">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <label for="SH">Studiehandledning</label>
+                                        <input id="SH" type="radio" name="type" value="SH">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <label for="SS">Språkstöd</label>
+                                        <input id="SS" type="radio" name="type" value="SS">
                                     </div>
                                 </div>
                             </div>
@@ -303,5 +320,4 @@
             </fieldset>
         </form>
     </div>
-    <div class="column"></div>
 </div>

@@ -128,20 +128,54 @@ include_once "src/db/dbConfig.php";
                                         </select>
                                     </div>
                                     <div class="ui basic segment">
-                                        <div class="required inline fields">
+                                        <div class="required fields">
                                             <label for="type">Typ av tolkning.</label>
 
                                             <div class="ui segment">
-                                                <div class="field">
-                                                    <div class="ui radio checkbox">
-                                                        <label for="KT">Kontakttolkning</label>
-                                                        <input id="KT" type="radio" name="type" value="KT" checked>
+                                                <div class="ui grid">
+                                                    <div class="two column row">
+                                                        <div class="left floated column">
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <label for="KT">Kontakttolkning</label>
+                                                                    <input id="KT" type="radio" name="type" value="KT" checked>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="left floated column">
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <label for="TT">Telefontolkning</label>
+                                                                    <input id="TT" type="radio" name="type" value="TT">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="field">
-                                                    <div class="ui radio checkbox">
-                                                        <label for="TT">Telefontolkning</label>
-                                                        <input id="TT" type="radio" name="type" value="TT">
+                                                    <div class="two column row">
+                                                        <div class="left floated column">
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <label for="KP">Kontaktperson</label>
+                                                                    <input id="KP" type="radio" name="type" value="KP">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="column">
+                                                            <div class="field">
+                                                                <div class="ui radio checkbox">
+                                                                    <label for="SH">Studiehandledning</label>
+                                                                    <input id="SH" type="radio" name="type" value="SH">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="one column row">
+                                                        <div class="field">
+                                                            <div class="ui radio checkbox">
+                                                                <label for="SS">Språkstöd</label>
+                                                                <input id="SS" type="radio" name="type" value="SS">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -4,6 +4,7 @@
  * Date: 21-02-2015
  * Time: 3:46 PM
  */
+
 $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE - 1 ORDER BY o_date DESC");
 $statement->execute();
 $statement->setFetchMode(PDO::FETCH_OBJ);
@@ -82,7 +83,10 @@ if($statement->rowCount() > 0)
                     <td><?php echo $klient[$k]->k_organizationName; ?></td>
                     <td><?php echo $orders[$k]->o_orderer; ?></td>
                     <td><?php echo $orders[$k]->o_language; ?></td>
-                    <td><?php echo $orders[$k]->o_interpretationType; ?></td>
+                    <td class="typeTip"
+                        data-content="<?php echo getFullTolkningType($orders[$k]->o_interpretationType); ?>">
+                        <?php echo $orders[$k]->o_interpretationType; ?>
+                    </td>
                     <td><?php echo $orders[$k]->o_date; ?></td>
                     <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
                     <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>

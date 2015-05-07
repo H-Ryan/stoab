@@ -82,7 +82,10 @@ if($statement->rowCount() > 0)
                     <td><?php echo $klient[$k]->k_organizationName; ?></td>
                     <td><?php echo $orders[$k]->o_orderer; ?></td>
                     <td><?php echo $orders[$k]->o_language; ?></td>
-                    <td><?php echo $orders[$k]->o_interpretationType; ?></td>
+                    <td class="typeTip"
+                        data-content="<?php echo getFullTolkningType($orders[$k]->o_interpretationType); ?>">
+                        <?php echo $orders[$k]->o_interpretationType; ?>
+                    </td>
                     <td><?php echo $orders[$k]->o_date; ?></td>
                     <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
                     <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>

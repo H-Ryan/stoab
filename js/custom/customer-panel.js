@@ -1,5 +1,6 @@
 $(document).ready(function () {
     "use strict";
+    $(".typeTip").popup();
     var orderForm = $('.ui.form.orderForm');
     var changeForm = $('.ui.form.changePass');
     $('.dropdown').dropdown({transition: 'drop'});
@@ -132,7 +133,7 @@ $(document).ready(function () {
                             "<td>" + orders[i].o_orderNumber + "</td>" +
                             "<td>" + orders[i].o_orderer + "</td>" +
                             "<td>" + orders[i].o_language + "</td>" +
-                            "<td>" + orders[i].o_interpretationType + "</td>" +
+                            "<td class='typeTip' data-content='" + getFullTolkningType(orders[i].o_interpretationType) + "'>" + orders[i].o_interpretationType + "</td>" +
                             "<td>" + orders[i].o_date + "</td>" +
                             "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
                             "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
@@ -143,6 +144,7 @@ $(document).ready(function () {
                             "</form>" +
                             "</td>" +
                             "</tr>");
+                        $(".typeTip").popup();
                     }
                     $('.modal.tolk-info')
                         .modal('setting', 'transition', 'vertical flip');
@@ -517,4 +519,12 @@ function adjustTime(startH, startM, endH, endM) {
             $(this).prop('disabled', true)
         });
     }
+}
+
+function getFullTolkningType(type) {
+    return (type == 'KT') ? 'Kontakttolkning'
+        : (type == 'TT') ? 'Telefontolkning'
+        : (type == 'KP') ? 'Kontaktperson'
+        : (type == 'SH') ? 'Studiehandledning'
+        : "Språkstöd";
 }

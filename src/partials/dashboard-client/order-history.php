@@ -3,6 +3,7 @@
 * Date: 29-01-2015
 * Time: 10:31 PM
 -->
+<?php include_once "src/misc/functions.php"; ?>
 <div class="ui piled segment dimmable">
     <form class="ui form update_order">
         <div class="field">
@@ -21,21 +22,21 @@
         </div>
     </div>
     <?php if (count($orders) > 0) { ?>
-    <table class="ui collapsing celled table orderHistory">
-        <thead>
-        <tr>
-            <th class="one wide">Ordernummer</th>
-            <th class="three wide">Beställare</th>
-            <th class="three wide">Språk</th>
-            <th class="one wide">Typ</th>
-            <th class="two wide">Datum</th>
-            <th class="two wide">Starttid</th>
-            <th class="two wide">Sluttid</th>
-            <th class="one wide">Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
+        <table class="ui collapsing celled table orderHistory">
+            <thead>
+            <tr>
+                <th class="one wide">Ordernummer</th>
+                <th class="three wide">Beställare</th>
+                <th class="three wide">Språk</th>
+                <th class="one wide">Typ</th>
+                <th class="two wide">Datum</th>
+                <th class="two wide">Starttid</th>
+                <th class="two wide">Sluttid</th>
+                <th class="one wide">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
             for ($k = 0; $k < count($orders); $k++) {
                 $infoMsg = "info";
                 $btnColor = "orange";
@@ -59,27 +60,31 @@
                     <td><?php echo $orders[$k]->o_orderNumber; ?></td>
                     <td><?php echo $orders[$k]->o_orderer; ?></td>
                     <td><?php echo $orders[$k]->o_language; ?></td>
-                    <td><?php echo $orders[$k]->o_interpretationType; ?></td>
+                    <td class="typeTip"
+                        data-content="<?php echo getFullTolkningType($orders[$k]->o_interpretationType); ?>">
+                        <?php echo $orders[$k]->o_interpretationType; ?>
+                    </td>
                     <td><?php echo $orders[$k]->o_date; ?></td>
                     <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
                     <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>
                     <td>
                         <form class='ui form' id="<?php echo $orders[$k]->o_orderNumber; ?>">
                             <input type='hidden' name='orderId' value='<?php echo $orders[$k]->o_orderNumber; ?>'>
-                            <button type='button' class="ui fluid <?php echo $btnColor; ?> button btn-info"><?php echo $infoMsg; ?></button>
+                            <button type='button'
+                                    class="ui fluid <?php echo $btnColor; ?> button btn-info"><?php echo $infoMsg; ?></button>
                         </form>
                     </td>
                 </tr>
             <?php } ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     <?php } else {
         echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>För närvarande, har du inte några order.</h3></div>";
     } ?>
 </div>
 <div class="ui modal tolk-info">
     <div class="ui inverted blue segment">
-        <div class="white header">Mer information om din beställning:  <span></span></div>
+        <div class="white header">Mer information om din beställning: <span></span></div>
     </div>
     <div class="content">
         <div class="ui styled fluid accordion">
@@ -91,17 +96,17 @@
                 <div class="description">
                     <table class="ui celled table orderExtra">
                         <thead>
-                            <tr>
-                                <th>Gatuadress</th>
-                                <th>Postnummer</th>
-                                <th>Ort</th>
-                                <th>Klient</th>
-                                <th>Kommentar</th>
-                            </tr>
+                        <tr>
+                            <th>Gatuadress</th>
+                            <th>Postnummer</th>
+                            <th>Ort</th>
+                            <th>Klient</th>
+                            <th>Kommentar</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            </tr>
+                        <tr>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -114,13 +119,13 @@
                 <div class="description">
                     <table class="ui celled table tolkExtra">
                         <thead>
-                            <tr class="tableTolkRow">
-                                <th>Namn</th>
-                                <th>Tolknummer</th>
-                                <th>Telefonnummer</th>
-                                <th>Mobilnummer</th>
-                                <th>Hemort</th>
-                            </tr>
+                        <tr class="tableTolkRow">
+                            <th>Namn</th>
+                            <th>Tolknummer</th>
+                            <th>Telefonnummer</th>
+                            <th>Mobilnummer</th>
+                            <th>Hemort</th>
+                        </tr>
                         </thead>
                         <tbody>
                         </tbody>

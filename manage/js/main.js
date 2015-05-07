@@ -8,6 +8,8 @@ $(document).ready(function () {
         success: "valid"
     });
 
+    $(".typeTip").popup();
+
     CKEDITOR.replace( 'newsLetter' );
     //var editor_data = CKEDITOR.instances.editor1.getData();
 
@@ -124,7 +126,7 @@ $(document).ready(function () {
                             "<td>" + customers[i].k_organizationName + "</td>" +
                             "<td>" + orders[i].o_orderer + "</td>" +
                             "<td>" + orders[i].o_language + "</td>" +
-                            "<td>" + orders[i].o_interpretationType + "</td>" +
+                            "<td class='typeTip' data-content='" + getFullTolkningType(orders[i].o_interpretationType) + "'>" + orders[i].o_interpretationType + "</td>" +
                             "<td>" + orders[i].o_date + "</td>" +
                             "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
                             "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
@@ -135,6 +137,7 @@ $(document).ready(function () {
                             "</form>" +
                             "</td>" +
                             "</tr>");
+                        $(".typeTip").popup();
                     }
                     $('.modal.tolk-info')
                         .modal('setting', 'transition', 'vertical flip')
@@ -200,7 +203,7 @@ $(document).ready(function () {
                             "<td>" + customers[i].k_organizationName + "</td>" +
                             "<td>" + orders[i].o_orderer + "</td>" +
                             "<td>" + orders[i].o_language + "</td>" +
-                            "<td>" + orders[i].o_interpretationType + "</td>" +
+                            "<td class='typeTip' data-content='" + getFullTolkningType(orders[i].o_interpretationType) + "'>" + orders[i].o_interpretationType + "</td>" +
                             "<td>" + orders[i].o_date + "</td>" +
                             "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
                             "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
@@ -211,6 +214,7 @@ $(document).ready(function () {
                             "</form>" +
                             "</td>" +
                             "</tr>");
+                        $(".typeTip").popup();
                     }
                     $('.modal.tolk-info')
                         .modal('setting', 'transition', 'vertical flip')
@@ -566,4 +570,12 @@ function adjustTime(startH, startM, endH, endM) {
             $(this).prop('disabled', true)
         });
     }
+}
+
+function getFullTolkningType(type) {
+    return (type == 'KT') ? 'Kontakttolkning'
+        : (type == 'TT') ? 'Telefontolkning'
+        : (type == 'KP') ? 'Kontaktperson'
+        : (type == 'SH') ? 'Studiehandledning'
+        : "Språkstöd";
 }
