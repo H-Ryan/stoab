@@ -93,9 +93,11 @@ session_start();
                 <div class="grid_3">
                     <div class="box_1-4">
                         <div class="icon_4"></div>
-                        <h3 class="text_2 color_10 maxheight1"><a href="sprakstod.php">Språkstöd</a></h3>
+                        <h3 class="text_2 color_10 maxheight1"><a href="sprakstod.php">Studiehandledning / Språkstöd</a></h3>
                         <p class="text_3 color_2 maxheight">
-                            Det finns idag ett stort behov av stöd på modersmålet inom skolväsendet. Enligt skolverkets statistik klarar flerspråkiga elever inte skolans krav i samma utsträckning som andra elever.
+                            Ett språkstöd kan vara nyckeln till förståelse inom många verksamheter. Det kan gälla allt
+                            ifrån en extra kompetens i skolan till en vägledare i det svenska myndighetssystemet för
+                            människor som inte är bekanta med det svenska samhället.
                         </p>
                         <a class="btn_2" href="sprakstod.php">Läs mer</a></div>
                 </div>

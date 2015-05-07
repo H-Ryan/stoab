@@ -25,7 +25,7 @@ if(!empty($_SESSION['organization_number']) && !empty($_SESSION['user_number']))
                             <li><a href="kvalitet.php">Kvalitetspolicy</a></li>
                             <li><a href="utbildning.php">Kurser</a></li>
                             <li><a href="kontakt.php">Kontakt</a></li>
-                            <li><a class="fa fa-user" href="bokning.php"><?php echo ($user_menu) ? ("Min Panel"):("Boka tolk"); ?> </a></li>
+                            <li><a class="fa fa-user" href="bokning.php"><?php echo ($user_menu) ? ("Min Panel"):("Online bokning"); ?> </a></li>
                         </ul>
                     </nav>
                 </div>
