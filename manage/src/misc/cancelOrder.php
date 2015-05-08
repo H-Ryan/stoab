@@ -30,6 +30,8 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
     $canceled = "EC";
     $emptyTolk = null;
     $db = null;
+    $tolkSubject = 'STÖ AB - Avbokning.';
+    $customerSubject = "STÖ AB - Avbokning.";
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
@@ -40,6 +42,10 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
         $statement->setFetchMode(PDO::FETCH_OBJ);
         if ($statement->rowCount() > 0) {
             $order = $statement->fetch();
+            $interpType = getFullTolkningType($order->o_interpretationType);
+            $timeStart = convertTime($order->o_startTime);
+            $timeEnd = convertTime($order->o_endTime);
+
             if ($order->o_tolkarPersonalNumber != null) {
                 $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,"
                     . " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,"
@@ -62,8 +68,8 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                         //TODO log
                         //TODO email to contact person and/or the organization and tolk
 
-                        $tolkSubject = 'STÖ AB - Avbokning.';
-                        $customerSubject = "STÖ AB - Avbokning.";
+
+
                         $messageToCustomerCancel = "<!DOCTYPE html><html>
                             <head>
                                 <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
@@ -76,7 +82,7 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                                             margin-left: 10%;'/>
                             <h2 style='text-align: center; margin-top: 5%;'>Tolkuppdrag</h2>
 
-                            <h2 style='text-align: center; margin-top: 5%;'>Uppdrag Nummer: " . $orderUpdated->o_orderNumber . "</h2>
+                            <h2 style='text-align: center; margin-top: 5%;'>Uppdrag Nummer: " . $order->o_orderNumber . "</h2>
                             <table style='width: 80%;
                                             margin-left: 10%;
                                             margin-right: 10%;
@@ -99,31 +105,31 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                                 <tbody>
                                 <tr>
                                     <td style='background-color: #d4e3e5;padding: 8px;border: 1px solid #a9c6c9;'>
-                                        <p><span style='font-weight:bold;'>Datum:</span> " . $orderUpdated->o_date . "</p>
+                                        <p><span style='font-weight:bold;'>Datum:</span> " . $order->o_date . "</p>
 
                                         <p><span style='font-weight:bold;'>Starttid:</span> " . $timeStart . "</p>
 
                                         <p><span style='font-weight:bold;'>Sluttid:</span> " . $timeEnd . "</p>
 
-                                        <p><span style='font-weight:bold;'>Plats:</span> " . $orderUpdated->o_address . "</p>
+                                        <p><span style='font-weight:bold;'>Plats:</span> " . $order->o_address . "</p>
 
-                                        <p><span style='font-weight:bold;'>Postnummer:</span> " . $orderUpdated->o_zipCode . "</p>
+                                        <p><span style='font-weight:bold;'>Postnummer:</span> " . $order->o_zipCode . "</p>
 
-                                        <p><span style='font-weight:bold;'>Ort:</span> " . $orderUpdated->o_city . "</p>
+                                        <p><span style='font-weight:bold;'>Ort:</span> " . $order->o_city . "</p>
 
                                         <p><span style='font-weight:bold;'>Typ av uppdrag:</span> " . $interpType . "</p>
 
-                                        <p><span style='font-weight:bold;'>Språk:</span> " . $orderUpdated->o_language . "</p>
+                                        <p><span style='font-weight:bold;'>Språk:</span> " . $order->o_language . "</p>
 
-                                        <p><span style='font-weight:bold;'>Klient:</span> " . $orderUpdated->o_client . "</p>
+                                        <p><span style='font-weight:bold;'>Klient:</span> " . $order->o_client . "</p>
 
-                                        <p><span style='font-weight:bold;'>Kontaktperson:</span> " . $orderUpdated->o_orderer . "</p>
+                                        <p><span style='font-weight:bold;'>Kontaktperson:</span> " . $order->o_orderer . "</p>
 
-                                        <p><span style='font-weight:bold;'>Telefonnr:</span> " . $orderUpdated->o_tel . "</p>
+                                        <p><span style='font-weight:bold;'>Telefonnr:</span> " . $order->o_tel . "</p>
 
-                                        <p><span style='font-weight:bold;'>Mobile:</span> " . $orderUpdated->o_mobile . "</p>
+                                        <p><span style='font-weight:bold;'>Mobile:</span> " . $order->o_mobile . "</p>
 
-                                        <p><span style='font-weight:bold;'>E-postadress:</span> " . $orderUpdated->o_email . "</p>
+                                        <p><span style='font-weight:bold;'>E-postadress:</span> " . $order->o_email . "</p>
                                     </td>
                                     <td style='background-color: #d4e3e5;padding: 8px;border: 1px solid #a9c6c9;'>
                                         <p><span style='font-weight:bold;'>Namn:</span> " . $tolk->u_firstName . " " . $tolk->u_lastName . "</p>
@@ -342,6 +348,95 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                 if ($statement->rowCount() > 0) {
                     //TODO log
                     //TODO email to contact person and/or the organization
+                    $messageToCustomerCancel = "<!DOCTYPE html><html>
+                            <head>
+                                <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+                            </head>
+                            <body>
+                            <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
+                                Hej!<br />Vi fick följande avbokning vi kommer och ta reda på följande uppdrag.
+                            </p>
+                            <hr style='width: 80%;
+                                            margin-left: 10%;'/>
+                            <h2 style='text-align: center; margin-top: 5%;'>Tolkuppdrag</h2>
+
+                            <h2 style='text-align: center; margin-top: 5%;'>Uppdrag Nummer: " . $order->o_orderNumber . "</h2>
+                            <table style='width: 80%;
+                                            margin-left: 10%;
+                                            margin-right: 10%;
+                                            text-align: center;
+                                            font-family: verdana, arial, sans-serif;
+                                            font-size: 14px;
+                                            color: #333333;
+                                            border: 1px solid #999999;
+                                            border-radius: 5px;' cellpadding='10'>
+                                <thead>
+                                <tr>
+                                    <th style='background-color: #599CFF; font-size: 18px;padding: 8px;
+                                                border-radius: inherit; border: 1px solid black;'>Uppdrag
+                                    </th>
+                                    <th style='background-color: #599CFF; font-size: 18px;padding: 8px;
+                                                border-radius: inherit; border: 1px solid black;'>Tolk
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style='background-color: #d4e3e5;padding: 8px;border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Datum:</span> " . $order->o_date . "</p>
+
+                                        <p><span style='font-weight:bold;'>Starttid:</span> " . $timeStart . "</p>
+
+                                        <p><span style='font-weight:bold;'>Sluttid:</span> " . $timeEnd . "</p>
+
+                                        <p><span style='font-weight:bold;'>Plats:</span> " . $order->o_address . "</p>
+
+                                        <p><span style='font-weight:bold;'>Postnummer:</span> " . $order->o_zipCode . "</p>
+
+                                        <p><span style='font-weight:bold;'>Ort:</span> " . $order->o_city . "</p>
+
+                                        <p><span style='font-weight:bold;'>Typ av uppdrag:</span> " . $interpType . "</p>
+
+                                        <p><span style='font-weight:bold;'>Språk:</span> " . $order->o_language . "</p>
+
+                                        <p><span style='font-weight:bold;'>Klient:</span> " . $order->o_client . "</p>
+
+                                        <p><span style='font-weight:bold;'>Kontaktperson:</span> " . $order->o_orderer . "</p>
+
+                                        <p><span style='font-weight:bold;'>Telefonnr:</span> " . $order->o_tel . "</p>
+
+                                        <p><span style='font-weight:bold;'>Mobile:</span> " . $order->o_mobile . "</p>
+
+                                        <p><span style='font-weight:bold;'>E-postadress:</span> " . $order->o_email . "</p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr style='width: 80%;
+                                            margin-left: 10%;'/>
+                            <div>
+                                <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
+                                    Om informationen ovan är felaktig eller om du vill ändra något, vänligen kontakta oss.
+                                </p>
+                            </div>
+                            <hr style='width: 80%;
+                                            margin-left: 10%;'/>
+                            <footer style='margin-left: 10%; width:80%'>
+                            <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
+
+                            <p><label style='font-weight:bold;'>ADRESS:</label> Nya Boulevarden 10, 291 31 Kristianstad </p>
+
+                            <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@tolktjanst.se'> info@tolktjanst.se</a></p>
+
+                            <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'> www.tolktjanst.com</a></p>
+
+                            <p><label style='font-weight:bold;'>TELEFON:</label> 010 166 10 10</p>
+
+                            <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
+
+                            </footer>
+                            </body>
+                            </html>";
                     $query = "INSERT INTO t_orderLog (o_orderNumber, o_modifyPersonalNumber, o_involvedPersonalNumber, "
                         . "o_ipAddress ,o_state) VALUES (:orderNumber, :modifyPN, :involvedPN, :ipAddress, :state)";
                     $statement = $con->prepare($query);

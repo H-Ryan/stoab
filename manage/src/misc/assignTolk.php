@@ -68,7 +68,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                     $statement->bindParam(":state", $booked);
                     $statement->execute();
                     if ($statement->rowCount() > 0) {
-                        $interpType = (($order->o_interpretationType == 'KT') ? 'Kontakttolkning' : 'Telefontolkning');
+                        $interpType = getFullTolkningType($order->o_interpretationType);
                         $timeStart = convertTime($order->o_startTime);
                         $timeEnd = convertTime($order->o_endTime);
 
