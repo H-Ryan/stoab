@@ -9,6 +9,7 @@
         <div class="field">
             <input type="hidden" name="organizationNumber" value="<?php echo $organizationNumber; ?>">
             <input type="hidden" name="clientNumber" value="<?php echo $clientNumber; ?>">
+            <input type="hidden" name="currentPage" id="updateCurrPage" value="1"/>
             <button type="button" class="ui center aligned icon circular button refresh_order">
                 <i class="circular refresh icon"></i>Uppdatera orderhistorik
             </button>
@@ -78,6 +79,33 @@
             <?php } ?>
             </tbody>
         </table>
+        <?php if($num > 10) {?>
+            <div class="ui pagination menu page-customer">
+                <a class="icon item previousPage">
+                    <i class="left arrow icon"></i>
+                </a>
+                <a class="active item" id="hpage1">
+                    1
+                </a>
+                <?php
+                $rem = $num % 10;
+                if($rem == 0) {
+                    $numPage = ($num / 10);
+                    for($k = 2; $k <= $numPage; $k++) {
+                        echo "<a class='item'>$k</a>";
+                    }
+                } else {
+                    $numPage = (($num - $rem) / 10) + 1;
+                    for($k = 2; $k <= $numPage; $k++) {
+                        echo "<a class='item' id='hpage$k'>$k</a>";
+                    }
+                }
+                ?>
+                <a class="icon item nextPage">
+                    <i class="right arrow icon"></i>
+                </a>
+            </div>
+        <?php } ?>
     <?php } else {
         echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>För närvarande, har du inte några order.</h3></div>";
     } ?>
@@ -105,8 +133,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                        </tr>
                         </tbody>
                     </table>
                 </div>

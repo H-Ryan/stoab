@@ -22,7 +22,7 @@ if (!empty($referrer)) {
 }
 
 $data = array();
-if(isset($_POST['organizationNumber']) && isset($_POST['clientNumber']))
+if(isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isset($_POST['currentPage']))
 {
     $db = null;
     try {
@@ -34,9 +34,17 @@ if(isset($_POST['organizationNumber']) && isset($_POST['clientNumber']))
     try {
         $organizationNumber = $_POST['organizationNumber'];
         $clientNumber = $_POST['clientNumber'];
-        $statement = $con->prepare("SELECT o_orderNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber ORDER BY o_date DESC");
+        $pageNum = $_POST['currentPage'];
+        $end = $pageNum * 10;
+        $start = $end - 10;
+
+        $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $statement = $con->prepare("SELECT o_orderNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber ORDER BY o_date DESC LIMIT :start, :end");
         $statement->bindParam(":organizationNumber", $organizationNumber);
         $statement->bindParam(":clientNumber", $clientNumber);
+
+        $statement->bindParam(":start", $start, PDO::PARAM_INT);
+        $statement->bindParam(":end", $end, PDO::PARAM_INT);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         if($statement->rowCount() >= 0)

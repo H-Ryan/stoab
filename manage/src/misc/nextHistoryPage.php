@@ -1,8 +1,8 @@
 <?php
 /**
  * User: Samuil
- * Date: 15-02-2015
- * Time: 4:45 PM
+ * Date: 09-05-2015
+ * Time: 1:18 PM
  */
 ini_set("session.use_only_cookies", TRUE);
 ini_set("session.use_trans_sid", FALSE);
@@ -18,12 +18,11 @@ if (!empty($referrer)) {
         exit ("Form submission from $referrer not allowed.");
     }
 } else {
-    exit("Referrer not found. Please <a href='".$_SERVER['SCRIPT_NAME']."'>try again</a>.");
+    exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
 }
 
 $data = array();
-if(isset($_POST['code']) && isset($_POST['currentPage']))
-{
+if (isset($_GET['pageNum'])) {
     $db = null;
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
@@ -31,23 +30,23 @@ if(isset($_POST['code']) && isset($_POST['currentPage']))
     } catch (PDOException $e) {
         return $e->getMessage();
     }
-    $pageNum = $_POST['currentPage'];
+    $pageNum = $_GET['pageNum'];
     $end = $pageNum * 10;
     $start = $end - 10;
     try {
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date >= CURRENT_DATE ORDER BY o_date DESC LIMIT :start, :end");
+        $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE() - 1 ORDER BY o_date DESC LIMIT :start, :end");
+
         $statement->bindParam(":start", $start, PDO::PARAM_INT);
         $statement->bindParam(":end", $end, PDO::PARAM_INT);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
-        if($statement->rowCount() >= 0)
-        {
+        if ($statement->rowCount() >= 0) {
             $data["error"] = 0;
             $data['orders'] = array();
             $data['customers'] = array();
             $i = 0;
-            while($order = $statement->fetch()) {
+            while ($order = $statement->fetch()) {
                 $statementTwo = $con->prepare("SELECT k_organizationName FROM t_kunder WHERE k_kundNumber=:clientNumber");
                 $statementTwo->bindParam(":clientNumber", $order->o_kundNumber);
                 $statementTwo->execute();
@@ -62,9 +61,15 @@ if(isset($_POST['code']) && isset($_POST['currentPage']))
         } else {
             $data["error"] = 1;
             $data["messageHeader"] = "Header";
-            $data["errorMessage"] = "Error Message";
+            $data["errorMessage"] = "Inner Error Message";
             echo json_encode($data);
         }
+        try {
+
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+
     } catch (PDOException $e) {
         return $e->getMessage();
     }

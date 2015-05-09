@@ -1,8 +1,8 @@
 <?php
 /**
  * User: Samuil
- * Date: 15-02-2015
- * Time: 4:45 PM
+ * Date: 09-05-2015
+ * Time: 3:11 PM
  */
 ini_set("session.use_only_cookies", TRUE);
 ini_set("session.use_trans_sid", FALSE);
@@ -22,7 +22,7 @@ if (!empty($referrer)) {
 }
 
 $data = array();
-if(isset($_POST['code']) && isset($_POST['currentPage']))
+if(isset($_GET['pageNum']))
 {
     $db = null;
     try {
@@ -31,7 +31,7 @@ if(isset($_POST['code']) && isset($_POST['currentPage']))
     } catch (PDOException $e) {
         return $e->getMessage();
     }
-    $pageNum = $_POST['currentPage'];
+    $pageNum = $_GET['pageNum'];
     $end = $pageNum * 10;
     $start = $end - 10;
     try {

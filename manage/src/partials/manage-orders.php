@@ -4,7 +4,8 @@
  * Date: 21-02-2015
  * Time: 3:45 PM
  */
-$statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date >= CURRENT_DATE ORDER BY o_date DESC");
+$num = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date >= CURRENT_DATE")->fetchColumn();
+$statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date >= CURRENT_DATE ORDER BY o_date DESC LIMIT 10");
 $statement->execute();
 $statement->setFetchMode(PDO::FETCH_OBJ);
 $orders = array();
@@ -29,12 +30,13 @@ if($statement->rowCount() > 0)
     <form class="ui form order_manage">
         <div class="field">
             <input type="hidden" name="code" value="<?php echo md5("5%32rfsFrr$%") ?>"/>
+            <input type="hidden" name="currentPage" id="updateCurrMPage" value="1"/>
             <button type="button" class="ui center aligned icon circular button btn-update-manage">
-                <i class="circular refresh icon"></i>Uppdatera orderhistorik
+                <i class="circular refresh icon"></i>Uppdatera aktuella beställningar.
             </button>
         </div>
     </form>
-    <div class="ui inverted dimmer">
+    <div class="ui inverted dimmer manageDim">
         <div class="content">
             <div class="center">
                 <div class="ui text loader">Loading</div>
@@ -99,6 +101,33 @@ if($statement->rowCount() > 0)
             <?php } ?>
             </tbody>
         </table>
+        <?php if($num > 10) {?>
+            <div class="ui pagination menu page-manage">
+                <a class="icon item previousMPage">
+                    <i class="left arrow icon"></i>
+                </a>
+                <a class="active item" id="mpage1">
+                    1
+                </a>
+                <?php
+                $rem = $num % 10;
+                if($rem == 0) {
+                    $numPage = ($num / 10);
+                    for($k = 2; $k <= $numPage; $k++) {
+                        echo "<a class='item'>$k</a>";
+                    }
+                } else {
+                    $numPage = (($num - $rem) / 10) + 1;
+                    for($k = 2; $k <= $numPage; $k++) {
+                        echo "<a class='item' id='mpage$k'>$k</a>";
+                    }
+                }
+                ?>
+                <a class="icon item nextMPage">
+                    <i class="right arrow icon"></i>
+                </a>
+            </div>
+        <?php } ?>
     <?php } else {
         echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>För närvarande, har du inte några order.</h3></div>";
     } ?>

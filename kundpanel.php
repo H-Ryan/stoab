@@ -36,7 +36,12 @@ if(empty($_SESSION['organization_number']) && empty($_SESSION['user_number']))
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $customerInfo = $statement->fetch();
-        $statement = $con->prepare("SELECT o_orderNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber ORDER BY o_date DESC");
+        $statement = $con->prepare("SELECT COUNT(*) AS id FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber");
+        $statement->bindParam(":organizationNumber", $organizationNumber);
+        $statement->bindParam(":clientNumber", $clientNumber);
+        $statement->execute();
+        $num = $statement->fetchColumn();
+        $statement = $con->prepare("SELECT o_orderNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber ORDER BY o_date DESC LIMIT 10");
         $statement->bindParam(":organizationNumber", $organizationNumber);
         $statement->bindParam(":clientNumber", $clientNumber);
         $statement->execute();

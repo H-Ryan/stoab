@@ -22,7 +22,7 @@ if (!empty($referrer)) {
 }
 
 $data = array();
-if(isset($_POST['code']))
+if(isset($_POST['code']) && isset($_POST['currentPage']))
 {
     $db = null;
     try {
@@ -31,8 +31,15 @@ if(isset($_POST['code']))
     } catch (PDOException $e) {
         return $e->getMessage();
     }
+    $pageNum = $_POST['currentPage'];
+    $end = $pageNum * 10;
+    $start = $end - 10;
     try {
-        $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE() - 1 ORDER BY o_date DESC");
+        $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE() - 1 ORDER BY o_date DESC LIMIT :start, :end");
+
+        $statement->bindParam(":start", $start, PDO::PARAM_INT);
+        $statement->bindParam(":end", $end, PDO::PARAM_INT);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         if($statement->rowCount() >= 0)

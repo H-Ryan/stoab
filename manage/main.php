@@ -83,7 +83,7 @@ try {
                         <a class="item" data-tab="third">Manage Order</a>
                         <a class="item" data-tab="fourth">Order history</a>
                         <a class="item" data-tab="fifth">Manage Customers</a>
-                        <a class="item" data-tab="sixth">News letter</a>
+                        <a class="item" data-tab="sixth">Newsletter</a>
                     </div>
                     <div class="right menu">
                         <div class="item">

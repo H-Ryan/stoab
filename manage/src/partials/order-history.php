@@ -4,8 +4,8 @@
  * Date: 21-02-2015
  * Time: 3:46 PM
  */
-
-$statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE - 1 ORDER BY o_date DESC");
+$num = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date <= CURRENT_DATE - 1")->fetchColumn();
+$statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE - 1 ORDER BY o_date DESC  LIMIT 10");
 $statement->execute();
 $statement->setFetchMode(PDO::FETCH_OBJ);
 $orders = array();
@@ -30,6 +30,7 @@ if($statement->rowCount() > 0)
     <form class="ui form order_history">
         <div class="field">
             <input type="hidden" name="code" value="<?php echo md5("5%32rfsFrr$%") ?>"/>
+            <input type="hidden" name="currentPage" id="updateCurrHPage" value="1"/>
             <button type="button" class="ui center aligned icon circular button btn-update-history">
                 <i class="circular refresh icon"></i>Uppdatera orderhistorik
             </button>
@@ -59,6 +60,7 @@ if($statement->rowCount() > 0)
             </thead>
             <tbody>
             <?php
+
             for ($k = 0; $k < count($orders); $k++) {
                 $infoMsg = "info";
                 $btnColor = "orange";
@@ -91,7 +93,7 @@ if($statement->rowCount() > 0)
                     <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
                     <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>
                     <td>
-                        <form class='ui form'>
+                        <form class='ui form' id="<?php echo $orders[$k]->o_orderNumber; ?>">
                             <input type='hidden' name='orderId' value='<?php echo $orders[$k]->o_orderNumber; ?>'>
                             <button type='button' class="ui fluid <?php echo $btnColor; ?> button btn-info"><?php echo $infoMsg; ?></button>
                         </form>
@@ -100,15 +102,88 @@ if($statement->rowCount() > 0)
             <?php } ?>
             </tbody>
         </table>
+        <?php if($num > 10) {?>
+            <div class="ui pagination menu page-history">
+                <a class="icon item previousHPage">
+                    <i class="left arrow icon"></i>
+                </a>
+                <a class="active item" id="hpage1">
+                    1
+                </a>
+                <?php
+                    $rem = $num % 10;
+                    if($rem == 0) {
+                        $numPage = ($num / 10);
+                        for($k = 2; $k <= $numPage; $k++) {
+                            echo "<a class='item'>$k</a>";
+                        }
+                    } else {
+                        $numPage = (($num - $rem) / 10) + 1;
+                        for($k = 2; $k <= $numPage; $k++) {
+                            echo "<a class='item' id='hpage$k'>$k</a>";
+                        }
+                    }
+                ?>
+                <a class="icon item nextHPage">
+                    <i class="right arrow icon"></i>
+                </a>
+            </div>
+        <?php } ?>
     <?php } else {
         echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>Det finns inga aktuella posten historik.</h3></div>";
     } ?>
 </div>
 <div class="ui modal order-history">
     <div class="ui inverted blue segment">
-        <div class="white header">Tolk Info</div>
+        <div class="white header">Mer information om din beställning: <span></span></div>
     </div>
     <div class="content">
+        <div class="ui styled fluid accordion">
+            <div class="active title">
+                <i class="dropdown icon"></i>
+                Orderinformation
+            </div>
+            <div class="active content">
+                <div class="description">
+                    <table class="ui celled table orderExtra">
+                        <thead>
+                        <tr>
+                            <th>Gatuadress</th>
+                            <th>Postnummer</th>
+                            <th>Ort</th>
+                            <th>Klient</th>
+                            <th>Kommentar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                Tolkinformation
+            </div>
+            <div class="content">
+                <div class="description">
+                    <table class="ui celled table tolkExtra">
+                        <thead>
+                        <tr class="tableTolkRow">
+                            <th>Namn</th>
+                            <th>Tolknummer</th>
+                            <th>Telefonnummer</th>
+                            <th>Mobilnummer</th>
+                            <th>Hemort</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="actions center aligned">
         <div class="ui positive right labeled icon button">
