@@ -64,7 +64,7 @@ session_start();
                     <div class="grid_12">
                         <div class="box_1">
                             <p class="text_3">
-                                Att vara kvinna i Sverige-kursen är till för dig som är nyanländ i Sverige, och ska veta
+                                Att vara kvinna i Sverige-kursen är till för dig som är nyanländ i Sverige och ska veta
                                 din roll i svenska arbets-och samhällslivet. Skillnader mellan deras länder och Sverige.
                                 Hela kursen hålls på svenska med tolk.
                                 <br/><br/>

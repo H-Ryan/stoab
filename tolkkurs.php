@@ -70,10 +70,7 @@ session_start();
                                 <br/>
                                 Då tror vi att tolkyrket kan passa just dig!
                                 <br/>
-                                Som kontakttolk arbetar du med talad kommunikation mellan människor. Du har möjligheten
-                                att arbeta inom olika områden, beroene på vilka språk du behärskar och vilka övriga
-                                fackkunskaper du har. Kontakttolkens vanligaste uppgift är att tolk i kontakter mellan
-                                myndigheter och enskilda personer.
+                                Som kontakttolk arbetar du med talad kommunikation mellan människor. Du har möjligheten att arbeta inom olika områden, beroende på vilka språk du behärskar och vilka övriga fackkunskaper du har. Kontakttolkens vanligaste uppgift är att tolka i kontakter mellan myndigheter och enskilda personer.
                                 <br/>
                                 Som kontakttolk blir du den kommunikativa länken i kontakter mellan
                                 invandrare/asylsökande och det svenska samhället. Vid kontakttolkning så tolkar du vid

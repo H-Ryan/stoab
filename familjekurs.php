@@ -64,7 +64,7 @@ session_start();
                     <div class="grid_12">
                         <div class="box_1">
                             <p class="text_3">
-                                Familjekursen är till för dig som är nyanländ i Sverige, och vill få kunskap om den
+                                Familjekursen är till för dig som är nyanländ i Sverige och vill få kunskap om den
                                 svenska lagen när det gäller äktenskap och samboförhållande. Hela kursen hålls på
                                 svenska med tolk.
                                 <br/><br/>

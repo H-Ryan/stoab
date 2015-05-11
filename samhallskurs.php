@@ -64,7 +64,7 @@ session_start();
                     <div class="grid_12">
                         <div class="box_1">
                             <p class="text_3">
-                                Samhällskursen är till för dig som är nyanländ i Sverige, och ska etablera dig i det
+                                Samhällskursen är till för dig som är nyanländ i Sverige och ska etablera dig i det
                                 svenska arbets- och samhällslivet. Hela kursen hålls på svenska med tolk.
                                 <br/><br/>
                                 Förkunskaper<br/>Det krävs inga förkunskaper.
