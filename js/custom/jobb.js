@@ -37,9 +37,14 @@ $(document).ready(function () {
             phone_group: "phoneHome phoneMobile"
         },
         rules: {
-            name: {
+            firstName: {
                 required: true,
-                maxlength: 90,
+                maxlength: 45,
+                minlength: 3
+            },
+            lastName: {
+                required: true,
+                maxlength: 45,
                 minlength: 3
             },
             personalNumber: {
@@ -112,10 +117,15 @@ $(document).ready(function () {
             }
         },
         messages: {
-            name: {
-                required: "Skriv ditt namn.",
-                maxlength: "Fält namn bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fält namn bör<br />innehålla mer än {0} tecken."
+            firstName: {
+                required: "Skriv ditt förnamn.",
+                maxlength: "Fält förnamn bör<br />innehålla mindre än {0} tecken.",
+                minlength: "Fält förnamn bör<br />innehålla mer än {0} tecken."
+            },
+            lastName: {
+                required: "Skriv ditt efternamn.",
+                maxlength: "Fält efternamn bör<br />innehålla mindre än {0} tecken.",
+                minlength: "Fält efternamn bör<br />innehålla mer än {0} tecken."
             },
             personalNumber: {
                 required: "Skriv ditt personnummer.",

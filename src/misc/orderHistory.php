@@ -39,12 +39,11 @@ if(isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isset
         $start = $end - 10;
 
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $statement = $con->prepare("SELECT o_orderNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber ORDER BY o_date DESC LIMIT :start, :end");
+        $statement = $con->prepare("SELECT o_orderNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber ORDER BY o_date DESC LIMIT :start, 10");
         $statement->bindParam(":organizationNumber", $organizationNumber);
         $statement->bindParam(":clientNumber", $clientNumber);
 
         $statement->bindParam(":start", $start, PDO::PARAM_INT);
-        $statement->bindParam(":end", $end, PDO::PARAM_INT);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         if($statement->rowCount() >= 0)

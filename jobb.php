@@ -110,17 +110,24 @@ session_start();
                                     <div class="row">
                                         <div class="grid_3">
                                             <label>
-                                                <input type="text" class="" name="name" placeholder="Namn:" value=""/>
+                                                <input type="text" class="" name="firstName" placeholder="Förnamn:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_3">
+                                            <label>
+                                                <input type="text" class="" name="lastName" placeholder="Efternamn:" value=""/>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="grid_6">
                                             <label>
                                                 <input type="text" name="personalNumber" placeholder="Personnummer:"
                                                        value=""/>
                                             </label>
                                         </div>
                                     </div>
-
                                     <div class="row">
                                         <div class="grid_2">
                                             <p class="text_7 color_6">Kön:</p>

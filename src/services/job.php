@@ -6,14 +6,14 @@
  */
 require "../email/Emails.php";
 $data = [];
-if (isset($_POST['name']) && isset($_POST['personalNumber'])
+if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['personalNumber'])
     && isset($_POST['gender']) && isset($_POST['tax'])
     && isset($_POST['car']) && isset($_POST['email'])
     && (isset($_POST['phoneHome']) || isset($_POST['phoneMobile']))
     && isset($_POST['address']) && isset($_POST['postNumber'])
     && isset($_POST['city']) && isset($_POST['terms'])
     && isset($_POST['languageOne']) && isset($_POST['langCompetenceOne'])) {
-    $name = $_POST['name'];
+    $name = $_POST['firstName']." ".$_POST['lastName'];
     $personalNumber = $_POST['personalNumber'];
     $gender = $_POST['gender'];
     $tax = $_POST['tax'];

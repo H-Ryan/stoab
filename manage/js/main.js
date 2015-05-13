@@ -14,6 +14,15 @@ $(document).ready(function () {
     CKEDITOR.replace( 'newsLetter' );
     //var editor_data = CKEDITOR.instances.editor1.getData();
 
+    var newsletterForm = $("#newsLetterForm");
+
+    $("#btnPostNewsLetter").on("click", function () {
+        var editor_data = CKEDITOR.instances.newsLetter.getData();
+        $.post("src/misc/addNews.php", newsletterForm.serialize(), function (data) {
+            alert(data);
+        });
+    });
+
     var startHour = $("#starttid");
     var endHour = $("#sluttid");
     var startMinute = $("#starttid1");
@@ -162,7 +171,7 @@ $(document).ready(function () {
                 }
             }
         }
-        $("#updateCurrMPage").val($(this).text());
+        $("#updateCurrMPage").val(pageNum);
         $.ajax({
             type: "GET",
             url: "src/misc/nextManagePage.php",
@@ -362,7 +371,7 @@ $(document).ready(function () {
                 }
             }
         }
-        $("#updateCurrHPage").val($(this).text());
+        $("#updateCurrHPage").val(pageNum);
         $.ajax({
             type: "GET",
             url: "src/misc/nextHistoryPage.php",

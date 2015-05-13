@@ -117,7 +117,7 @@ try {
         <?php include('src/partials/manage-customers.php'); ?>
     </div>
     <div class="ui bottom attached tab" data-tab="sixth">
-        <?php include('src/partials/news-letter.php'); ?>
+        <?php include('src/partials/newsletter.php'); ?>
     </div>
 </div>
 </body>
