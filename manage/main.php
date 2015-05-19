@@ -46,7 +46,7 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="../lib/semantic/semantic.min.css"/>
+    <link rel="stylesheet" href="../lib/stoab/stoab.min.css"/>
     <link rel="stylesheet" href="../css/mod-sam/main.css"/>
     <link rel="stylesheet" href="../css/mod-sam/form.css"/>
     <link rel="stylesheet" href="css/main.css"/>
@@ -56,7 +56,7 @@ try {
     <script type="text/javascript" src="../lib/date/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../lib/jq-validate/jquery.validate.min.js"></script>
     <script type="text/javascript" src="../lib/jq-validate/additional-methods.min.js"></script>
-    <script type="text/javascript" src="../lib/semantic/semantic.min.js"></script>
+    <script type="text/javascript" src="../lib/stoab/stoab.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="../lib/ckeditor/ckeditor.js"></script>
     <!--[if lt IE 9]>

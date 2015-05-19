@@ -12,10 +12,10 @@ if(!empty($_SESSION['personal_number']))
 <head>
     <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="../lib/semantic/semantic.min.css"/>
+    <link rel="stylesheet" href="../lib/stoab/stoab.min.css"/>
     <link rel="stylesheet" href="../css/mod-sam/form.css"/>
     <script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../lib/semantic/semantic.min.js"></script>
+    <script type="text/javascript" src="../lib/stoab/stoab.min.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>

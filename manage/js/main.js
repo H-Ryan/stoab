@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     $(".typeTip").popup();
 
-    CKEDITOR.replace( 'newsLetter' );
+    /*CKEDITOR.replace( 'newsLetter' );
     //var editor_data = CKEDITOR.instances.editor1.getData();
 
     var newsletterForm = $("#newsLetterForm");
@@ -21,7 +21,7 @@ $(document).ready(function () {
         $.post("src/misc/addNews.php", newsletterForm.serialize(), function (data) {
             alert(data);
         });
-    });
+    });*/
 
     var startHour = $("#starttid");
     var endHour = $("#sluttid");
@@ -371,7 +371,7 @@ $(document).ready(function () {
                 }
             }
         }
-        $("#updateCurrHPage").val(pageNum);
+        $("#updateCurrHPage").val($(this).text());
         $.ajax({
             type: "GET",
             url: "src/misc/nextHistoryPage.php",

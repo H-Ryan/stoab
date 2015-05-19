@@ -63,13 +63,13 @@ try {
 <head lang="en">
     <meta charset="UTF-8">
     <title>Manage Order: <?php echo $order->o_orderNumber ?></title>
-    <link rel="stylesheet" href="../lib/semantic/semantic.min.css"/>
+    <link rel="stylesheet" href="../lib/stoab/stoab.min.css"/>
     <link rel="stylesheet" href="../css/mod-sam/main.css"/>
     <link rel="stylesheet" href="../css/mod-sam/form.css"/>
     <link rel="stylesheet" href="css/manage.css"/>
 
     <script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../lib/semantic/semantic.min.js"></script>
+    <script type="text/javascript" src="../lib/stoab/stoab.min.js"></script>
     <script type="text/javascript" src="js/manage.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>

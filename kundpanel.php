@@ -14,8 +14,7 @@ if (!isset($_SESSION['CREATED'])) {
     session_regenerate_id(true);
     $_SESSION['CREATED'] = time();
 }
-if(empty($_SESSION['organization_number']) && empty($_SESSION['user_number']))
-{
+if (empty($_SESSION['organization_number']) && empty($_SESSION['user_number'])) {
     header('Location: bokning.php');
 } else {
     try {
@@ -47,10 +46,9 @@ if(empty($_SESSION['organization_number']) && empty($_SESSION['user_number']))
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $orders = array();
-        if($statement->rowCount() > 0)
-        {
+        if ($statement->rowCount() > 0) {
             $i = 0;
-            while($order = $statement->fetch()) {
+            while ($order = $statement->fetch()) {
                 $orders[$i] = $order;
                 $i++;
             }
@@ -75,14 +73,14 @@ if(empty($_SESSION['organization_number']) && empty($_SESSION['user_number']))
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
         <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/grid.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/form.css"/>
-
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster"/>
 
-        <link rel="stylesheet" href="lib/semantic/semantic.min.css"/>
+        <link rel="stylesheet" href="css/grid.css">
+        <link rel="stylesheet" href="css/form.css"/>
+        <link rel="stylesheet" href="lib/stoab/stoab.min.css"/>
+
         <link rel="stylesheet" href="css/mod-sam/main.css"/>
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/mod-sam/form.css"/>
         <link rel="stylesheet" href="css/mod-sam/customer-panel.css"/>
         <link rel="stylesheet" href="lib/date/jquery-ui.min.css"/>
@@ -94,7 +92,7 @@ if(empty($_SESSION['organization_number']) && empty($_SESSION['user_number']))
         <script type="text/javascript" src="lib/date/jquery-ui.min.js"></script>
         <script type="text/javascript" src="lib/jq-validate/jquery.validate.min.js"></script>
         <script type="text/javascript" src="lib/jq-validate/additional-methods.min.js"></script>
-        <script type="text/javascript" src="lib/semantic/semantic.min.js"></script>
+        <script type="text/javascript" src="lib/stoab/stoab.min.js"></script>
         <script type="text/javascript" src="js/custom/customer-panel.js"></script>
         <!--[if lt IE 9]>
         <div style=' clear: both; text-align:center; position: relative;'>
@@ -111,8 +109,8 @@ if(empty($_SESSION['organization_number']) && empty($_SESSION['user_number']))
     <body>
     <div class="page">
         <!--========================================================
-                                  HEADER
-        =========================================================-->
+                                        HEADER
+              =========================================================-->
         <?php include("src/partials/shared/header.php"); ?>
         <!--========================================================
                                   CONTENT
@@ -145,9 +143,10 @@ if(empty($_SESSION['organization_number']) && empty($_SESSION['user_number']))
                 </div>
             </div>
         </section>
-        <?php include("src/partials/shared/footer.html"); ?>
-        <script src="js/script.js"></script>
+
     </div>
+    <?php include("src/partials/shared/footer.html"); ?>
+    <script src="js/script.js"></script>
     </body>
     </html>
 <?php $db->disconnect(); ?>

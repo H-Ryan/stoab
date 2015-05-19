@@ -14,13 +14,15 @@ include_once "src/db/dbConfig.php";
         <meta name="keywords" content=""/>
 
         <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="css/grid.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/form.css"/>
+
 
         <link rel="stylesheet" href="lib/date/jquery-ui.min.css"/>
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster"/>
-        <link rel="stylesheet" href="lib/semantic/semantic.min.css"/>
+        <link rel="stylesheet" href="css/grid.css">
+
+        <link rel="stylesheet" href="css/form.css"/>
+        <link rel="stylesheet" href="lib/stoab/stoab.min.css"/>
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/mod-sam/main.css"/>
         <link rel="stylesheet" href="css/mod-sam/form.css"/>
         <link rel="stylesheet" href="css/mod-sam/boka.css"/>
@@ -31,7 +33,7 @@ include_once "src/db/dbConfig.php";
         <script type="text/javascript" src="lib/date/jquery-ui.min.js"></script>
         <script type="text/javascript" src="lib/jq-validate/jquery.validate.min.js"></script>
         <script type="text/javascript" src="lib/jq-validate/additional-methods.min.js"></script>
-        <script type="text/javascript" src="lib/semantic/semantic.min.js"></script>
+        <script type="text/javascript" src="lib/stoab/stoab.min.js"></script>
         <script type="text/javascript" src="js/custom/tolkning.js"></script>
         <!--[if lt IE 9]>
         <div style=' clear: both; text-align:center; position: relative;'>

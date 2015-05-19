@@ -20,18 +20,19 @@ if (!empty($_SESSION['organization_number']) && !empty($_SESSION['user_number'])
 
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/grid.css">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/form.css"/>
-    <link rel="stylesheet" href="lib/semantic/semantic.min.css" />
+    <link rel="stylesheet" href="lib/stoab/stoab.min.css" />
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mod-sam/form.css" />
     <link rel="stylesheet" href="css/mod-sam/login.css" />
+
 
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src="js/jquery.equalheights.js"></script>
     <script src='js/modal.js'></script>
     <script src='js/TMForm.js'></script>
-    <script src="lib/semantic/semantic.min.js"></script>
+    <script src="lib/stoab/stoab.min.js"></script>
     <script src="js/custom/login.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>

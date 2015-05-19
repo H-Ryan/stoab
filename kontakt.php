@@ -13,22 +13,23 @@ session_start();
     </title>
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+
+    <link rel="stylesheet" type="text/css" href="lib/stoab/stoab.min.css"/>
     <link rel="stylesheet" href="css/grid.css">
-    <link rel="stylesheet" href="css/style.css">
+
     <link rel="stylesheet" href="css/form.css"/>
-
-    <link rel="stylesheet" type="text/css" href="lib/semantic/semantic.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/custom/form.css" />
-
+    <link rel="stylesheet" type="text/css" href="css/custom/form.css"/>
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src="js/jquery.equalheights.js"></script>
 
-    <script src="lib/semantic/semantic.min.js"></script>
+    <script src="lib/stoab/stoab.min.js"></script>
     <script src="lib/jq-validate/jquery.validate.min.js"></script>
     <script src="lib/jq-validate/additional-methods.min.js"></script>
     <script src="js/custom/contact.js"></script>
@@ -64,13 +65,16 @@ session_start();
                             </h2>
                             <address>
                                 <p class="text_7 color_6">
-                                    Tveka inte att ta kontakt med oss på STÖ tolktjänster om det är någonting som du undrar över, och inte har fått svar på här på webbplatsen.
+                                    Tveka inte att ta kontakt med oss på STÖ tolktjänster om det är någonting som du
+                                    undrar över, och inte har fått svar på här på webbplatsen.
                                 </p>
+
                                 <div class="grid_6" style="margin-left: 0;">
                                     <div class="row">
                                         <div class="grid_2">
                                             <p class="text_8">
-                                                <i class="fa fa-phone-square"></i> <a href="tel:0046101661010"> 010 166 10 10</a><br/>
+                                                <i class="fa fa-phone-square"></i> <a href="tel:0046101661010"> 010 166
+                                                    10 10</a><br/>
                                                 <br/>
 
                                                 <i class="fa fa-envelope-square"></i> info@tolktjanst.se
@@ -96,34 +100,36 @@ session_start();
                             <h2 class="header_2 indent_2">
                                 Kontaktformulär
                             </h2>
+
                             <form id="contact-form">
                                 <fieldset class="ui basic segment">
                                     <div class="row">
                                         <div class="grid_2">
                                             <label class="name">
-                                                <input type="text" class="" name="name" placeholder="Namn:" value="" />
+                                                <input type="text" class="" name="name" placeholder="Namn:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_2">
                                             <label class="name">
-                                                <input type="text" name="foretagsnamn" placeholder="Företagsnamn:" value="" />
+                                                <input type="text" name="foretagsnamn" placeholder="Företagsnamn:"
+                                                       value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_2">
                                             <label class="phone">
-                                                <input type="text" name="phone" placeholder="Telefon:" value="" />
+                                                <input type="text" name="phone" placeholder="Telefon:" value=""/>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="grid_3">
                                             <label class="name">
-                                                <input type="text" name="subject" placeholder="Ämne:" value="" />
+                                                <input type="text" name="subject" placeholder="Ämne:" value=""/>
                                             </label>
                                         </div>
                                         <div class="grid_3">
                                             <label class="name">
-                                                <input type="text" name="email" placeholder="E-post:" value="" />
+                                                <input type="text" name="email" placeholder="E-post:" value=""/>
                                             </label>
                                         </div>
                                     </div>
@@ -135,8 +141,8 @@ session_start();
                                         </div>
                                     </div>
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn_3"  id="btnReset" >Rensa</button>
-                                        <button type="button" class="btn_3" id="btnSubmit" >Skicka</button>
+                                        <button type="button" class="btn_3" id="btnReset">Rensa</button>
+                                        <button type="button" class="btn_3" id="btnSubmit">Skicka</button>
                                     </div>
                                 </fieldset>
                                 <div class="ui inverted dimmer">
@@ -154,6 +160,7 @@ session_start();
         </div>
         <div class="ui standard small modal">
             <i class="close icon"></i>
+
             <div class="header">
             </div>
             <div class="content">
