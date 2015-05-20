@@ -244,9 +244,9 @@ session_start();
                                                         -
                                                         Auktoriserad sjukvårds- och rättstolk
                                                     </option>
-                                                    <option value="GT - Godkänd Tolk">GT - Godkänd tolk
+                                                    <option value="GT - Godkänd tolk">GT - Godkänd tolk
                                                     </option>
-                                                    <option value="ÖT - Övriga Tolk">ÖT - Övrig tolk</option>
+                                                    <option value="ÖT - Övrig tolk">ÖT - Övrig tolk</option>
                                                 </select>
                                             </label>
                                         </div>

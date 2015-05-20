@@ -3,7 +3,8 @@
 ini_set("session.use_only_cookies", TRUE);
 ini_set("session.use_trans_sid", FALSE);
 session_start();
-
+include_once "src/db/dbConnection.php";
+include_once "src/db/dbConfig.php";
 ?>
 <!DOCTYPE html>
 <html lang="sv">
@@ -18,6 +19,7 @@ session_start();
 
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="lib/stoab/stoab.min.css" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/camera.css"/>
     <link rel="stylesheet" href="css/owl.carousel.css"/>
@@ -29,6 +31,7 @@ session_start();
     <!--<![endif]-->
     <script src="js/camera.js"></script>
     <script src="js/owl.carousel.js"></script>
+    <script src="lib/stoab/stoab.min.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -50,6 +53,14 @@ session_start();
     <!--========================================================
                               CONTENT
     =========================================================-->
+    <?php
+    try {
+        $db = new dbConnection(HOST, DATABASE, USER, PASS);
+        $con = $db->get_connection();
+    } catch (PDOException $e) {
+        return $e->getMessage();
+    }
+    ?>
     <section>
         <div class="camera-wrapper">
             <div id="camera" class="camera-wrap">
@@ -154,17 +165,54 @@ session_start();
                 <div class="grid_6">
                     <div class="wrap_6">
                         <div class="box_2 maxheight2">
-                            <div class="put-left"><img src="images/index_img01.png" alt="Image 1"/></div>
+                            <!--<div class="put-left"><img src="images/index_img01.png" alt="Image 1"/></div>-->
                             <div class="caption">
-                                <h3 class="text_2 color_2">
-                                    Nyheter <br/>
+                                <h3 class="text_2 color_2"> Nyheter <br /> </h3>
+                            </div>
+                            <p class="test_3"></p>
+                            <div id="newsContainer" style="max-height: 250px; overflow: auto;">
+                                <div class="ui small feed">
+                                    <?php
+                                    $statement = $con->query("SELECT * FROM t_newsLetter ORDER BY n_time DESC LIMIT 0,5 ");
+                                    $statement->execute();
+                                    $statement->setFetchMode(PDO::FETCH_OBJ);
+                                    if ($statement->rowCount() > 0) {
+                                        while ($row = $statement->fetch()) { ?>
+                                            <div class="event" style="border: solid 1px #d3d3d3; margin-bottom: 5px">
+                                                <div class="label">
+                                                    <i class="mail outline icon"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <div class="summary">
+                                                        <?php
+                                                        echo $row->n_title . " - Publicerat: ";
+                                                        $date1 = new DateTime($row->n_time);
+                                                        $date2 = new DateTime(date("Y-m-d H:i:s"));
+                                                        $interval = $date1->diff($date2);
+                                                        if ($interval->format('%d') === "0") {
+                                                            echo "Idag";
+                                                        } else {
+                                                            echo $interval->format('%d') . " dagar sedan.";
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                    <div class="extra text">
+                                                        <?php echo $row->n_postScript; ?>
+                                                    </div>
+                                                    <div class="meta">
+                                                        <a class="linkViewMore"
+                                                           href="newsletter.php?id=<?php echo $row->n_ID ?>">Läs mer</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php }
+                                    } else {
+                                        echo "<div><p class='text_3'>Just nu har vi inte några nyheter!</p></div>";
+                                    }
+                                    ?>
 
-                                </h3>
 
-                                <p class="text_3">
-
-                                </p>
-                                <a href="#" class="btn_2">Läs mer</a>
+                                </div>
                             </div>
                             <div class="clearfix"></div>
                         </div>

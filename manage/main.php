@@ -58,7 +58,7 @@ try {
     <script type="text/javascript" src="../lib/jq-validate/additional-methods.min.js"></script>
     <script type="text/javascript" src="../lib/stoab/stoab.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="../lib/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="../lib/nicEdit/nicEdit.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">

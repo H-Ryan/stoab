@@ -21,7 +21,7 @@ include_once "src/db/dbConfig.php";
 
     <link rel="stylesheet" href="css/form.css"/>
 
-    <link rel="stylesheet" href="lib/stoab/stoab.min.css" />
+    <link rel="stylesheet" href="lib/stoab/stoab.min.css"/>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
@@ -62,29 +62,77 @@ include_once "src/db/dbConfig.php";
     <section>
         <div class="container">
             <div class="row wrap_8"></div>
-            <div class="ui middle aligned two column stackable grid">
-                <?php if (isset($_GET['id'])) {?>
-                <div class="column">
-                    <?php
-                    $statement = $con->prepare("SELECT * FROM t_newsLetter WHERE n_ID=:id");
-                    $statement->bindParam(":id", $_GET['id']);
-                    $statement->execute();
-                    $statement->setFetchMode(PDO::FETCH_OBJ);
-                    while ($row = $statement->fetch()) {
-                        echo "<div>".$row->n_Text."</div>";
-                    }
-                    ?>
+            <div class="ui middle aligned stackable grid">
+                <div class="centered row">
+                    <?php if (isset($_GET['id'])) { ?>
+                        <div class="twelve wide column " style="height:400px; ">
+                            <?php
+                            $statement = $con->prepare("SELECT * FROM t_newsLetter WHERE n_ID=:id");
+                            $statement->bindParam(":id", $_GET['id']);
+                            $statement->execute();
+                            $statement->setFetchMode(PDO::FETCH_OBJ);
+                            while ($row = $statement->fetch()) {
+                                $daysAgo = "";
+                                $date1 =  new DateTime($row->n_time);
+                                $date2 = new DateTime(date("Y-m-d H:i:s"));
+                                $interval = $date1->diff($date2);
+                                if ($interval->format('%d') === "0") {
+                                    $daysAgo = "Today";
+                                } else {
+                                    $daysAgo = $interval->format('%d') . " days ago.";
+                                }
+                                echo "<div class='ui stacked segment' style='height: 400px; max-height: 400px; overflow: auto;'><div class='ui header'>".$row->n_title." - <span>".$daysAgo."</span></div>". $row->n_text . "</div>";
+                            }
+                            ?>
+                        </div>
+                    <?php } else {
+                        echo "<div class='twelve wide column'><p>Invalid parameters!</p></div>";
+                    } ?>
+                    <div class="four wide column">
+                        <div id="newsContainer" class="ui segment" style="height: 400px; max-height: 400px; overflow: auto;">
+                            <div class="ui small feed">
+                                <?php
+                                $statement = $con->query("SELECT * FROM t_newsLetter ORDER BY n_time DESC");
+                                $statement->execute();
+                                $statement->setFetchMode(PDO::FETCH_OBJ);
+                                while ($row = $statement->fetch()) { ?>
+                                    <div class="event" id="<?php echo $row->n_ID; ?>" style="border: solid 1px <?php echo ($row->n_ID === $_GET['id']) ? "lightseagreen" : "#d3d3d3"; ?>; margin-bottom: 5px">
+                                        <div class="label">
+                                            <i class="mail outline icon"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="summary">
+                                                <?php
+                                                echo $row->n_title." - Publicerat: ";
+                                                $date1 =  new DateTime($row->n_time);
+                                                $date2 = new DateTime(date("Y-m-d H:i:s"));
+                                                $interval = $date1->diff($date2);
+                                                if ($interval->format('%d') === "0") {
+                                                    echo "Idag";
+                                                } else {
+                                                    echo $interval->format('%d') . " dagar sedan.";
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="extra text">
+                                                <?php echo $row->n_postScript; ?>
+                                            </div>
+                                            <div class="meta">
+                                                <a class="linkViewMore" href="newsletter.php?id=<?php echo $row->n_ID; ?>">Läs mer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="column">
-
-                </div>
-                <?php } else {
-                    echo "<p>Invalid parameters!</p>";
-                }?>
             </div>
         </div>
         <?php include("src/partials/shared/follow-us.html") ?>
     </section>
+    <span style="display: none;" id="newsID"><?php echo $_GET['id']; ?></span>
 </div>
 <!--========================================================
                           FOOTER

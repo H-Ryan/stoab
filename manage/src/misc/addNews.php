@@ -20,8 +20,8 @@ if (!empty($referrer)) {
 } else {
     exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
 }
-
-if (isset($_POST['newsTitle']) && isset($_POST['newsLetter'])) {
+$data = [];
+if (isset($_POST['newsTitle']) && isset($_POST['newsPrescript'])&& isset($_POST['newsContent'])) {
     $db = null;
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
@@ -30,20 +30,28 @@ if (isset($_POST['newsTitle']) && isset($_POST['newsLetter'])) {
         return $e->getMessage();
     }
 
-    $data = "<h2 class='newsLetterTitle'>".$_POST['newsTitle']."</h2>".$_POST['newsLetter'];
-
+    $title = "<span class='newsLetterTitle'>".$_POST['newsTitle']."</span>";
+    $postScript = "<p class='newsLetterPrescript'>".$_POST['newsPrescript']."</p>";
+    $content = $_POST['newsContent'];
+    $content = $_POST['newsContent'];
     try {
-        $statement = $con->prepare("INSERT INTO t_newsLetter (n_Text, n_Time) VALUES (:text, :cratedOn)");
-        $statement->bindParam(":text", $data);
+        $statement = $con->prepare("INSERT INTO t_newsLetter (n_title, n_postScript, n_time, n_text) VALUES (:title,:postScript, :cratedOn, :content)");
+        $statement->bindParam(":title", $title);
+        $statement->bindParam(":postScript", $postScript);
         $statement->bindParam(":cratedOn", date("Y-m-d H:i:s"));
+        $statement->bindParam(":content", $content);
         $statement->execute();
         if ($statement->rowCount() > 0) {
-            echo json_encode("The news were successfully added!");
+            $data['error'] = 0;
+            $data['message'] = "The news were successfully added!";
+            echo json_encode($data);
         } else {
             if ($db != null) {
                 $db->disconnect();
             }
-            echo json_encode("Error!");
+            $data['error'] = 1;
+            $data['message'] = "Error! There was a problem with the database!";
+            echo json_encode($data);
         }
     } catch (PDOException $e) {
         return $e->getMessage();
@@ -52,5 +60,7 @@ if (isset($_POST['newsTitle']) && isset($_POST['newsLetter'])) {
     if ($db != null) {
         $db->disconnect();
     }
-    header('Location: ../../index.php');
+    $data['error'] = 1;
+    $data['message'] = "Error! Some of the fields have not been set!";
+    echo json_encode($data);
 }

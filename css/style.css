@@ -5,6 +5,14 @@
 /*========================================================
                     Main layout styles
 =========================================================*/
+.segment ol {
+    margin-left: 10px;
+    list-style: decimal;
+}
+.segment ul {
+    margin-left: 10px;
+    list-style: circle;
+}
 body {
   background: #129894;
   color: #363535;

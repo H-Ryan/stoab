@@ -9,19 +9,53 @@ $(document).ready(function () {
         success: "valid"
     });
 
+    $("#newsPrescript").change(function() {
+        var charCount = $(this).val().length;
+        var chars =  $("#chars");
+        if (charCount > 200) {
+           chars.css("color", "red");
+        } else {
+            chars.css("color", "black");
+        }
+        chars.text(charCount);
+
+    });
+
     $(".typeTip").popup();
+    var myNicEditor = new nicEditor({iconsPath : '../lib/nicEdit/nicEditorIcons.gif', fullPanel : true});
+    myNicEditor.setPanel('editPanel');
+    myNicEditor.addInstance('newsLetter');
+    $("#btnPreviewNews").on("click", function() {
+        $('.modal.preview .header').text($("#newsTitle").val() + " - Publicerat: Idag");
+        $('.modal.preview #newsContent').html(nicEditors.findEditor('newsLetter').getContent());
 
-    /*CKEDITOR.replace( 'newsLetter' );
-    //var editor_data = CKEDITOR.instances.editor1.getData();
-
-    var newsletterForm = $("#newsLetterForm");
-
+        $('.modal.preview').modal('show');
+    });
     $("#btnPostNewsLetter").on("click", function () {
-        var editor_data = CKEDITOR.instances.newsLetter.getData();
-        $.post("src/misc/addNews.php", newsletterForm.serialize(), function (data) {
-            alert(data);
+        $.ajax({
+            type: "POST",
+            url: "src/misc/addNews.php",
+            dataType: "json",
+            beforeSend: function () {
+                $("#btnPostNewsLetter").addClass('loading');
+            },
+            data: {
+                newsTitle: $("#newsTitle").val(),
+                newsPrescript: $("#newsPrescript").val(),
+                newsContent: nicEditors.findEditor('newsLetter').getContent()
+            }
+        }).done(function (data) {
+            if (data.error === 0) {
+                $("#newsTitle").val("");
+                $("#newsPrescript").val("");
+                nicEditors.findEditor('newsLetter').setContent("<p>Do you have any more news?</p>")
+            }
+            $("#btnPostNewsLetter").removeClass('loading');
+            $('.small.news.modal .content .description').text(data.message);
+            $('.small.news.modal').modal('show');
         });
-    });*/
+        return false;
+    });
 
     var startHour = $("#starttid");
     var endHour = $("#sluttid");

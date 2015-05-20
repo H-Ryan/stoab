@@ -13,7 +13,8 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
     && isset($_POST['address']) && isset($_POST['postNumber'])
     && isset($_POST['city']) && isset($_POST['terms'])
     && isset($_POST['languageOne']) && isset($_POST['langCompetenceOne'])) {
-    $name = $_POST['firstName']." ".$_POST['lastName'];
+    $fName = $_POST['firstName'];
+    $lName = $_POST['lastName'];
     $personalNumber = $_POST['personalNumber'];
     $gender = $_POST['gender'];
     $tax = $_POST['tax'];
@@ -34,7 +35,8 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
             height: 100%;
             font-family: Lato,\"Helvetica Neue\",Arial,Helvetica,sans-serif;'>";
     $emailContent .= "<h2>Intresseanmälan</h2>";
-    $emailContent .= printRow("Namn:", $name);
+    $emailContent .= printRow("Namn:", $fName);
+    $emailContent .= printRow("Efternamn:", $lName);
     $emailContent .= printRow("Personnummer:", $personalNumber);
     $emailContent .= printRow("Kön:", $gender);
     $emailContent .= printRow("Jag har:", $tax);
