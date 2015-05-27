@@ -149,7 +149,6 @@ session_start();
                                 <div class="grid_4">
                                     <ul class="list_2 text_6">
                                         <li><a href="#">Nemat Sarvari / Ledamot ,VD</a></li>
-                                        <li><a href="#">Bayaneh Rahmani / Vice VD & Ekonomichef</a></li>
                                         <li><a href="#">Mikael Esselius / Marknadschef</a></li>
                                         <li><a href="#">Rami Farajallah /  Myndighetsservice</a></li>
                                     </ul>
@@ -169,8 +168,6 @@ session_start();
                     <div class="grid_6">
                         <div class="img-wrap">
                             <img class="img_2" src="images/index-1_img03.jpg" alt="Image 3"/>
-                            <img class="img_2" src="images/index-1_img04.jpg" alt="Image 4"/>
-                            <img class="img_2" src="images/index-1_img05.jpg" alt="Image 5"/>
                             <img class="img_2" src="images/index-1_img06.jpg" alt="Image 6"/>
                             <img class="img_2" src="images/index-1_img07.jpg" alt="Image 7"/>
                             <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>
