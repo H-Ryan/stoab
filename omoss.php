@@ -149,7 +149,6 @@ session_start();
                                 <div class="grid_4">
                                     <ul class="list_2 text_6">
                                         <li><a href="#">Nemat Sarvari / Ledamot ,VD</a></li>
-                                        <li><a href="#">Mikael Esselius / Marknadschef</a></li>
                                         <li><a href="#">Rami Farajallah /  Myndighetsservice</a></li>
                                     </ul>
                                 </div>
