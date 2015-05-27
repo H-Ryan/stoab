@@ -14,7 +14,7 @@
                     <div id="newsContainer" style="max-height: 400px; overflow: auto;">
                         <div class="ui small feed">
                             <?php
-                            $statement = $con->query("SELECT * FROM t_newsLetter WHERE n_time >= CURRENT_DATE() - 30  ORDER BY n_time DESC ");
+                            $statement = $con->query("SELECT * FROM t_newsLetter WHERE n_time >= CURRENT_DATE() - 30 AND n_flag=1  ORDER BY n_time DESC");
                             $statement->execute();
                             $statement->setFetchMode(PDO::FETCH_OBJ);
                             if ($statement->rowCount() > 0) {

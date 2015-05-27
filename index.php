@@ -173,7 +173,7 @@ include_once "src/db/dbConfig.php";
                             <div id="newsContainer" style="max-height: 250px; overflow: auto;">
                                 <div class="ui small feed">
                                     <?php
-                                    $statement = $con->query("SELECT * FROM t_newsLetter WHERE n_time >= CURRENT_DATE() - 30 ORDER BY n_time DESC LIMIT 10 ");
+                                    $statement = $con->query("SELECT * FROM t_newsLetter WHERE n_time >= CURRENT_DATE() - 30 AND n_flag=1 ORDER BY n_time DESC LIMIT 10 ");
                                     $statement->execute();
                                     $statement->setFetchMode(PDO::FETCH_OBJ);
                                     if ($statement->rowCount() > 0) {
