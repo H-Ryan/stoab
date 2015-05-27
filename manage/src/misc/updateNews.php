@@ -36,10 +36,10 @@ if (isset($_POST['newsId']) && isset($_POST['newsTitle']) && isset($_POST['newsP
     $content = $_POST['newsContent'];
     $content = $_POST['newsContent'];
     try {
-        $statement = $con->prepare("UPDATE t_newsLetter SET n_title=:title, n_postScript=:postScript, n_time=:updatedOn, n_text=:content WHERE n_ID=:id");
+        $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $statement = $con->prepare("UPDATE t_newsLetter SET n_title=:title, n_postScript=:postScript, n_text=:content WHERE n_ID=:id");
         $statement->bindParam(":title", $title);
         $statement->bindParam(":postScript", $postScript);
-        $statement->bindParam(":updatedOn", date("Y-m-d H:i:s"));
         $statement->bindParam(":content", $content);
         $statement->bindParam(":id", $id);
         $statement->execute();

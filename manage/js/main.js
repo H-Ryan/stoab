@@ -145,7 +145,6 @@ $(document).ready(function () {
             },
             data: {newsID: pressedBtn.data('id') }
         }).done(function (data) {
-            $('.modal.newsManageDeleteAction').modal('hide');
             $('.small.news.modal .content .description').text(data.message);
             $('.small.news.modal').modal('show');
             pressedBtn.removeClass('loading');

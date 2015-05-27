@@ -32,7 +32,8 @@ if (isset($_POST['newsID'])) {
 
     $id = $_POST['newsID'];
     try {
-        $statement = $con->prepare("DELETE FROM t_newsLetter WHERE n_ID=:id");
+        $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $statement = $con->prepare("DELETE FROM t_newsLetter WHERE n_ID=:id LIMIT 1");
         $statement->bindParam(":id", $id);
         $statement->execute();
         if ($statement->rowCount() > 0) {
