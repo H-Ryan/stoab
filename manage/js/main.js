@@ -22,15 +22,146 @@ $(document).ready(function () {
     });
 
     $(".typeTip").popup();
-    var myNicEditor = new nicEditor({iconsPath : '../lib/nicEdit/nicEditorIcons.gif', fullPanel : true});
-    myNicEditor.setPanel('editPanel');
-    myNicEditor.addInstance('newsLetter');
+    tinymce.init({
+        selector: '#newsLetter, #newsLetterManage',
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+    });
+    var feed = $(".feed");
+    feed.on("click", ".btnNewsManageView", function() {
+        $('#newsLetterModifyForm').slideUp(500);
+        $("#containerUpdateNews").addClass('basic');
+        var pressedBtn = $(this);
+        $.ajax({
+            type: "GET",
+            url: "src/misc/getNewsletterInfo.php",
+            dataType: "json",
+            beforeSend: function () {
+                pressedBtn.addClass('loading');
+            },
+            data: pressedBtn.closest(".newsManageIDForm").serialize()
+        }).done(function (data) {
+            if (data.error === 0) {
+                $('.modal.preview .header').html(data.header);
+                $('.modal.preview #newsContent').html(data.content);
+
+                $('.modal.preview').modal('show');
+            }
+            pressedBtn.removeClass('loading');
+        });
+        return false;
+
+    });
+
+    feed.on("click", ".btnNewsManageEdit", function() {
+        var pressedBtn = $(this),
+            container = $("#containerUpdateNews");
+        $.ajax({
+            type: "GET",
+            url: "src/misc/getNewsletterInfo.php",
+            dataType: "json",
+            beforeSend: function () {
+                pressedBtn.addClass('loading');
+                container.addClass('loading');
+            },
+            data: pressedBtn.closest(".newsManageIDForm").serialize()
+        }).done(function (data) {
+            if (data.error === 0) {
+                $('#newsIdManage').val(data.id);
+                $('#newsTitleManage').val(data.title.replace(/<(?:.|\n)*?>/gm, ''));
+                $('#newsPrescriptManage').html(data.prescript.replace(/<(?:.|\n)*?>/gm, ''));
+                tinyMCE.get('newsLetterManage').setContent(data.content);
+
+                $('#newsLetterModifyForm').slideDown(500);
+            }
+            pressedBtn.removeClass('loading');
+            container.removeClass('loading').removeClass('basic');
+        });
+        return false;
+    });
+
+    feed.on('click', '.btnNewsManageDelete', function () {
+        $('#newsLetterModifyForm').slideUp(500);
+        $("#containerUpdateNews").addClass('basic');
+        var deleteModal = $('.modal.newsManageDeleteAction');
+        var btnAction = deleteModal.find('.btnManageActionYes');
+        var id = $(this).closest(".newsManageIDForm").children("[name='newsID']").val();
+        btnAction.data('id', id);
+        deleteModal.modal('show');
+    });
+
+    $("#btnPreviewNewsManage").on("click", function() {
+        $('.modal.previewManage .header').text($("#newsTitleManage").val() + " - Publicerat: Idag");
+        $('.modal.previewManage #newsContent').html(tinyMCE.get('newsLetterManage').getContent());
+
+        $('.modal.previewManage').modal('show');
+    });
+
+    $('#btnUpdateNewsLetterManage').on('click', function () {
+        var updateModal = $('.modal.newsManageUpdateAction');
+        updateModal.modal('show');
+    });
+
+    $('.modal.newsManageUpdateAction .btnManageActionYes').on('click', function () {
+        var pressedBtn = $(this);
+        $.ajax({
+            type: "POST",
+            url: "src/misc/updateNews.php",
+            dataType: "json",
+            beforeSend: function () {
+                pressedBtn.addClass('loading');
+            },
+            data: {
+                newsId: $('#newsIdManage').val(),
+                newsTitle: $("#newsTitleManage").val(),
+                newsPrescript: $("#newsPrescriptManage").val(),
+                newsContent: tinyMCE.get('newsLetterManage').getContent()
+            }
+        }).done(function (data) {
+            if (data.error === 0) {
+                $('#newsLetterModifyForm').slideUp(500);
+                $("#containerUpdateNews").addClass('basic');
+                pressedBtn.removeClass('loading');
+                updateNewsletterEntries();
+            }
+            $('.small.news .content .description').text(data.message);
+            $('.small.news').modal('show');
+        });
+        return false;
+    });
+
+    $('.modal.newsManageDeleteAction .btnManageActionYes').on('click', function () {
+        var pressedBtn = $(this);
+        $.ajax({
+            type: "POST",
+            url: "src/misc/deleteNews.php",
+            dataType: "json",
+            beforeSend: function () {
+                pressedBtn.addClass('loading');
+            },
+            data: {newsID: pressedBtn.data('id') }
+        }).done(function (data) {
+            $('.modal.newsManageDeleteAction').modal('hide');
+            $('.small.news.modal .content .description').text(data.message);
+            $('.small.news.modal').modal('show');
+            pressedBtn.removeClass('loading');
+            updateNewsletterEntries();
+        });
+        return false;
+    });
+
+
     $("#btnPreviewNews").on("click", function() {
         $('.modal.preview .header').text($("#newsTitle").val() + " - Publicerat: Idag");
-        $('.modal.preview #newsContent').html(nicEditors.findEditor('newsLetter').getContent());
+        $('.modal.preview #newsContent').html(tinyMCE.get('newsLetter').getContent());
 
         $('.modal.preview').modal('show');
     });
+
     $("#btnPostNewsLetter").on("click", function () {
         $.ajax({
             type: "POST",
@@ -42,13 +173,14 @@ $(document).ready(function () {
             data: {
                 newsTitle: $("#newsTitle").val(),
                 newsPrescript: $("#newsPrescript").val(),
-                newsContent: nicEditors.findEditor('newsLetter').getContent()
+                newsContent: tinyMCE.get('newsLetter').getContent()
             }
         }).done(function (data) {
             if (data.error === 0) {
                 $("#newsTitle").val("");
                 $("#newsPrescript").val("");
-                nicEditors.findEditor('newsLetter').setContent("<p>Do you have any more news?</p>")
+                tinyMCE.get('newsLetter').setContent("");
+                updateNewsletterEntries();
             }
             $("#btnPostNewsLetter").removeClass('loading');
             $('.small.news.modal .content .description').text(data.message);
@@ -1004,4 +1136,51 @@ function getFullTolkningType(type) {
         : (type == 'KP') ? 'Kontaktperson'
         : (type == 'SH') ? 'Studiehandledning'
         : "Språkstöd";
+}
+
+function updateNewsletterEntries() {
+    var newsContainer = $('#newsContainer');
+    var feed = newsContainer.children('.feed');
+    $.ajax({
+        type: "GET",
+        url: "src/misc/getAllNews.php",
+        dataType: "json",
+        beforeSend: function() {
+            newsContainer.addClass("loading");
+        }
+    }).done(function (data) {
+        if (data.error === 0) {
+            feed.empty();
+            if (data.records.length > 0) {
+                for(var i = 0; i < data.records.length; i++) {
+                    var event = $('<div class="event" style="border: solid 1px #d3d3d3; margin-bottom: 5px"></div>');
+
+                    var formManage = $('<form class="newsManageIDForm"></form>');
+                    formManage.append($('<input type="hidden" name="newsID"value="'+data.records[i].id+'"/>'));
+                    formManage.append($(' <div class="ui grid"> <div class="row"> <div class="column"> <div class="three ui vertical fluid inverted buttons"> <div class="mini ui blue inverted button btnNewsManageView">View </div> <div class="mini ui orange inverted button btnNewsManageEdit">Edit </div> <div class="mini ui red inverted button btnNewsManageDelete">Delete </div> </div> </div> </div> </div>'));
+
+                    var label = $('<div class="label"></div>');
+                    label.append($('<i class="mail outline icon"></i>'));
+                    label.append(formManage);
+
+                    var context = $('<div class="content"></div>');
+                    var summary = $('<div class="summary"></div>');
+                    summary.html(data.records[i].header);
+                    var content = $('<div class="extra text">' +data.records[i].prescript+ '</div>');
+                    context.append(summary);
+                    context.append(content);
+                    context.append($('<div class="meta"></div>'));
+
+                    event.append(label);
+                    event.append(context);
+
+                    feed.append(event);
+                }
+            } else {
+                newsContainer.append($("<div><p class='text_3'>Just nu har vi inte några nyheter!</p></div>"));
+            }
+        }
+        newsContainer.removeClass('loading');
+    });
+    return false;
 }

@@ -173,7 +173,7 @@ include_once "src/db/dbConfig.php";
                             <div id="newsContainer" style="max-height: 250px; overflow: auto;">
                                 <div class="ui small feed">
                                     <?php
-                                    $statement = $con->query("SELECT * FROM t_newsLetter ORDER BY n_time DESC LIMIT 0,5 ");
+                                    $statement = $con->query("SELECT * FROM t_newsLetter WHERE n_time >= CURRENT_DATE() - 30 ORDER BY n_time DESC LIMIT 10 ");
                                     $statement->execute();
                                     $statement->setFetchMode(PDO::FETCH_OBJ);
                                     if ($statement->rowCount() > 0) {
@@ -183,7 +183,7 @@ include_once "src/db/dbConfig.php";
                                                     <i class="mail outline icon"></i>
                                                 </div>
                                                 <div class="content">
-                                                    <div class="summary">
+                                                    <div class="summary" style="line-height: initial;">
                                                         <?php
                                                         echo $row->n_title . " - Publicerat: ";
                                                         $date1 = new DateTime($row->n_time);

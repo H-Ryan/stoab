@@ -32,21 +32,8 @@
 .tolks {
     overflow: auto;
 }
-#newsLetter {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    height: 450px;
-    max-height: 50%;
-    overflow-y: scroll;
-    border: 1px solid #000;
-}
 
-#newsPrescript {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+#newsPrescript, #newsPrescriptManage {
+    width: 100%;
     height: 50px;
-    max-height: 100px;
-    overflow-y: scroll;
 }

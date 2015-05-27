@@ -34,10 +34,6 @@ form label {
     margin-bottom: 21px;
 }
 
-.ui.selection, select {
-    height: 31px;
-}
-
 .ui.segment {
     margin: 0;
     padding: 0;
