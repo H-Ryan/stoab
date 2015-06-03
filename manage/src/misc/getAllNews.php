@@ -33,10 +33,10 @@ try {
     $statement = $con->query("SELECT * FROM t_newsLetter WHERE n_time >= CURRENT_DATE() - 30 AND n_flag=1  ORDER BY n_time DESC");
     $statement->execute();
     $statement->setFetchMode(PDO::FETCH_OBJ);
-    if ($statement->rowCount() > 0) {
+    $data['records'] = array();
+    if ($statement->rowCount() >= 0) {
 
         $data['error'] = 0;
-        $data['records'] = array();
         while($row = $statement->fetch()) {
             $title = $row->n_title . " - Publicerat: ";
             $date1 = new DateTime($row->n_time);
@@ -47,7 +47,7 @@ try {
             } else {
                 $title = $title.$interval->format('%d') . " dagar sedan.";
             }
-            $record = array();
+
             $record['id'] = $row->n_ID;
             $record['header'] = $title;
             $record['prescript'] = $row->n_postScript;
