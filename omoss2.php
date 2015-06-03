@@ -18,12 +18,14 @@ session_start();
 
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="lib/stoab/stoab.min.css"/>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/owl.carousel.css"/>
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src="js/jquery.equalheights.js"></script>
     <script src="js/owl.carousel.js"></script>
+    <script type="text/javascript" src="lib/stoab/stoab.min.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -52,7 +54,7 @@ session_start();
     <style type="text/css">
 
         /*Demo Styles*/
-        #content{ width:845px; margin:20px auto; padding:10px 30px; }
+
         .clearfix{ display: block; height: 0; clear: both; visibility: hidden; }
 
         .details{ margin:15px 20px; }
@@ -194,9 +196,6 @@ session_start();
                     <div class="grid_6">
                         <div class="img-wrap">
                             <div id="content">
-
-
-                                <!--Bar 2-->
                                 <div class="mosaic-block bar2">
                                     <div class="mosaic-overlay">
                                         <div class="details">
@@ -211,11 +210,43 @@ session_start();
 
                                 <div class="clearfix"></div>
                             </div>
-                            <img class="img_2" src="images/ryan.jpg" alt="Image 6"/>
+                            <!--<img class="img_2" src="images/ryan.jpg" alt="Image 6"/>
                             <img class="img_2" src="images/index-1_img07.jpg" alt="Image 7"/>
-                            <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>
+                            <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>-->
                         </div>
                         <div class="clearfix"></div>
+                        <div class="ui two cards">
+                            <div class="card">
+                                <div class="image">
+                                    <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>
+                                </div>
+                                <div class="content">
+                                    <a class="header">Hamed Talebi</a>
+                                    <div class="meta">
+                                        <span class="date">Systemansvarig-IT</span>
+                                    </div>
+                                    <div class="description">
+                                        <p>Telefon: <a href="tel:0707683325">070 7683 325</a></p>
+                                        <p>E-post: <a href="mailto:sarvari@sarvari.se">sarvari[at]sarvari[dot]se</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="image">
+                                    <img class="img_2" src="images/index-1_img07.jpg" alt="Image 7"/>
+                                </div>
+                                <div class="content">
+                                    <a class="header">Nemat Sarvari</a>
+                                    <div class="meta">
+                                        <span class="date">VD</span>
+                                    </div>
+                                    <div class="description">
+                                        <p>Telefon: <a href="tel:0707683325">070 7683 325</a></p>
+                                        <p>E-post: <a href="mailto:sarvari@sarvari.se">sarvari[at]sarvari[dot]se</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
