@@ -18,12 +18,14 @@ session_start();
 
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="lib/stoab/stoab.min.css"/>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/owl.carousel.css"/>
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src="js/jquery.equalheights.js"></script>
     <script src="js/owl.carousel.js"></script>
+    <script type="text/javascript" src="lib/stoab/stoab.min.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -35,6 +37,18 @@ session_start();
     <script src="js/html5shiv.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
     <![endif]-->
+
+    <script type="text/javascript" src="js/mosaic.1.0.1.js"></script>
+
+    <script type="text/javascript">
+
+        jQuery(function($){
+            $('.bar2').mosaic({
+                animation	:	'slide'		//fade or slide
+            });
+        });
+
+    </script>
 </head>
 <body>
 <div class="page">
@@ -132,46 +146,150 @@ session_start();
                         <h2 class="header_2 indent_2">
                             Möt vår personal
                         </h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="grid_6">
                         <div class="box_4">
                             <p class="text_3">
                                 På STÖ arbetar vi som ett team för att ni som kund fullt ut ska kunna tillgodogöra all
                                 den kunskap, kompetens och erfarenhet som våra medarbetarna har. Vårt gemensamma mål är
                                 att alltid erbjuda bästa möjliga service för våra kunder. Nedan finner ni
                                 kontaktuppgifter till alla våra medarbetare för att ni på enklaste sätt ska kunna
-                                kontakta den person som ni söker.
+                                kontakta den person som ni söker.<br/>
                             </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="grid_3">
+                        <div class="img-wrap">
+                            <div id="content">
+                                <div class="mosaic-block bar2">
+                                    <div class="mosaic-overlay">
+                                        <div class="details">
+                                            <h4>Nemat Sarvari</h4>
+                                            <h4>Ledamot ,VD</h4>
+                                            <a href="mailto:sarvari@sarvari.se"><p>E-post: sarvari@sarvari.se</p></a>
+                                            <a href="tel:0046707683325"><p>Telefon: 070 7683 325</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="mosaic-backdrop"><img src="images/nemat.jpg"/></div>
+                                </div>
+                                <div class="clearfix"></div>
 
-                            <div class="row">
-                                <div class="grid_4">
-                                    <ul class="list_2 text_6">
-                                        <li><a href="#">Nemat Sarvari / Ledamot ,VD</a></li>
-                                        <li><a href="#">Rami Farajallah /  Myndighetsservice</a></li>
-                                    </ul>
-                                </div>
-                                <div class="grid_4">
-                                    <ul class="list_2 text_6">
-                                        <li><a href="#">Mustafa Azad / Rekryterar</a></li>
-                                        <li><a href="#">Marielle Redinge / Marknadsförare Översätt och tolktjänster</a></li>
-                                        <li><a href="#">Hamed Talebi / Systemansvarig-IT</a></li>
-                                        <li><a href="#">Hussam Khadur / Rådgivare</a></li>
-                                        <li><a href="#">Carolina Johnsson/ International försäljare och Marknadsförare</a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="grid_6">
+                    <div class="grid_3">
                         <div class="img-wrap">
-                            <img class="img_2" src="images/index-1_img03.jpg" alt="Image 3"/>
-                            <img class="img_2" src="images/index-1_img06.jpg" alt="Image 6"/>
-                            <img class="img_2" src="images/index-1_img07.jpg" alt="Image 7"/>
-                            <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>
+                            <div id="content">
+                                <div class="mosaic-block bar2">
+                                    <div class="mosaic-overlay">
+                                        <div class="details">
+                                            <h4>Rami Farajallah</h4>
+                                            <h4>Myndighetsservice</h4>
+                                            <a href="mailto:info@sarvari.se"><p>E-post: info@sarvari.se</p></a>
+                                            <a href="tel:0046723265051"><p>Telefon: 072 3265 051</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="mosaic-backdrop"><img src="images/rami.jpg"/></div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
                         </div>
-                        <div class="clearfix"></div>
+                    </div>
+                    <div class="grid_3">
+                        <div class="img-wrap">
+                            <div id="content">
+                                <div class="mosaic-block bar2">
+                                    <div class="mosaic-overlay">
+                                        <div class="details">
+                                            <h4>Hussam Khadur</h4>
+                                            <h4>Rådgivare</h4>
+                                            <a href="mailto:info@sarvari.se"><p>E-post: info@sarvari.se</p></a>
+                                            <a href="tel:0046723265051"><p>Telefon: 072 3265 051</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="mosaic-backdrop"><img src="images/hussam.jpg"/></div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <div class="img-wrap">
+                            <div id="content">
+                                <div class="mosaic-block bar2">
+                                    <div class="mosaic-overlay">
+                                        <div class="details">
+                                            <h4>Hamed Talebi</h4>
+                                            <h4>Systemansvarig-IT</h4>
+                                            <a href="mailto:info@sarvari.se"><p>E-post: info@sarvari.se</p></a>
+                                            <a href="tel:0046723265051"><p>Telefon: 072 3265 051</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="mosaic-backdrop"><img src="images/ryan.jpg"/></div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <div class="img-wrap">
+                            <div id="content">
+                                <div class="mosaic-block bar2">
+                                    <div class="mosaic-overlay">
+                                        <div class="details">
+                                            <h4>Mustafa Azad</h4>
+                                            <h4>Rekryterar</h4>
+                                            <a href="mailto:info@sarvari.se"><p>E-post: info@sarvari.se</p></a>
+                                            <a href="tel:0046723265051"><p>Telefon: 072 3265 051</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="mosaic-backdrop"><img src="images/mustafa.jpg"/></div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <div class="img-wrap">
+                            <div id="content">
+                                <div class="mosaic-block bar2">
+                                    <div class="mosaic-overlay">
+                                        <div class="details">
+                                            <h4>Marielle Redinge</h4>
+                                            <h4>Marknadsförare Översätt och tolktjänster</h4>
+                                            <a href="mailto:info@sarvari.se"><p>E-post: info@sarvari.se</p></a>
+                                            <a href="tel:0046723265051"><p>Telefon: 072 3265 051</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="mosaic-backdrop"><img src="images/marielle.jpg"/></div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <div class="img-wrap">
+                            <div id="content">
+                                <div class="mosaic-block bar2">
+                                    <div class="mosaic-overlay">
+                                        <div class="details">
+                                            <h4>Carolina Johnsson</h4>
+                                            <h4>International försäljare och Marknadsförare</h4>
+                                            <a href="mailto:info@sarvari.se"><p>E-post: info@sarvari.se</p></a>
+                                            <a href="tel:0046723265051"><p>Telefon: 072 3265 051</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="mosaic-backdrop"><img src="images/carolina.jpg"/></div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

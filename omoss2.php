@@ -51,19 +51,6 @@ session_start();
     </script>
 
 
-    <style type="text/css">
-
-        /*Demo Styles*/
-
-        .clearfix{ display: block; height: 0; clear: both; visibility: hidden; }
-
-        .details{ margin:15px 20px; }
-        h4{ font:300 16px 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height:120%; letter-spacing:0.15em; color:#fff; }
-        p{ font:200 12px 'Lucida Grande', Tahoma, Verdana, sans-serif; color:#aaa; }
-        a{ text-decoration:none; }
-
-    </style>
-
 </head>
 <body>
 <div class="page">
@@ -161,8 +148,63 @@ session_start();
                         <h2 class="header_2 indent_2">
                             Möt vår personal
                         </h2>
+                        <div class="box_4">
+                            <p class="text_3">
+                                På STÖ arbetar vi som ett team för att ni som kund fullt ut ska kunna tillgodogöra all
+                                den kunskap, kompetens och erfarenhet som våra medarbetarna har. Vårt gemensamma mål är
+                                att alltid erbjuda bästa möjliga service för våra kunder. Nedan finner ni
+                                kontaktuppgifter till alla våra medarbetare för att ni på enklaste sätt ska kunna
+                                kontakta den person som ni söker.
+                            </p>
+                        </div>
                     </div>
+                    <div class="grid_3">
+                            <div class="img-wrap">
+                                <div id="content">
+                                    <div class="mosaic-block bar2">
+                                        <div class="mosaic-overlay">
+                                            <div class="details">
+                                                <h4>Nemat Sarvari</h4>
+                                                <h4>VD</h4>
+                                                <a href="mailto:sarvari@sarvari.se"><p>E-post: sarvari@sarvari.se</p></a>
+                                                <a href="tel:0046707683325"><p>Telefon: 070 7683 325</p></a>
+                                            </div>
+                                        </div>
+                                        <div class="mosaic-backdrop"><img src="images/ryan.jpg"/></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                </div>
+                                <!--<img class="img_2" src="images/ryan.jpg" alt="Image 6"/>
+                                <img class="img_2" src="images/index-1_img07.jpg" alt="Image 7"/>
+                                <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>-->
+                            </div>
+                        </div>
+                    <div class="grid_3">
+                            <div class="img-wrap">
+                                <div id="content">
+                                    <div class="mosaic-block bar2">
+                                        <div class="mosaic-overlay">
+                                            <div class="details">
+                                                <h4>Hamed Talei</h4>
+                                                <h4>International försäljare och Marknadsförare</h4>
+                                                <a href="mailto:info@sarvari.se"><p>E-post: info@sarvari.se</p></a>
+                                                <a href="tel:0046723265051"><p>Telefon: 072 3265 051</p></a>
+                                            </div>
+                                        </div>
+                                        <div class="mosaic-backdrop"><img src="images/ryan.jpg"/></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                </div>
+                                <!--<img class="img_2" src="images/ryan.jpg" alt="Image 6"/>
+                                <img class="img_2" src="images/index-1_img07.jpg" alt="Image 7"/>
+                                <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>-->
+                            </div>
+                    </div>
+
                 </div>
+                <?php /*
                 <div class="row">
                     <div class="grid_6">
                         <div class="box_4">
@@ -194,6 +236,26 @@ session_start();
                         </div>
                     </div>
                     <div class="grid_6">
+                        <div class="img-wrap">
+                            <div id="content">
+                                <div class="mosaic-block bar2">
+                                    <div class="mosaic-overlay">
+                                        <div class="details">
+                                            <h4>Nemat Sarvari, VD</h4>
+                                            <a href="mailto:sarvari@sarvari.se"><p>E-post: sarvari[at]sarvari[dot]se</p></a>
+                                            <p>Telefon: 070 7683 325</p>
+                                        </div>
+                                    </div>
+                                    <div class="mosaic-backdrop"><img src="images/ryan.jpg"/></div>
+                                </div>
+
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <!--<img class="img_2" src="images/ryan.jpg" alt="Image 6"/>
+                            <img class="img_2" src="images/index-1_img07.jpg" alt="Image 7"/>
+                            <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>-->
+                        </div>
                         <div class="img-wrap">
                             <div id="content">
                                 <div class="mosaic-block bar2">
@@ -248,7 +310,7 @@ session_start();
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*/ ?>
             </div>
         </div>
         <div class="container">

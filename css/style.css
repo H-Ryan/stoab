@@ -1146,7 +1146,7 @@ a[data-type='lightbox']:hover img {
     width:250px;
     height:250px;
     margin:10px;
-    background:#111 url(../img/progress.gif) no-repeat center center;
+    background:#111 url(../images/preloader.gif) no-repeat center center;
     border:1px solid #fff;
     -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5);
 }
@@ -1183,5 +1183,32 @@ a[data-type='lightbox']:hover img {
     opacity:1;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter:alpha(opacity=100);
+}
+
+.clearfix{
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.details{
+    margin:15px 20px;
+}
+.details h4{
+    font:300 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height:100%;
+    letter-spacing:0.10em;
+    color:#fff;
+    margin-bottom:4px;
+    margin-top:8px
+}
+.details p{
+    font:200 12px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+    color:#aaa;
+    margin-bottom:3px;
+}
+.details a{
+    text-decoration:none;
 }
 /*** End Animation Styles ***/
