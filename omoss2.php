@@ -215,7 +215,7 @@ session_start();
                             <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>-->
                         </div>
                         <div class="clearfix"></div>
-                        <div class="ui two cards">
+                        <div class="ui two doubling cards">
                             <div class="card">
                                 <div class="image">
                                     <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>
