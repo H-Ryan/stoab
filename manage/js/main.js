@@ -802,6 +802,7 @@ $(document).ready(function () {
     tolkSearchFrom.form({
         language: {
             identifier: 'language',
+            optional: true,
             rules: [
                 {
                     type: 'empty',
@@ -825,7 +826,7 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
                 var container = $('.tolks');
-                container.find('.tolksTable').remove();
+                container.empty();
                 if (data.error == 0) {
                     container.append("<table class='ui collapsing celled table tolksTable'>"
                     + "<thead>"
@@ -881,7 +882,7 @@ $(document).ready(function () {
             tolkSearchFrom.removeClass("error").removeClass("transition").removeClass("visible");
         }
     });
-    $('.btnSearchTolk').click(function () {
+    $('.btnSearchTolk').click(function (e) {
         tolkSearchFrom.form('validate form');
     });
 

@@ -26,6 +26,7 @@ session_start();
     <script src="js/jquery.equalheights.js"></script>
     <script src="js/owl.carousel.js"></script>
     <script type="text/javascript" src="lib/stoab/stoab.min.js"></script>
+    <script type="text/javascript" src="js/custom/aboutus.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -168,6 +169,7 @@ session_start();
                                             <h4>Ledamot ,VD</h4>
                                             <a href="mailto:sarvari@sarvari.se"><p>E-post: sarvari@sarvari.se</p></a>
                                             <a href="tel:0046101661011"><p>Telefon: 010 166 10 11</p></a>
+                                            <a id="moreInfoNemat">Mer info</a>
                                         </div>
                                     </div>
                                     <div class="mosaic-backdrop"><img src="images/nemat.jpg"/></div>
@@ -187,6 +189,7 @@ session_start();
                                             <h4>Marknadsförare Översätt och tolktjänster</h4>
                                             <a href="mailto:marielle@tolktjanst.se"><p>E-post: marielle@tolktjanst.se</p></a>
                                             <a href="tel:0046101661014"><p>Telefon: 010 166 10 14</p></a>
+                                            <a id="moreInfoMarielle">Mer info</a>
                                         </div>
                                     </div>
                                     <div class="mosaic-backdrop"><img src="images/marielle.jpg"/></div>
@@ -206,6 +209,7 @@ session_start();
                                             <h4>Myndighetsservice</h4>
                                             <a href="mailto:rami@sarvari.se"><p>E-post: rami@sarvari.se</p></a>
                                             <a href="tel:0046101661012"><p>Telefon: 010 166 10 12</p></a>
+                                            <a id="moreInfoRami">Mer info</a>
                                         </div>
                                     </div>
                                     <div class="mosaic-backdrop"><img src="images/rami.jpg"/></div>
@@ -225,6 +229,7 @@ session_start();
                                             <h4>International försäljare och Marknadsförare</h4>
                                             <a href="mailto:carolina@tolktjanst.se"><p>E-post: carolina@tolktjanst.se</p></a>
                                             <a href="tel:0046101661015"><p>Telefon: 010 166 10 15</p></a>
+                                            <a id="moreInfoCarolina">Mer info</a>
                                         </div>
                                     </div>
                                     <div class="mosaic-backdrop"><img src="images/carolina.jpg"/></div>
@@ -244,6 +249,7 @@ session_start();
                                             <h4>Rådgivare</h4>
                                             <a href="mailto:hussam@sarvari.se"><p>E-post: hussam@sarvari.se</p></a>
                                             <a href="tel:0046723681368"><p>Telefon: 072 3681 368</p></a>
+                                            <a id="moreInfoHussam">Mer info</a>
                                         </div>
                                     </div>
                                     <div class="mosaic-backdrop"><img src="images/hussam.jpg"/></div>
@@ -263,6 +269,7 @@ session_start();
                                             <h4>Systemansvarig-IT</h4>
                                             <a href="mailto:info@sarvari.se"><p>E-post: info@sarvari.se</p></a>
                                             <a href="tel:0046101661016"><p>Telefon: 010 166 10 16</p></a>
+                                            <a id="moreInfoHamed">Mer info</a>
                                         </div>
                                     </div>
                                     <div class="mosaic-backdrop"><img src="images/ryan.jpg"/></div>
@@ -282,6 +289,7 @@ session_start();
                                             <h4>Rekryterar</h4>
                                             <a href="mailto:mustafa@sarvari.se"><p>E-post: mustafa@sarvari.se</p></a>
                                             <a href="tel:0046101661013"><p>Telefon: 010 166 10 13</p></a>
+                                            <a id="moreInfoMustafa">Mer info</a>
                                         </div>
                                     </div>
                                     <div class="mosaic-backdrop"><img src="images/mustafa.jpg"/></div>
@@ -347,6 +355,26 @@ session_start();
         <?php include("src/partials/shared/follow-us.html") ?>
     </section>
 </div>
+
+<div class="ui modal employeeMoreInfo">
+    <i class="close icon"></i>
+    <div class="header">
+    </div>
+    <div class="content">
+        <div class="ui medium image">
+            <img src="">
+        </div>
+        <div class="description">
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui positive right labeled icon button">
+            OK
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+
 <!--========================================================
                           FOOTER
 =========================================================-->
