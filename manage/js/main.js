@@ -884,7 +884,23 @@ $(document).ready(function () {
     });
     $('.btnSearchTolk').click(function (e) {
         tolkSearchFrom.form('validate form');
+        tolkSearchFrom.form('clear');
+        tolkSearchFrom.get(0).reset();
     });
+
+    setInterval(function() {
+        var lang = tolkSearchFrom.form('get value', 'language');
+
+        if (!lang) {
+            $(".searchCity").addClass('disabled');
+            $(".searchState").addClass('disabled');
+
+            //#tolkNum #tolkName
+        } else {
+            $(".searchCity").removeClass('disabled');
+            $(".searchState").removeClass('disabled');
+        }
+    }, 500);
 
     orderForm.validate({
         errorPlacement: function (error, element) {

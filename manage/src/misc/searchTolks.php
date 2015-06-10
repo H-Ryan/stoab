@@ -52,6 +52,7 @@ try {
                     " AND t.t_personalNumber = s.t_personalNumber AND s.t_sprakName =:language".
                     " AND u.u_state =:state AND u.u_city =:city";
                 $statement = $con->prepare($query);
+                $statement->bindParam(":language",$language);
                 $statement->bindParam(":state",$state);
                 $statement->bindParam(":city",$city);
             } elseif (!empty($state)) {
@@ -64,6 +65,7 @@ try {
                     " AND t.t_personalNumber = s.t_personalNumber AND s.t_sprakName =:language".
                     " AND u.u_state =:state";
                 $statement = $con->prepare($query);
+                $statement->bindParam(":language",$language);
                 $statement->bindParam(":state",$state);
             } elseif (!empty($city)) {
                 //By language and city
@@ -75,6 +77,7 @@ try {
                     " AND t.t_personalNumber = s.t_personalNumber AND s.t_sprakName =:language".
                     " AND u.u_city =:city";
                 $statement = $con->prepare($query);
+                $statement->bindParam(":language",$language);
                 $statement->bindParam(":city",$city);
             }
         } else {
@@ -148,7 +151,7 @@ try {
                 $data['tolks'][$i] = $tolk;
                 $i++;
             } else {
-                if (!($tolk->u_personalNumber == $tolk->u_personalNumber)) {
+                if ($tolk->u_personalNumber != $prevTolk->u_personalNumber) {
                     $data['tolks'][$i] = $tolk;
                     $i++;
                 }
@@ -163,7 +166,7 @@ try {
         echo json_encode($data);
     }
 } catch (PDOException $e) {
-    return $e->getMessage();
+    echo $e->getMessage();
 }
 if ($db != null) {
     $db->disconnect();

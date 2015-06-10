@@ -10,75 +10,78 @@
         <fieldset class="ui basic segment">
             <div class="ui grid">
                 <div class="row">
-                    <div class="column">
-                        <div class="five fields">
-                            <div class="field">
-                                <label for="language">Språk:</label>
-                                <select id="language" name="language" class="ui search dropdown">
-                                    <option value=''>Språk</option>
-                                    <<?php
-                                    try {
-                                        $statement = $con->query("SELECT * FROM t_languages ORDER BY l_languageName");
-                                        $statement->setFetchMode(PDO::FETCH_OBJ);
-                                        while ($row = $statement->fetch()) {
-                                            echo "<option value='" . $row->l_languageName . "'>" . $row->l_languageName . "</option>";
-                                        }
-                                    } catch (PDOException $e) {
-                                        return $e->getMessage();
+                    <div class="column fields">
+                        <div class="required three wide field">
+                            <label for="language">Språk:</label>
+                            <select id="language" name="language" class="ui search dropdown searchLanguage">
+                                <option value=''>Språk</option>
+                                <<?php
+                                try {
+                                    $statement = $con->query("SELECT * FROM t_languages ORDER BY l_languageName");
+                                    $statement->setFetchMode(PDO::FETCH_OBJ);
+                                    while ($row = $statement->fetch()) {
+                                        echo "<option value='" . $row->l_languageName . "'>" . $row->l_languageName . "</option>";
                                     }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label for="city">Ort:</label>
-                                <select id="city" name="city" class="ui search dropdown">
-                                    <option value=''>Ort</option>
-                                    <?php
-                                    try {
-                                        $statement = $con->query("SELECT * FROM t_city ORDER BY c_cityName");
-                                        $statement->setFetchMode(PDO::FETCH_OBJ);
-                                        while ($row = $statement->fetch()) {
-                                            echo "<option value='" . $row->c_cityName . "'>" . $row->c_cityName . "</option>";
-                                        }
-                                    } catch (PDOException $e) {
-                                        return $e->getMessage();
+                                } catch (PDOException $e) {
+                                    return $e->getMessage();
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="three wide field">
+                            <label for="city">Ort:</label>
+                            <select id="city" name="city" class="ui search dropdown searchCity">
+                                <option value=''>Ort</option>
+                                <?php
+                                try {
+                                    $statement = $con->query("SELECT * FROM t_city ORDER BY c_cityName");
+                                    $statement->setFetchMode(PDO::FETCH_OBJ);
+                                    while ($row = $statement->fetch()) {
+                                        echo "<option value='" . $row->c_cityName . "'>" . $row->c_cityName . "</option>";
                                     }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label for="state">Län:</label>
-                                <select id="state" name="state" class="ui search dropdown">
-                                    <option value=''>Län</option>
-                                    <?php
-                                    try {
-                                        $states = ["Blekinge län", "Dalarnas län", "Gotlands län",
-                                            "Gävleborgs län", "Hallands län",
-                                            "Jämtlands län", "Jönköpings län",
-                                            "Kalmar län", "Kronobergs län",
-                                            "Norrbottens län", "Skåne län",
-                                            "Stockholms län", "Södermanlands län",
-                                            "Uppsala län", "Värmlands län",
-                                            "Västerbottens län", "Västernorrlands län",
-                                            "Västmanlands län", "Västra Götalands län",
-                                            "Örebro län", "Östergötlands län"];
-                                        foreach ($states as $state) {
-                                            echo "<option value='" . $state . "'>" . $state . "</option>";
-                                        }
-                                    } catch (PDOException $e) {
-                                        return $e->getMessage();
+                                } catch (PDOException $e) {
+                                    return $e->getMessage();
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="three wide field">
+                            <label for="state">Län:</label>
+                            <select id="state" name="state" class="ui search dropdown searchState">
+                                <option value=''>Län</option>
+                                <?php
+                                try {
+                                    $states = ["Blekinge län", "Dalarnas län", "Gotlands län",
+                                        "Gävleborgs län", "Hallands län",
+                                        "Jämtlands län", "Jönköpings län",
+                                        "Kalmar län", "Kronobergs län",
+                                        "Norrbottens län", "Skåne län",
+                                        "Stockholms län", "Södermanlands län",
+                                        "Uppsala län", "Värmlands län",
+                                        "Västerbottens län", "Västernorrlands län",
+                                        "Västmanlands län", "Västra Götalands län",
+                                        "Örebro län", "Östergötlands län"];
+                                    foreach ($states as $state) {
+                                        echo "<option value='" . $state . "'>" . $state . "</option>";
                                     }
-                                    ?>
-                                </select>
+                                } catch (PDOException $e) {
+                                    return $e->getMessage();
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="one wide field" style="position: relative; height: 50px;">
+                            <div class="ui vertical divider">
+                                eller
                             </div>
-                            <div class="field">
-                                <label for="tolkNum">Tolk Number:</label>
-                                <input type="text" name="tolkNum" id="tolkNum" />
-                            </div>
-                            <div class="field">
-                                <label for="tolkName">Tolk name:</label>
-                                <input type="text" name="tolkName" id="tolkName" />
-                            </div>
+                        </div>
+                        <div class="two wide field">
+                            <label for="tolkNum">Tolk Number:</label>
+                            <input type="text" name="tolkNum" id="tolkNum" />
+                        </div>
+                        <div class="four wide field">
+                            <label for="tolkName">Tolk name:</label>
+                            <input type="text" name="tolkName" id="tolkName" />
                         </div>
                     </div>
                 </div>
