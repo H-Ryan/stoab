@@ -4,16 +4,15 @@
  * Date: 21-02-2015
  * Time: 3:46 PM
  */
-$num = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date <= CURRENT_DATE - 1")->fetchColumn();
-$statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE - 1 ORDER BY o_date DESC  LIMIT 10");
+$num = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_date >= CURRENT_DATE - 100")->fetchColumn();
+$statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_date >= CURRENT_DATE - 100 ORDER BY o_date DESC  LIMIT 10");
 $statement->execute();
 $statement->setFetchMode(PDO::FETCH_OBJ);
 $orders = array();
 $klient = array();
-if($statement->rowCount() > 0)
-{
+if ($statement->rowCount() > 0) {
     $i = 0;
-    while($order = $statement->fetch()) {
+    while ($order = $statement->fetch()) {
         $statementTwo = $con->prepare("SELECT k_organizationName FROM t_kunder WHERE k_kundNumber=:clientNumber");
         $statementTwo->bindParam(":clientNumber", $order->o_kundNumber);
         $statementTwo->execute();
@@ -27,15 +26,7 @@ if($statement->rowCount() > 0)
 }
 ?>
 <div class="ui piled segment dimmable">
-    <form class="ui form order_history">
-        <div class="field">
-            <input type="hidden" name="code" value="<?php echo md5("5%32rfsFrr$%") ?>"/>
-            <input type="hidden" name="currentPage" id="updateCurrHPage" value="1"/>
-            <button type="button" class="ui center aligned icon circular button btn-update-history">
-                <i class="circular refresh icon"></i>Uppdatera orderhistorik
-            </button>
-        </div>
-    </form>
+
     <div class="ui inverted dimmer">
         <div class="content">
             <div class="center">
@@ -43,6 +34,44 @@ if($statement->rowCount() > 0)
             </div>
         </div>
     </div>
+    <form class="ui form" id="orderFileterForm">
+        <div class="ui grid">
+            <div class="centered one column row">
+                <div class="column">
+                    <div class="six fields">
+                        <div class="four wide field">
+                            <label for="orderNumber">Ordernummer:</label>
+                            <input name="orderNumber" id="orderNumber"/>
+                        </div>
+                        <div class="one wide field" style="position: relative; height: 50px;">
+                            <div class="ui vertical divider">
+                                eller
+                            </div>
+                        </div>
+                        <div class="four wide field">
+                            <label for="tolkNumber">Tolk nummer:</label>
+                            <input name="tolkNumber" id="tolkNumber"/>
+                        </div>
+                        <div class="four wide field">
+                            <label for="clientNumber">Kund nummer:</label>
+                            <input name="clientNumber" id="clientNumber"/>
+                        </div>
+                        <div class="three wide field">
+                            <label for="dateFilter">Datum</label>
+                            <input id="dateFilter" type="text" title="Datum" name="dateFilter"
+                                   placeholder="YYYY-MM-DD"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="centered column">
+                        <button type="button" class="ui inverted blue button" id="btnFilterHistory">Lägg till filter</button>
+                        <button type="button" class="ui inverted orange button disabled" id="btnRemoveFilterHistory">Ta bort filter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     <?php if (count($orders) > 0) { ?>
         <table class="ui collapsing celled table orderHistory">
             <thead>
@@ -95,14 +124,15 @@ if($statement->rowCount() > 0)
                     <td>
                         <form class='ui form' id="<?php echo $orders[$k]->o_orderNumber; ?>">
                             <input type='hidden' name='orderId' value='<?php echo $orders[$k]->o_orderNumber; ?>'>
-                            <button type='button' class="ui fluid <?php echo $btnColor; ?> button btn-info"><?php echo $infoMsg; ?></button>
+                            <button type='button'
+                                    class="ui fluid <?php echo $btnColor; ?> button btn-info"><?php echo $infoMsg; ?></button>
                         </form>
                     </td>
                 </tr>
             <?php } ?>
             </tbody>
         </table>
-        <?php if($num > 10) {?>
+        <?php if ($num > 10) { ?>
             <div class="ui pagination menu page-history">
                 <a class="icon item previousHPage">
                     <i class="left arrow icon"></i>
@@ -111,18 +141,18 @@ if($statement->rowCount() > 0)
                     1
                 </a>
                 <?php
-                    $rem = $num % 10;
-                    if($rem == 0) {
-                        $numPage = ($num / 10);
-                        for($k = 2; $k <= $numPage; $k++) {
-                            echo "<a class='item'>$k</a>";
-                        }
-                    } else {
-                        $numPage = (($num - $rem) / 10) + 1;
-                        for($k = 2; $k <= $numPage; $k++) {
-                            echo "<a class='item' id='hpage$k'>$k</a>";
-                        }
+                $rem = $num % 10;
+                if ($rem == 0) {
+                    $numPage = ($num / 10);
+                    for ($k = 2; $k <= $numPage; $k++) {
+                        echo "<a class='item'>$k</a>";
                     }
+                } else {
+                    $numPage = (($num - $rem) / 10) + 1;
+                    for ($k = 2; $k <= $numPage; $k++) {
+                        echo "<a class='item' id='hpage$k'>$k</a>";
+                    }
+                }
                 ?>
                 <a class="icon item nextHPage">
                     <i class="right arrow icon"></i>
@@ -132,6 +162,16 @@ if($statement->rowCount() > 0)
     <?php } else {
         echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>Det finns inga aktuella posten historik.</h3></div>";
     } ?>
+    <div class="ui divider"></div>
+    <form class="ui form order_history">
+        <div class="field">
+            <input type="hidden" name="code" value="<?php echo md5("5%32rfsFrr$%") ?>"/>
+            <input type="hidden" name="currentPage" id="updateCurrHPage" value="1"/>
+            <button type="button" class="ui center aligned icon circular button btn-update-history">
+                <i class="circular refresh icon"></i>Uppdatera orderhistorik
+            </button>
+        </div>
+    </form>
 </div>
 <div class="ui modal order-history">
     <div class="ui inverted blue segment">

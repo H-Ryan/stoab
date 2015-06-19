@@ -435,6 +435,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                     $subjectCompany = "Ny order";
                     if ($organizationNumber != '0000000000') {
                         $query = "SELECT k_email FROM t_kunder WHERE k_kundNumber=:clientNumber AND k_personalNumber=:organizationNumber";
+
                         $statement = $con->prepare($query);
                         $statement->bindParam(":organizationNumber", $organizationNumber);
                         $statement->bindParam(":clientNumber", $clientNumber);

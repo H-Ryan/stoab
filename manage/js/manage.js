@@ -2,19 +2,18 @@
  * Created by Samuil on 21-02-2015.
  */
 $(document).ready(function () {
-    var manageForm = $('.ui.form.assignTolk');
-    var tolkTable = $('.ui.table.tolkTable');
-
-    var modalAssign = $('.basic.modal.modalAssign');
-    var modalReAssign = $('.basic.modal.modalReAssign');
-    var modalCancel = $('.basic.modal.modalCancel');
-
-    var btnVerify = $('.ui.button.btnVerify');
-    var btnCancel = $('.ui.button.btnCancel');
-    var btnAssign = $('.ui.button.btnAssign');
-    var btnReAssign = $('.ui.button.btnReAssign');
-
-    var isValid = false;
+    var manageForm = $('.ui.form.assignTolk'),
+        resendForm = $("#resendEmailForm"),
+        tolkTable = $('.ui.table.tolkTable'),
+        modalResend= $('.modal.modalResend'),
+        modalAssign = $('.basic.modal.modalAssign'),
+        modalReAssign = $('.basic.modal.modalReAssign'),
+        modalCancel = $('.basic.modal.modalCancel'),
+        btnVerify = $('.ui.button.btnVerify'),
+        btnCancel = $('.ui.button.btnCancel'),
+        btnAssign = $('.ui.button.btnAssign'),
+        btnReAssign = $('.ui.button.btnReAssign'),
+        isValid = false;
 
     $('.close.icon').click(function() {
         $('.ui.message').hide();
@@ -84,7 +83,6 @@ $(document).ready(function () {
                     tolkTable.removeClass('loading');
                     errorElem.show();
                     isValid = false;
-                    return false;
                 }
                 tolkTable.removeClass('loading');
             });
@@ -180,5 +178,111 @@ $(document).ready(function () {
                 }
             });
         }
+    });
+
+    $("#resendToTolk").on('click', function() {
+        modalResend.modal('show');
+        modalResend.modal({
+            closable: false,
+            onDeny: function () {
+                return true;
+            },
+            onApprove: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "src/misc/resendTolkConfirm.php",
+                    data: resendForm.serialize(),
+                    dataType: "json",
+                    beforeSend: function () {
+                        resendForm.addClass('loading');
+                    }
+                }).done(function (data) {
+                    if (data.error == 0) {
+                        var successElem = resendForm.find(".ui.positive.message");
+                        resendForm.removeClass("loading").addClass("error");
+                        successElem.children("p").text(data.positiveMessage);
+                        successElem.children('.header').text(data.messageHeader);
+                        successElem.show();
+                    } else {
+                        var errorElem = resendForm.find(".ui.error.message");
+                        resendForm.removeClass("loading").addClass("error");
+                        errorElem.children("p").text(data.errorMessage);
+                        errorElem.children('.header').text(data.messageHeader);
+                        errorElem.show();
+                    }
+                    resendForm.removeClass('loading');
+                });
+            }
+        });
+    });
+    $("#resendToClient").on('click', function() {
+        modalResend.modal('show');
+        modalResend.modal({
+            closable: false,
+            onDeny: function () {
+                return true;
+            },
+            onApprove: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "src/misc/resendClientConfirm.php",
+                    data: resendForm.serialize(),
+                    dataType: "json",
+                    beforeSend: function () {
+                        resendForm.addClass('loading');
+                    }
+                }).done(function (data) {
+                    if (data.error == 0) {
+                        var successElem = resendForm.find(".ui.positive.message");
+                        resendForm.removeClass("loading").addClass("error");
+                        successElem.children("p").text(data.positiveMessage);
+                        successElem.children('.header').text(data.messageHeader);
+                        successElem.show();
+                    } else {
+                        var errorElem = resendForm.find(".ui.error.message");
+                        resendForm.removeClass("loading").addClass("error");
+                        errorElem.children("p").text(data.errorMessage);
+                        errorElem.children('.header').text(data.messageHeader);
+                        errorElem.show();
+                    }
+                    resendForm.removeClass('loading');
+                });
+            }
+        });
+    });
+    $("#resendToClientAboutTolk").on('click', function() {
+        modalResend.modal('show');
+        modalResend.modal({
+            closable: false,
+            onDeny: function () {
+                return true;
+            },
+            onApprove: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "src/misc/resendClientAboutTolkAssign.php",
+                    data: resendForm.serialize(),
+                    dataType: "json",
+                    beforeSend: function () {
+                        resendForm.addClass('loading');
+                    }
+                }).done(function (data) {
+                    if (data.error == 0) {
+                        var successElem = resendForm.find(".ui.positive.message");
+                        resendForm.removeClass("loading").addClass("error");
+                        successElem.children("p").text(data.positiveMessage);
+                        successElem.children('.header').text(data.messageHeader);
+                        successElem.show();
+                    } else {
+                        var errorElem = resendForm.find(".ui.error.message");
+                        resendForm.removeClass("loading").addClass("error");
+                        errorElem.children("p").text(data.errorMessage);
+                        errorElem.children('.header').text(data.messageHeader);
+                        errorElem.show();
+                    }
+                    resendForm.removeClass('loading');
+                });
+            }
+        });
     });
 });

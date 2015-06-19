@@ -27,15 +27,6 @@ if($statement->rowCount() > 0)
 }
 ?>
 <div class="ui piled segment dimmable">
-    <form class="ui form order_manage">
-        <div class="field">
-            <input type="hidden" name="code" value="<?php echo md5("5%32rfsFrr$%") ?>"/>
-            <input type="hidden" name="currentPage" id="updateCurrMPage" value="1"/>
-            <button type="button" class="ui center aligned icon circular button btn-update-manage">
-                <i class="circular refresh icon"></i>Uppdatera aktuella beställningar.
-            </button>
-        </div>
-    </form>
     <div class="ui inverted dimmer manageDim">
         <div class="content">
             <div class="center">
@@ -131,4 +122,14 @@ if($statement->rowCount() > 0)
     <?php } else {
         echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>För närvarande, har du inte några order.</h3></div>";
     } ?>
+    <div class="ui divider"></div>
+    <form class="ui form order_manage">
+        <div class="field">
+            <input type="hidden" name="code" value="<?php echo md5("5%32rfsFrr$%") ?>"/>
+            <input type="hidden" name="currentPage" id="updateCurrMPage" value="1"/>
+            <button type="button" class="ui center aligned icon circular button btn-update-manage">
+                <i class="circular refresh icon"></i>Uppdatera aktuella beställningar.
+            </button>
+        </div>
+    </form>
 </div>

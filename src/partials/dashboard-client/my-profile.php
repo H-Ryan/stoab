@@ -107,7 +107,7 @@
                     </div>
                     <div class="column">
                         <div class="ui horizontal segment">
-                            <p class="text_5"<?php echo $customerInfo->k_mobile; ?></p>
+                            <p class="text_5"><?php echo $customerInfo->k_mobile; ?></p>
                         </div>
                     </div>
                 </div>

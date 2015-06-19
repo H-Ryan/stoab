@@ -26,12 +26,8 @@ $language = $_POST['language'];
 $city = (isset($_POST['city']) ? $_POST['city'] : "");
 $state = (isset($_POST['state']) ? $_POST['state'] : "");
 $tolkNum = (isset($_POST['tolkNum']) ? $_POST['tolkNum'] : "");
-$tolkName = (isset($_POST['tolkName']) ? $_POST['tolkName'] : "");
-
-$tolkName = explode(" ", $tolkName);
-
-$tolkFName = $tolkName[0];
-$tolkLName = (sizeof($tolkName) > 1) ? $tolkName[1] : "";
+$tolkFName = (isset($_POST['tolkFirstName']) ? $_POST['tolkFirstName'] : "");
+$tolkLName = (isset($_POST['tolkLastName']) ? $_POST['tolkLastName'] : "");
 
 $db = null;
 try {
@@ -92,17 +88,8 @@ try {
             $statement->bindParam(":language", $language);
         }
     } else {
-        if (!empty($tolkNum) || !empty($tolkName)) {
-            if (!empty($tolkNum) && !empty($tolkName)) {
-                $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
-                    " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,".
-                    " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
-                    " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
-                    " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
-                    " AND t.t_personalNumber = s.t_personalNumber AND t.t_tolkNumber =:tolkNum";
-                $statement = $con->prepare($query);
-                $statement->bindParam(":tolkNum", $tolkNum);
-            } else if (!empty($tolkNum)) {
+        if (!empty($tolkNum) || !empty($tolkFName) || !empty($tolkLName)) {
+            if (!empty($tolkNum) && (empty($tolkFName) && empty($tolkLName))) {
                 $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
                     " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,".
                     " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
@@ -112,7 +99,7 @@ try {
                 $statement = $con->prepare($query);
                 $statement->bindParam(":tolkNum", $tolkNum);
             } else {
-                if (sizeof($tolkName > 0)) {
+                if (!empty($tolkFName) && !empty($tolkLName)) {
                     $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
                         " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,".
                         " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
@@ -124,14 +111,26 @@ try {
                     $statement->bindParam(":tolkFName", $tolkFName);
                     $statement->bindParam(":tolkLName", $tolkLName);
                 } else {
-                    $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
-                        " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,".
-                        " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
-                        " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
-                        " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
-                        " AND t.t_personalNumber = s.t_personalNumber AND u.u_firstName LIKE :tolkFName";
-                    $statement = $con->prepare($query);
-                    $statement->bindParam(":tolkFName", $tolkFName);
+                    if (!empty($tolkFName)) {
+                        $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
+                            " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,".
+                            " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
+                            " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
+                            " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
+                            " AND t.t_personalNumber = s.t_personalNumber AND u.u_firstName LIKE :tolkFName";
+                        $statement = $con->prepare($query);
+                        $statement->bindParam(":tolkFName", $tolkFName);
+                    } else {
+                        $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
+                            " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,".
+                            " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
+                            " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
+                            " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
+                            " AND t.t_personalNumber = s.t_personalNumber AND u.u_lastName LIKE :tolkLName";
+                        $statement = $con->prepare($query);
+                        $statement->bindParam(":tolkLName", $tolkLName);
+                    }
+
                 }
             }
         }

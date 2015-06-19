@@ -86,107 +86,209 @@ try {
 <body>
 <div id="main">
     <div class="ui centered grid">
-        <div class="three wide column"></div>
-        <div class="ten wide column">
-            <form class="ui form assignTolk">
-                <fieldset class="ui basic segment">
-                    <input type="hidden" name="orderNumber" value="<?php echo $order->o_orderNumber ?>"/>
-                    <input type="hidden" name="employee" value="<?php echo $_SESSION['personal_number'] ?>"/>
-                    <div class="ui centered grid">
-                        <div class="four wide column computer only"></div>
-                        <div class="eight wide column">
-                            <div class="required field">
-                                <label for="tolkNumber">Tolkens nummer:</label>
-                                <input type="text" name="tolkNumber" id="tolkNumber"
-                                       placeholder="XXXX" value="<?php echo $tolkNumber ?>"/>
-                            </div>
-                            <div class="ui error message">
-                                <i class="close icon"></i>
+        <div class="six wide column">
+            <div class="ui piled horizontal segment">
+                <form class="ui form assignTolk">
+                    <fieldset class="ui basic segment">
+                        <input type="hidden" name="orderNumber" value="<?php echo $order->o_orderNumber ?>"/>
+                        <input type="hidden" name="employee" value="<?php echo $_SESSION['personal_number'] ?>"/>
 
-                                <div class="header">Action Forbidden</div>
-                                <div class="ui text">You can only sign up for an account once with a given e-mail
-                                    address.
+                        <div class="ui centered grid">
+                            <div class="four wide column computer only"></div>
+                            <div class="eight wide column">
+                                <div class="required field">
+                                    <label for="tolkNumber">Tolkens nummer:</label>
+                                    <input type="text" name="tolkNumber" id="tolkNumber"
+                                           placeholder="XXXX" value="<?php echo $tolkNumber ?>"/>
+                                </div>
+                                <div class="ui error message">
+                                    <i class="close icon"></i>
+
+                                    <div class="header">Action Forbidden</div>
+                                    <div class="ui text">You can only sign up for an account once with a given e-mail
+                                        address.
+                                    </div>
                                 </div>
                             </div>
+                            <div class="four wide column computer only"></div>
                         </div>
-                        <div class="four wide column computer only"></div>
-                    </div>
-                    <div class="field">
-                        <button type="button" class="ui blue button btnVerify">Verifiera</button>
-                    </div>
-                    <div class="field">
-                        <table class="ui two column celled striped table tolkTable">
-                            <thead>
-                            <tr>
-                                <th colspan="3">
-                                    <div class="ui segment">
-                                        <div class="ui center aligned header">Tolkens Uppgifter</div>
-                                    </div>
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="ui header">Tolkens nummer:</div>
-                                </td>
-                                <td class="tolkInfoNumber">
-                                    <?php echo(($tolk != null) ? $tolk->t_tolkNumber : "") ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="ui header">Tolkens namn:</div>
-                                </td>
-                                <td class="tolkInfoName">
-                                    <?php echo(($tolk != null) ? ($tolk->u_firstName . " " . $tolk->u_lastName) : "") ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="ui header">Tolkens e-post:</div>
-                                </td>
-                                <td class="tolkInfoEmail">
-                                    <?php echo(($tolk != null) ? $tolk->u_email : "") ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="ui header">Tolkens telefonnummer:</div>
-                                </td>
-                                <td class="tolkInfoTelephone">
-                                    <?php echo(($tolk != null) ? $tolk->u_tel : "") ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="ui header">Tolkens stad:</div>
-                                </td>
-                                <td class="tolkInfoCity">
-                                    <?php echo(($tolk != null) ? $tolk->u_city : "") ?>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="two fields">
-                        <div class="field">
-                            <button type="button" class="ui orange button btnCancel">Avboka</button>
+                        <div class="centered field">
+                            <button type="button" class="ui blue button btnVerify">Verifiera</button>
                         </div>
                         <div class="field">
-                            <?php if ($tolk != null) {
-                                echo "<button type='button' class='ui green button btnReAssign'>Överlåta</button>";
-                            } else {
-                                echo "<button type='button' class='ui green button btnAssign'>Tilldela</button>";
-                            }
+                            <table class="ui two column celled striped table tolkTable">
+                                <thead>
+                                <tr>
+                                    <th colspan="3">
+                                        <div class="ui segment">
+                                            <div class="ui center aligned header">Tolkens uppgifter</div>
+                                        </div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="ui header">Tolkens nummer:</div>
+                                    </td>
+                                    <td class="tolkInfoNumber">
+                                        <?php echo(($tolk != null) ? $tolk->t_tolkNumber : "") ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="ui header">Tolkens namn:</div>
+                                    </td>
+                                    <td class="tolkInfoName">
+                                        <?php echo(($tolk != null) ? ($tolk->u_firstName . " " . $tolk->u_lastName) : "") ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="ui header">Tolkens e-post:</div>
+                                    </td>
+                                    <td class="tolkInfoEmail">
+                                        <?php echo(($tolk != null) ? $tolk->u_email : "") ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="ui header">Tolkens telefonnummer:</div>
+                                    </td>
+                                    <td class="tolkInfoTelephone">
+                                        <?php echo(($tolk != null) ? $tolk->u_tel : "") ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="ui header">Tolkens mobilnummer:</div>
+                                    </td>
+                                    <td class="tolkInfoTelephone">
+                                        <?php echo(($tolk != null) ? $tolk->u_mobile : "") ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="ui header">Tolkens stad:</div>
+                                    </td>
+                                    <td class="tolkInfoCity">
+                                        <?php echo(($tolk != null) ? $tolk->u_city : "") ?>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <button type="button" class="ui orange button btnCancel">Avboka</button>
+                            </div>
+                            <div class="field">
+                                <?php if ($tolk != null) {
+                                    echo "<button type='button' class='ui green button btnReAssign'>Överlåta</button>";
+                                } else {
+                                    echo "<button type='button' class='ui green button btnAssign'>Tilldela</button>";
+                                }
 
-                            ?>
+                                ?>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="ten wide column">
+            <div class="ui piled horizontal segment">
+                <table class="ui two column celled striped table tolkTable">
+                    <thead>
+                    <tr>
+                        <th colspan="3">
+                            <div class="ui segment">
+                                <div class="ui center aligned header">Beställ extra information</div>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="ui header">Gatuadress:</div>
+                        </td>
+                        <td>
+                            <?php echo $order->o_address ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="ui header">Postnummer:</div>
+                        </td>
+                        <td>
+                            <?php echo $order->o_zipCode ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="ui header">Ort:</div>
+                        </td>
+                        <td>
+                            <?php echo $order->o_city ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="ui header">Klient:</div>
+                        </td>
+                        <td>
+                            <?php echo $order->o_client ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="ui header">Kommentar:</div>
+                        </td>
+                        <td>
+                            <?php echo $order->o_comments ?>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="ui horizontal divider">
+                    Skicka bekräftelse e-post
+                </div>
+                <form class="ui form" id="resendEmailForm">
+                    <input type="hidden" name="orderNumber" value="<?php echo $order->o_orderNumber ?>"/>
+                    <input type="hidden" name="tolkNumber" value="<?php echo ($order->o_tolkarPersonalNumber != null) ? $order->o_tolkarPersonalNumber : '' ?>"/>
+                    <div class="ui grid">
+                        <div class="row">
+                            <div class="ten wide column">
+                                <div class="ui header">
+                                    Skicka tolk uppdrag bekräftelse
+                                </div>
+                                <button type="button" id="resendToTolk" class="ui teal inverted button <?php echo (($tolk == null) ? 'disabled' : '')  ?>">Till tolk</button>
+                                <button type="button" id="resendToClientAboutTolk" class="ui purple inverted button <?php echo (($tolk == null) ? 'disabled' : '')  ?>">Till kunden</button>
+                            </div>
+                            <div class="six wide column">
+                                <div class="ui header">
+                                    Skicka orderbekräftelse
+                                </div>
+                                <button type="button" id="resendToClient" class="ui yellow inverted button">Till kunden</button>
+                            </div>
                         </div>
                     </div>
-                </fieldset>
-            </form>
+                    <div class="ui basic segment">
+                        <div class="ui hidden positive message">
+                            <i class="close icon"></i>
+                            <div class="header"></div>
+                            <p class="ui text"></p>
+                        </div>
+                        <div class="ui hidden error message">
+                            <i class="close icon"></i>
+                            <div class="header">Fel</div>
+                            <p class="ui text"></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="three wide column"></div>
     </div>
     <div class="ui basic modal modalCancel">
         <div class="center aligned header">
@@ -199,6 +301,31 @@ try {
             <div class="description">
                 <div class="ui left aligned inverted header">
                     Är du säker på att du vill avbryta denna order?
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="two fluid ui inverted buttons">
+                <div class="ui red cancel basic inverted button">
+                    <i class="remove icon"></i>Nej
+                </div>
+                <div class="ui green ok basic inverted button">
+                    <i class="checkmark icon"></i>Ja
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui basic modal modalResend">
+        <div class="center aligned header">
+            Varning
+        </div>
+        <div class="content">
+            <div class="image">
+                <i class="warning sign icon"></i>
+            </div>
+            <div class="description">
+                <div class="ui left aligned inverted header">
+                    Är du säker på att du vill skicka det här e-post?
                 </div>
             </div>
         </div>

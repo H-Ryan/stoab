@@ -32,13 +32,16 @@ $(document).ready(function () {
             .removeClass("visible");
         $.ajax({
             type: "POST",
-            url: "src/misc/orderRegular.php",
+            url: "src/misc/orderOnetimer.php",
             data: tolkForm.serialize(),
             dataType: "json",
             beforeSend: function () {
                 tolkForm.addClass("loading");
             }
         }).done(function (data) {
+            tolkForm.form('reset');
+            tolkForm.get(0).reset();
+            tolkForm.removeClass("loading");
             if (data.mailError == null) {
                 if (data.error == 0) {
                     window.location.replace("index.php");

@@ -76,12 +76,16 @@
                             </div>
                         </div>
                         <div class="two wide field">
-                            <label for="tolkNum">Tolk Number:</label>
+                            <label for="tolkNum">Tolk nummer:</label>
                             <input type="text" name="tolkNum" id="tolkNum" />
                         </div>
-                        <div class="four wide field">
-                            <label for="tolkName">Tolk name:</label>
-                            <input type="text" name="tolkName" id="tolkName" />
+                        <div class="two wide field">
+                            <label for="tolkName">Förnamn:</label>
+                            <input type="text" name="tolkFirstName" id="tolkName" />
+                        </div>
+                        <div class="two wide field">
+                            <label for="tolkName">Efternamn:</label>
+                            <input type="text" name="tolkLastName" id="tolkName" />
                         </div>
                     </div>
                 </div>
