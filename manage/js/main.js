@@ -11,9 +11,7 @@ $(document).ready(function () {
     });
     $("#btnRemoveFilterHistory").click(function() {
         $( ".btn-update-history" ).trigger( "click" );
-        setTimeout(function () {
-            $(this).prop("disabled", false).removeClass("disabled");
-        }, 3000);
+        $(this).prop("disabled", true).addClass("disabled");
     });
 
     $('#btnFilterHistory').click(function () {
@@ -30,7 +28,6 @@ $(document).ready(function () {
             orderHistoryFilterForm.form('reset');
             orderHistoryFilterForm.get(0).reset();
             if (data.error == 0) {
-                $("#btnRemoveFilterHistory").removeClass('disabled');
                 if (data.error == 0) {
                     var num = data.orders.length;
                     if (num > 10) {
@@ -55,6 +52,8 @@ $(document).ready(function () {
                     var tBody = $('.orderHistory tbody');
                     tBody.find('tr').remove();
                     if (data.orders.length > 0 && data.orders.length > 0) {
+                        $("#btnRemoveFilterHistory").removeClass('disabled');
+                        
                         var orders = data.orders;
                         var customers = data.customers;
                         for (var i = 0; i < orders.length; i++) {
