@@ -133,7 +133,7 @@ if ($statement->rowCount() > 0) {
             <?php } ?>
             </tbody>
         </table>
-        <?php if ($num > 10) { ?>
+        <?php if ($numHistory > 10) { ?>
             <div class="ui pagination menu page-history">
                 <a class="icon item previousHPage">
                     <i class="left arrow icon"></i>
@@ -142,14 +142,14 @@ if ($statement->rowCount() > 0) {
                     1
                 </a>
                 <?php
-                $rem = $num % 10;
+                $rem = $numHistory % 10;
                 if ($rem == 0) {
-                    $numPage = ($num / 10);
+                    $numPage = ($numHistory / 10);
                     for ($k = 2; $k <= $numPage; $k++) {
                         echo "<a class='item'>$k</a>";
                     }
                 } else {
-                    $numPage = (($num - $rem) / 10) + 1;
+                    $numPage = (($numHistory - $rem) / 10) + 1;
                     for ($k = 2; $k <= $numPage; $k++) {
                         echo "<a class='item' id='hpage$k'>$k</a>";
                     }

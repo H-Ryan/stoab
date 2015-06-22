@@ -76,10 +76,8 @@ $(document).ready(function () {
                     if (data.error == 0) {
                         var tBody = $('.orderHistory tbody');
                         tBody.find('tr').remove();
-
+                        $("#btnRemoveFilterHistory").removeClass('disabled');
                         if (data.orders.length > 0) {
-                            $("#btnRemoveFilterHistory").removeClass('disabled');
-
                             var paginationContainer = $(".page-history");
                             paginationContainer.find("a").remove();
 
@@ -174,7 +172,7 @@ $(document).ready(function () {
                                 });
                             });
                         } else {
-                            tBody.append("<tr><td><div class='ui text'>Inga order matchar din sökning parametrar.</div></td></tr>");
+                            tBody.append("<tr><td colspan='9'><div class='ui text'>Inga order matchar din sökning parametrar.</div></td></tr>");
                         }
                         $('.ui.dimmable .dimmer').dimmer('toggle');
                     }
@@ -862,7 +860,6 @@ $(document).ready(function () {
                         if (num > 10) {
                             var paginationContainer = $(".page-history");
                             paginationContainer.find("a").remove();
-                            console.log(num);
                             paginationContainer.append($('<a class="icon item"><i class="left arrow icon"></i></a>'));
                             paginationContainer.append($('<a class="active item" id="mpage1">1</a>'));
                             var rem = num % 10;

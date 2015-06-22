@@ -94,6 +94,7 @@ if(isset($_POST['orderNumber']) ||
                     $i++;
                 }
             }
+            $data['num'] = sizeof($data['orders']);
             echo json_encode($data);
         } else {
             $data["error"] = 1;
