@@ -9,7 +9,7 @@
     <div class="ui grid">
         <div class="centered seven wide column">
             <form class="ui form orderForm">
-                <fieldset id="order" class="segment">
+                <fieldset id="order">
                     <h3>Beställ Tolk<br/>1. Uppdrag</h3>
                     <input type="hidden" name="organizationNumber" value="0000000000">
                     <input type="hidden" name="clientNumber" value="100000">
@@ -204,7 +204,7 @@
                         </button>
                     </div>
                 </fieldset>
-                <fieldset id="customer" class="segment">
+                <fieldset id="customer">
                     <h3>Beställ Tolk<br/>2. Kontaktperson / Fakturering</h3>
 
                     <div class="required field">
@@ -293,7 +293,7 @@
                         </div>
                     </div>
                 </fieldset>
-                <fieldset id="comment" class="segment">
+                <fieldset id="comment">
                     <h3>Beställ Tolk<br/>3. Skicka</h3>
 
                     <div class="field">

@@ -34,7 +34,7 @@ if ($statement->rowCount() > 0) {
             </div>
         </div>
     </div>
-    <form class="ui form" id="orderFileterForm">
+    <form class="ui form" id="orderFilterForm">
         <div class="ui grid">
             <div class="centered one column row">
                 <div class="column">

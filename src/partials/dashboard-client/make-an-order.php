@@ -3,9 +3,9 @@
 * Date: 29-01-2015
 * Time: 10:34 PM
 -->
-<form class="ui form orderForm" onsubmit="return false;">
-    <div class="ui grid">
-        <div class="centered seven wide column">
+<div class="ui grid">
+    <div class="centered seven wide column">
+        <form class="ui form orderForm" onsubmit="return false;">
             <fieldset id="order">
                 <h3>Beställ Tolk<br/>1. Uppdrag</h3>
                 <input type="hidden" name="organizationNumber" value="<?php echo $organizationNumber; ?>">
@@ -267,6 +267,6 @@
                     <p>Några av de former åkrar är ogiltiga.</p>
                 </div>
             </fieldset>
-        </div>
+        </form>
     </div>
-</form>
+</div>

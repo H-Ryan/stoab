@@ -203,7 +203,7 @@ try {
                     <tr>
                         <th colspan="3">
                             <div class="ui segment">
-                                <div class="ui center aligned header">Beställ extra information</div>
+                                <div class="ui center aligned header">Mer information</div>
                             </div>
                         </th>
                     </tr>
@@ -252,7 +252,7 @@ try {
                     </tbody>
                 </table>
                 <div class="ui horizontal divider">
-                    Skicka bekräftelse e-post
+                    Skicka bekräftelse till e-post
                 </div>
                 <form class="ui form" id="resendEmailForm">
                     <input type="hidden" name="orderNumber" value="<?php echo $order->o_orderNumber ?>"/>

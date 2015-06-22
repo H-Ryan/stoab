@@ -170,7 +170,7 @@ session_start();
                                                 <a href="tel:0046707683325"><p>Telefon: 070 7683 325</p></a>
                                             </div>
                                         </div>
-                                        <div class="mosaic-backdrop"><img src="images/ryan.jpg"/></div>
+                                        <div class="mosaic-backdrop"><img src="images/nemat.jpg"/></div>
                                     </div>
                                     <div class="clearfix"></div>
 
@@ -204,98 +204,32 @@ session_start();
                     </div>
 
                 </div>
-                <?php /*
                 <div class="row">
                     <div class="grid_6">
-                        <div class="box_4">
-                            <p class="text_3">
-                                På STÖ arbetar vi som ett team för att ni som kund fullt ut ska kunna tillgodogöra all
-                                den kunskap, kompetens och erfarenhet som våra medarbetarna har. Vårt gemensamma mål är
-                                att alltid erbjuda bästa möjliga service för våra kunder. Nedan finner ni
-                                kontaktuppgifter till alla våra medarbetare för att ni på enklaste sätt ska kunna
-                                kontakta den person som ni söker.
-                            </p>
 
-                            <div class="row">
-                                <div class="grid_4">
-                                    <ul class="list_2 text_6">
-                                        <li><a href="#">Nemat Sarvari / Ledamot ,VD</a></li>
-                                        <li><a href="#">Rami Farajallah /  Myndighetsservice</a></li>
-                                    </ul>
-                                </div>
-                                <div class="grid_4">
-                                    <ul class="list_2 text_6">
-                                        <li><a href="#">Mustafa Azad / Rekryterar</a></li>
-                                        <li><a href="#">Marielle Redinge / Marknadsförare Översätt och tolktjänster</a></li>
-                                        <li><a href="#">Hamed Talebi / Systemansvarig-IT</a></li>
-                                        <li><a href="#">Hussam Khadur / Rådgivare</a></li>
-                                        <li><a href="#">Carolina Johnsson/ International försäljare och Marknadsförare</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid_6">
-                        <div class="img-wrap">
-                            <div id="content">
-                                <div class="mosaic-block bar2">
-                                    <div class="mosaic-overlay">
-                                        <div class="details">
-                                            <h4>Nemat Sarvari, VD</h4>
-                                            <a href="mailto:sarvari@sarvari.se"><p>E-post: sarvari[at]sarvari[dot]se</p></a>
-                                            <p>Telefon: 070 7683 325</p>
-                                        </div>
-                                    </div>
-                                    <div class="mosaic-backdrop"><img src="images/ryan.jpg"/></div>
-                                </div>
-
-
-                                <div class="clearfix"></div>
-                            </div>
                             <!--<img class="img_2" src="images/ryan.jpg" alt="Image 6"/>
                             <img class="img_2" src="images/index-1_img07.jpg" alt="Image 7"/>
                             <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>-->
-                        </div>
-                        <div class="img-wrap">
-                            <div id="content">
-                                <div class="mosaic-block bar2">
-                                    <div class="mosaic-overlay">
-                                        <div class="details">
-                                            <h4>Nemat Sarvari, VD</h4>
-                                            <a href="mailto:sarvari@sarvari.se"><p>E-post: sarvari[at]sarvari[dot]se</p></a>
-                                            <p>Telefon: 070 7683 325</p>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('.special.cards .image').dimmer({
+                                    on: 'hover'
+                                });
+                            });
+
+                        </script>
+                        <div class="ui two doubling special cards">
+                            <div class="card">
+                                <div class="image">
+                                    <div class="ui dimmer">
+                                        <div class="content">
+                                            <div class="center">
+                                                <div class="ui inverted button btnUsMoreInfo">More info</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="mosaic-backdrop"><img src="images/ryan.jpg"/></div>
-                                </div>
-
-
-                                <div class="clearfix"></div>
-                            </div>
-                            <!--<img class="img_2" src="images/ryan.jpg" alt="Image 6"/>
-                            <img class="img_2" src="images/index-1_img07.jpg" alt="Image 7"/>
-                            <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>-->
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="ui two doubling cards">
-                            <div class="card">
-                                <div class="image">
-                                    <img class="img_2" src="images/index-1_img08.jpg" alt="Image 8"/>
-                                </div>
-                                <div class="content">
-                                    <a class="header">Hamed Talebi</a>
-                                    <div class="meta">
-                                        <span class="date">Systemansvarig-IT</span>
-                                    </div>
-                                    <div class="description">
-                                        <p>Telefon: <a href="tel:0707683325">070 7683 325</a></p>
-                                        <p>E-post: <a href="mailto:sarvari@sarvari.se">sarvari[at]sarvari[dot]se</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="image">
-                                    <img class="img_2" src="images/index-1_img07.jpg" alt="Image 7"/>
+                                    <img class="img_2" src="images/nemat.jpg" alt="Image 7"/>
                                 </div>
                                 <div class="content">
                                     <a class="header">Nemat Sarvari</a>
@@ -308,9 +242,25 @@ session_start();
                                     </div>
                                 </div>
                             </div>
+                            <div class="card">
+                                <div class="image">
+                                    <img class="img_2" src="images/ryan.jpg" alt="Image 8"/>
+                                </div>
+                                <div class="content">
+                                    <a class="header">Hamed Talebi</a>
+                                    <div class="meta">
+                                        <span class="date">Systemansvarig-IT</span>
+                                    </div>
+                                    <div class="description">
+                                        <p>Telefon: <a href="tel:0707683325">070 7683 325</a></p>
+                                        <p>E-post: <a href="mailto:sarvari@sarvari.se">sarvari[at]sarvari[dot]se</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                </div>*/ ?>
+                </div>
             </div>
         </div>
         <div class="container">

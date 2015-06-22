@@ -18,6 +18,7 @@ session_start();
 
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="lib/stoab/stoab.min.css" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/camera.css"/>
     <link rel="stylesheet" href="css/owl.carousel.css"/>
@@ -29,6 +30,7 @@ session_start();
     <!--<![endif]-->
     <script src="js/camera.js"></script>
     <script src="js/owl.carousel.js"></script>
+    <script src="lib/stoab/stoab.min.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -111,18 +113,11 @@ session_start();
                 <div class="grid_6">
                     <div class="wrap_6">
                         <div class="box_2 maxheight2">
-                            <div class="put-left"><img src="images/index_img01.png" alt="Image 1"/></div>
                             <div class="caption">
-                                <h3 class="text_2 color_2">
-                                    Nyheter <br/>
-
-                                </h3>
-
-                                <p class="text_3">
-
-                                </p>
-                                <a href="#" class="btn_2">Läs mer</a>
+                                <h3 class="text_2 color_2"> Nyheter <br /> </h3>
                             </div>
+                            <p class="test_3"></p>
+                            <?php include('src/partials/shared/newsletter.php'); ?>
                             <div class="clearfix"></div>
                         </div>
                     </div>

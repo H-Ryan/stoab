@@ -43,25 +43,25 @@ if(isset($_POST['orderNumber']) ||
     try {
         $statement = null;
         if (!empty($orderNum)) {
-            $statement = $con->prepare("SELECT * FROM t_order WHERE o_orderNumber=:orderNum");
+            $statement = $con->prepare("SELECT * FROM t_order WHERE o_orderNumber=:orderNum AND o_date <= CURRENT_DATE - 1");
             $statement->bindParam(":orderNum", $orderNum);
         } else {
             if (!empty($tolkNum)) {
                 if (!empty($dateFilter)) {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date >=:dateFilter AND o_tolkarPersonalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNum) ORDER BY o_date DESC");
+                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date >=:dateFilter AND o_date <= CURRENT_DATE - 1 AND o_tolkarPersonalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNum) ORDER BY o_date DESC");
                     $statement->bindParam(":dateFilter", $dateFilter);
                     $statement->bindParam(":tolkNum", $tolkNum);
                 } else {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_tolkarPersonalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNum) ORDER BY o_date DESC");
+                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_state <> 'O' o_tolkarPersonalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNum) ORDER BY o_date DESC");
                     $statement->bindParam(":tolkNum", $tolkNum);
                 }
             } else if (!empty($clientNum)) {
                 if (!empty($dateFilter)) {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date >=:dateFilter AND o_kundNumber=:clientNum ORDER BY o_date DESC");
+                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date >=:dateFilter AND o_date <= CURRENT_DATE - 1 AND o_kundNumber=:clientNum ORDER BY o_date DESC");
                     $statement->bindParam(":dateFilter", $dateFilter);
                     $statement->bindParam(":clientNum", $clientNum);
                 } else {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_kundNumber=:clientNum ORDER BY o_date DESC");
+                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_kundNumber=:clientNum AND o_date <= CURRENT_DATE - 1 ORDER BY o_date DESC");
                     $statement->bindParam(":clientNum", $clientNum);
                 }
             } else {
