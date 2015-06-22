@@ -4,7 +4,8 @@
  * Date: 21-02-2015
  * Time: 3:46 PM
  */
-$num = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_date >= CURRENT_DATE - 100")->fetchColumn();
+$numHistory = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_date >= CURRENT_DATE - 100")->fetchColumn();
+
 $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_date >= CURRENT_DATE - 100 ORDER BY o_date DESC  LIMIT 10");
 $statement->execute();
 $statement->setFetchMode(PDO::FETCH_OBJ);

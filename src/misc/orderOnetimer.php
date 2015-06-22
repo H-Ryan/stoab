@@ -99,7 +99,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                     <body style='color: #000000; text-align: center;'>
                     <hr style='width: 80%;
                                     margin-left: 10%;'/>
-                    <h2 style='text-align: center; margin-top: 5%;'>Beställning:</h2>
+                    <h2 style='text-align: center; margin-top: 5%;'>Beställning från webbplats:</h2>
 
                     <table style='width: 80%;
                                     margin-left: 10%;

@@ -52,7 +52,7 @@ if(isset($_POST['orderNumber']) ||
                     $statement->bindParam(":dateFilter", $dateFilter);
                     $statement->bindParam(":tolkNum", $tolkNum);
                 } else {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_state <> 'O' o_tolkarPersonalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNum) ORDER BY o_date DESC");
+                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_tolkarPersonalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNum) ORDER BY o_date DESC");
                     $statement->bindParam(":tolkNum", $tolkNum);
                 }
             } else if (!empty($clientNum)) {

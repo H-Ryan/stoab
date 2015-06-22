@@ -24,6 +24,8 @@ if (!empty($referrer)) {
 $data = array();
 if(isset($_GET['isManage']))
 {
+    $isManage = filter_input(INPUT_GET, "isManage", FILTER_VALIDATE_BOOLEAN,
+        array("flags" => FILTER_NULL_ON_FAILURE));
     $db = null;
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
@@ -33,15 +35,16 @@ if(isset($_GET['isManage']))
     }
     try {
         $num = 0;
-        if ($_GET['isManage'] === true) {
+        if ($isManage) {
             $num = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date >= CURRENT_DATE")->fetchColumn();
         } else {
-            $num = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date <= CURRENT_DATE - 1")->fetchColumn();
+            $num = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_date >= CURRENT_DATE - 100")->fetchColumn();
         }
         $data["error"] = 0;
         $data["numOfOrders"] = $num;
+        echo json_encode($data);
     } catch (PDOException $e) {
-        return $e->getMessage();
+        echo $e->getMessage();
     }
     if ($db != null) {
         $db->disconnect();
