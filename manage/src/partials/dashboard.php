@@ -5,64 +5,12 @@
  * Time: 11:43 AM
  */
 ?>
-<script type="application/javascript" src="js/uploadPicture.js"></script>
 <div class="ui piled segment">
     <div class="ui stackable grid">
         <div class="row">
             <div class="four wide column">
-                <div class="ui segment">
-                    <form class="ui form" enctype="multipart/form-data" id="uploadPictureForm">
-                        <div class="field">
-                            <label>Select image to upload:</label>
-                            <div class="ui left icon input">
-                                <i class="file image outline icon"></i>
-                                <input type="file" class="ui orange button" name="fileUpload" id="fileUpload">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <button type="button" class="ui labeled icon blue fluid button" id="btnUploadPicture">
-                                <i class="upload icon"></i>
-                                Upload
-                            </button>
-                        </div>
-                        <div class="ui indicating progress" id="uploadProgress" style="display: none;">
-                            <div class="bar">
-                                <div class="progress"></div>
-                            </div>
-                            <div class="label">Uploading photo</div>
-                        </div>
-                        <div class="ui success message">
-                            <i class="close icon"></i>
-                            <div class="header">Success</div>
-                            <p></p>
-                        </div>
-                        <div class="ui error message">
-                            <i class="close icon"></i>
-                            <div class="header">Error</div>
-                            <p></p>
-                        </div>
-                    </form>
-                </div>
             </div>
             <div class="ten wide column">
-                <div class="ui segment">
-                    <div class="ui three cards uploadedImages">
-                        <?php
-                        $files = glob("../images/uploaded/*.*");
-                        if (count($files) > 0) {
-                            for ($i=0; $i<count($files); $i++)
-                            {
-                                $image = $files[$i];
-                                $path = substr($image, 3);
-                                echo "<div class='ui blue card'><div class='bordered image'><img src='$image'></div><div class='extra content'><p class='header'>Path:</p><div class='description'>$path</div></div></div>";
-                            }
-                        } else {
-                            echo "<div id='noUploadedPictures'><span>You do not have any uploaded pictures at the momment!</span></div>";
-                        }
-
-                        ?>
-                    </div>
-                </div>
             </div>
             <div class="two wide column">
                 <button type="button" class="ui inverted blue button" id="btnAddTolkComment">Add comment about an interpreter</button>

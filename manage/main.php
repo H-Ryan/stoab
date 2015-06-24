@@ -57,6 +57,7 @@ try {
         <script type="text/javascript" src="../lib/jq-validate/additional-methods.min.js"></script>
         <script type="text/javascript" src="../lib/stoab/stoab.min.js"></script>
         <script type="text/javascript" src="../lib/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript" src="../lib/flowtype.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
         <!--[if lt IE 9]>
         <div style=' clear: both; text-align:center; position: relative;'>
@@ -87,6 +88,7 @@ try {
             <div class="menu">
                 <a class="teal item" data-tab="seventh">Lägg till nyhetsbrevet</a>
                 <a class="teal item" data-tab="eight">Hantera nyhetsbrev</a>
+                <a class="teal item" data-tab="ninth">Hantera bilder</a>
             </div>
         </div>
         <div class="ui grid">
@@ -158,6 +160,9 @@ try {
                         </div>
                         <div class="ui tab" data-tab="eight">
                             <?php include('src/partials/newsletter-manage.php'); ?>
+                        </div>
+                        <div class="ui tab" data-tab="ninth">
+                            <?php include('src/partials/image-upload.php'); ?>
                         </div>
                     </div>
                 </div>
