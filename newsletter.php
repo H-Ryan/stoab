@@ -81,7 +81,7 @@ include_once "src/db/dbConfig.php";
                                 } else {
                                     $daysAgo = $interval->format('%d') . " dagar sedan.";
                                 }
-                                echo "<div class='ui stacked segment' style='height: 400px; max-height: 400px; overflow: auto;'><div class='ui header'>" . $row->n_title . " - Publicerat: <span>" . $daysAgo . "</span></div>" . $row->n_text . "</div>";
+                                echo "<div class='ui segment' style='height: 400px; max-height: 400px; overflow: auto;'><div class='ui header'>" . $row->n_title . " - Publicerat: <span>" . $daysAgo . "</span></div>" . $row->n_text . "</div>";
                             }
                             ?>
                         </div>
