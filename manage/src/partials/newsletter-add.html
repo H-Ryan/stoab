@@ -1,17 +1,19 @@
 <div class="ui piled segment">
     <form class="ui form" id="newsLetterForm">
-        <div class="ui grid">
+        <div class="ui stackable grid">
             <div class="row">
-                <div class="four wide column ui segment">
-                    <div class="field">
-                        <label for="newsTitle">Title:</label>
-                        <input type="text" name="newsTitle" id="newsTitle"/>
+                <div class="four wide column">
+                    <div class="ui segment">
+                        <div class="field">
+                            <label for="newsTitle">Title:</label>
+                            <input type="text" name="newsTitle" id="newsTitle"/>
+                        </div>
+                        <div class="field">
+                            <label for="newsPrescript">Short description:</label>
+                            <textarea name="newsPrescript" id="newsPrescript" maxlength="200"></textarea>
+                        </div>
+                        <div><span id="chars"></span></div>
                     </div>
-                    <div class="field">
-                        <label for="newsPrescript">Short description:</label>
-                        <textarea name="newsPrescript" id="newsPrescript" maxlength="200"></textarea>
-                    </div>
-                    <div><span id="chars"></span></div>
                 </div>
                 <div class="twelve wide column">
                     <div class="field">

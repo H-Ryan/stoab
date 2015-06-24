@@ -85,8 +85,8 @@ try {
 </head>
 <body>
 <div id="main">
-    <div class="ui centered grid">
-        <div class="six wide column">
+    <div class="ui stackable two column grid">
+        <div class="column">
             <div class="ui piled horizontal segment">
                 <form class="ui form assignTolk">
                     <fieldset class="ui basic segment">
@@ -104,10 +104,8 @@ try {
                                 <div class="ui error message">
                                     <i class="close icon"></i>
 
-                                    <div class="header">Action Forbidden</div>
-                                    <div class="ui text">You can only sign up for an account once with a given e-mail
-                                        address.
-                                    </div>
+                                    <div class="header"></div>
+                                    <div class="ui text"></div>
                                 </div>
                             </div>
                             <div class="four wide column computer only"></div>
@@ -196,7 +194,7 @@ try {
                 </form>
             </div>
         </div>
-        <div class="ten wide column">
+        <div class="column">
             <div class="ui piled horizontal segment">
                 <table class="ui two column celled striped table tolkTable">
                     <thead>

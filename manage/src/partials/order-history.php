@@ -35,134 +35,235 @@ if ($statement->rowCount() > 0) {
             </div>
         </div>
     </div>
-    <form class="ui form" id="orderFilterForm">
-        <div class="ui grid">
-            <div class="centered one column row">
-                <div class="column">
-                    <div class="six fields">
-                        <div class="four wide field">
+    <div class="ui grid">
+        <div class="centered row">
+            <div class="computer only sixteen wide column">
+                <form class="ui form" id="orderFilterForm">
+                    <div class="five fields">
+                        <div class="field">
                             <label for="orderNumber">Ordernummer:</label>
                             <input name="orderNumber" id="orderNumber"/>
                         </div>
-                        <div class="one wide field" style="position: relative; height: 50px;">
+                        <div class="field" style="position: relative; height: 50px;">
                             <div class="ui vertical divider">
                                 eller
                             </div>
                         </div>
-                        <div class="four wide field">
+                        <div class="field">
                             <label for="tolkNumber">Tolk nummer:</label>
                             <input name="tolkNumber" id="tolkNumber"/>
                         </div>
-                        <div class="four wide field">
+                        <div class="field">
                             <label for="clientNumber">Kund nummer:</label>
                             <input name="clientNumber" id="clientNumber"/>
                         </div>
-                        <div class="three wide field">
+                        <div class="field">
                             <label for="dateFilter">Datum</label>
                             <input id="dateFilter" type="text" title="Datum" name="dateFilter"
                                    placeholder="YYYY-MM-DD"/>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="centered column">
-                        <button type="button" class="ui inverted blue button" id="btnFilterHistory">Lägg till filter</button>
-                        <button type="button" class="ui inverted orange button disabled" id="btnRemoveFilterHistory">Ta bort filter</button>
+                </form>
+            </div>
+            <div class="mobile only sixteen wide column">
+                <form class="ui form" id="orderFilterForm">
+                    <div class="six fields">
+                        <div class="field">
+                            <label for="orderNumber">Ordernummer:</label>
+                            <input name="orderNumber" id="orderNumber"/>
+                        </div>
+                        <div class="field">
+                            <div class="ui horizontal divider">
+                                eller
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="tolkNumber">Tolk nummer:</label>
+                            <input name="tolkNumber" id="tolkNumber"/>
+                        </div>
+                        <div class="field">
+                            <label for="clientNumber">Kund nummer:</label>
+                            <input name="clientNumber" id="clientNumber"/>
+                        </div>
+                        <div class="field">
+                            <label for="dateFilter">Datum</label>
+                            <input id="dateFilter" type="text" title="Datum" name="dateFilter"
+                                   placeholder="YYYY-MM-DD"/>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </form>
-    <?php if (count($orders) > 0) { ?>
-        <table class="ui collapsing celled table orderHistory">
-            <thead>
-            <tr>
-                <th class="one wide">Ordernummer</th>
-                <th class="three wide">Avdelning</th>
-                <th class="three wide">Beställare</th>
-                <th class="three wide">Språk</th>
-                <th class="one wide">Typ</th>
-                <th class="two wide">Datum</th>
-                <th class="one wide">Starttid</th>
-                <th class="one wide">Sluttid</th>
-                <th class="one wide">Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-
-            for ($k = 0; $k < count($orders); $k++) {
-                $infoMsg = "info";
-                $btnColor = "orange";
-                $state = $orders[$k]->o_state;
-                switch ($state) {
-                    case "O":
-                        $infoMsg = 'Beställ in Progress';
-                        $btnColor = 'orange';
-                        break;
-                    case "B":
-                        $infoMsg = 'Färdig';
-                        $btnColor = 'green';
-                        break;
-                    case "EC":
-                        $infoMsg = 'Avbruten';
-                        $btnColor = 'red';
-                        break;
-                }
-                ?>
-                <tr>
-                    <td><?php echo $orders[$k]->o_orderNumber; ?></td>
-                    <td><?php echo $klient[$k]->k_organizationName; ?></td>
-                    <td><?php echo $orders[$k]->o_orderer; ?></td>
-                    <td><?php echo $orders[$k]->o_language; ?></td>
-                    <td class="typeTip"
-                        data-content="<?php echo getFullTolkningType($orders[$k]->o_interpretationType); ?>">
-                        <?php echo $orders[$k]->o_interpretationType; ?>
-                    </td>
-                    <td><?php echo $orders[$k]->o_date; ?></td>
-                    <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
-                    <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>
-                    <td>
-                        <form class='ui form' id="<?php echo $orders[$k]->o_orderNumber; ?>">
-                            <input type='hidden' name='orderId' value='<?php echo $orders[$k]->o_orderNumber; ?>'>
-                            <button type='button'
-                                    class="ui fluid <?php echo $btnColor; ?> button btn-info"><?php echo $infoMsg; ?></button>
-                        </form>
-                    </td>
-                </tr>
-            <?php } ?>
-            </tbody>
-        </table>
-        <?php if ($numHistory > 10) { ?>
-            <div class="ui pagination menu page-history">
-                <a class="icon item previousHPage">
-                    <i class="left arrow icon"></i>
-                </a>
-                <a class="active item" id="hpage1">
-                    1
-                </a>
-                <?php
-                $rem = $numHistory % 10;
-                if ($rem == 0) {
-                    $numPage = ($numHistory / 10);
-                    for ($k = 2; $k <= $numPage; $k++) {
-                        echo "<a class='item'>$k</a>";
-                    }
-                } else {
-                    $numPage = (($numHistory - $rem) / 10) + 1;
-                    for ($k = 2; $k <= $numPage; $k++) {
-                        echo "<a class='item' id='hpage$k'>$k</a>";
-                    }
-                }
-                ?>
-                <a class="icon item nextHPage">
-                    <i class="right arrow icon"></i>
-                </a>
+        <div class="row">
+            <div class="centered column">
+                <button type="button" class="ui inverted blue button" id="btnFilterHistory">Lägg till filter</button>
+                <button type="button" class="ui inverted orange button disabled" id="btnRemoveFilterHistory">Ta bort filter</button>
             </div>
-        <?php } ?>
-    <?php } else {
-        echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>Det finns inga aktuella posten historik.</h3></div>";
-    } ?>
+        </div>
+    </div>
+    <div class="ui grid">
+        <div class="row">
+            <div class="mobile only sixteen wide column">
+                <div style="overflow-x: scroll; overflow-y: hidden;">
+                    <?php if (count($orders) > 0) { ?>
+                        <table class="ui celled striped unstackable table orderHistory">
+                            <thead>
+                            <tr>
+                                <th class="one wide">Ordernummer</th>
+                                <th class="three wide">Avdelning</th>
+                                <th class="three wide">Beställare</th>
+                                <th class="three wide">Språk</th>
+                                <th class="one wide">Typ</th>
+                                <th class="two wide">Datum</th>
+                                <th class="one wide">Starttid</th>
+                                <th class="one wide">Sluttid</th>
+                                <th class="one wide">Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+
+                            for ($k = 0; $k < count($orders); $k++) {
+                                $infoMsg = "info";
+                                $btnColor = "orange";
+                                $state = $orders[$k]->o_state;
+                                switch ($state) {
+                                    case "O":
+                                        $infoMsg = 'Beställ in Progress';
+                                        $btnColor = 'orange';
+                                        break;
+                                    case "B":
+                                        $infoMsg = 'Färdig';
+                                        $btnColor = 'green';
+                                        break;
+                                    case "EC":
+                                        $infoMsg = 'Avbruten';
+                                        $btnColor = 'red';
+                                        break;
+                                }
+                                ?>
+                                <tr>
+                                    <td><?php echo $orders[$k]->o_orderNumber; ?></td>
+                                    <td><?php echo $klient[$k]->k_organizationName; ?></td>
+                                    <td><?php echo $orders[$k]->o_orderer; ?></td>
+                                    <td><?php echo $orders[$k]->o_language; ?></td>
+                                    <td class="typeTip"
+                                        data-content="<?php echo getFullTolkningType($orders[$k]->o_interpretationType); ?>">
+                                        <?php echo $orders[$k]->o_interpretationType; ?>
+                                    </td>
+                                    <td><?php echo $orders[$k]->o_date; ?></td>
+                                    <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
+                                    <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>
+                                    <td>
+                                        <form class='ui form' id="<?php echo $orders[$k]->o_orderNumber; ?>">
+                                            <input type='hidden' name='orderId' value='<?php echo $orders[$k]->o_orderNumber; ?>'>
+                                            <button type='button'
+                                                    class="ui fluid <?php echo $btnColor; ?> button btn-info"><?php echo $infoMsg; ?></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                    <?php } else {
+                        echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>Det finns inga aktuella posten historik.</h3></div>";
+                    } ?>
+                </div>
+            </div>
+            <div class="computer only sixteen wide column">
+                <?php if (count($orders) > 0) { ?>
+                    <table class="ui celled striped unstackable table orderHistory">
+                        <thead>
+                        <tr>
+                            <th class="one wide">Ordernummer</th>
+                            <th class="three wide">Avdelning</th>
+                            <th class="three wide">Beställare</th>
+                            <th class="three wide">Språk</th>
+                            <th class="one wide">Typ</th>
+                            <th class="two wide">Datum</th>
+                            <th class="one wide">Starttid</th>
+                            <th class="one wide">Sluttid</th>
+                            <th class="one wide">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+
+                        for ($k = 0; $k < count($orders); $k++) {
+                            $infoMsg = "info";
+                            $btnColor = "orange";
+                            $state = $orders[$k]->o_state;
+                            switch ($state) {
+                                case "O":
+                                    $infoMsg = 'Beställ in Progress';
+                                    $btnColor = 'orange';
+                                    break;
+                                case "B":
+                                    $infoMsg = 'Färdig';
+                                    $btnColor = 'green';
+                                    break;
+                                case "EC":
+                                    $infoMsg = 'Avbruten';
+                                    $btnColor = 'red';
+                                    break;
+                            }
+                            ?>
+                            <tr>
+                                <td><?php echo $orders[$k]->o_orderNumber; ?></td>
+                                <td><?php echo $klient[$k]->k_organizationName; ?></td>
+                                <td><?php echo $orders[$k]->o_orderer; ?></td>
+                                <td><?php echo $orders[$k]->o_language; ?></td>
+                                <td class="typeTip"
+                                    data-content="<?php echo getFullTolkningType($orders[$k]->o_interpretationType); ?>">
+                                    <?php echo $orders[$k]->o_interpretationType; ?>
+                                </td>
+                                <td><?php echo $orders[$k]->o_date; ?></td>
+                                <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
+                                <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>
+                                <td>
+                                    <form class='ui form' id="<?php echo $orders[$k]->o_orderNumber; ?>">
+                                        <input type='hidden' name='orderId' value='<?php echo $orders[$k]->o_orderNumber; ?>'>
+                                        <button type='button'
+                                                class="ui fluid <?php echo $btnColor; ?> button btn-info"><?php echo $infoMsg; ?></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } else {
+                    echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>Det finns inga aktuella posten historik.</h3></div>";
+                } ?>
+            </div>
+        </div>
+    </div>
+    <?php if ($numHistory > 10) { ?>
+        <div class="ui pagination menu page-history">
+            <a class="icon item previousHPage">
+                <i class="left arrow icon"></i>
+            </a>
+            <a class="active item" id="hpage1">
+                1
+            </a>
+            <?php
+            $rem = $numHistory % 10;
+            if ($rem == 0) {
+                $numPage = ($numHistory / 10);
+                for ($k = 2; $k <= $numPage; $k++) {
+                    echo "<a class='item'>$k</a>";
+                }
+            } else {
+                $numPage = (($numHistory - $rem) / 10) + 1;
+                for ($k = 2; $k <= $numPage; $k++) {
+                    echo "<a class='item' id='hpage$k'>$k</a>";
+                }
+            }
+            ?>
+            <a class="icon item nextHPage">
+                <i class="right arrow icon"></i>
+            </a>
+        </div>
+    <?php } ?>
     <div class="ui divider"></div>
     <form class="ui form order_history">
         <div class="field">

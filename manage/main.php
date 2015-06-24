@@ -14,8 +14,7 @@ if (!isset($_SESSION['CREATED'])) {
     session_regenerate_id(true);
     $_SESSION['CREATED'] = time();
 }
-if(empty($_SESSION['personal_number']))
-{
+if (empty($_SESSION['personal_number'])) {
     header('Location: index.php');
 }
 try {
@@ -72,60 +71,97 @@ try {
         <![endif]-->
     </head>
     <body>
-    <div id="main" class="ui basic fluid segment">
-        <nav>
-            <div class="ui grid">
-                <div class="blue row">
-                    <div class="ui top attached tabular menu">
-                        <div class="left menu">
-                            <a class="active item" data-tab="first">Sök tolk</a>
-                            <a class="item" data-tab="second">Reg. Order</a>
-                            <a class="item" data-tab="third">Manage Order</a>
-                            <a class="item" data-tab="fourth">Order history</a>
-                            <a class="item" data-tab="fifth">Manage Customers</a>
-                            <div class="ui dropdown item">
-                                Newsletter
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <a class="item ui fluid inverted blue button" data-tab="sixth">Add to newsletter</a>
-                                    <a class="item ui fluid inverted blue button" data-tab="seventh">Manage newsletter</a>
-                                </div>
-                            </div>
+    <div class="ui active page dimmer">
+        <div class="ui large text loader">Loading</div>
+    </div>
+    <div class="ui left vertical sidebar menu">
+        <a class="active teal item" data-tab="first">Sök tolk</a>
+        <a class="teal item" data-tab="second">Skicka en beställning</a>
+        <a class="teal item" data-tab="third">Hantera order</a>
+        <a class="teal item" data-tab="fourth">Orderhistorik</a>
+        <a class="teal item" data-tab="fifth">Hantera kunder</a>
+        <a class="teal item" data-tab="sixth">Dashboard</a>
+
+        <div class="ui item">
+            <div class="header item"><i class="mail icon"></i>Nyhetsbrev</div>
+            <div class="menu">
+                <a class="teal item" data-tab="seventh">Lägg till nyhetsbrevet</a>
+                <a class="teal item" data-tab="eight">Hantera nyhetsbrev</a>
+            </div>
+        </div>
+        <div class="ui grid">
+            <div class="row">
+                <div class="mobile only sixteen wide column">
+                    <button type="button" class="ui red right labeled icon small button logout-btn">
+                        Logga Ut <i class="sign out right icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pusher" style="background: #CAD9FF;">
+        <div class="ui grid">
+            <div class="row">
+                <div class="computer only column">
+                    <div class="ui fixed top attached inverted blue borderless menu">
+                        <div class="left item">
+                            <button type="button" class="ui inverted toggle button">Menu</button>
                         </div>
-                        <div class="right menu">
-                            <div class="item">
-                                <span class="name"><?php echo "Anställd: ".$user->u_firstName." ".$user->u_lastName; ?></span>
-                            </div>
-                            <div class="item">
-                                <button type="button" class="right labeled icon small ui red button logout-btn">
-                                    Logga Ut <i class="sign out right icon"></i>
-                                </button>
-                            </div>
+                        <div class="right item">
+                            <button type="button" class="right labeled icon small ui red button logout-btn">
+                                Logga Ut <i class="sign out right icon"></i>
+                            </button>
+                        </div>
+                        <div class="right item">
+                            <span
+                                class="name"><?php echo "Anställd: " . $user->u_firstName . " " . $user->u_lastName; ?></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile only column">
+                    <div class="ui fixed top attached inverted blue borderless menu">
+                        <div class="left item">
+                            <button type="button" class="ui inverted toggle button">Menu</button>
+                        </div>
+                        <div class="item">
+                            <span
+                                class="name"><?php echo "Anställd: " . $user->u_firstName . " " . $user->u_lastName; ?></span>
                         </div>
                     </div>
                 </div>
             </div>
-        </nav>
-        <div class="ui bottom attached active tab" data-tab="first">
-            <?php include('src/partials/tolk-search.php'); ?>
         </div>
-        <div class="ui bottom attached tab" data-tab="second">
-            <?php include('src/partials/register-order.php'); ?>
-        </div>
-        <div class="ui bottom attached tab" data-tab="third">
-            <?php include('src/partials/manage-orders.php'); ?>
-        </div>
-        <div class="ui bottom attached tab" data-tab="fourth">
-            <?php include('src/partials/order-history.php'); ?>
-        </div>
-        <div class="ui bottom attached tab" data-tab="fifth">
-            <?php include('src/partials/manage-customers.php'); ?>
-        </div>
-        <div class="ui bottom attached tab" data-tab="sixth">
-            <?php include('src/partials/newsletter-add.html'); ?>
-        </div>
-        <div class="ui bottom attached tab" data-tab="seventh">
-            <?php include('src/partials/newsletter-manage.php'); ?>
+        <div id="main">
+            <div class="ui grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui active tab" data-tab="first">
+                            <?php include('src/partials/tolk-search.php'); ?>
+                        </div>
+                        <div class="ui tab" data-tab="second">
+                            <?php include('src/partials/register-order.php'); ?>
+                        </div>
+                        <div class="ui tab" data-tab="third">
+                            <?php include('src/partials/manage-orders.php'); ?>
+                        </div>
+                        <div class="ui tab" data-tab="fourth">
+                            <?php include('src/partials/order-history.php'); ?>
+                        </div>
+                        <div class="ui tab" data-tab="fifth">
+                            <?php include('src/partials/manage-customers.php'); ?>
+                        </div>
+                        <div class="ui tab" data-tab="sixth">
+                            <?php include('src/partials/dashboard.php'); ?>
+                        </div>
+                        <div class="ui tab" data-tab="seventh">
+                            <?php include('src/partials/newsletter-add.html'); ?>
+                        </div>
+                        <div class="ui tab" data-tab="eight">
+                            <?php include('src/partials/newsletter-manage.php'); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     </body>

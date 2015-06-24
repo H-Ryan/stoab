@@ -1,9 +1,12 @@
 $(document).ready(function () {
     "use strict";
+    $('.page.dimmer').hide();
     var orderForm = $('.ui.form.orderForm'),
         tolkSearchFrom = $('.ui.form.tolk-search'),
         orderHistoryFilterForm = $("#orderFilterForm");
     $('.ui.fluid.accordion').accordion();
+
+    $('.left.sidebar').first().sidebar('attach events', '.toggle.button').sidebar('setting', 'transition', 'slide along');
 
     orderHistoryFilterForm.form({
             orderNumber: {
@@ -64,7 +67,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: "POST",
                     url: "src/misc/filterOrderHistory.php",
-                    data: orderHistoryFilterForm.serialize(),
+                    data: orderHistoryFilterForm.filter(":visible").serialize(),
                     cache: false,
                     dataType: "json",
                     beforeSend: function () {
@@ -1004,17 +1007,17 @@ $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: "src/misc/searchTolks.php",
-                data: tolkSearchFrom.serialize(),
+                data: tolkSearchFrom.filter(":visible").serialize(),
                 cache: false,
                 dataType: "json",
                 beforeSend: function () {
                     $('.btnSearchTolk').addClass('loading');
                 }
             }).done(function (data) {
-                var container = $('.tolks');
+                var container = $('.searchTolkResult .tolks');
                 container.empty();
                 if (data.error == 0) {
-                    container.append("<table class='ui collapsing celled table tolksTable'>"
+                    container.append("<table class='ui collapsing unstackable striped celled table tolksTable'>"
                     + "<thead>"
                     + "<tr>"
                     + "<th class='one wide'>Nummer</th>"

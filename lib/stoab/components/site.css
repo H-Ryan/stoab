@@ -1,7 +1,6 @@
-@import 'https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin';
 /*!
- * # Semantic UI - Site
- * http://github.com/stoab-org/stoab-ui/
+ * # Semantic UI 1.12.3 - Site
+ * http://github.com/semantic-org/semantic-ui/
  *
  *
  * Copyright 2014 Contributors
@@ -15,6 +14,7 @@
              Page
 *******************************/
 
+@import 'https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin';
 html,
 body {
   height: 100%;
