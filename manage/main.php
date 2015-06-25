@@ -84,7 +84,7 @@ try {
         <a class="teal item" data-tab="sixth">Dashboard</a>
 
         <div class="ui item">
-            <div class="header item"><i class="mail icon"></i>Nyhetsbrev</div>
+            <div class="header item">Nyhetsbrev</div>
             <div class="menu">
                 <a class="teal item" data-tab="seventh">Lägg till nyhetsbrevet</a>
                 <a class="teal item" data-tab="eight">Hantera nyhetsbrev</a>
@@ -115,8 +115,7 @@ try {
                             </button>
                         </div>
                         <div class="right item">
-                            <span
-                                class="name"><?php echo "Anställd: " . $user->u_firstName . " " . $user->u_lastName; ?></span>
+                            Anställd: <span id="employeeName"><?php echo $user->u_firstName . " " . $user->u_lastName; ?></span>
                         </div>
                     </div>
                 </div>

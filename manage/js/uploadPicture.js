@@ -64,7 +64,7 @@ function sendFile(file) {
                         var reader = new FileReader();
 
                         reader.onload = function (e) {
-                            $(".cards.uploadedImages").prepend("<div class='ui blue card'><div class='bordered image'><img src='"+e.target.result+"'></div><div class='extra content'><p class='header'>Vägen till bilden:</p><div class='description'><div style='overflow-x: auto; overflow-y: hidden;'><span class='ui compact message' >http://tolktjanst.com/images/uploaded/"+file.name+"</span></div></div></div></div>");
+                            $(".cards.uploadedImages").prepend("<div class='ui blue card'><img class='ui image' width='100%' height='250px' src='"+e.target.result+"' /><div class='extra content'><p class='header'>Vägen till bilden:</p><div class='description'><div class='ui segment' style='overflow-x: auto; overflow-y: hidden;'><span class='ui text'>http://tolktjanst.com/"+file.name+"</span></div></div></div></div>");
                             $('.message').flowtype({
                                 minFont : 10,
                                 maxFont : 40

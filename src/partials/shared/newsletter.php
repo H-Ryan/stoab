@@ -23,7 +23,7 @@ try {
             while ($row = $statement->fetch()) { ?>
                 <div class="event" style="border: solid 1px #d3d3d3; margin-bottom: 5px">
                     <div class="label">
-                        <i class="mail outline icon"></i>
+                        <i class="newspaper outline icon"></i>
                     </div>
                     <div class="content">
                         <div class="summary" style="line-height: initial;">

@@ -8,12 +8,66 @@
 <div class="ui piled segment">
     <div class="ui stackable grid">
         <div class="row">
-            <div class="four wide column">
+            <div class="five wide column">
+                <div class="ui header">Internal</div>
+                <div class="ui horizontal divider"></div>
+                <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
+                    <div class="ui feed internalFeed"></div>
+                </div>
+                <div class="ui teal labeled icon button btnNoteInternal">
+                    Post a note
+                    <i class="add icon"></i>
+                </div>
             </div>
-            <div class="ten wide column">
+            <div class="five wide column">
+                <div class="ui header">Customers</div>
+                <div class="ui horizontal divider"></div>
+                <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
+                    <div class="ui feed customerFeed"></div>
+                </div>
+                <div class="ui teal labeled icon button btnNoteCustomer">
+                    Post a note
+                    <i class="add icon"></i>
+                </div>
             </div>
-            <div class="two wide column">
-                <button type="button" class="ui inverted blue button" id="btnAddTolkComment">Add comment about an interpreter</button>
+            <div class="five wide column">
+                <div class="ui header">Interpreters</div>
+                <div class="ui horizontal divider"></div>
+                <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
+                    <div class="ui feed interpreterFeed"></div>
+                </div>
+                <div class="ui teal labeled icon button btnNoteInterpreter">
+                    Post a note
+                    <i class="add icon"></i>
+                </div>
+            </div>
+            <div class="one wide column">
+                <button type="button" class="ui inverted small blue disabled button" id="btnAddTolkComment">
+                    Add
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="ui small modal addMessageModal">
+        <i class="close icon"></i>
+        <div class="header"></div>
+        <div class="content">
+            <div class="description">
+                <form class="ui form noteTextForm">
+                    <div class="field">
+                        <label class="ui teal ribbon label" for="noteText"><i class="write icon"></i>Note:</label>
+                        <textarea name="noteText" id="noteText"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui black negative button">
+                Cancel
+            </div>
+            <div class="ui positive right labeled icon button">
+                Post
+                <i class="checkmark icon"></i>
             </div>
         </div>
     </div>

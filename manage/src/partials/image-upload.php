@@ -15,7 +15,7 @@
                             <label>Välj bild att ladda upp:</label>
                             <div class="ui left icon input">
                                 <i class="file image outline icon"></i>
-                                <input type="file" class="ui orange button" name="fileUpload" id="fileUpload">
+                                <input type="file" class="ui orange fluid button" name="fileUpload" id="fileUpload">
                             </div>
                         </div>
                         <div class="field">
@@ -60,7 +60,7 @@
                             foreach ($sortedArray as $image)
                             {
                                 $path = substr($image, 3);
-                                echo "<div class='ui blue card'><div class='bordered image'><img class='ui image' src='$image' /></div><div class='extra content'><p class='header'>Vägen till bilden:</p><div class='description'><div style='overflow-x: auto; overflow-y: hidden;'><span class='ui compact message'>http://tolktjanst.com/$path</span></div></div></div></div>";
+                                echo "<div class='ui blue card'><img class='ui image' width='100%' height='250px' src='$image' /><div class='extra content'><p class='header'>Vägen till bilden:</p><div class='description'><div class='ui segment' style='overflow: auto; overflow-y: hidden;'><span class='ui text'>http://tolktjanst.com/$path</span></div></div></div></div>";
                             }
                         } else {
                             echo "<div id='noUploadedPictures'><span>Du behöver inte ha bilder några uppladdade just nu!</span></div>";
