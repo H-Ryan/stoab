@@ -53,6 +53,7 @@ function sendFile(file) {
             var message = null;
             if (data.error == 0) {
                 message = form.find(".success.message");
+                message.find('p').empty();
                 $.each(data.message, function(i, v) {
                     message.find('p').append($("<span>"+v+"</span><br />"));
                 });
