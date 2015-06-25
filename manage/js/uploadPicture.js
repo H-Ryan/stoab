@@ -19,7 +19,7 @@ $(document).ready(function() {
             }
         });
     $('.message').flowtype({
-        minFont : 12,
+        minFont : 10,
         maxFont : 40
     });
 });
@@ -63,7 +63,11 @@ function sendFile(file) {
                         var reader = new FileReader();
 
                         reader.onload = function (e) {
-                            $(".cards.uploadedImages").prepend("<div class='ui blue card'><div class='bordered image'><img src='"+e.target.result+"'></div><div class='extra content'><p class='header'>Vägen till bilden:</p><div class='description'><span class='ui compact message'>images/uploaded/"+file.name+"</span></div></div></div>");
+                            $(".cards.uploadedImages").prepend("<div class='ui blue card'><div class='bordered image'><img src='"+e.target.result+"'></div><div class='extra content'><p class='header'>Vägen till bilden:</p><div class='description'><div style='overflow-x: auto; overflow-y: hidden;'><span class='ui compact message' >http://tolktjanst.com/images/uploaded/"+file.name+"</span></div></div></div></div>");
+                            $('.message').flowtype({
+                                minFont : 10,
+                                maxFont : 40
+                            });
                         };
 
                         reader.readAsDataURL(file);

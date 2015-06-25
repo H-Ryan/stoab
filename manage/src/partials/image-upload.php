@@ -60,7 +60,7 @@
                             foreach ($sortedArray as $image)
                             {
                                 $path = substr($image, 3);
-                                echo "<div class='ui blue card'><div class='bordered image'><img src='$image'></div><div class='extra content'><p class='header'>Vägen till bilden:</p><div class='description'><span class='ui compact message'>$path</span></div></div></div>";
+                                echo "<div class='ui blue card'><div class='bordered image'><img class='ui image' src='$image' /></div><div class='extra content'><p class='header'>Vägen till bilden:</p><div class='description'><div style='overflow-x: auto; overflow-y: hidden;'><span class='ui compact message'>http://tolktjanst.com/$path</span></div></div></div></div>";
                             }
                         } else {
                             echo "<div id='noUploadedPictures'><span>Du behöver inte ha bilder några uppladdade just nu!</span></div>";

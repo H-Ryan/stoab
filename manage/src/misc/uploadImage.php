@@ -42,7 +42,7 @@ if ( $data['error'] == 1) {
 } else {
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
         $data['error'] = 0;
-        $data['message'][] = "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
+        $data['message'][] = "The image has been uploaded.";
     } else {
         $data['error'] = 1;
         $data['message'][] = "Sorry, there was an error uploading your file.";
