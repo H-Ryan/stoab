@@ -42,7 +42,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && !empty($_POST
             $order = $statement->fetch();
 
             $tolk = null;
-            $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,"
+            $query = "SELECT t.t_tolkNumber, u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,"
                 . " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,"
                 . " u.u_extraInfo, t.* FROM t_tolkar AS t, t_users AS u WHERE u.u_role = 3"
                 . " AND t.t_active = 1 AND t.t_personalNumber=:tolkNumber AND u.u_personalNumber = t.t_personalNumber";
@@ -92,6 +92,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && !empty($_POST
                             <tbody>
                             <tr>
                                 <td style='background-color: #d4e3e5;padding: 8px;border: 1px solid #a9c6c9;'>
+                                    <p><span style='font-weight:bold;'>Kundnummer:</span> " . $order->o_kundNumber . "</p>
                                     <p><span style='font-weight:bold;'>Datum:</span> " . $order->o_date . "</p>
 
                                     <p><span style='font-weight:bold;'>Starttid:</span> " . $timeStart . "</p>
@@ -119,6 +120,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && !empty($_POST
                                     <p><span style='font-weight:bold;'>E-postadress:</span> " . $order->o_email . "</p>
                                 </td>
                                 <td style='background-color: #d4e3e5;padding: 8px;border: 1px solid #a9c6c9;'>
+                                    <p><span style='font-weight:bold;'>Tolknummer:</span> " . $tolk->t_tolkNumber . "</p>
                                     <p><span style='font-weight:bold;'>Namn:</span> " . $tolk->u_firstName . " " . $tolk->u_lastName . "</p>
 
                                     <p><span style='font-weight:bold;'>Telefonnr:</span> " . $tolk->u_tel . "</p>
