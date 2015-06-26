@@ -209,11 +209,11 @@ $(document).ready(function () {
     tinymce.init({
         selector: '#newsLetter, #newsLetterManage',
         plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
+            "advlist autolink autoresize lists link image charmap print preview anchor",
             "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table contextmenu paste"
+            "insertdatetime media table contextmenu paste emoticons"
         ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons | link image media"
     });
     var feed = $(".feed");
     feed.on("click", ".btnNewsManageView", function() {
@@ -488,7 +488,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.page-manage .item').on("click", function() {
+    $('.page-manage').on("click", ".item", function() {
         var pageNum = "1";
         if(!$(this).hasClass('icon')) {
             $(this)
@@ -688,7 +688,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.page-history .item').on("click", function() {
+    $('.page-history').on("click", ".item", function() {
         var pageNum = "1";
         if(!$(this).hasClass('icon')) {
             $(this)

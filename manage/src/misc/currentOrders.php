@@ -45,16 +45,14 @@ if(isset($_POST['code']) && isset($_POST['currentPage']))
             $data["error"] = 0;
             $data['orders'] = array();
             $data['customers'] = array();
-            $i = 0;
             while($order = $statement->fetch()) {
                 $statementTwo = $con->prepare("SELECT k_organizationName FROM t_kunder WHERE k_kundNumber=:clientNumber");
                 $statementTwo->bindParam(":clientNumber", $order->o_kundNumber);
                 $statementTwo->execute();
                 $statementTwo->setFetchMode(PDO::FETCH_OBJ);
                 if ($statementTwo->rowCount() > 0) {
-                    $data['customers'][$i] = $statementTwo->fetch();
-                    $data['orders'][$i] = $order;
-                    $i++;
+                    $data['customers'][] = $statementTwo->fetch();
+                    $data['orders'][] = $order;
                 }
             }
             echo json_encode($data);
