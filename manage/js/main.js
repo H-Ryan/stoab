@@ -22,10 +22,10 @@ $(document).ready(function () {
             var successElem = modal.find(".content .segment>.ui.positive.message");
             var errorElem =  modal.find(".content .segment>.ui.error.message");
             if (data.error == 0) {
-                errorElem.show();
+                errorElem.hide();
                 successElem.children("p").text(data.positiveMessage);
                 successElem.children('.header').text(data.messageHeader);
-                successElem.hide();
+                successElem.show();
             } else {
                 successElem.hide();
                 errorElem.children("p").text(data.errorMessage);
