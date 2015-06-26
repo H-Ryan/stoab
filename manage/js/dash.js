@@ -2,7 +2,8 @@
  * Created by Samuil on 23-06-2015.
  */
 var lastModified = 0,
-    addMessageModal = $(".modal.addMessageModal"),
+    addMessageModal = $(".modal.addMessageModal")
+resultPostErrorModal = $(".modal.resultPostErrorModal"),
     firstModal = $('.commentOnTolk.firstStep'),
     secondModal = $('.commentOnTolk.secondStep'),
     thirdModal = $('.commentOnTolk.thirdStep'),
@@ -17,14 +18,14 @@ var lastModified = 0,
     interpreterFeed = $('.feed.interpreterFeed'),
     dashboardMenuItem = $(".vertical.sidebar.menu").find("[data-tab='sixth']");
 
-$(function(){
+$(function () {
     $.ajax({
         url: 'src/misc/getAllNotes.php',
         dataType: 'JSON',
-        data: { isUpdate: 0 },
+        data: {isUpdate: 0},
         cache: true,
         type: 'GET',
-        beforeSend: function() {
+        beforeSend: function () {
             internalFeed.addClass('loading');
             customerFeed.addClass('loading');
             interpreterFeed.addClass('loading');
@@ -32,13 +33,13 @@ $(function(){
         success: function (data) {
             if (data.error === 0) {
                 lastModified = data.lastModified;
-                $.each(data.data.internal, function(i, v) {
+                $.each(data.data.internal, function (i, v) {
                     postFeedEvent(internalFeed, v);
                 });
-                $.each(data.data.customers, function(i, v) {
+                $.each(data.data.customers, function (i, v) {
                     postFeedEvent(customerFeed, v);
                 });
-                $.each(data.data.interpreters, function(i, v) {
+                $.each(data.data.interpreters, function (i, v) {
                     postFeedEvent(interpreterFeed, v);
                 });
                 internalFeed.removeClass('loading');
@@ -52,87 +53,143 @@ $(document).ready(function () {
     /**
      * Collaboration board with notes
      */
-
-    //Open modal form
-    btnNoteInternal.click(function() {
-        addMessageModal.children(".header").text("Add a note to the internal pool!");
+        //Open modal form
+    btnNoteInternal.click(function () {
+        addMessageModal.children(".header").text("Lägg till en anteckning för dina kollegor!");
         addMessageModal.modal({
-            closable: false, transition: 'vertical flip',
-            onDeny: function() {
+            closable: false, transition: 'vertical flip', allowMultiple: true,
+            onDeny: function () {
                 noteTextForm.get(0).reset();
             },
-            onApprove : function() {
+            onApprove: function () {
+                var close = null;
                 $.ajax({
                     url: 'src/misc/postNote.php',
                     dataType: 'JSON',
-                    data: { postedBy: $("#employeeName").text(), message: noteTextForm.find("textarea").val(), category: 1 },
+                    async: false,
+                    data: {
+                        postedBy: $("#employeeName").text(),
+                        message: noteTextForm.find("textarea").val(),
+                        category: 1
+                    },
                     type: 'POST',
                     success: function (data) {
-                        postFeedEvent(internalFeed, data.newEvent);
+                        if (data.error === 0) {
+                            postFeedEvent(internalFeed, data.newEvent);
+                            noteTextForm.get(0).reset();
+                            close = true;
+                        } else {
+                            addMessageModal.find(".actions .button").addClass("disabled");
+                            resultPostErrorModal.find(".content .description>p").text(data.message);
+                            resultPostErrorModal.modal({
+                                closable: false, transition: 'vertical flip', allowMultiple: true,
+                                onApprove: function () {
+                                    addMessageModal.find(".actions .button").removeClass("disabled");
+                                }
+                            }).modal('show');
+                            close = false;
+                        }
                     }
                 });
-                noteTextForm.get(0).reset();
+                if (!close)
+                    return false;
             }
         }).modal('show');
     });
-    btnNoteCustomer.click(function() {
-        addMessageModal.children(".header").text("Add a note to the customer pool!");
+    btnNoteCustomer.click(function () {
+        addMessageModal.children(".header").text("Lägg till en anteckning om en kund!");
         addMessageModal.modal({
-            closable: false, transition: 'vertical flip',
-            onDeny: function() {
+            closable: false, transition: 'vertical flip', allowMultiple: true,
+            onDeny: function () {
                 noteTextForm.get(0).reset();
             },
-            onApprove : function() {
+            onApprove: function () {
+                var close = false;
                 $.ajax({
                     url: 'src/misc/postNote.php',
                     dataType: 'JSON',
-                    data: { postedBy: $("#employeeName").text(), message: noteTextForm.find("textarea").val(), category: 2 },
+                    async: false,
+                    data: {
+                        postedBy: $("#employeeName").text(),
+                        message: noteTextForm.find("textarea").val(),
+                        category: 2
+                    },
                     type: 'POST',
                     success: function (data) {
-                        postFeedEvent(customerFeed, data.newEvent);
+                        if (data.error === 0) {
+                            postFeedEvent(customerFeed, data.newEvent);
+                            noteTextForm.get(0).reset();
+                            close = true;
+                            console.log(close);
+                        } else {
+                            addMessageModal.find(".actions .button").addClass("disabled");
+                            resultPostErrorModal.find(".content .description>p").text(data.message);
+                            resultPostErrorModal.modal({
+                                closable: false, transition: 'vertical flip', allowMultiple: true,
+                                onApprove: function () {
+                                    addMessageModal.find(".actions .button").removeClass("disabled");
+                                }
+                            }).modal('show');
+                        }
                     }
                 });
-                noteTextForm.get(0).reset();
+                if (!close)
+                    return false;
             }
         }).modal('show');
     });
-    btnNoteInterpreter.click(function() {
-        addMessageModal.children(".header").text("Add a note to the interpreter pool!");
+    btnNoteInterpreter.click(function () {
+        addMessageModal.children(".header").text("Lägg till en anteckning om tolk!");
         addMessageModal.modal({
-            closable: false, transition: 'vertical flip',
-            onDeny: function() {
+            closable: false, transition: 'vertical flip', allowMultiple: true,
+            onDeny: function () {
                 noteTextForm.get(0).reset();
             },
-            onApprove : function() {
+            onApprove: function () {
+                var close = false;
                 $.ajax({
                     url: 'src/misc/postNote.php',
                     dataType: 'JSON',
-                    data: { postedBy: $("#employeeName").text(), message: noteTextForm.find("textarea").val(), category: 3 },
+                    async: false,
+                    data: {
+                        postedBy: $("#employeeName").text(),
+                        message: noteTextForm.find("textarea").val(),
+                        category: 3
+                    },
                     type: 'POST',
                     success: function (data) {
-                        postFeedEvent(interpreterFeed, data.newEvent);
+                        if (data.error === 0) {
+                            postFeedEvent(interpreterFeed, data.newEvent);
+                            noteTextForm.get(0).reset();
+                            close = true;
+                        } else {
+                            addMessageModal.find(".actions .button").addClass("disabled");
+                            resultPostErrorModal.find(".content .description>p").text(data.message);
+                            resultPostErrorModal.modal({
+                                closable: false, transition: 'vertical flip', allowMultiple: true,
+                                onApprove: function () {
+                                    addMessageModal.find(".actions .button").removeClass("disabled");
+                                }
+                            }).modal('show');
+                        }
                     }
                 });
-                noteTextForm.get(0).reset();
+                if (!close)
+                    return false;
             }
         }).modal('show');
     });
 
-    //Reset form input
-    addMessageModal.children('.close.icon').click( function() {
-        noteTextForm.get(0).reset();
-    });
-
-    dashboardMenuItem.click(function() {
+    dashboardMenuItem.click(function () {
         $(this).children('.icon').remove();
     });
 
     //Update
-    setInterval(function() {
+    setInterval(function () {
         $.ajax({
             url: 'src/misc/getAllNotes.php',
             dataType: 'JSON',
-            data: { isUpdate: 1, lastModified: lastModified },
+            data: {isUpdate: 1, lastModified: lastModified},
             cache: true,
             type: 'GET',
             success: function (data) {
@@ -148,13 +205,13 @@ $(document).ready(function () {
                     customerFeed.empty();
                     interpreterFeed.empty();
 
-                    $.each(data.data.internal, function(i, v) {
+                    $.each(data.data.internal, function (i, v) {
                         postFeedEvent(internalFeed, v);
                     });
-                    $.each(data.data.customers, function(i, v) {
+                    $.each(data.data.customers, function (i, v) {
                         postFeedEvent(customerFeed, v);
                     });
-                    $.each(data.data.interpreters, function(i, v) {
+                    $.each(data.data.interpreters, function (i, v) {
                         postFeedEvent(interpreterFeed, v);
                     });
                     internalFeed.removeClass('loading');
@@ -171,7 +228,7 @@ $(document).ready(function () {
      */
     $('.modal.commentOnTolk')
         .modal({
-            closable  : false,
+            closable: false,
             allowMultiple: false
         });
 
@@ -191,13 +248,13 @@ $(document).ready(function () {
     thirdModal.modal('setting', 'transition', "horizontal flip");
 
     //On close
-    firstModal.children('.close.icon').click( function() {
+    firstModal.children('.close.icon').click(function () {
         verifyTolkForm.get(0).reset();
     });
-    secondModal.children('.close.icon').click( function() {
+    secondModal.children('.close.icon').click(function () {
         verifyTolkForm.get(0).reset();
     });
-    thirdModal.children('.close.icon').click( function() {
+    thirdModal.children('.close.icon').click(function () {
         verifyTolkForm.get(0).reset();
         tolkCommentForm.get(0).reset();
     });
@@ -211,10 +268,10 @@ function postFeedEvent(feed, data) {
         date = $('<div class="date"></div>'),
         extraText = $('<div class="extra text"></div>');
     event.append($('<div class="label"><i class="circular inverted blue comment icon"></i></div>'));
-    summary.append($('<a>'+data.postedBy+'</a> posted a note on'));
+    summary.append($('<a>' + data.postedBy + '</a> posted a note on'));
     date.text(data.postedOn);
     summary.append(date);
-    extraText.append($('<p class="ui text">'+data.message+'</p>'));
+    extraText.append($('<p class="ui text">' + data.message + '</p>'));
     content.append(summary);
     content.append(extraText);
     event.append(content);

@@ -9,35 +9,35 @@
     <div class="ui stackable grid">
         <div class="row">
             <div class="five wide column">
-                <div class="ui header">Internal</div>
+                <div class="ui header">Interna anteckningar:</div>
                 <div class="ui horizontal divider"></div>
                 <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
                     <div class="ui feed internalFeed"></div>
                 </div>
                 <div class="ui teal labeled icon button btnNoteInternal">
-                    Post a note
+                    Skicka en anteckning
                     <i class="add icon"></i>
                 </div>
             </div>
             <div class="five wide column">
-                <div class="ui header">Customers</div>
+                <div class="ui header">Anteckningar om kunderna:</div>
                 <div class="ui horizontal divider"></div>
                 <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
                     <div class="ui feed customerFeed"></div>
                 </div>
                 <div class="ui teal labeled icon button btnNoteCustomer">
-                    Post a note
+                    Skicka en anteckning
                     <i class="add icon"></i>
                 </div>
             </div>
             <div class="five wide column">
-                <div class="ui header">Interpreters</div>
+                <div class="ui header">Anteckningar om tolkar:</div>
                 <div class="ui horizontal divider"></div>
                 <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
                     <div class="ui feed interpreterFeed"></div>
                 </div>
                 <div class="ui teal labeled icon button btnNoteInterpreter">
-                    Post a note
+                    Skicka en anteckning
                     <i class="add icon"></i>
                 </div>
             </div>
@@ -48,8 +48,18 @@
             </div>
         </div>
     </div>
+    <div class="ui small modal resultPostErrorModal">
+        <div class="header">Fel</div>
+        <div class="content">
+            <div class="description">
+                <p class="ui text"></p>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui positive button">OK</div>
+        </div>
+    </div>
     <div class="ui small modal addMessageModal">
-        <i class="close icon"></i>
         <div class="header"></div>
         <div class="content">
             <div class="description">
@@ -63,10 +73,10 @@
         </div>
         <div class="actions">
             <div class="ui black negative button">
-                Cancel
+                Avboka
             </div>
             <div class="ui positive right labeled icon button">
-                Post
+                Skicka
                 <i class="checkmark icon"></i>
             </div>
         </div>

@@ -129,7 +129,8 @@ $(document).ready(function () {
                             $('.button.btn-info').on("click",function() {
                                 var extraInfoCont = $('.modal.order-history');
                                 var id =$(this).parent("form").attr('id');
-                                $(this).addClass('loading');
+                                var btnInfo = $(this);
+                                btnInfo.addClass('loading');
                                 $.ajax({
                                     type: "POST",
                                     url: "../src/misc/orderMoreInfo.php",
@@ -166,12 +167,8 @@ $(document).ready(function () {
                                                 "</tr>");
                                         }
                                         extraInfoCont.modal('show');
-                                        $('#' + id).find('.button').removeClass('loading');
-                                        return false;
-                                    } else {
-                                        $('#' + id).find('.button').removeClass('loading');
-                                        return false;
                                     }
+                                    btnInfo.removeClass('loading');
                                 });
                             });
                         } else {
@@ -405,7 +402,8 @@ $(document).ready(function () {
     $('.button.btn-info').on("click",function() {
         var extraInfoCont = $('.modal.order-history');
         var id =$(this).parent("form").attr('id');
-        $(this).addClass('loading');
+        var btnInfo = $(this);
+        btnInfo.addClass('loading');
         $.ajax({
             type: "POST",
             url: "../src/misc/orderMoreInfo.php",
@@ -443,7 +441,7 @@ $(document).ready(function () {
                 }
                 extraInfoCont.modal('show');
             }
-            $('#' + id).find('.button').removeClass('loading');
+            btnInfo.removeClass('loading');
         });
     });
 
@@ -784,7 +782,8 @@ $(document).ready(function () {
                     $('.button.btn-info').on("click",function() {
                         var extraInfoCont = $('.modal.order-history');
                         var id =$(this).parent("form").attr('id');
-                        $(this).addClass('loading');
+                        var btnInfo = $(this);
+                        btnInfo.addClass('loading');
                         $.ajax({
                             type: "POST",
                             url: "../src/misc/orderMoreInfo.php",
@@ -821,12 +820,8 @@ $(document).ready(function () {
                                         "</tr>");
                                 }
                                 extraInfoCont.modal('show');
-                                $('#' + id).find('.button').removeClass('loading');
-                                return false;
-                            } else {
-                                $('#' + id).find('.button').removeClass('loading');
-                                return false;
                             }
+                            btnInfo.removeClass('loading');
                         });
                     });
                 } else {
@@ -929,7 +924,8 @@ $(document).ready(function () {
                     $('.button.btn-info').on("click",function() {
                         var extraInfoCont = $('.modal.order-history');
                         var id =$(this).parent("form").attr('id');
-                        $(this).addClass('loading');
+                        var btnInfo = $(this);
+                        btnInfo.addClass('loading');
                         $.ajax({
                             type: "POST",
                             url: "../src/misc/orderMoreInfo.php",
@@ -966,12 +962,8 @@ $(document).ready(function () {
                                         "</tr>");
                                 }
                                 extraInfoCont.modal('show');
-                                $('#' + id).find('.button').removeClass('loading');
-                                return false;
-                            } else {
-                                $('#' + id).find('.button').removeClass('loading');
-                                return false;
                             }
+                            btnInfo.removeClass('loading');
                         });
                     });
                 } else {
