@@ -8,6 +8,35 @@ $(document).ready(function () {
 
     $('.left.sidebar').first().sidebar('attach events', '.toggle.button').sidebar('setting', 'transition', 'slide along');
 
+    $("#btnSendToFinance").click(function() {
+        $.ajax({
+            type: "POST",
+            url: "src/misc/sendToFinance.php",
+            data: $("#formSendToFinance").serialize(),
+            dataType: "json",
+            beforeSend: function () {
+                $("#btnSendToFinance").addClass('loading');
+            }
+        }).done(function (data) {
+            var modal = $(".modal.order-history");
+            var successElem = modal.find(".content .segment>.ui.positive.message");
+            var errorElem =  modal.find(".content .segment>.ui.error.message");
+            if (data.error == 0) {
+                errorElem.show();
+                successElem.children("p").text(data.positiveMessage);
+                successElem.children('.header').text(data.messageHeader);
+                successElem.hide();
+            } else {
+                successElem.hide();
+                errorElem.children("p").text(data.errorMessage);
+                errorElem.children('.header').text(data.messageHeader);
+                errorElem.show();
+            }
+            $("#btnSendToFinance").removeClass('loading');
+        });
+        return false;
+    });
+
     orderHistoryFilterForm.form({
             orderNumber: {
                 identifier  : 'orderNumber',
@@ -124,6 +153,12 @@ $(document).ready(function () {
                                 $(".typeTip").popup();
                             }
                             $('.modal.order-history')
+                                .modal({closable: false, onDeny: function(){return false;},
+                                onApprove: function() {
+                                    var modal = $(".modal.order-history");
+                                    modal.find(".content .segment>.ui.positive.message").hide();
+                                    modal.find(".content .segment>.ui.error.message").hide();
+                                }})
                                 .modal('setting', 'transition', 'vertical flip');
 
                             $('.button.btn-info').on("click",function() {
@@ -155,7 +190,7 @@ $(document).ready(function () {
                                             "<tr><td colspan='5'><div class='ui center aligned header'>"+
                                             "Det finns ingen tolk tilldelats för denna ordning ännu."+
                                             "</div></td></tr>");
-                                        if (data.order.o_tolkarPersonalNumber != null) {
+                                        if (data.order.o_tolkarPersonalNumber) {
                                             tolkBody.find('tr').remove();
                                             tolkBody.append(
                                                 "<tr>" +
@@ -165,6 +200,12 @@ $(document).ready(function () {
                                                 "<td>" + data.tolk.u_mobile + "</td>" +
                                                 "<td>" + data.tolk.u_city + "</td>" +
                                                 "</tr>");
+                                            var sendToFinance = $("#formSendToFinance");
+                                            sendToFinance.find("#orderNumber").val(data.order.o_orderNumber);
+                                            sendToFinance.find("#tolkNumber").val(data.order.o_tolkarPersonalNumber);
+                                            $("#btnSendToFinance").removeClass("disabled");
+                                        } else {
+                                            $("#btnSendToFinance").addClass("disabled");
                                         }
                                         extraInfoCont.modal('show');
                                     }
@@ -438,6 +479,12 @@ $(document).ready(function () {
                         "<td>" + data.tolk.u_mobile + "</td>" +
                         "<td>" + data.tolk.u_city + "</td>" +
                         "</tr>");
+                    var sendToFinance = $("#formSendToFinance");
+                    sendToFinance.find("#orderNumber").val(data.order.o_orderNumber);
+                    sendToFinance.find("#tolkNumber").val(data.order.o_tolkarPersonalNumber);
+                    $("#btnSendToFinance").removeClass("disabled");
+                } else {
+                    $("#btnSendToFinance").addClass("disabled");
                 }
                 extraInfoCont.modal('show');
             }
@@ -777,6 +824,12 @@ $(document).ready(function () {
                         $(".typeTip").popup();
                     }
                     $('.modal.order-history')
+                        .modal({closable: false,onDeny: function(){return false;},
+                            onApprove: function() {
+                                var modal = $(".modal.order-history");
+                                modal.find(".content .segment>.ui.positive.message").hide();
+                                modal.find(".content .segment>.ui.error.message").hide();
+                            }})
                         .modal('setting', 'transition', 'vertical flip');
 
                     $('.button.btn-info').on("click",function() {
@@ -818,6 +871,12 @@ $(document).ready(function () {
                                         "<td>" + data.tolk.u_mobile + "</td>" +
                                         "<td>" + data.tolk.u_city + "</td>" +
                                         "</tr>");
+                                    var sendToFinance = $("#formSendToFinance");
+                                    sendToFinance.find("#orderNumber").val(data.order.o_orderNumber);
+                                    sendToFinance.find("#tolkNumber").val(data.order.o_tolkarPersonalNumber);
+                                    $("#btnSendToFinance").removeClass("disabled");
+                                } else {
+                                    $("#btnSendToFinance").addClass("disabled");
                                 }
                                 extraInfoCont.modal('show');
                             }
@@ -919,6 +978,12 @@ $(document).ready(function () {
                         $(".typeTip").popup();
                     }
                     $('.modal.order-history')
+                        .modal({closable: false, onDeny: function(){return false;},
+                            onApprove: function() {
+                                var modal = $(".modal.order-history");
+                                modal.find(".content .segment>.ui.positive.message").hide();
+                                modal.find(".content .segment>.ui.error.message").hide();
+                            }})
                         .modal('setting', 'transition', 'vertical flip');
 
                     $('.button.btn-info').on("click",function() {
@@ -960,6 +1025,12 @@ $(document).ready(function () {
                                         "<td>" + data.tolk.u_mobile + "</td>" +
                                         "<td>" + data.tolk.u_city + "</td>" +
                                         "</tr>");
+                                    var sendToFinance = $("#formSendToFinance");
+                                    sendToFinance.find("#orderNumber").val(data.order.o_orderNumber);
+                                    sendToFinance.find("#tolkNumber").val(data.order.o_tolkarPersonalNumber);
+                                    $("#btnSendToFinance").removeClass("disabled");
+                                } else {
+                                    $("#btnSendToFinance").addClass("disabled");
                                 }
                                 extraInfoCont.modal('show');
                             }

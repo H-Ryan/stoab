@@ -57,7 +57,6 @@ try {
         <script type="text/javascript" src="../lib/jq-validate/additional-methods.min.js"></script>
         <script type="text/javascript" src="../lib/stoab/stoab.min.js"></script>
         <script type="text/javascript" src="../lib/tinymce/tinymce.min.js"></script>
-        <script type="text/javascript" src="../lib/flowtype.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
         <!--[if lt IE 9]>
         <div style=' clear: both; text-align:center; position: relative;'>

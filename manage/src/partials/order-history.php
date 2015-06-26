@@ -287,21 +287,23 @@ if ($statement->rowCount() > 0) {
             </div>
             <div class="active content">
                 <div class="description">
-                    <table class="ui celled table orderExtra">
-                        <thead>
-                        <tr>
-                            <th>Gatuadress</th>
-                            <th>Postnummer</th>
-                            <th>Ort</th>
-                            <th>Klient</th>
-                            <th>Kommentar</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div style="overflow-x: auto; overflow-y: hidden;">
+                        <table class="ui unstackable celled table orderExtra">
+                            <thead>
+                            <tr>
+                                <th>Gatuadress</th>
+                                <th>Postnummer</th>
+                                <th>Ort</th>
+                                <th>Klient</th>
+                                <th>Kommentar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="title">
@@ -310,24 +312,45 @@ if ($statement->rowCount() > 0) {
             </div>
             <div class="content">
                 <div class="description">
-                    <table class="ui celled table tolkExtra">
-                        <thead>
-                        <tr class="tableTolkRow">
-                            <th>Namn</th>
-                            <th>Tolknummer</th>
-                            <th>Telefonnummer</th>
-                            <th>Mobilnummer</th>
-                            <th>Hemort</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div style="overflow-x: auto; overflow-y: hidden;">
+                        <table class="ui unstackable celled table tolkExtra">
+                            <thead>
+                            <tr class="tableTolkRow">
+                                <th>Namn</th>
+                                <th>Tolknummer</th>
+                                <th>Telefonnummer</th>
+                                <th>Mobilnummer</th>
+                                <th>Hemort</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <div class="ui basic segment">
+            <div class="ui hidden positive message">
+                <div class="header"></div>
+                <p class="ui text"></p>
+            </div>
+            <div class="ui hidden error message">
+                <div class="header">Fel</div>
+                <p class="ui text"></p>
             </div>
         </div>
     </div>
     <div class="actions center aligned">
+        <form id="formSendToFinance" hidden="hidden">
+
+            <input type="hidden" name="orderNumber" id="orderNumber" />
+            <input type="hidden" name="tolkNumber" id="tolkNumber"/>
+        </form>
+        <button type="button" class="ui right labeled icon negative orange button" id="btnSendToFinance">
+            Send to finance
+            <i class="mail icon"></i>
+        </button>
         <div class="ui positive right labeled icon button">
             OK <i class="checkmark icon"></i>
         </div>

@@ -199,13 +199,11 @@ $(document).ready(function () {
                 }).done(function (data) {
                     if (data.error == 0) {
                         var successElem = resendForm.find(".ui.positive.message");
-                        resendForm.removeClass("loading").addClass("error");
                         successElem.children("p").text(data.positiveMessage);
                         successElem.children('.header').text(data.messageHeader);
                         successElem.show();
                     } else {
                         var errorElem = resendForm.find(".ui.error.message");
-                        resendForm.removeClass("loading").addClass("error");
                         errorElem.children("p").text(data.errorMessage);
                         errorElem.children('.header').text(data.messageHeader);
                         errorElem.show();
