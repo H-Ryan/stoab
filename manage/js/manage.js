@@ -129,8 +129,13 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
                 if (data.error == 0) {
-                    manageForm.removeClass('loading');
                     window.location.replace("main.php");
+                } else {
+                    var errorElem = manageForm.find(".error.message");
+                    errorElem.find('.header').text(data.messageHeader);
+                    errorElem.find('.text').text(data.errorMessage);
+                    errorElem.show();
+                    manageForm.removeClass('loading');
                 }
             });
         }
@@ -151,8 +156,13 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
                 if (data.error == 0) {
-                    manageForm.removeClass('loading');
                     window.location.replace("main.php");
+                } else {
+                    var errorElem = manageForm.find(".error.message");
+                    errorElem.find('.header').text(data.messageHeader);
+                    errorElem.find('.text').text(data.errorMessage);
+                    errorElem.show();
+                    manageForm.removeClass('loading');
                 }
             });
         }
@@ -173,8 +183,13 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
                 if (data.error == 0) {
-                    manageForm.removeClass('loading');
                     window.location.replace("main.php");
+                } else {
+                    var errorElem = manageForm.find(".error.message");
+                    errorElem.find('.header').text(data.messageHeader);
+                    errorElem.find('.text').text(data.errorMessage);
+                    errorElem.show();
+                    manageForm.removeClass('loading');
                 }
             });
         }
