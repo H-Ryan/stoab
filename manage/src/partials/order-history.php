@@ -4,9 +4,9 @@
  * Date: 21-02-2015
  * Time: 3:46 PM
  */
-$numHistory = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_date >= CURRENT_DATE - 100")->fetchColumn();
+$numHistory = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE (o_date <= CURRENT_DATE - 1 OR ((o_date + 1) = CURRENT_DATE AND TIMESTAMP(o_date + 1, '08:15:00') <= NOW())) AND o_date >= DATE_ADD(CURDATE(), INTERVAL -100 DAY)")->fetchColumn();
 
-$statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_date >= CURRENT_DATE - 100 ORDER BY o_date DESC  LIMIT 10");
+$statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE (o_date <= CURRENT_DATE - 1 OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') >= NOW())) AND o_date >= DATE_ADD(CURDATE(), INTERVAL -100 DAY) ORDER BY o_date DESC  LIMIT 10");
 $statement->execute();
 $statement->setFetchMode(PDO::FETCH_OBJ);
 $orders = array();
@@ -343,16 +343,60 @@ if ($statement->rowCount() > 0) {
     </div>
     <div class="actions center aligned">
         <form id="formSendToFinance" hidden="hidden">
-
             <input type="hidden" name="orderNumber" id="orderNumber" />
             <input type="hidden" name="tolkNumber" id="tolkNumber"/>
         </form>
+        <button type="button" id="resendToTolk" class="ui teal button">Skicka epost till tolk</button>
+        <button type="button" id="resendToClient" class="ui purple button">Skicka epost till kunden</button>
         <button type="button" class="ui right labeled icon negative orange button" id="btnSendToFinance">
             Send to finance
             <i class="mail icon"></i>
         </button>
         <div class="ui positive right labeled icon button">
             OK <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+<div class="ui basic modal modalResend">
+    <div class="center aligned header">
+        Varning
+    </div>
+    <div class="content">
+        <div class="image">
+            <i class="warning sign icon"></i>
+        </div>
+        <div class="description">
+            <div class="ui left aligned inverted header">
+                Är du säker på att du vill skicka det här e-post?
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="two fluid ui inverted buttons">
+            <div class="ui red cancel basic inverted button">
+                <i class="remove icon"></i>Nej
+            </div>
+            <div class="ui green ok basic inverted button">
+                <i class="checkmark icon"></i>Ja
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui small modal emailResendResult">
+    <div class="center aligned header">
+        Info
+    </div>
+    <div class="content">
+        <div class="image">
+            <i class="warning sign icon"></i>
+        </div>
+        <div class="description">
+            <div class="ui left aligned header"></div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui green ok button">
+            <i class="checkmark icon"></i>OK
         </div>
     </div>
 </div>

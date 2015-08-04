@@ -36,7 +36,7 @@ if(isset($_POST['code']) && isset($_POST['currentPage']))
     $start = $end - 10;
     try {
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date <= CURRENT_DATE() - 1 AND o_date >= CURRENT_DATE - 100 ORDER BY o_date DESC LIMIT :start, 10");
+        $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE (o_date <= CURRENT_DATE - 1 OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') >= NOW())) AND o_date >= DATE_ADD(CURDATE(), INTERVAL -100 DAY) ORDER BY o_date DESC LIMIT :start, 10");
 
         $statement->bindParam(":start", $start, PDO::PARAM_INT);
         $statement->execute();

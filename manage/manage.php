@@ -209,6 +209,46 @@ try {
                     <tbody>
                     <tr>
                         <td>
+                            <div class="ui header">Klient:</div>
+                        </td>
+                        <td>
+                            <?php echo $order->o_client ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="ui header">Kontaktperson:</div>
+                        </td>
+                        <td>
+                            <?php echo $order->o_orderer ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="ui header">E-post:</div>
+                        </td>
+                        <td>
+                            <?php echo $order->o_email ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="ui header">Telefon:</div>
+                        </td>
+                        <td>
+                            <?php echo $order->o_tel ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="ui header">Mobile:</div>
+                        </td>
+                        <td>
+                            <?php echo $order->o_mobile ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <div class="ui header">Gatuadress:</div>
                         </td>
                         <td>
@@ -229,14 +269,6 @@ try {
                         </td>
                         <td>
                             <?php echo $order->o_city ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="ui header">Klient:</div>
-                        </td>
-                        <td>
-                            <?php echo $order->o_client ?>
                         </td>
                     </tr>
                     <tr>

@@ -32,7 +32,7 @@ if (isset($_POST['orderId'])) {
     }
     try {
         $orderNumber = $_POST['orderId'];
-        $statement = $con->prepare("SELECT o_orderNumber, o_address, o_zipCode, o_city, o_client, o_comments, o_tolkarPersonalNumber FROM t_order WHERE o_orderNumber=:orderNumber");
+        $statement = $con->prepare("SELECT o_orderNumber, o_state, o_address, o_zipCode, o_city, o_client, o_comments, o_tolkarPersonalNumber FROM t_order WHERE o_orderNumber=:orderNumber");
         $statement->bindParam(":orderNumber", $orderNumber);
         $statement->execute();
 

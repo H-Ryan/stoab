@@ -1,10 +1,69 @@
 $(document).ready(function () {
     "use strict";
-    $('.page.dimmer').hide();
     var orderForm = $('.ui.form.orderForm'),
         tolkSearchFrom = $('.ui.form.tolk-search'),
-        orderHistoryFilterForm = $("#orderFilterForm");
+        orderHistoryFilterForm = $("#orderFilterForm"),
+        modalResend= $('.modal.modalResend'),
+        emailSendForm = $("#formSendToFinance"),
+        emailResendResult = $(".modal.emailResendResult");
     $('.ui.fluid.accordion').accordion();
+
+    $("#resendToTolk").on('click', function() {
+        modalResend.modal('show');
+        modalResend.modal({
+            closable: false,
+            onDeny: function () {
+                return true;
+            },
+            onApprove: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "src/misc/resendTolkConfirm.php",
+                    data: emailSendForm.serialize(),
+                    dataType: "json",
+                    beforeSend: function () {
+                        emailSendForm.addClass('loading');
+                    }
+                }).done(function (data) {
+                    if (data.error == 0) {
+                        emailResendResult.find(".content .description .header").text("The email has been successfuly sent to the interpreter!");
+                    } else {
+                        emailResendResult.find(".content .description .header").text(data.errorMessage);
+                    }
+                    emailResendResult.modal('show');
+                    emailSendForm.removeClass('loading');
+                });
+            }
+        });
+    });
+    $("#resendToClient").on('click', function() {
+        modalResend.modal('show');
+        modalResend.modal({
+            closable: false,
+            onDeny: function () {
+                return true;
+            },
+            onApprove: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "src/misc/resendClientAboutTolkAssign.php",
+                    data: emailSendForm.serialize(),
+                    dataType: "json",
+                    beforeSend: function () {
+                        $("#formSendToFinance").addClass('loading');
+                    }
+                }).done(function (data) {
+                    if (data.error == 0) {
+                        emailResendResult.find(".content>.description>.header").text("The email has been successfuly sent to the client!");
+                    } else {
+                        emailResendResult.find(".content>.description>.header").text(data.errorMessage);
+                    }
+                    emailResendResult.modal('show');
+                    emailSendForm.removeClass('loading');
+                });
+            }
+        });
+    });
 
     $('.left.sidebar').first().sidebar('attach events', '.toggle.button').sidebar('setting', 'transition', 'slide along');
 
@@ -206,6 +265,13 @@ $(document).ready(function () {
                                             $("#btnSendToFinance").removeClass("disabled");
                                         } else {
                                             $("#btnSendToFinance").addClass("disabled");
+                                        }
+                                        if(data.order.o_state !== 'B') {
+                                            $("#resendToTolk").addClass("disabled");
+                                            $("#resendToClient").addClass("disabled");
+                                        } else {
+                                            $("#resendToTolk").removeClass("disabled");
+                                            $("#resendToClient").removeClass("disabled");
                                         }
                                         extraInfoCont.modal('show');
                                     }
@@ -431,7 +497,8 @@ $(document).ready(function () {
         adjustTime(startHour, startMinute, endHour, endMinute);
     });
 
-    $('.dropdown').dropdown({transition: 'drop'});
+    $('.ui.fluid.dropdown').dropdown();
+    $('.ui.search.dropdown').dropdown();
 
     $('.logout-btn').click(function () {
         $.ajax({type: "POST", url: "src/misc/logout.php"}).done(function () {
@@ -469,6 +536,13 @@ $(document).ready(function () {
                     "<tr><td colspan='5'><div class='ui center aligned header'>"+
                     "Det finns ingen tolk tilldelats för denna ordning ännu."+
                     "</div></td></tr>");
+                if(data.order.o_state !== 'B') {
+                    $("#resendToTolk").addClass("disabled");
+                    $("#resendToClient").addClass("disabled");
+                } else {
+                    $("#resendToTolk").removeClass("disabled");
+                    $("#resendToClient").removeClass("disabled");
+                }
                 if (data.order.o_tolkarPersonalNumber != null) {
                     tolkBody.find('tr').remove();
                     tolkBody.append(
@@ -861,6 +935,13 @@ $(document).ready(function () {
                                     "<tr><td colspan='5'><div class='ui center aligned header'>"+
                                     "Det finns ingen tolk tilldelats för denna ordning ännu."+
                                     "</div></td></tr>");
+                                if(data.order.o_state !== 'B') {
+                                    $("#resendToTolk").addClass("disabled");
+                                    $("#resendToClient").addClass("disabled");
+                                } else {
+                                    $("#resendToTolk").removeClass("disabled");
+                                    $("#resendToClient").removeClass("disabled");
+                                }
                                 if (data.order.o_tolkarPersonalNumber != null) {
                                     tolkBody.find('tr').remove();
                                     tolkBody.append(
@@ -1015,6 +1096,13 @@ $(document).ready(function () {
                                     "<tr><td colspan='5'><div class='ui center aligned header'>"+
                                     "Det finns ingen tolk tilldelats för denna ordning ännu."+
                                     "</div></td></tr>");
+                                if(data.order.o_state !== 'B') {
+                                    $("#resendToTolk").addClass("disabled");
+                                    $("#resendToClient").addClass("disabled");
+                                } else {
+                                    $("#resendToTolk").removeClass("disabled");
+                                    $("#resendToClient").removeClass("disabled");
+                                }
                                 if (data.order.o_tolkarPersonalNumber != null) {
                                     tolkBody.find('tr').remove();
                                     tolkBody.append(
@@ -1199,7 +1287,8 @@ $(document).ready(function () {
             },
             start_hour: {
                 required: true,
-                digits: true
+                digits: true,
+                range: [0, 23]
             },
             start_minute: {
                 required: true,
@@ -1207,7 +1296,8 @@ $(document).ready(function () {
             },
             end_hour: {
                 required: true,
-                digits: true
+                digits: true,
+                range: [0, 23]
             },
             end_minute: {
                 required: true,
@@ -1311,10 +1401,22 @@ $(document).ready(function () {
                 maxlength: "Fält plats bör<br />innehålla mindre än {0} tecken."
             },
             end_hour: {
-                required: "Fel"
+                required: "Fel",
+                digits: "Fel",
+                range: "Fel"
             },
             end_minute: {
-                required: "Fel"
+                required: "Fel",
+                digits: "Fel"
+            },
+            start_hour: {
+                required: "Fel",
+                digits: "Fel",
+                range: "Fel"
+            },
+            start_minute: {
+                required: "Fel",
+                digits: "Fel"
             }
 
         }
@@ -1366,6 +1468,8 @@ $(document).ready(function () {
     $(".button.back-btn").click(function () {
         switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset:visible').prev());
     });
+
+    $('.page.dimmer').hide();
 });
 
 function switchFromTo(from, to) {

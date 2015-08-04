@@ -36,7 +36,7 @@ if(isset($_GET['pageNum']))
     $start = $end - 10;
     try {
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date >= CURRENT_DATE ORDER BY o_date ASC LIMIT :start, 10");
+        $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()) ORDER BY o_date ASC LIMIT :start, 10");
         $statement->bindParam(":start", $start, PDO::PARAM_INT);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);

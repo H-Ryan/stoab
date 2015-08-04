@@ -141,7 +141,7 @@
 
                                 <div id="startTime" class="two fields">
                                     <div class="field">
-                                        <select title="Starttid" name="start_hour" id="starttid" class="ui fluid dropdown">
+                                        <select title="Starttid" name="start_hour" id="starttid" class="ui search fluid dropdown">
                                             <?php
                                             for ($i = 0; $i < 3; $i++) {
                                                 for ($j = 0; $j < 10; $j++) {
@@ -157,7 +157,7 @@
                                         </select>
                                     </div>
                                     <div class="field">
-                                        <select title="Starttid" name="start_minute" id="starttid1" class="ui fluid dropdown">
+                                        <select title="Starttid" name="start_minute" id="starttid1" class="ui search fluid dropdown">
                                             <option value="0" selected>00</option>
                                             <option value="1">15</option>
                                             <option value="2">30</option>
@@ -171,7 +171,7 @@
 
                                 <div id="endTime" class="two fields">
                                     <div class="field">
-                                        <select title="Sluttid" name="end_hour" id="sluttid" class="ui fluid dropdown">
+                                        <select title="Sluttid" name="end_hour" id="sluttid" class="ui search fluid dropdown">
                                             <?php
                                             for ($i = 0; $i < 3; $i++) {
                                                 for ($j = 0; $j < 10; $j++) {
@@ -187,7 +187,7 @@
                                         </select>
                                     </div>
                                     <div class="field">
-                                        <select title="Sluttid1" name="end_minute" id="sluttid1" class="ui fluid dropdown">
+                                        <select title="Sluttid1" name="end_minute" id="sluttid1" class="ui search fluid dropdown">
                                             <option value="0">00</option>
                                             <option value="1" selected>15</option>
                                             <option value="2">30</option>

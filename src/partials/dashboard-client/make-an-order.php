@@ -57,14 +57,14 @@
                                     </div>
                                 </div>
                                 <div class="two column row">
-                                    <div class="left floated column">
+                                   <!-- <div class="left floated column">
                                         <div class="field">
                                             <div class="ui radio checkbox">
                                                 <label for="KP">Kontaktperson</label>
                                                 <input id="KP" type="radio" name="type" value="KP">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="column">
                                         <div class="field">
                                             <div class="ui radio checkbox">
@@ -73,12 +73,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="one column row">
-                                    <div class="field">
-                                        <div class="ui radio checkbox">
-                                            <label for="SS">Språkstöd</label>
-                                            <input id="SS" type="radio" name="type" value="SS">
+                                    <div class="column">
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <label for="SS">Språkstöd</label>
+                                                <input id="SS" type="radio" name="type" value="SS">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
