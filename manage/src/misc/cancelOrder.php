@@ -11,7 +11,7 @@ include "../../../src/db/dbConfig.php";
 include "../../../src/db/dbConnection.php";
 include "../../../src/misc/functions.php";
 include "../../../src/email/Emails.php";
-
+include "SMS_Service.php";
 
 $referrer = $_SERVER['HTTP_REFERER'];
 if (!empty($referrer)) {
@@ -313,6 +313,18 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                                 $emailer->send_email($tolk->u_email, $tolk->u_firstName . " " . $tolk->u_lastName, $tolkSubject, $messageToOldTolkCancel);
                                 $emailer->send_email($order->o_email, $order->o_orderer, $customerSubject, $messageToCustomerCancel);
                             }
+
+                            //SMS
+                            $smsService = new SMS_Service();
+                            $text = "Hej,
+                                Uppdrag ($orderNumber) har förändrats eller Avbrutits.
+                                Var vänlig kontrollera din e-post.
+                                OBS! Du kan inte svara på detta meddelande.
+                                Mvh STÖ AB";
+                            $smsService->setTo($tolk->u_mobile);
+                            $smsService->setText($text);
+                            $smsService->generateSMS()->sendSMS();
+
                             $messageToFinance = "<!DOCTYPE html><html>
                         <head>
                             <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
@@ -709,6 +721,17 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                         </html>";
                             $emailer->send_email("ekonomi@sarvari.se", "Ekonomi", $finance_subject, $messageToFinance);
                         }
+                        //SMS
+                        $smsService = new SMS_Service();
+                        $text = "Hej, "
+                            ."ditt uppdrag ($orderNumber) har avbrutits. "
+                            ."Var vänlig kontrollera din e-post. "
+                            ."OBS! Du kan inte svara på detta meddelande. "
+                            ."Mvh STÖ AB";
+
+                        $smsService->setTo($tolk->u_mobile);
+                        $smsService->setText($text);
+                        $smsService->generateSMS()->sendSMS();
 
                     } else {
                         $data["error"] = 1;

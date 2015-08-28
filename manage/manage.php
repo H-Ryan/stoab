@@ -13,14 +13,14 @@ if (!empty($referrer)) {
     exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
 }
 
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3200)) {
     session_unset();
     session_destroy();
 }
 $_SESSION['LAST_ACTIVITY'] = time();
 if (!isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();
-} else if (time() - $_SESSION['CREATED'] > 1800) {
+} else if (time() - $_SESSION['CREATED'] > 3200) {
     session_regenerate_id(true);
     $_SESSION['CREATED'] = time();
 }

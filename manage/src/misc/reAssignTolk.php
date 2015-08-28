@@ -11,6 +11,7 @@ include "../../../src/db/dbConfig.php";
 include "../../../src/db/dbConnection.php";
 include "../../../src/misc/functions.php";
 include "../../../src/email/Emails.php";
+include "SMS_Service.php";
 
 $referrer = $_SERVER['HTTP_REFERER'];
 if (!empty($referrer)) {
@@ -431,88 +432,6 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                                             $emailer->send_email($oldTolk->u_email, $oldTolk->u_firstName . " " . $oldTolk->u_lastName, $oldTolk_subject, $messageToOldTolkCancel);
                                         }
                                         $data["error"] = 0;
-                                        $messageToFinance = "<!DOCTYPE html><html>
-                        <head>
-                            <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
-                        </head>
-                        <body>
-                        <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
-                            Den följande ordning har markerats som slutförd. Gå vidare till fakturering och redovisning.
-                        </p>
-                        <hr style='width: 80%;
-                                        margin-left: 10%;'/>
-                        <h2 style='text-align: center; margin-top: 5%;'>Tolkuppdrag</h2>
-
-                        <h2 style='text-align: center; margin-top: 5%;'>Uppdragsnr: " . $order->o_orderNumber . "</h2>
-                        <table style='width: 80%;
-                                        margin-left: 10%;
-                                        margin-right: 10%;
-                                        text-align: center;
-                                        font-family: verdana, arial, sans-serif;
-                                        font-size: 14px;
-                                        color: #333333;
-                                        border-radius: 5px;
-                                        border: 1px solid #999999;' cellpadding='10'>
-                            <thead>
-                            <tr>
-                                <th style='background-color: #599CFF; font-size: 18px;padding: 8px;
-                                            border-radius: inherit; border: 1px solid black;'>Uppdrag
-                                </th>
-                                <th style='background-color: #599CFF; font-size: 18px;padding: 8px;
-                                            border-radius: inherit; border: 1px solid black;'>Tolk
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td style='background-color: #d4e3e5;padding: 8px;border: 1px solid #a9c6c9;'>
-                                    <p><span style='font-weight:bold;'>Kundnummer:</span> " . $order->o_kundNumber . "</p>
-                                    <p><span style='font-weight:bold;'>Datum:</span> " . $order->o_date . "</p>
-
-                                    <p><span style='font-weight:bold;'>Starttid:</span> " . $timeStart . "</p>
-
-                                    <p><span style='font-weight:bold;'>Sluttid:</span> " . $timeEnd . "</p>
-
-                                    <p><span style='font-weight:bold;'>Plats:</span> " . $order->o_address . "</p>
-
-                                    <p><span style='font-weight:bold;'>Postnummer:</span> " . $order->o_zipCode . "</p>
-
-                                    <p><span style='font-weight:bold;'>Ort:</span> " . $order->o_city . "</p>
-
-                                    <p><span style='font-weight:bold;'>Typ av uppdrag:</span> " . $interpType . "</p>
-
-                                    <p><span style='font-weight:bold;'>Språk:</span> " . $order->o_language . "</p>
-
-                                    <p><span style='font-weight:bold;'>Klient:</span> " . $order->o_client . "</p>
-
-                                    <p><span style='font-weight:bold;'>Kontaktperson:</span> " . $order->o_orderer . "</p>
-
-                                    <p><span style='font-weight:bold;'>Telefonnr:</span> " . $order->o_tel . "</p>
-
-                                    <p><span style='font-weight:bold;'>Mobil:</span> " . $order->o_mobile . "</p>
-
-                                    <p><span style='font-weight:bold;'>E-postadress:</span> " . $order->o_email . "</p>
-                                </td>
-                                <td style='background-color: #d4e3e5;padding: 8px;border: 1px solid #a9c6c9;'>
-                                    <p><span style='font-weight:bold;'>Tolknummer:</span> " . $tolk->t_tolkNumber . "</p>
-                                    <p><span style='font-weight:bold;'>Namn:</span> " . $tolk->u_firstName . " " . $tolk->u_lastName . "</p>
-
-                                    <p><span style='font-weight:bold;'>Telefonnr:</span> " . $tolk->u_tel . "</p>
-
-                                    <p><span style='font-weight:bold;'>Mobil:</span> " . $tolk->u_mobile . "</p>
-
-                                    <p><span style='font-weight:bold;'>E-postadress:</span> " . $tolk->u_email . "</p>
-
-                                    <p><span style='font-weight:bold;'>Hemort:</span> " . $tolk->u_city . "</p>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <hr style='width: 80%;
-                                        margin-left: 10%;'/>
-                        </body>
-                        </html>";
-                                        $emailer->send_email("ekonomi@sarvari.se", "Ekonomi", $finance_subject, $messageToFinance);
                                     } else {
                                         $data["error"] = 1;
                                         $data["messageHeader"] = "Error";
@@ -606,6 +525,99 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                         </html>";
                                     $emailer->send_email("ekonomi@sarvari.se", "Ekonomi", $finance_subject, $messageToCustomerAssign);
                                 }
+                                //SMS
+                                $smsService = new SMS_Service();
+                                $text = "Hej, "
+                                    ."du har ett uppdrag ($orderNumber). "
+                                    ."Var vänlig kontrollera din e-post. "
+                                    ."OBS! Du kan inte svara på detta meddelande. "
+                                    ."Mvh STÖ AB";
+                                $smsService->setTo($tolk->u_mobile);
+                                $smsService->setText($text);
+                                $smsService->generateSMS()->sendSMS();
+
+                                $messageToFinance = "<!DOCTYPE html><html>
+                        <head>
+                            <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+                        </head>
+                        <body>
+                        <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
+                            Den följande ordning har markerats som slutförd. Gå vidare till fakturering och redovisning.
+                        </p>
+                        <hr style='width: 80%;
+                                        margin-left: 10%;'/>
+                        <h2 style='text-align: center; margin-top: 5%;'>Tolkuppdrag</h2>
+
+                        <h2 style='text-align: center; margin-top: 5%;'>Uppdragsnr: " . $order->o_orderNumber . "</h2>
+                        <table style='width: 80%;
+                                        margin-left: 10%;
+                                        margin-right: 10%;
+                                        text-align: center;
+                                        font-family: verdana, arial, sans-serif;
+                                        font-size: 14px;
+                                        color: #333333;
+                                        border-radius: 5px;
+                                        border: 1px solid #999999;' cellpadding='10'>
+                            <thead>
+                            <tr>
+                                <th style='background-color: #599CFF; font-size: 18px;padding: 8px;
+                                            border-radius: inherit; border: 1px solid black;'>Uppdrag
+                                </th>
+                                <th style='background-color: #599CFF; font-size: 18px;padding: 8px;
+                                            border-radius: inherit; border: 1px solid black;'>Tolk
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style='background-color: #d4e3e5;padding: 8px;border: 1px solid #a9c6c9;'>
+                                    <p><span style='font-weight:bold;'>Kundnummer:</span> " . $order->o_kundNumber . "</p>
+                                    <p><span style='font-weight:bold;'>Datum:</span> " . $order->o_date . "</p>
+
+                                    <p><span style='font-weight:bold;'>Starttid:</span> " . $timeStart . "</p>
+
+                                    <p><span style='font-weight:bold;'>Sluttid:</span> " . $timeEnd . "</p>
+
+                                    <p><span style='font-weight:bold;'>Plats:</span> " . $order->o_address . "</p>
+
+                                    <p><span style='font-weight:bold;'>Postnummer:</span> " . $order->o_zipCode . "</p>
+
+                                    <p><span style='font-weight:bold;'>Ort:</span> " . $order->o_city . "</p>
+
+                                    <p><span style='font-weight:bold;'>Typ av uppdrag:</span> " . $interpType . "</p>
+
+                                    <p><span style='font-weight:bold;'>Språk:</span> " . $order->o_language . "</p>
+
+                                    <p><span style='font-weight:bold;'>Klient:</span> " . $order->o_client . "</p>
+
+                                    <p><span style='font-weight:bold;'>Kontaktperson:</span> " . $order->o_orderer . "</p>
+
+                                    <p><span style='font-weight:bold;'>Telefonnr:</span> " . $order->o_tel . "</p>
+
+                                    <p><span style='font-weight:bold;'>Mobil:</span> " . $order->o_mobile . "</p>
+
+                                    <p><span style='font-weight:bold;'>E-postadress:</span> " . $order->o_email . "</p>
+                                </td>
+                                <td style='background-color: #d4e3e5;padding: 8px;border: 1px solid #a9c6c9;'>
+                                    <p><span style='font-weight:bold;'>Tolknummer:</span> " . $tolk->t_tolkNumber . "</p>
+                                    <p><span style='font-weight:bold;'>Namn:</span> " . $tolk->u_firstName . " " . $tolk->u_lastName . "</p>
+
+                                    <p><span style='font-weight:bold;'>Telefonnr:</span> " . $tolk->u_tel . "</p>
+
+                                    <p><span style='font-weight:bold;'>Mobil:</span> " . $tolk->u_mobile . "</p>
+
+                                    <p><span style='font-weight:bold;'>E-postadress:</span> " . $tolk->u_email . "</p>
+
+                                    <p><span style='font-weight:bold;'>Hemort:</span> " . $tolk->u_city . "</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <hr style='width: 80%;
+                                        margin-left: 10%;'/>
+                        </body>
+                        </html>";
+                                $emailer->send_email("ekonomi@sarvari.se", "Ekonomi", $finance_subject, $messageToFinance);
                             } else {
                                 $data["error"] = 1;
                                 $data["messageHeader"] = "Error";

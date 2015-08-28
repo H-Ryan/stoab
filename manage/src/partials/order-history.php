@@ -65,9 +65,9 @@ if ($statement->rowCount() > 0) {
                     </div>
                 </form>
             </div>
-            <div class="mobile only sixteen wide column">
+            <div class="mobile tablet only sixteen wide column">
                 <form class="ui form" id="orderFilterForm">
-                    <div class="six fields">
+                    <div class="five fields">
                         <div class="field">
                             <label for="orderNumber">Ordernummer:</label>
                             <input name="orderNumber" id="orderNumber"/>
@@ -103,7 +103,7 @@ if ($statement->rowCount() > 0) {
     </div>
     <div class="ui grid">
         <div class="row">
-            <div class="mobile only sixteen wide column">
+            <div class="mobile tablet only sixteen wide column">
                 <div style="overflow-x: scroll; overflow-y: hidden;">
                     <?php if (count($orders) > 0) { ?>
                         <table class="ui celled striped unstackable table orderHistory">

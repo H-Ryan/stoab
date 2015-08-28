@@ -11,6 +11,7 @@ include "../../../src/db/dbConfig.php";
 include "../../../src/db/dbConnection.php";
 include "../../../src/misc/functions.php";
 include "../../../src/email/Emails.php";
+include "SMS_Service.php";
 
 $referrer = $_SERVER['HTTP_REFERER'];
 if (!empty($referrer)) {
@@ -480,6 +481,17 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                         </html>";
                             $emailer->send_email("ekonomi@sarvari.se", "Ekonomi", $finance_subject, $messageToFinance);
                         }
+                        //SMS
+                        $smsService = new SMS_Service();
+                        $text = "Hej, "
+                            ."du har ett uppdrag ($orderNumber). "
+                            ."Var vänlig kontrollera din e-post. "
+                            ."OBS! Du kan inte svara på detta meddelande. "
+                            ."Mvh STÖ AB";
+                        $smsService->setTo($tolk->u_mobile);//
+                        $smsService->setText($text);
+                        $smsService->generateSMS()->sendSMS();
+
                     } else {
                         $data["error"] = 1;
                         $data["messageHeader"] = "Error";

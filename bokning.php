@@ -83,7 +83,7 @@ if (!empty($_SESSION['organization_number']) && !empty($_SESSION['user_number'])
                                 <input id="password" name="password" type="password" placeholder="Lösenord" autocomplete="off">
                             </div>
                             <div class="field">
-                                <a class="forgotten">Glömt lösenordet?</a>
+                                <a href="#" class="forgotten">Glömt lösenordet?</a>
                             </div>
                             <div class="field">
                                 <button type="button" class="ui right labeled icon blue button login-btn">

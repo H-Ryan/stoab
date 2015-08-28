@@ -35,7 +35,7 @@ if ($statement->rowCount() > 0) {
     </div>
     <div class="ui grid">
         <div class="row">
-            <div class="mobile only sixteen wide column">
+            <div class="mobile tablet only sixteen wide column">
                 <div style="overflow-x: scroll; overflow-y: hidden;">
                     <?php if (count($orders) > 0) { ?>
                         <table class="ui collapsing unstackable striped celled table orderManage">

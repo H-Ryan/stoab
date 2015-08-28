@@ -3,14 +3,14 @@ ini_set("session.use_only_cookies", TRUE);
 ini_set("session.use_trans_sid", FALSE);
 session_start();
 
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3200)) {
     session_unset();
     session_destroy();
 }
 $_SESSION['LAST_ACTIVITY'] = time();
 if (!isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();
-} else if (time() - $_SESSION['CREATED'] > 1800) {
+} else if (time() - $_SESSION['CREATED'] > 3200) {
     session_regenerate_id(true);
     $_SESSION['CREATED'] = time();
 }
@@ -74,16 +74,16 @@ try {
     <div class="ui active page dimmer">
         <div class="ui large text loader">Loading</div>
     </div>
-    <div class="ui left vertical sidebar menu">
-        <a class="active teal item" data-tab="first">Sök tolk</a>
-        <a class="teal item" data-tab="second">Skicka en beställning</a>
-        <a class="teal item" data-tab="third">Hantera order</a>
-        <a class="teal item" data-tab="fourth">Orderhistorik</a>
-        <a class="teal item" data-tab="fifth">Hantera kunder</a>
-        <a class="teal item" data-tab="sixth">Dashboard</a>
+    <div class="ui left vertical labeled icon menu sidebar">
+        <a class="active teal item" data-tab="first"><i class="search icon"></i>Sök tolk</a>
+        <a class="teal item" data-tab="second"><i class="book icon"></i>Beställa</a>
+        <a class="teal item" data-tab="third"><i class="tasks icon"></i>Hantera order</a>
+        <a class="teal item" data-tab="fourth"><i class="history icon"></i>Orderhistorik</a>
+        <a class="teal item disabled" data-tab="fifth"><i class="warning sign icon"></i>Hantera kunder</a>
+        <a class="teal item" data-tab="sixth"><i class="comments outline icon"></i>Dashboard</a>
 
         <div class="ui item">
-            <div class="header item">Nyhetsbrev</div>
+            <div class="header item"><i class="newspaper icon"></i>Nyhetsbrev</div>
             <div class="menu">
                 <a class="teal item" data-tab="seventh">Lägg till nyhetsbrevet</a>
                 <a class="teal item" data-tab="eight">Hantera nyhetsbrev</a>
@@ -92,7 +92,7 @@ try {
         </div>
         <div class="ui grid">
             <div class="row">
-                <div class="mobile only sixteen wide column">
+                <div class="mobile tablet only sixteen wide column">
                     <button type="button" class="ui red right labeled icon small button logout-btn">
                         Logga Ut <i class="sign out right icon"></i>
                     </button>
@@ -124,6 +124,17 @@ try {
                             <button type="button" class="ui inverted toggle button">Menu</button>
                         </div>
                         <div class="item">
+                            <span
+                                class="name"><?php echo "Anställd: " . $user->u_firstName . " " . $user->u_lastName; ?></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tablet only column">
+                    <div class="ui fixed top attached inverted blue borderless menu">
+                        <div class="left item">
+                            <button type="button" class="ui inverted toggle button">Menu</button>
+                        </div>
+                        <div class="right item">
                             <span
                                 class="name"><?php echo "Anställd: " . $user->u_firstName . " " . $user->u_lastName; ?></span>
                         </div>

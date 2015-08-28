@@ -3,7 +3,7 @@
  */
 var lastModified = 0,
     addMessageModal = $(".modal.addMessageModal")
-resultPostErrorModal = $(".modal.resultPostErrorModal"),
+    resultPostErrorModal = $(".modal.resultPostErrorModal"),
     firstModal = $('.commentOnTolk.firstStep'),
     secondModal = $('.commentOnTolk.secondStep'),
     thirdModal = $('.commentOnTolk.thirdStep'),
@@ -181,7 +181,7 @@ $(document).ready(function () {
     });
 
     dashboardMenuItem.click(function () {
-        $(this).children('.icon').remove();
+        $(this).children('.mail.icon').remove();
     });
 
     //Update

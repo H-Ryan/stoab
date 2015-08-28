@@ -5,6 +5,6 @@
  * the connection with MySQL
  */
 define('HOST', 'database.sarvari.se');//the host server
-define('USER', 'stoabtest');//the user
-define('PASS', 'test2015');//the user's password
+define('USER', '');//the user
+define('PASS', '');//the user's password
 define('DATABASE', 's_STOAB');//the target DATABASE
