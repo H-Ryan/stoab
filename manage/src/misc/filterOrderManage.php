@@ -1,8 +1,8 @@
 <?php
 /**
  * User: Samuil
- * Date: 19-06-2015
- * Time: 12:04 PM
+ * Date: 24-09-2015
+ * Time: 2:23 PM
  */
 
 ini_set("session.use_only_cookies", TRUE);
@@ -23,9 +23,7 @@ if (!empty($referrer)) {
 }
 
 $data = array();
-if(isset($_POST['orderNumber']) ||
-    (isset($_POST['tolkNumber']) || (isset($_POST['tolkNumber']) && isset($_POST['dateFilter']))) ||
-    (isset($_POST['clientNumber']) || (isset($_POST['clientNumber']) && isset($_POST['dateFilter']))))
+if(isset($_POST['orderNumber']) || isset($_POST['clientNumber']) || (isset($_POST['clientNumber']) && isset($_POST['orderNumber'])))
 {
     $db = null;
     try {
@@ -36,43 +34,30 @@ if(isset($_POST['orderNumber']) ||
     }
 
     $orderNum = $_POST['orderNumber'];
-    $tolkNum = $_POST['tolkNumber'];
     $clientNum = $_POST['clientNumber'];
-    $dateFilter = $_POST['dateFilter'];
 
     try {
         $statement = null;
-        if (!empty($orderNum)) {
-            $statement = $con->prepare("SELECT * FROM t_order WHERE o_orderNumber=:orderNum AND o_date <= CURRENT_DATE - 1");
-            $statement->bindParam(":orderNum", $orderNum);
-        } else {
-            if (!empty($tolkNum)) {
-                if (!empty($dateFilter)) {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date >=:dateFilter AND o_date <= CURRENT_DATE - 1 AND o_tolkarPersonalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNum) ORDER BY o_date DESC");
-                    $statement->bindParam(":dateFilter", $dateFilter);
-                    $statement->bindParam(":tolkNum", $tolkNum);
-                } else {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_tolkarPersonalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNum) ORDER BY o_date DESC");
-                    $statement->bindParam(":tolkNum", $tolkNum);
-                }
-            } else if (!empty($clientNum)) {
-                if (!empty($dateFilter)) {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date >=:dateFilter AND o_date <= CURRENT_DATE - 1 AND o_kundNumber=:clientNum ORDER BY o_date DESC");
-                    $statement->bindParam(":dateFilter", $dateFilter);
-                    $statement->bindParam(":clientNum", $clientNum);
-                } else {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_kundNumber=:clientNum AND o_date <= CURRENT_DATE - 1 ORDER BY o_date DESC");
-                    $statement->bindParam(":clientNum", $clientNum);
-                }
+        if (!empty($orderNum) || !empty($clientNum) || (!empty($orderNum) && !empty($clientNum))) {
+            if (!empty($orderNum) && empty($clientNum)) {
+                $statement = $con->prepare("SELECT * FROM t_order WHERE o_orderNumber=:orderNum AND o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW())");
+                $statement->bindParam(":orderNum", $orderNum);
+            } else if(empty($orderNum) && !empty($clientNum)) {
+                $statement = $con->prepare("SELECT * FROM t_order WHERE o_kundNumber=:clientNum AND o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()) ORDER BY o_date DESC");
+                $statement->bindParam(":clientNum", $clientNum);
             } else {
-                $data["error"] = 0;
-                $data['orders'] = array();
-                echo json_encode($data);
-                if ($db != null) {
-                    $db->disconnect();
-                }
-                return;
+                $statement = $con->prepare("SELECT * FROM t_order WHERE o_orderNumber=:orderNum AND o_kundNumber=:clientNum AND o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()) ORDER BY o_date DESC");
+                $statement->bindParam(":orderNum", $orderNum);
+                $statement->bindParam(":clientNum", $clientNum);
             }
+        } else {
+            $data["error"] = 0;
+            $data['orders'] = array();
+            echo json_encode($data);
+            if ($db != null) {
+                $db->disconnect();
+            }
+            return;
         }
 
         $statement->execute();

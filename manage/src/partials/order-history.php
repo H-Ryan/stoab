@@ -54,8 +54,21 @@ if ($statement->rowCount() > 0) {
                             <input name="tolkNumber" id="tolkNumber"/>
                         </div>
                         <div class="field">
-                            <label for="clientNumber">Kund nummer:</label>
-                            <input name="clientNumber" id="clientNumber"/>
+                            <label for="clientNumber">Organisation:</label>
+                            <select id="clientNumber" name="clientNumber" class="ui search dropdown regOrganization">
+                                <option selected value=''>Organisation</option>
+                                <<?php
+                                try {
+                                    $statement = $con->query("SELECT DISTINCT k_organizationName, k_kundNumber FROM t_kunder");
+                                    $statement->setFetchMode(PDO::FETCH_OBJ);
+                                    while ($row = $statement->fetch()) {
+                                        echo "<option value='" . $row->k_kundNumber . "'>" . $row->k_organizationName . "</option>";
+                                    }
+                                } catch (PDOException $e) {
+                                    return $e->getMessage();
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="field">
                             <label for="dateFilter">Datum</label>
@@ -82,8 +95,21 @@ if ($statement->rowCount() > 0) {
                             <input name="tolkNumber" id="tolkNumber"/>
                         </div>
                         <div class="field">
-                            <label for="clientNumber">Kund nummer:</label>
-                            <input name="clientNumber" id="clientNumber"/>
+                            <label for="clientNumber">Organisation:</label>
+                            <select id="clientNumber" name="clientNumber" class="ui search dropdown regOrganization">
+                                <option selected value=''>Organisation</option>
+                                <<?php
+                                try {
+                                    $statement = $con->query("SELECT DISTINCT k_organizationName, k_kundNumber FROM t_kunder");
+                                    $statement->setFetchMode(PDO::FETCH_OBJ);
+                                    while ($row = $statement->fetch()) {
+                                        echo "<option value='" . $row->k_kundNumber . "'>" . $row->k_organizationName . "</option>";
+                                    }
+                                } catch (PDOException $e) {
+                                    return $e->getMessage();
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="field">
                             <label for="dateFilter">Datum</label>

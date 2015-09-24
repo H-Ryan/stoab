@@ -5,7 +5,7 @@
  * Time: 3:45 PM
  */
 $num = $con->query("SELECT COUNT(*) AS id FROM t_order WHERE o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW())")->fetchColumn();
-$statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()) ORDER BY o_date ASC LIMIT 10");
+$statement = $con->prepare("SELECT o_orderNumber, o_kundNumber,  o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state, o_comments FROM t_order WHERE o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()) ORDER BY o_date ASC LIMIT 10");
 $statement->execute();
 $statement->setFetchMode(PDO::FETCH_OBJ);
 $orders = array();
@@ -30,6 +30,68 @@ if ($statement->rowCount() > 0) {
         <div class="content">
             <div class="center">
                 <div class="ui text loader">Loading</div>
+            </div>
+        </div>
+    </div>
+    <div class="ui grid">
+        <div class="row">
+            <div class="computer only eight wide centered column">
+                <form class="ui form" id="orderFilterFormManage">
+                    <div class="two fields">
+                        <div class="field">
+                            <label for="orderNumber">Ordernummer:</label>
+                            <input name="orderNumber" id="orderNumber"/>
+                        </div>
+                        <div class="field">
+                            <label for="clientNumber">Organisation:</label>
+                            <select id="clientNumber" name="clientNumber" class="ui search dropdown regOrganization">
+                                <option selected value=''>Organisation</option>
+                                <<?php
+                                try {
+                                    $statement = $con->query("SELECT DISTINCT k_organizationName, k_kundNumber FROM t_kunder");
+                                    $statement->setFetchMode(PDO::FETCH_OBJ);
+                                    while ($row = $statement->fetch()) {
+                                        echo "<option value='" . $row->k_kundNumber . "'>" . $row->k_organizationName . "</option>";
+                                    }
+                                } catch (PDOException $e) {
+                                    return $e->getMessage();
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mobile tablet only sixteen wide column">
+                <form class="ui form" id="orderFilterFormManage">
+                    <div class="field">
+                        <label for="orderNumber">Ordernummer:</label>
+                        <input name="orderNumber" id="orderNumber"/>
+                    </div>
+                    <div class="field">
+                        <label for="clientNumber">Organisation:</label>
+                        <select id="clientNumber" name="clientNumber" class="ui search dropdown regOrganization">
+                            <option selected value=''>Organisation</option>
+                            <<?php
+                            try {
+                                $statement = $con->query("SELECT DISTINCT k_organizationName, k_kundNumber FROM t_kunder");
+                                $statement->setFetchMode(PDO::FETCH_OBJ);
+                                while ($row = $statement->fetch()) {
+                                    echo "<option value='" . $row->k_kundNumber . "'>" . $row->k_organizationName . "</option>";
+                                }
+                            } catch (PDOException $e) {
+                                return $e->getMessage();
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centered column">
+                <button type="button" class="ui inverted blue button" id="btnFilterManage">Lägg till filter</button>
+                <button type="button" class="ui inverted orange button disabled" id="btnRemoveFilterManage">Ta bort filter</button>
             </div>
         </div>
     </div>

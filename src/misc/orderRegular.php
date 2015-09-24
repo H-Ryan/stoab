@@ -268,18 +268,6 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                         </tr>
                         </tbody>
                     </table>
-                    <div style='width:70%;
-                                    margin-top:3%;
-                                    margin-bottom:1.5%;
-                                    margin-left:15%;
-                                    background-color: #d4e3e5;
-                                    padding: 8px;
-                                    border-radius: inherit;
-                                    border: 1px solid #a9c6c9;'>
-                        <label style='font-weight:bold;'>Kommentar:</label>
-
-                        <p>$message</p>
-                    </div>
                     <hr style='width: 80%; margin-left: 10%;'/>
                     <div>
                         <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
@@ -414,18 +402,6 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                         </tr>
                         </tbody>
                     </table>
-                    <div style='width:70%;
-                                    margin-top:3%;
-                                    margin-bottom:1.5%;
-                                    margin-left:15%;
-                                    background-color: #d4e3e5;
-                                    padding: 8px;
-                                    border-radius: inherit;
-                                    border: 1px solid #a9c6c9;'>
-                        <label style='font-weight:bold;'>Kommentar:</label>
-
-                        <p>$message</p>
-                    </div>
                     <hr style='width: 80%; margin-left: 10%;'/>
                     </body>
                     </html>";

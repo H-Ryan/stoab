@@ -90,7 +90,7 @@ try {
             <div class="ui piled horizontal segment">
                 <form class="ui form assignTolk">
                     <fieldset class="ui basic segment">
-                        <input type="hidden" name="orderNumber" value="<?php echo $order->o_orderNumber ?>"/>
+                        <input type="hidden" id="orderNumber" name="orderNumber" value="<?php echo $order->o_orderNumber ?>"/>
                         <input type="hidden" name="employee" value="<?php echo $_SESSION['personal_number'] ?>"/>
 
                         <div class="ui centered grid">
@@ -276,7 +276,8 @@ try {
                             <div class="ui header">Kommentar:</div>
                         </td>
                         <td>
-                            <?php echo $order->o_comments ?>
+                            <p id="comment"><?php echo $order->o_comments ?></p>
+                            <button class="ui orange button" type="button" id="btnEditComment">Edit</button>
                         </td>
                     </tr>
                     </tbody>
@@ -416,6 +417,33 @@ try {
                 </div>
                 <div class="ui green ok basic inverted button">
                     <i class="checkmark icon"></i>Ja
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui basic modal modalEditComment">
+        <div class="center aligned header">
+            Edit Comment
+        </div>
+        <div class="content">
+            <div class="image">
+                <i class="info sign icon"></i>
+            </div>
+            <div class="description">
+                <label for="newComment">Content:</label>
+                <textarea style="margin: 0; width: 700px; height: 128px; z-index: auto; position: relative; line-height: 20px; font-size: 12px; transition: none; color: black; overflow: auto;" id="newComment">
+                    <?php echo $order->o_comments ?>
+                </textarea>
+                <p id="errMessage" style="display: none;">There was an error and the comment was not updated, try refreshing the page!</p>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="two fluid ui inverted buttons">
+                <div class="ui red cancel basic inverted button">
+                    <i class="remove icon"></i>Cancel
+                </div>
+                <div class="ui green ok basic inverted button">
+                    <i class="checkmark icon"></i>Save
                 </div>
             </div>
         </div>

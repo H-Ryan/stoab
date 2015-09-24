@@ -3,13 +3,15 @@ $(document).ready(function () {
     var orderForm = $('.ui.form.orderForm'),
         tolkSearchFrom = $('.ui.form.tolk-search'),
         orderHistoryFilterForm = $("#orderFilterForm"),
-        modalResend= $('.modal.modalResend'),
+        orderManageFilterForm = $("#orderFilterFormManage"),
+        modalResend= $('.ui.basic.modal.modalResend'),
         emailSendForm = $("#formSendToFinance"),
-        emailResendResult = $(".modal.emailResendResult");
+        emailResendResult = $(".modal.emailResendResult"),
+        modalOrderHistory = $(".modal.order-history");
+
     $('.ui.fluid.accordion').accordion();
 
-    $("#resendToTolk").on('click', function() {
-        modalResend.modal('show');
+    modalOrderHistory.on("click", "#resendToTolk", function() {
         modalResend.modal({
             closable: false,
             onDeny: function () {
@@ -35,9 +37,9 @@ $(document).ready(function () {
                 });
             }
         });
-    });
-    $("#resendToClient").on('click', function() {
         modalResend.modal('show');
+    });
+    modalOrderHistory.on("click", "#resendToClient", function() {
         modalResend.modal({
             closable: false,
             onDeny: function () {
@@ -63,6 +65,7 @@ $(document).ready(function () {
                 });
             }
         });
+        modalResend.modal('show');
     });
 
     $('.left.sidebar').first().sidebar('attach events', '.toggle.button').sidebar('setting', 'transition', 'slide along');
@@ -94,6 +97,119 @@ $(document).ready(function () {
             $("#btnSendToFinance").removeClass('loading');
         });
         return false;
+    });
+
+    orderManageFilterForm.form({
+        orderNumber: {
+            identifier  : 'orderNumber',
+            optional   : true,
+            rules: [
+                {
+                    type   : 'length[6]',
+                    prompt : 'Ordernummer måste vara minst 6 tecken.'
+                },
+                {
+                    type   : 'maxLength[6]',
+                    prompt : 'Ordernummer måste vara minst 6 tecken.'
+                }
+            ]
+        },
+        clientNumber: {
+            identifier : 'clientNumber',
+            optional   : true,
+            rules: [
+                {
+                    type   : 'length[6]',
+                    prompt : 'Kund nummer måste vara minst 6 tecken.'
+                },
+                {
+                    type   : 'maxLength[6]',
+                    prompt : 'Kund nummer måste vara minst 6 tecken.'
+                },
+                {
+                    type   : 'integer',
+                    prompt : 'Kund nummer innehåller ogiltiga tecken.'
+                }
+            ]
+        }
+    },{
+        inline: true,
+        on: 'change',
+        transition: "slide down",
+        onSuccess: function () {
+            $.ajax({
+                type: "POST",
+                url: "src/misc/filterOrderManage.php",
+                data: orderManageFilterForm.filter(":visible").serialize(),
+                cache: false,
+                dataType: "json",
+                beforeSend: function () {
+                    $('.ui.dimmable .dimmer').dimmer('toggle');
+                }
+            }).done(function (data) {
+                orderManageFilterForm.form('reset');
+                orderManageFilterForm.get(0).reset();
+                if (data.error == 0) {
+                    var tBody = $('.orderManage tbody');
+                    tBody.find('tr').remove();
+                    $("#btnRemoveFilterManage").removeClass('disabled');
+                    if (data.orders.length > 0) {
+                        var paginationContainer = $(".page-manage");
+                        paginationContainer.find("a").remove();
+                        var orders = data.orders;
+                        var customers = data.customers;
+                        for (var i = 0; i < orders.length; i++) {
+                            var btnColor = 'orange';
+                            var infoMsg = 'Info';
+                            var state = orders[i].o_state;
+                            switch (state) {
+                                case 'O':
+                                    infoMsg = 'Beställ in Progress';
+                                    btnColor = 'orange';
+                                    break;
+                                case 'B':
+                                    infoMsg = 'Färdig';
+                                    btnColor = 'green';
+                                    break;
+                                case 'EC':
+                                    infoMsg = 'Avbruten';
+                                    btnColor = 'red';
+                                    break;
+                            }
+                            tBody.append(
+                                "<tr>" +
+                                "<td>" + orders[i].o_orderNumber + "</td>" +
+                                "<td>" + customers[i].k_organizationName + "</td>" +
+                                "<td>" + orders[i].o_orderer + "</td>" +
+                                "<td>" + orders[i].o_language + "</td>" +
+                                "<td class='typeTip' data-content='" + getFullTolkningType(orders[i].o_interpretationType) + "'>" + orders[i].o_interpretationType + "</td>" +
+                                "<td>" + orders[i].o_date + "</td>" +
+                                "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
+                                "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
+                                "<td>" +
+                                "<form class='ui form' method='post' action='src/misc/orderInfo.php'>" +
+                                "<input type='hidden' name='orderId' value='" + orders[i].o_orderNumber + "'>" +
+                                "<button type='submit' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
+                                "</form>" +
+                                "</td>" +
+                                "</tr>");
+                            $(".typeTip").popup();
+                        }
+                    } else {
+                        tBody.append("<tr><td colspan='9'><div class='ui text'>Inga order matchar din sökning parametrar.</div></td></tr>");
+                    }
+                    $('.ui.dimmable .dimmer').dimmer('toggle');
+                }
+            });
+        }
+    });
+
+    $("#btnRemoveFilterManage").click(function() {
+        $( ".btn-update-manage" ).trigger( "click" );
+    });
+
+    $('#btnFilterManage').click(function () {
+        orderManageFilterForm.form("validate form");
     });
 
     orderHistoryFilterForm.form({
@@ -211,7 +327,8 @@ $(document).ready(function () {
                                     "</tr>");
                                 $(".typeTip").popup();
                             }
-                            $('.modal.order-history')
+                            var extraInfoCont = $('.modal.order-history');
+                            extraInfoCont
                                 .modal({closable: false, onDeny: function(){return false;},
                                 onApprove: function() {
                                     var modal = $(".modal.order-history");
@@ -221,7 +338,7 @@ $(document).ready(function () {
                                 .modal('setting', 'transition', 'vertical flip');
 
                             $('.button.btn-info').on("click",function() {
-                                var extraInfoCont = $('.modal.order-history');
+
                                 var id =$(this).parent("form").attr('id');
                                 var btnInfo = $(this);
                                 btnInfo.addClass('loading');
@@ -298,7 +415,6 @@ $(document).ready(function () {
     $('#btnFilterHistory').click(function () {
         orderHistoryFilterForm.form("validate form");
     });
-
 
     $("#newsPrescript").change(function() {
         var charCount = $(this).val().length;
@@ -443,7 +559,6 @@ $(document).ready(function () {
         });
         return false;
     });
-
 
     $("#btnPreviewNews").on("click", function() {
         $('.modal.preview .header').text($("#newsTitle").val() + " - Publicerat: Idag");
@@ -717,6 +832,7 @@ $(document).ready(function () {
             }
         }).done(function (data) {
             if (data.error == 0) {
+                $("#btnRemoveFilterManage").addClass('disabled');
                 $.ajax({
                     type: "GET",
                     url: "src/misc/getCurrentOrOldOrderNum.php",
@@ -897,8 +1013,8 @@ $(document).ready(function () {
                             "</tr>");
                         $(".typeTip").popup();
                     }
-                    $('.modal.order-history')
-                        .modal({closable: false,onDeny: function(){return false;},
+                    var extraInfoCont = $('.modal.order-history');
+                    extraInfoCont.modal({closable: false,onDeny: function(){return false;},
                             onApprove: function() {
                                 var modal = $(".modal.order-history");
                                 modal.find(".content .segment>.ui.positive.message").hide();
@@ -907,7 +1023,7 @@ $(document).ready(function () {
                         .modal('setting', 'transition', 'vertical flip');
 
                     $('.button.btn-info').on("click",function() {
-                        var extraInfoCont = $('.modal.order-history');
+
                         var id =$(this).parent("form").attr('id');
                         var btnInfo = $(this);
                         btnInfo.addClass('loading');
@@ -1058,8 +1174,8 @@ $(document).ready(function () {
                             "</tr>");
                         $(".typeTip").popup();
                     }
-                    $('.modal.order-history')
-                        .modal({closable: false, onDeny: function(){return false;},
+                    var extraInfoCont = $('.modal.order-history');
+                        extraInfoCont.modal({closable: false, onDeny: function(){return false;},
                             onApprove: function() {
                                 var modal = $(".modal.order-history");
                                 modal.find(".content .segment>.ui.positive.message").hide();
@@ -1068,7 +1184,6 @@ $(document).ready(function () {
                         .modal('setting', 'transition', 'vertical flip');
 
                     $('.button.btn-info').on("click",function() {
-                        var extraInfoCont = $('.modal.order-history');
                         var id =$(this).parent("form").attr('id');
                         var btnInfo = $(this);
                         btnInfo.addClass('loading');
@@ -1165,29 +1280,13 @@ $(document).ready(function () {
                     $('.btnSearchTolk').addClass('loading');
                 }
             }).done(function (data) {
-                var container = $('.searchTolkResult .tolks');
-                container.empty();
+                var tolkTable = $('.searchTolkResult .tolks .tolksTable');
+                tolkTable.find('tbody').empty();
                 if (data.error == 0) {
-                    container.append("<table class='ui collapsing unstackable striped celled table tolksTable'>"
-                    + "<thead>"
-                    + "<tr>"
-                    + "<th class='one wide'>Nummer</th>"
-                    + "<th class='three wide'>Namn</th>"
-                    + "<th class='two wide'>Län</th>"
-                    + "<th class='one wide'>Stad</th>"
-                    + "<th class='one wide'>Kön</th>"
-                    + "<th class='two wide'>Nivå</th>"
-                    + "<th class='two wide'>Rankning</th>"
-                    + "<th class='two wide'>E-post</th>"
-                    + "<th class='one wide'>Mobil</th>"
-                    + "<th class='one wide'>Info</th>"
-                    + "</tr>"
-                    + "</thead>"
-                    + "<tbody>");
                     if (data.tolks.length > 0) {
                         var tolks = data.tolks;
                         for (var i = 0; i < tolks.length; i++) {
-                            container.find('.tolksTable').find('tbody').append(
+                            tolkTable.find('tbody').append(
                                 "<tr>" +
                                 "<td>" + tolks[i].t_tolkNumber + "</td>" +
                                 "<td>" + tolks[i].u_firstName + " " + tolks[i].u_lastName + "</td>" +
@@ -1200,14 +1299,16 @@ $(document).ready(function () {
                                 "<td>" + tolks[i].u_mobile + "</td>" +
                                 "<td>" +
                                 "<form class='ui form'>" +
-                                "<input type='hidden' name='orderId' value='" + tolks[i].u_personalNumber + "'>" +
-                                "<button type='button' class='ui blue fluid button btn-info'>Mer Info</button>" +
+                                "<input type='hidden' name='tolkPN' value='" + tolks[i].u_personalNumber + "'>" +
+                                "<button type='button' onclick='tolkMoreInfo(event)' class='ui blue fluid button btnTolkInfo'>Mer Info</button>" +
                                 "</form>" +
                                 "</td>" +
-                                "</tr></tbody></table>");
+                                "</tr>");
                         }
+                        tolkTable.show();
                     } else {
-                        container.append("<div class='ui segment'><div class='ui text'>För närvarande, har du inte några order.</div></div>");
+                        tolkTable.hide();
+                        $('.searchTolkResult .tolks').append("<div class='ui segment'><div class='ui text'>För närvarande, har du inte några order.</div></div>");
                     }
                 } else {
                     var errorElem = $(".ui.error.message");
@@ -1422,7 +1523,6 @@ $(document).ready(function () {
         }
     });
 
-
     jQuery.extend(jQuery.validator.messages, {
         require_from_group: "Fyll i minst ett av dessa områden."
     });
@@ -1484,6 +1584,53 @@ function switchFromTo(from, to) {
 function convertTime(value) {
     var minutes = ["00", "15", "30", "45"];
     return ((value - (value % 4)) / 4) + ":" + minutes[(value % 4)];
+}
+
+function tolkMoreInfo(event) {
+    var moreInfoForm = $(event.target).parents(".form");
+    $.ajax({
+        type: "GET",
+        url: "src/misc/tolkMoreInfo.php",
+        data: moreInfoForm.serialize(),
+        dataType: "json",
+        beforeSend: function () {
+            $(event.target).addClass('loading');
+        }
+    }).done(function (data) {
+        if (data.error == 0) {
+            var langs = data.langs,
+                orders = data.orders,
+                kunds = data.customers,
+                modal = $(".modal.tolkMoreInfoModal"),
+                table1 = modal.find(".content").find(".description").find(".tolkExtraInfo").find('tbody'),
+                table2 = modal.find(".content").find(".description").find(".tolkExtraInfoOrder").find('tbody');//
+            table1.empty();
+            $.each( langs, function() {
+                table1.append("<tr><td>"+ this.t_sprakName+"</td><td>"+this.t_rate+"</td><td>"+this.t_customerRate+"</td></tr>");
+            });
+            table2.empty();
+            if (typeof orders != "undefined") {
+                $.each( orders, function( key, value ) {
+                    table2.append(
+                        "<tr>" +
+                        "<td>" + value.o_orderNumber + "</td>" +
+                        "<td>" + kunds[key].k_organizationName + "</td>" +
+                        "<td>" + value.o_orderer + "</td>" +
+                        "<td>" + value.o_language + "</td>" +
+                        "<td class='typeTip' data-content='" + getFullTolkningType(value.o_interpretationType) + "'>" + value.o_interpretationType + "</td>" +
+                        "<td>" + value.o_date + "</td>" +
+                        "<td>" + convertTime(value.o_startTime) + "</td>" +
+                        "<td>" + convertTime(value.o_endTime) + "</td>" +
+                        "</tr>");
+                });
+            }
+            modal.modal('show');
+        } else {
+
+        }
+        $(event.target).removeClass('loading');
+    });
+
 }
 
 function adjustTime(startH, startM, endH, endM) {

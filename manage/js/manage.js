@@ -13,7 +13,37 @@ $(document).ready(function () {
         btnCancel = $('.ui.button.btnCancel'),
         btnAssign = $('.ui.button.btnAssign'),
         btnReAssign = $('.ui.button.btnReAssign'),
-        isValid = false;
+        isValid = false,
+        comment = $("#comment"),
+        btnEditComment = $('#btnEditComment'),
+        modalEditComment = $('.modal.modalEditComment'),
+        taNewComment = $("#newComment"),
+        errMessage = $("#errMessage");
+
+    modalEditComment.modal({
+        closable: false,
+        onDeny: function () {
+            taNewComment.val(comment.text());
+            errMessage.hide();
+            return true;
+        },
+        onApprove: function () {
+            $.ajax({
+                type: "POST",
+                url: "src/misc/updateComment.php",
+                data: {'orderNumber': $("#orderNumber").val(), 'data': taNewComment.val() },
+                dataType: "json"
+            }).done(function (data) {
+                if (data.error == 0) {
+                    comment.text(taNewComment.val());
+                    errMessage.hide();
+                } else {
+                    errMessage.show();
+                }
+            });
+            return true;
+        }
+    }).modal('attach events', btnEditComment, 'show');
 
     $('.close.icon').click(function() {
         $('.ui.message').hide();

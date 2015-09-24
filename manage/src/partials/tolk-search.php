@@ -16,7 +16,8 @@
                                 <div class="fields">
                                     <div class="required three wide field">
                                         <label for="language">Språk:</label>
-                                        <select id="language" name="language" class="ui fluid search dropdown searchLanguage">
+                                        <select id="language" name="language"
+                                                class="ui fluid search dropdown searchLanguage">
                                             <option value=''>Språk</option>
                                             <<?php
                                             try {
@@ -82,15 +83,15 @@
                                     </div>
                                     <div class="two wide field">
                                         <label for="tolkNum">Tolk num:</label>
-                                        <input type="text" name="tolkNum" id="tolkNum" />
+                                        <input type="text" name="tolkNum" id="tolkNum"/>
                                     </div>
                                     <div class="two wide field">
                                         <label for="tolkName">Förnamn:</label>
-                                        <input type="text" name="tolkFirstName" id="tolkName" />
+                                        <input type="text" name="tolkFirstName" id="tolkName"/>
                                     </div>
                                     <div class="two wide field">
                                         <label for="tolkName">Efternamn:</label>
-                                        <input type="text" name="tolkLastName" id="tolkName" />
+                                        <input type="text" name="tolkLastName" id="tolkName"/>
                                     </div>
                                 </div>
                             </form>
@@ -168,15 +169,15 @@
                                 <div class="three fields">
                                     <div class="field">
                                         <label for="tolkNum">Tolk nummer:</label>
-                                        <input type="text" name="tolkNum" id="tolkNum" />
+                                        <input type="text" name="tolkNum" id="tolkNum"/>
                                     </div>
                                     <div class="field">
                                         <label for="tolkName">Förnamn:</label>
-                                        <input type="text" name="tolkFirstName" id="tolkName" />
+                                        <input type="text" name="tolkFirstName" id="tolkName"/>
                                     </div>
                                     <div class="field">
                                         <label for="tolkName">Efternamn:</label>
-                                        <input type="text" name="tolkLastName" id="tolkName" />
+                                        <input type="text" name="tolkLastName" id="tolkName"/>
                                     </div>
                                 </div>
                             </form>
@@ -250,15 +251,15 @@
                                     </div>
                                     <div class="two wide field">
                                         <label for="tolkNum">Tolk nummer:</label>
-                                        <input type="text" name="tolkNum" id="tolkNum" />
+                                        <input type="text" name="tolkNum" id="tolkNum"/>
                                     </div>
                                     <div class="two wide field">
                                         <label for="tolkName">Förnamn:</label>
-                                        <input type="text" name="tolkFirstName" id="tolkName" />
+                                        <input type="text" name="tolkFirstName" id="tolkName"/>
                                     </div>
                                     <div class="two wide field">
                                         <label for="tolkName">Efternamn:</label>
-                                        <input type="text" name="tolkLastName" id="tolkName" />
+                                        <input type="text" name="tolkLastName" id="tolkName"/>
                                     </div>
                                 </div>
                             </form>
@@ -278,16 +279,95 @@
             <div class="row">
                 <div class="mobile tablet only sixteen wide column">
                     <div class="tolks" style="overflow-x: scroll; overflow-y: hidden;">
-
+                        <table class='ui collapsing unstackable striped celled table tolksTable' style="display: none;">
+                            <thead>
+                            <tr>
+                                <th class='one wide'>Nummer</th>
+                                <th class='three wide'>Namn</th>
+                                <th class='two wide'>Län</th>
+                                <th class='one wide'>Stad</th>
+                                <th class='one wide'>Kön</th>
+                                <th class='two wide'>Nivå</th>
+                                <th class='two wide'>Rankning</th>
+                                <th class='two wide'>E-post</th>
+                                <th class='one wide'>Mobil</th>
+                                <th class='one wide'>Info</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="computer only sixteen wide column">
                     <div class="tolks">
-
+                        <table class='ui collapsing unstackable striped celled table tolksTable' style="display: none;">
+                            <thead>
+                            <tr>
+                                <th class='one wide'>Nummer</th>
+                                <th class='three wide'>Namn</th>
+                                <th class='two wide'>Län</th>
+                                <th class='one wide'>Stad</th>
+                                <th class='one wide'>Kön</th>
+                                <th class='two wide'>Nivå</th>
+                                <th class='two wide'>Rankning</th>
+                                <th class='two wide'>E-post</th>
+                                <th class='one wide'>Mobil</th>
+                                <th class='one wide'>Info</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
 
+    </div>
+</div>
+<div class="ui fullscreen long modal tolkMoreInfoModal">
+    <div class="center aligned header">
+        Mer Info
+    </div>
+    <div class="content">
+        <div class="small image">
+            <i class="info circle icon"></i>
+        </div>
+        <div class="description">
+            <table class="ui unstackable celled table tolkExtraInfo">
+                <thead>
+                <tr>
+                    <th>Språk</th>
+                    <th>Rate</th>
+                    <th>Customer rate</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <p class="ui header">Current Assignments:</p>
+            <table class="ui unstackable celled table tolkExtraInfoOrder">
+                <thead>
+                <tr>
+                    <th class="one wide">Ordernummer</th>
+                    <th class="three wide">Avdelning</th>
+                    <th class="three wide">Beställare</th>
+                    <th class="three wide">Språk</th>
+                    <th class="one wide">Typ</th>
+                    <th class="two wide">Datum</th>
+                    <th class="one wide">Starttid</th>
+                    <th class="one wide">Sluttid</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui green ok button">
+            <i class="checkmark icon"></i>OK
+        </div>
     </div>
 </div>

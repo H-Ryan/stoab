@@ -15,8 +15,8 @@ class SMS_Service
     public function generateSMS()
     {
         $data = array(
-            'username'  => "",
-            'password'  => "",
+            'username'  => "stoab",
+            'password'  => "Sarvari71",
             'from'      => "stoab",
             'to'        => $this->to,
             'text'      => $this->text
@@ -26,7 +26,7 @@ class SMS_Service
     }
 
     public function sendSMS() {
-        return file_get_contents($this->url);
+        echo "<script>window.open('$this->url')</script>";
     }
 
     /**
