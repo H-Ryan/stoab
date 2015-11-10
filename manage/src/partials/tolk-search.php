@@ -7,7 +7,7 @@
 ?>
 <div class="ui piled segment">
     <div class="ui grid">
-        <div class="row">
+        <div class="centered row">
             <div class="column">
                 <div class="ui grid">
                     <div class="row">
@@ -19,15 +19,9 @@
                                         <select id="language" name="language"
                                                 class="ui fluid search dropdown searchLanguage">
                                             <option value=''>Språk</option>
-                                            <<?php
-                                            try {
-                                                $statement = $con->query("SELECT * FROM t_languages ORDER BY l_languageName");
-                                                $statement->setFetchMode(PDO::FETCH_OBJ);
-                                                while ($row = $statement->fetch()) {
-                                                    echo "<option value='" . $row->l_languageName . "'>" . $row->l_languageName . "</option>";
-                                                }
-                                            } catch (PDOException $e) {
-                                                return $e->getMessage();
+                                            <?php
+                                            foreach($languages as $lang) {
+                                                echo "<option value='" . $lang . "'>" . $lang . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -37,14 +31,8 @@
                                         <select id="city" name="city" class="ui fluid search dropdown searchCity">
                                             <option value=''>Ort</option>
                                             <?php
-                                            try {
-                                                $statement = $con->query("SELECT * FROM t_city ORDER BY c_cityName");
-                                                $statement->setFetchMode(PDO::FETCH_OBJ);
-                                                while ($row = $statement->fetch()) {
-                                                    echo "<option value='" . $row->c_cityName . "'>" . $row->c_cityName . "</option>";
-                                                }
-                                            } catch (PDOException $e) {
-                                                return $e->getMessage();
+                                            foreach($cities as $city) {
+                                                echo "<option value='" . $city . "'>" . $city . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -103,15 +91,9 @@
                                         <label for="language">Språk:</label>
                                         <select id="language" name="language" class="ui search dropdown searchLanguage">
                                             <option value=''>Språk</option>
-                                            <<?php
-                                            try {
-                                                $statement = $con->query("SELECT * FROM t_languages ORDER BY l_languageName");
-                                                $statement->setFetchMode(PDO::FETCH_OBJ);
-                                                while ($row = $statement->fetch()) {
-                                                    echo "<option value='" . $row->l_languageName . "'>" . $row->l_languageName . "</option>";
-                                                }
-                                            } catch (PDOException $e) {
-                                                return $e->getMessage();
+                                            <?php
+                                            foreach($languages as $lang) {
+                                                echo "<option value='" . $lang . "'>" . $lang . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -121,14 +103,8 @@
                                         <select id="city" name="city" class="ui search dropdown searchCity">
                                             <option value=''>Ort</option>
                                             <?php
-                                            try {
-                                                $statement = $con->query("SELECT * FROM t_city ORDER BY c_cityName");
-                                                $statement->setFetchMode(PDO::FETCH_OBJ);
-                                                while ($row = $statement->fetch()) {
-                                                    echo "<option value='" . $row->c_cityName . "'>" . $row->c_cityName . "</option>";
-                                                }
-                                            } catch (PDOException $e) {
-                                                return $e->getMessage();
+                                            foreach($cities as $city) {
+                                                echo "<option value='" . $city . "'>" . $city . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -189,15 +165,9 @@
                                         <label for="language">Språk:</label>
                                         <select id="language" name="language" class="ui search dropdown searchLanguage">
                                             <option value=''>Språk</option>
-                                            <<?php
-                                            try {
-                                                $statement = $con->query("SELECT * FROM t_languages ORDER BY l_languageName");
-                                                $statement->setFetchMode(PDO::FETCH_OBJ);
-                                                while ($row = $statement->fetch()) {
-                                                    echo "<option value='" . $row->l_languageName . "'>" . $row->l_languageName . "</option>";
-                                                }
-                                            } catch (PDOException $e) {
-                                                return $e->getMessage();
+                                            <?php
+                                            foreach($languages as $lang) {
+                                                echo "<option value='" . $lang . "'>" . $lang . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -207,14 +177,8 @@
                                         <select id="city" name="city" class="ui search dropdown searchCity">
                                             <option value=''>Ort</option>
                                             <?php
-                                            try {
-                                                $statement = $con->query("SELECT * FROM t_city ORDER BY c_cityName");
-                                                $statement->setFetchMode(PDO::FETCH_OBJ);
-                                                while ($row = $statement->fetch()) {
-                                                    echo "<option value='" . $row->c_cityName . "'>" . $row->c_cityName . "</option>";
-                                                }
-                                            } catch (PDOException $e) {
-                                                return $e->getMessage();
+                                            foreach($cities as $city) {
+                                                echo "<option value='" . $city . "'>" . $city . "</option>";
                                             }
                                             ?>
                                         </select>

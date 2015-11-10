@@ -18,9 +18,9 @@ class dbConnection
      * It accepts four parameters used in the
      * Database connection.
      * @param $host - The host address.
-     * @param $db -
-     * @param $user
-     * @param $pass
+     * @param $db - The name of the DB
+     * @param $user - User name
+     * @param $pass - Password
      */
     function __construct($host, $db, $user, $pass) {
         $this->host = $host;

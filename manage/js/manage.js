@@ -9,8 +9,10 @@ $(document).ready(function () {
         modalAssign = $('.basic.modal.modalAssign'),
         modalReAssign = $('.basic.modal.modalReAssign'),
         modalCancel = $('.basic.modal.modalCancel'),
+        modalTolkCancel = $('.basic.modal.modalTolkCancel'),
         btnVerify = $('.ui.button.btnVerify'),
         btnCancel = $('.ui.button.btnCancel'),
+        btnTolkCancel = $('.ui.button.btnTolkCancel'),
         btnAssign = $('.ui.button.btnAssign'),
         btnReAssign = $('.ui.button.btnReAssign'),
         isValid = false,
@@ -103,7 +105,6 @@ $(document).ready(function () {
                     $('.tolkInfoTelephone').text(tolk.u_tel);
                     $('.tolkInfoCity').text(tolk.u_city);
                     isValid = true;
-                    tolkTable.removeClass('loading');
                     return false;
                 } else {
                     var errorElem = manageForm.find(".ui.error.message");
@@ -142,7 +143,6 @@ $(document).ready(function () {
         }
         return false;
     });
-    //TODO
     modalCancel.modal({
         closable: false,
         onDeny: function () {
@@ -159,17 +159,45 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
                 if (data.error == 0) {
-                    window.location.replace("main.php");
+                    window.open(data.smsURL, "_blank");
+                    refreshWindow()
                 } else {
                     var errorElem = manageForm.find(".error.message");
                     errorElem.find('.header').text(data.messageHeader);
                     errorElem.find('.text').text(data.errorMessage);
                     errorElem.show();
-                    manageForm.removeClass('loading');
                 }
+                manageForm.removeClass('loading');
             });
         }
     }).modal('attach events', btnCancel, 'show');
+    modalTolkCancel.modal({
+        closable: false,
+        onDeny: function () {
+            return true;
+        },
+        onApprove: function () {
+            $.ajax({
+                type: "POST",
+                url: "src/misc/tolkCancel.php",
+                data: manageForm.serialize(),
+                dataType: "json",
+                beforeSend: function () {
+                    manageForm.addClass('loading');
+                }
+            }).done(function (data) {
+                if (data.error == 0) {
+                    refreshWindow()
+                } else {
+                    var errorElem = manageForm.find(".error.message");
+                    errorElem.find('.header').text(data.messageHeader);
+                    errorElem.find('.text').text(data.errorMessage);
+                    errorElem.show();
+                }
+                manageForm.removeClass('loading');
+            });
+        }
+    }).modal('attach events', btnTolkCancel, 'show');
     modalAssign.modal({
         closable: false,
         onDeny: function () {
@@ -186,14 +214,15 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
                 if (data.error == 0) {
-                    window.location.replace("main.php");
+                    window.open(data.smsURL, "_blank");
+                    refreshWindow()
                 } else {
                     var errorElem = manageForm.find(".error.message");
                     errorElem.find('.header').text(data.messageHeader);
                     errorElem.find('.text').text(data.errorMessage);
                     errorElem.show();
-                    manageForm.removeClass('loading');
                 }
+                manageForm.removeClass('loading');
             });
         }
     });
@@ -213,14 +242,15 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
                 if (data.error == 0) {
-                    window.location.replace("main.php");
+                    window.open(data.smsURL, "_blank");
+                    refreshWindow()
                 } else {
                     var errorElem = manageForm.find(".error.message");
                     errorElem.find('.header').text(data.messageHeader);
                     errorElem.find('.text').text(data.errorMessage);
                     errorElem.show();
-                    manageForm.removeClass('loading');
                 }
+                manageForm.removeClass('loading');
             });
         }
     });
@@ -329,3 +359,14 @@ $(document).ready(function () {
         });
     });
 });
+
+function refreshWindow() {
+    $.ajax({
+        type: "POST",
+        url: "src/misc/orderInfo.php",
+        data: {orderId: $("#orderNumber").val()},
+        dataType: "json"
+    }).done(function (data) {
+        window.location.reload();
+    });
+}

@@ -44,7 +44,7 @@ if ($statement->rowCount() > 0) {
                         </div>
                         <div class="field">
                             <label for="clientNumber">Organisation:</label>
-                            <select id="clientNumber" name="clientNumber" class="ui search dropdown regOrganization">
+                            <select id="clientNumber" name="clientNumber" class="ui search dropdown">
                                 <option selected value=''>Organisation</option>
                                 <<?php
                                 try {
@@ -70,7 +70,7 @@ if ($statement->rowCount() > 0) {
                     </div>
                     <div class="field">
                         <label for="clientNumber">Organisation:</label>
-                        <select id="clientNumber" name="clientNumber" class="ui search dropdown regOrganization">
+                        <select id="clientNumber" name="clientNumber" class="ui search dropdown">
                             <option selected value=''>Organisation</option>
                             <<?php
                             try {
@@ -133,6 +133,10 @@ if ($statement->rowCount() > 0) {
                                         $infoMsg = 'Avbruten';
                                         $btnColor = 'red';
                                         break;
+                                    case "IC":
+                                        $infoMsg = 'Fortfarande pågår';
+                                        $btnColor = 'orange';
+                                        break;
                                 }
                                 ?>
                                 <tr>
@@ -148,13 +152,8 @@ if ($statement->rowCount() > 0) {
                                     <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
                                     <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>
                                     <td>
-                                        <form class='ui disabled form manageStatus' method="post"
-                                              action="src/misc/orderInfo.php">
-                                            <input type='hidden' name='orderId'
-                                                   value='<?php echo $orders[$k]->o_orderNumber; ?>'>
-                                            <button type='submit'
-                                                    class="ui fluid <?php echo $btnColor; ?> button btn_manage_order"><?php echo $infoMsg; ?></button>
-                                        </form>
+                                        <button type='button' id="<?php echo $orders[$k]->o_orderNumber; ?>"
+                                                class="ui fluid <?php echo $btnColor; ?> button btn_manage_order"><?php echo $infoMsg; ?></button>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -200,6 +199,10 @@ if ($statement->rowCount() > 0) {
                                     $infoMsg = 'Avbruten';
                                     $btnColor = 'red';
                                     break;
+                                case "IC":
+                                    $infoMsg = 'Fortfarande pågår';
+                                    $btnColor = 'orange';
+                                    break;
                             }
                             ?>
                             <tr>
@@ -215,13 +218,8 @@ if ($statement->rowCount() > 0) {
                                 <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
                                 <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>
                                 <td>
-                                    <form class='ui disabled form manageStatus' method="post"
-                                          action="src/misc/orderInfo.php">
-                                        <input type='hidden' name='orderId'
-                                               value='<?php echo $orders[$k]->o_orderNumber; ?>'>
-                                        <button type='submit'
-                                                class="ui fluid <?php echo $btnColor; ?> button btn_manage_order"><?php echo $infoMsg; ?></button>
-                                    </form>
+                                    <button type='button' id="<?php echo $orders[$k]->o_orderNumber; ?>"
+                                            class="ui fluid <?php echo $btnColor; ?> button btn_manage_order"><?php echo $infoMsg; ?></button>
                                 </td>
                             </tr>
                         <?php } ?>

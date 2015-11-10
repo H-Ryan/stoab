@@ -55,7 +55,7 @@ if ($statement->rowCount() > 0) {
                         </div>
                         <div class="field">
                             <label for="clientNumber">Organisation:</label>
-                            <select id="clientNumber" name="clientNumber" class="ui search dropdown regOrganization">
+                            <select id="clientNumber" name="clientNumber" class="ui search dropdown">
                                 <option selected value=''>Organisation</option>
                                 <<?php
                                 try {
@@ -96,7 +96,7 @@ if ($statement->rowCount() > 0) {
                         </div>
                         <div class="field">
                             <label for="clientNumber">Organisation:</label>
-                            <select id="clientNumber" name="clientNumber" class="ui search dropdown regOrganization">
+                            <select id="clientNumber" name="clientNumber" class="ui search dropdown">
                                 <option selected value=''>Organisation</option>
                                 <<?php
                                 try {
@@ -166,6 +166,10 @@ if ($statement->rowCount() > 0) {
                                         $infoMsg = 'Avbruten';
                                         $btnColor = 'red';
                                         break;
+                                    case "IC":
+                                        $infoMsg = 'Fortfarande pågår';
+                                        $btnColor = 'orange';
+                                        break;
                                 }
                                 ?>
                                 <tr>
@@ -231,6 +235,10 @@ if ($statement->rowCount() > 0) {
                                 case "EC":
                                     $infoMsg = 'Avbruten';
                                     $btnColor = 'red';
+                                    break;
+                                case "IC":
+                                    $infoMsg = 'Fortfarande pågår';
+                                    $btnColor = 'orange';
                                     break;
                             }
                             ?>

@@ -40,15 +40,16 @@ if(isset($_POST['orderNumber']) || isset($_POST['clientNumber']) || (isset($_POS
         $statement = null;
         if (!empty($orderNum) || !empty($clientNum) || (!empty($orderNum) && !empty($clientNum))) {
             if (!empty($orderNum) && empty($clientNum)) {
-                $statement = $con->prepare("SELECT * FROM t_order WHERE o_orderNumber=:orderNum AND o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW())");
+                $statement = $con->prepare("SELECT * FROM t_order WHERE o_orderNumber=:orderNum AND (o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()))");
                 $statement->bindParam(":orderNum", $orderNum);
             } else if(empty($orderNum) && !empty($clientNum)) {
-                $statement = $con->prepare("SELECT * FROM t_order WHERE o_kundNumber=:clientNum AND o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()) ORDER BY o_date DESC");
+                $statement = $con->prepare("SELECT * FROM t_order WHERE o_kundNumber=:clientNum AND (o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW())) ORDER BY o_date");
                 $statement->bindParam(":clientNum", $clientNum);
             } else {
-                $statement = $con->prepare("SELECT * FROM t_order WHERE o_orderNumber=:orderNum AND o_kundNumber=:clientNum AND o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()) ORDER BY o_date DESC");
+                $statement = $con->prepare("SELECT * FROM t_order WHERE o_orderNumber=:orderNum AND (o_kundNumber=:clientNum AND o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW())) ORDER BY o_date");
                 $statement->bindParam(":orderNum", $orderNum);
                 $statement->bindParam(":clientNum", $clientNum);
+
             }
         } else {
             $data["error"] = 0;

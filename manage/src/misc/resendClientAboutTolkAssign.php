@@ -123,7 +123,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && !empty($_POST
 
                                     <p><span style='font-weight:bold;'>Telefonnr:</span> " . $tolk->u_tel . "</p>
 
-                                    <p><span style='font-weight:bold;'>Mobil:</span> " . $tolk->u_mobile . "</p>
+                                    <p><span style='font-weight:bold;'>Mobil:</span> 0" . $tolk->u_mobile . "</p>
 
                                     <p><span style='font-weight:bold;'>E-postadress:</span> " . $tolk->u_email . "</p>
 

@@ -1,16 +1,31 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Samuil
- * Date: 25-08-2015
- * Time: 4:32 PM
- */
-include "src/misc/SMS_Service.php";
-$to = $_GET['to'];
-$text = $_GET['text'];
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Control Panel</title>
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-$smsService = new SMS_Service();
+    <script type="text/javascript" src="../js/jquery.js"></script>
 
-$smsService->setTo($to);
-$smsService->setText($text);
-$smsService->generateSMS()->sendSMS();
+    </head>
+<body>
+    <button type="button" id="clic">click me</button>
+    <table>
+        <tbody>
+            <tr><td></td></tr>
+        </tbody>
+    </table>
+    <script>
+        $(function(){
+            $('#clic').click(function() { $('td').append($('<button type="button" id="op">Click</button>'));});
+            $('table>tbody>tr>td').on('click', '#op', function(event) {
+                var btn = $(this);
+                console.log(btn);
+                alert(btn.attr("id"));
+            });
+        });
+    </script>
+</body>
+</html>

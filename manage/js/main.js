@@ -4,14 +4,44 @@ $(document).ready(function () {
         tolkSearchFrom = $('.ui.form.tolk-search'),
         orderHistoryFilterForm = $("#orderFilterForm"),
         orderManageFilterForm = $("#orderFilterFormManage"),
-        modalResend= $('.ui.basic.modal.modalResend'),
+        modalResend = $('.ui.basic.modal.modalResend'),
         emailSendForm = $("#formSendToFinance"),
         emailResendResult = $(".modal.emailResendResult"),
-        modalOrderHistory = $(".modal.order-history");
+        modalOrderHistory = $(".modal.order-history"),
+        modalUpdatesInfo = $(".modal.modalUpdatesInfo"),
+        manageWindow = null;
 
     $('.ui.fluid.accordion').accordion();
 
-    modalOrderHistory.on("click", "#resendToTolk", function() {
+    $(".table.orderManage").on("click", ".button.btn_manage_order", function (event) {
+        var btn = $(this);
+        var btnId = btn.attr('id');
+        $.ajax({
+            type: "POST",
+            url: "src/misc/orderInfo.php",
+            data: {orderId: btnId},
+            dataType: "json",
+            beforeSend: function () {
+                btn.addClass('loading');
+            }
+        }).done(function (data) {
+            if (manageWindow) {
+                if (!manageWindow.closed)
+                    manageWindow.location.reload();
+                else
+                    manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
+            }
+            else
+                manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
+            btn.removeClass('loading');
+        });
+        btn.removeClass('loading');
+    });
+    //modalUpdatesInfo
+    $('#updatesInfo').click(function() {
+        modalUpdatesInfo.modal({closable: false}).modal('show');
+    });
+    modalOrderHistory.on("click", "#resendToTolk", function () {
         modalResend.modal({
             closable: false,
             onDeny: function () {
@@ -39,7 +69,7 @@ $(document).ready(function () {
         });
         modalResend.modal('show');
     });
-    modalOrderHistory.on("click", "#resendToClient", function() {
+    modalOrderHistory.on("click", "#resendToClient", function () {
         modalResend.modal({
             closable: false,
             onDeny: function () {
@@ -70,7 +100,7 @@ $(document).ready(function () {
 
     $('.left.sidebar').first().sidebar('attach events', '.toggle.button').sidebar('setting', 'transition', 'slide along');
 
-    $("#btnSendToFinance").click(function() {
+    $("#btnSendToFinance").click(function () {
         $.ajax({
             type: "POST",
             url: "src/misc/sendToFinance.php",
@@ -82,7 +112,7 @@ $(document).ready(function () {
         }).done(function (data) {
             var modal = $(".modal.order-history");
             var successElem = modal.find(".content .segment>.ui.positive.message");
-            var errorElem =  modal.find(".content .segment>.ui.error.message");
+            var errorElem = modal.find(".content .segment>.ui.error.message");
             if (data.error == 0) {
                 errorElem.hide();
                 successElem.children("p").text(data.positiveMessage);
@@ -101,38 +131,38 @@ $(document).ready(function () {
 
     orderManageFilterForm.form({
         orderNumber: {
-            identifier  : 'orderNumber',
-            optional   : true,
+            identifier: 'orderNumber',
+            optional: true,
             rules: [
                 {
-                    type   : 'length[6]',
-                    prompt : 'Ordernummer måste vara minst 6 tecken.'
+                    type: 'length[6]',
+                    prompt: 'Ordernummer måste vara minst 6 tecken.'
                 },
                 {
-                    type   : 'maxLength[6]',
-                    prompt : 'Ordernummer måste vara minst 6 tecken.'
+                    type: 'maxLength[6]',
+                    prompt: 'Ordernummer måste vara minst 6 tecken.'
                 }
             ]
         },
         clientNumber: {
-            identifier : 'clientNumber',
-            optional   : true,
+            identifier: 'clientNumber',
+            optional: true,
             rules: [
                 {
-                    type   : 'length[6]',
-                    prompt : 'Kund nummer måste vara minst 6 tecken.'
+                    type: 'length[6]',
+                    prompt: 'Kund nummer måste vara minst 6 tecken.'
                 },
                 {
-                    type   : 'maxLength[6]',
-                    prompt : 'Kund nummer måste vara minst 6 tecken.'
+                    type: 'maxLength[6]',
+                    prompt: 'Kund nummer måste vara minst 6 tecken.'
                 },
                 {
-                    type   : 'integer',
-                    prompt : 'Kund nummer innehåller ogiltiga tecken.'
+                    type: 'integer',
+                    prompt: 'Kund nummer innehåller ogiltiga tecken.'
                 }
             ]
         }
-    },{
+    }, {
         inline: true,
         on: 'change',
         transition: "slide down",
@@ -175,6 +205,10 @@ $(document).ready(function () {
                                     infoMsg = 'Avbruten';
                                     btnColor = 'red';
                                     break;
+                                case "IC":
+                                    infoMsg = 'Fortfarande pågår';
+                                    btnColor = 'orange';
+                                    break;
                             }
                             tBody.append(
                                 "<tr>" +
@@ -187,9 +221,7 @@ $(document).ready(function () {
                                 "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
                                 "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
                                 "<td>" +
-                                "<form class='ui form' method='post' action='src/misc/orderInfo.php'>" +
-                                "<input type='hidden' name='orderId' value='" + orders[i].o_orderNumber + "'>" +
-                                "<button type='submit' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
+                                "<button type='button' id='" + orders[i].o_orderNumber + "' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
                                 "</form>" +
                                 "</td>" +
                                 "</tr>");
@@ -204,8 +236,8 @@ $(document).ready(function () {
         }
     });
 
-    $("#btnRemoveFilterManage").click(function() {
-        $( ".btn-update-manage" ).trigger( "click" );
+    $("#btnRemoveFilterManage").click(function () {
+        $(".btn-update-manage").trigger("click");
     });
 
     $('#btnFilterManage').click(function () {
@@ -213,214 +245,222 @@ $(document).ready(function () {
     });
 
     orderHistoryFilterForm.form({
-            orderNumber: {
-                identifier  : 'orderNumber',
-                optional   : true,
-                rules: [
-                    {
-                        type   : 'length[6]',
-                        prompt : 'Ordernummer måste vara minst 6 tecken.'
-                    },
-                    {
-                        type   : 'maxLength[6]',
-                        prompt : 'Ordernummer måste vara minst 6 tecken.'
-                    }
-                ]
-            },
-            tolkNumber: {
-                identifier  : 'tolkNumber',
-                optional   : true,
-                rules: [
-                    {
-                        type   : 'length[4]',
-                        prompt : 'Tolk nummer måste vara minst 4 tecken.'
-                    },
-                    {
-                        type   : 'maxLength[4]',
-                        prompt : 'Tolk nummer måste vara minst 4 tecken.'
-                    },
-                    {
-                        type   : 'integer',
-                        prompt : 'Tolk nummer innehåller ogiltiga tecken.'
-                    }
-                ]
-            },
-            clientNumber: {
-                identifier : 'clientNumber',
-                optional   : true,
-                rules: [
-                    {
-                        type   : 'length[6]',
-                        prompt : 'Kund nummer måste vara minst 6 tecken.'
-                    },
-                    {
-                        type   : 'maxLength[6]',
-                        prompt : 'Kund nummer måste vara minst 6 tecken.'
-                    },
-                    {
-                        type   : 'integer',
-                        prompt : 'Kund nummer innehåller ogiltiga tecken.'
-                    }
-                ]
-            }
-        },{
-            inline: true,
-            on: 'change',
-            transition: "slide down",
-            onSuccess: function () {
-                $.ajax({
-                    type: "POST",
-                    url: "src/misc/filterOrderHistory.php",
-                    data: orderHistoryFilterForm.filter(":visible").serialize(),
-                    cache: false,
-                    dataType: "json",
-                    beforeSend: function () {
-                        $('.ui.dimmable .dimmer').dimmer('toggle');
-                    }
-                }).done(function (data) {
-                    orderHistoryFilterForm.form('reset');
-                    orderHistoryFilterForm.get(0).reset();
-                    if (data.error == 0) {
-                        var tBody = $('.orderHistory tbody');
-                        tBody.find('tr').remove();
-                        $("#btnRemoveFilterHistory").removeClass('disabled');
-                        if (data.orders.length > 0) {
-                            var paginationContainer = $(".page-history");
-                            paginationContainer.find("a").remove();
+        orderNumber: {
+            identifier: 'orderNumber',
+            optional: true,
+            rules: [
+                {
+                    type: 'length[6]',
+                    prompt: 'Ordernummer måste vara minst 6 tecken.'
+                },
+                {
+                    type: 'maxLength[6]',
+                    prompt: 'Ordernummer måste vara minst 6 tecken.'
+                }
+            ]
+        },
+        tolkNumber: {
+            identifier: 'tolkNumber',
+            optional: true,
+            rules: [
+                {
+                    type: 'length[4]',
+                    prompt: 'Tolk nummer måste vara minst 4 tecken.'
+                },
+                {
+                    type: 'maxLength[4]',
+                    prompt: 'Tolk nummer måste vara minst 4 tecken.'
+                },
+                {
+                    type: 'integer',
+                    prompt: 'Tolk nummer innehåller ogiltiga tecken.'
+                }
+            ]
+        },
+        clientNumber: {
+            identifier: 'clientNumber',
+            optional: true,
+            rules: [
+                {
+                    type: 'length[6]',
+                    prompt: 'Kund nummer måste vara minst 6 tecken.'
+                },
+                {
+                    type: 'maxLength[6]',
+                    prompt: 'Kund nummer måste vara minst 6 tecken.'
+                },
+                {
+                    type: 'integer',
+                    prompt: 'Kund nummer innehåller ogiltiga tecken.'
+                }
+            ]
+        }
+    }, {
+        inline: true,
+        on: 'change',
+        transition: "slide down",
+        onSuccess: function () {
+            $.ajax({
+                type: "POST",
+                url: "src/misc/filterOrderHistory.php",
+                data: orderHistoryFilterForm.filter(":visible").serialize(),
+                cache: false,
+                dataType: "json",
+                beforeSend: function () {
+                    $('.ui.dimmable .dimmer').dimmer('toggle');
+                }
+            }).done(function (data) {
+                orderHistoryFilterForm.form('reset');
+                orderHistoryFilterForm.get(0).reset();
+                if (data.error == 0) {
+                    var tBody = $('.orderHistory tbody');
+                    tBody.find('tr').remove();
+                    $("#btnRemoveFilterHistory").removeClass('disabled');
+                    if (data.orders.length > 0) {
+                        var paginationContainer = $(".page-history");
+                        paginationContainer.find("a").remove();
 
-                            var orders = data.orders;
-                            var customers = data.customers;
-                            for (var i = 0; i < orders.length; i++) {
-                                var btnColor = 'orange';
-                                var infoMsg = 'Info';
-                                var state = orders[i].o_state;
-                                switch (state) {
-                                    case 'O':
-                                        infoMsg = 'Beställ in Progress';
-                                        btnColor = 'orange';
-                                        break;
-                                    case 'B':
-                                        infoMsg = 'Färdig';
-                                        btnColor = 'green';
-                                        break;
-                                    case 'EC':
-                                        infoMsg = 'Avbruten';
-                                        btnColor = 'red';
-                                        break;
-                                }
-                                tBody.append(
-                                    "<tr>" +
-                                    "<td>" + orders[i].o_orderNumber + "</td>" +
-                                    "<td>" + customers[i].k_organizationName + "</td>" +
-                                    "<td>" + orders[i].o_orderer + "</td>" +
-                                    "<td>" + orders[i].o_language + "</td>" +
-                                    "<td class='typeTip' data-content='" + getFullTolkningType(orders[i].o_interpretationType) + "'>" + orders[i].o_interpretationType + "</td>" +
-                                    "<td>" + orders[i].o_date + "</td>" +
-                                    "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
-                                    "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
-                                    "<td>" +
-                                    "<form class='ui form' id='" + orders[i].o_orderNumber + "'>" +
-                                    "<input type='hidden' name='orderId' value='" + orders[i].o_orderNumber + "'>" +
-                                    "<button type='button' class='ui " + btnColor + " fluid button btn-info'>" + infoMsg + "</button>" +
-                                    "</form>" +
-                                    "</td>" +
-                                    "</tr>");
-                                $(".typeTip").popup();
+                        var orders = data.orders;
+                        var customers = data.customers;
+                        for (var i = 0; i < orders.length; i++) {
+                            var btnColor = 'orange';
+                            var infoMsg = 'Info';
+                            var state = orders[i].o_state;
+                            switch (state) {
+                                case 'O':
+                                    infoMsg = 'Beställ in Progress';
+                                    btnColor = 'orange';
+                                    break;
+                                case 'B':
+                                    infoMsg = 'Färdig';
+                                    btnColor = 'green';
+                                    break;
+                                case 'EC':
+                                    infoMsg = 'Avbruten';
+                                    btnColor = 'red';
+                                    break;
+                                case "IC":
+                                    infoMsg = 'Fortfarande pågår';
+                                    btnColor = 'orange';
+                                    break;
                             }
-                            var extraInfoCont = $('.modal.order-history');
-                            extraInfoCont
-                                .modal({closable: false, onDeny: function(){return false;},
-                                onApprove: function() {
+                            tBody.append(
+                                "<tr>" +
+                                "<td>" + orders[i].o_orderNumber + "</td>" +
+                                "<td>" + customers[i].k_organizationName + "</td>" +
+                                "<td>" + orders[i].o_orderer + "</td>" +
+                                "<td>" + orders[i].o_language + "</td>" +
+                                "<td class='typeTip' data-content='" + getFullTolkningType(orders[i].o_interpretationType) + "'>" + orders[i].o_interpretationType + "</td>" +
+                                "<td>" + orders[i].o_date + "</td>" +
+                                "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
+                                "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
+                                "<td>" +
+                                "<form class='ui form' id='" + orders[i].o_orderNumber + "'>" +
+                                "<input type='hidden' name='orderId' value='" + orders[i].o_orderNumber + "'>" +
+                                "<button type='button' class='ui " + btnColor + " fluid button btn-info'>" + infoMsg + "</button>" +
+                                "</form>" +
+                                "</td>" +
+                                "</tr>");
+                            $(".typeTip").popup();
+                        }
+                        var extraInfoCont = $('.modal.order-history');
+                        extraInfoCont
+                            .modal({
+                                closable: false, onDeny: function () {
+                                    return false;
+                                },
+                                onApprove: function () {
                                     var modal = $(".modal.order-history");
                                     modal.find(".content .segment>.ui.positive.message").hide();
                                     modal.find(".content .segment>.ui.error.message").hide();
-                                }})
-                                .modal('setting', 'transition', 'vertical flip');
+                                }
+                            })
+                            .modal('setting', 'transition', 'vertical flip');
 
-                            $('.button.btn-info').on("click",function() {
+                        $('.button.btn-info').on("click", function () {
 
-                                var id =$(this).parent("form").attr('id');
-                                var btnInfo = $(this);
-                                btnInfo.addClass('loading');
-                                $.ajax({
-                                    type: "POST",
-                                    url: "../src/misc/orderMoreInfo.php",
-                                    data: $("#" + id).serialize(),
-                                    dataType: "json"
-                                }).done(function (data) {
-                                    if (data.error == 0) {
-                                        extraInfoCont.find('.segment').first().find('.header span').text(data.order.o_orderNumber);
-                                        var orderBody = $('.orderExtra').find('tbody');
-                                        var tolkBody = $('.tolkExtra').find('tbody');
-                                        orderBody.find('tr').remove();
+                            var id = $(this).parent("form").attr('id');
+                            var btnInfo = $(this);
+                            btnInfo.addClass('loading');
+                            $.ajax({
+                                type: "POST",
+                                url: "../src/misc/orderMoreInfo.php",
+                                data: $("#" + id).serialize(),
+                                dataType: "json"
+                            }).done(function (data) {
+                                if (data.error == 0) {
+                                    extraInfoCont.find('.segment').first().find('.header span').text(data.order.o_orderNumber);
+                                    var orderBody = $('.orderExtra').find('tbody');
+                                    var tolkBody = $('.tolkExtra').find('tbody');
+                                    orderBody.find('tr').remove();
+                                    tolkBody.find('tr').remove();
+                                    orderBody.append(
+                                        "<tr>" +
+                                        "<td>" + data.order.o_address + "</td>" +
+                                        "<td>" + data.order.o_zipCode + "</td>" +
+                                        "<td>" + data.order.o_city + "</td>" +
+                                        "<td>" + data.order.o_client + "</td>" +
+                                        "<td>" + data.order.o_comments + "</td>" +
+                                        "</tr>");
+                                    tolkBody.append(
+                                        "<tr><td colspan='5'><div class='ui center aligned header'>" +
+                                        "Det finns ingen tolk tilldelats för denna ordning ännu." +
+                                        "</div></td></tr>");
+                                    if (data.order.o_tolkarPersonalNumber) {
                                         tolkBody.find('tr').remove();
-                                        orderBody.append(
-                                            "<tr>" +
-                                            "<td>" + data.order.o_address + "</td>" +
-                                            "<td>" + data.order.o_zipCode + "</td>" +
-                                            "<td>" + data.order.o_city + "</td>" +
-                                            "<td>" + data.order.o_client + "</td>" +
-                                            "<td>" + data.order.o_comments + "</td>" +
-                                            "</tr>");
                                         tolkBody.append(
-                                            "<tr><td colspan='5'><div class='ui center aligned header'>"+
-                                            "Det finns ingen tolk tilldelats för denna ordning ännu."+
-                                            "</div></td></tr>");
-                                        if (data.order.o_tolkarPersonalNumber) {
-                                            tolkBody.find('tr').remove();
-                                            tolkBody.append(
-                                                "<tr>" +
-                                                "<td>" + data.tolk.u_firstName + " " + data.tolk.u_lastName + "</td>" +
-                                                "<td>" + data.tolk.t_tolkNumber + "</td>" +
-                                                "<td>" + data.tolk.u_tel + "</td>" +
-                                                "<td>" + data.tolk.u_mobile + "</td>" +
-                                                "<td>" + data.tolk.u_city + "</td>" +
-                                                "</tr>");
-                                            var sendToFinance = $("#formSendToFinance");
-                                            sendToFinance.find("#orderNumber").val(data.order.o_orderNumber);
-                                            sendToFinance.find("#tolkNumber").val(data.order.o_tolkarPersonalNumber);
-                                            $("#btnSendToFinance").removeClass("disabled");
-                                        } else {
-                                            $("#btnSendToFinance").addClass("disabled");
-                                        }
-                                        if(data.order.o_state !== 'B') {
-                                            $("#resendToTolk").addClass("disabled");
-                                            $("#resendToClient").addClass("disabled");
-                                        } else {
-                                            $("#resendToTolk").removeClass("disabled");
-                                            $("#resendToClient").removeClass("disabled");
-                                        }
-                                        extraInfoCont.modal('show');
+                                            "<tr>" +
+                                            "<td>" + data.tolk.u_firstName + " " + data.tolk.u_lastName + "</td>" +
+                                            "<td>" + data.tolk.t_tolkNumber + "</td>" +
+                                            "<td>" + data.tolk.u_tel + "</td>" +
+                                            "<td>" + data.tolk.u_mobile + "</td>" +
+                                            "<td>" + data.tolk.u_city + "</td>" +
+                                            "</tr>");
+                                        var sendToFinance = $("#formSendToFinance");
+                                        sendToFinance.find("#orderNumber").val(data.order.o_orderNumber);
+                                        sendToFinance.find("#tolkNumber").val(data.order.o_tolkarPersonalNumber);
+                                        $("#btnSendToFinance").removeClass("disabled");
+                                    } else {
+                                        $("#btnSendToFinance").addClass("disabled");
                                     }
-                                    btnInfo.removeClass('loading');
-                                });
+                                    if (data.order.o_state !== 'B') {
+                                        $("#resendToTolk").addClass("disabled");
+                                        $("#resendToClient").addClass("disabled");
+                                    } else {
+                                        $("#resendToTolk").removeClass("disabled");
+                                        $("#resendToClient").removeClass("disabled");
+                                    }
+                                    extraInfoCont.modal('show');
+                                }
+                                btnInfo.removeClass('loading');
                             });
-                        } else {
-                            tBody.append("<tr><td colspan='9'><div class='ui text'>Inga order matchar din sökning parametrar.</div></td></tr>");
-                        }
-                        $('.ui.dimmable .dimmer').dimmer('toggle');
+                        });
+                    } else {
+                        tBody.append("<tr><td colspan='9'><div class='ui text'>Inga order matchar din sökning parametrar.</div></td></tr>");
                     }
-                });
-            }
-        });
+                    $('.ui.dimmable .dimmer').dimmer('toggle');
+                }
+            });
+        }
+    });
 
     jQuery.validator.setDefaults({
         debug: true,
         success: "valid"
     });
-    $("#btnRemoveFilterHistory").click(function() {
-        $( ".btn-update-history" ).trigger( "click" );
+    $("#btnRemoveFilterHistory").click(function () {
+        $(".btn-update-history").trigger("click");
     });
 
     $('#btnFilterHistory').click(function () {
         orderHistoryFilterForm.form("validate form");
     });
 
-    $("#newsPrescript").change(function() {
+    $("#newsPrescript").change(function () {
         var charCount = $(this).val().length;
-        var chars =  $("#chars");
+        var chars = $("#chars");
         if (charCount > 200) {
-           chars.css("color", "red");
+            chars.css("color", "red");
         } else {
             chars.css("color", "black");
         }
@@ -439,7 +479,7 @@ $(document).ready(function () {
         toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons | link image media"
     });
     var feed = $(".feed");
-    feed.on("click", ".btnNewsManageView", function() {
+    feed.on("click", ".btnNewsManageView", function () {
         $('#newsLetterModifyForm').slideUp(500);
         $("#containerUpdateNews").addClass('basic');
         var pressedBtn = $(this);
@@ -464,7 +504,7 @@ $(document).ready(function () {
 
     });
 
-    feed.on("click", ".btnNewsManageEdit", function() {
+    feed.on("click", ".btnNewsManageEdit", function () {
         var pressedBtn = $(this),
             container = $("#containerUpdateNews");
         $.ajax({
@@ -501,7 +541,7 @@ $(document).ready(function () {
         deleteModal.modal('show');
     });
 
-    $("#btnPreviewNewsManage").on("click", function() {
+    $("#btnPreviewNewsManage").on("click", function () {
         $('.modal.previewManage .header').text($("#newsTitleManage").val() + " - Publicerat: Idag");
         $('.modal.previewManage #newsContent').html(tinyMCE.get('newsLetterManage').getContent());
 
@@ -550,7 +590,7 @@ $(document).ready(function () {
             beforeSend: function () {
                 pressedBtn.addClass('loading');
             },
-            data: {newsID: pressedBtn.data('id') }
+            data: {newsID: pressedBtn.data('id')}
         }).done(function (data) {
             $('.small.news.modal .content .description').text(data.message);
             $('.small.news.modal').modal('show');
@@ -560,7 +600,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $("#btnPreviewNews").on("click", function() {
+    $("#btnPreviewNews").on("click", function () {
         $('.modal.preview .header').text($("#newsTitle").val() + " - Publicerat: Idag");
         $('.modal.preview #newsContent').html(tinyMCE.get('newsLetter').getContent());
 
@@ -622,9 +662,9 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.button.btn-info').on("click",function() {
+    $('.button.btn-info').on("click", function () {
         var extraInfoCont = $('.modal.order-history');
-        var id =$(this).parent("form").attr('id');
+        var id = $(this).parent("form").attr('id');
         var btnInfo = $(this);
         btnInfo.addClass('loading');
         $.ajax({
@@ -648,10 +688,10 @@ $(document).ready(function () {
                     "<td>" + data.order.o_comments + "</td>" +
                     "</tr>");
                 tolkBody.append(
-                    "<tr><td colspan='5'><div class='ui center aligned header'>"+
-                    "Det finns ingen tolk tilldelats för denna ordning ännu."+
+                    "<tr><td colspan='5'><div class='ui center aligned header'>" +
+                    "Det finns ingen tolk tilldelats för denna ordning ännu." +
                     "</div></td></tr>");
-                if(data.order.o_state !== 'B') {
+                if (data.order.o_state !== 'B') {
                     $("#resendToTolk").addClass("disabled");
                     $("#resendToClient").addClass("disabled");
                 } else {
@@ -681,8 +721,8 @@ $(document).ready(function () {
         });
     });
 
-    $("#date").datepicker({dateFormat: 'yy-mm-dd', minDate: 0 });
-    $("#dateFilter").datepicker({dateFormat: 'yy-mm-dd' });
+    $("#date").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, minDate: 0});
+    $("#dateFilter").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1});
 
     $('.tolk-type').popup({inline: true, transition: "scale"});
     $('.radio.checkbox').checkbox();
@@ -724,9 +764,9 @@ $(document).ready(function () {
         return false;
     });
 
-    $('.page-manage').on("click", ".item", function() {
+    $('.page-manage').on("click", ".item", function () {
         var pageNum = "1";
-        if(!$(this).hasClass('icon')) {
+        if (!$(this).hasClass('icon')) {
             $(this)
                 .addClass('active')
                 .closest('.ui.menu')
@@ -737,7 +777,7 @@ $(document).ready(function () {
             pageNum = $(this).text();
         } else {
             var currPage = $('.page-manage').find(".active.item");
-            if($(this).hasClass('previousMPage')){
+            if ($(this).hasClass('previousMPage')) {
 
                 var previousPage = currPage.prevAll('.item').not('.previousMPage').first();
                 if (!$.isEmptyObject(previousPage) && previousPage.hasClass("item")) {
@@ -762,7 +802,7 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: "src/misc/nextManagePage.php",
-            data: { pageNum: pageNum },
+            data: {pageNum: pageNum},
             cache: true,
             dataType: "json",
             beforeSend: function () {
@@ -792,6 +832,10 @@ $(document).ready(function () {
                                 infoMsg = 'Avbruten';
                                 btnColor = 'red';
                                 break;
+                            case "IC":
+                                infoMsg = 'Fortfarande pågår';
+                                btnColor = 'orange';
+                                break;
                         }
                         tBody.append(
                             "<tr>" +
@@ -804,9 +848,7 @@ $(document).ready(function () {
                             "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
                             "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
                             "<td>" +
-                            "<form class='ui form' method='post' action='src/misc/orderInfo.php'>" +
-                            "<input type='hidden' name='orderId' value='" + orders[i].o_orderNumber + "'>" +
-                            "<button type='submit' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
+                            "<button type='button' id='" + orders[i].o_orderNumber + "' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
                             "</form>" +
                             "</td>" +
                             "</tr>");
@@ -836,7 +878,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: "GET",
                     url: "src/misc/getCurrentOrOldOrderNum.php",
-                    data: { isManage: true },
+                    data: {isManage: true},
                     cache: true,
                     dataType: "json"
                 }).done(function (data) {
@@ -850,12 +892,12 @@ $(document).ready(function () {
                             var rem = num % 10;
                             if (rem === 0) {
                                 var numPage = num / 10;
-                                for(var k = 2; k <= numPage; k++) {
+                                for (var k = 2; k <= numPage; k++) {
                                     paginationContainer.append($('<a class="active item" id="mpage' + k + '">' + k + '</a>'));
                                 }
                             } else {
                                 var numPageRem = ((num - rem) / 10) + 1;
-                                for(var j = 2; j <= numPageRem; j++) {
+                                for (var j = 2; j <= numPageRem; j++) {
                                     paginationContainer.append($('<a class="active item" id="mpage' + j + '">' + j + '</a>'));
                                 }
                             }
@@ -885,6 +927,10 @@ $(document).ready(function () {
                                 infoMsg = 'Avbruten';
                                 btnColor = 'red';
                                 break;
+                            case "IC":
+                                infoMsg = 'Fortfarande pågår';
+                                btnColor = 'orange';
+                                break;
                         }
                         tBody.append(
                             "<tr>" +
@@ -897,9 +943,7 @@ $(document).ready(function () {
                             "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
                             "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
                             "<td>" +
-                            "<form class='ui form' method='post' action='src/misc/orderInfo.php'>" +
-                            "<input type='hidden' name='orderId' value='" + orders[i].o_orderNumber + "'>" +
-                            "<button type='submit' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
+                            "<button type='button' id='" + orders[i].o_orderNumber + "' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
                             "</form>" +
                             "</td>" +
                             "</tr>");
@@ -925,9 +969,9 @@ $(document).ready(function () {
         });
     });
 
-    $('.page-history').on("click", ".item", function() {
+    $('.page-history').on("click", ".item", function () {
         var pageNum = "1";
-        if(!$(this).hasClass('icon')) {
+        if (!$(this).hasClass('icon')) {
             $(this)
                 .addClass('active')
                 .closest('.ui.menu')
@@ -938,7 +982,7 @@ $(document).ready(function () {
             pageNum = $(this).text();
         } else {
             var currPage = $('.page-history').find(".active.item");
-            if($(this).hasClass('previousHPage')){
+            if ($(this).hasClass('previousHPage')) {
 
                 var previousPage = currPage.prevAll('.item').not('.previousHPage').first();
                 if (!$.isEmptyObject(previousPage) && previousPage.hasClass("item")) {
@@ -963,7 +1007,7 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: "src/misc/nextHistoryPage.php",
-            data: { pageNum: pageNum },
+            data: {pageNum: pageNum},
             dataType: "json",
             cache: true,
             beforeSend: function () {
@@ -993,6 +1037,10 @@ $(document).ready(function () {
                                 infoMsg = 'Avbruten';
                                 btnColor = 'red';
                                 break;
+                            case "IC":
+                                infoMsg = 'Fortfarande pågår';
+                                btnColor = 'orange';
+                                break;
                         }
                         tBody.append(
                             "<tr>" +
@@ -1014,17 +1062,21 @@ $(document).ready(function () {
                         $(".typeTip").popup();
                     }
                     var extraInfoCont = $('.modal.order-history');
-                    extraInfoCont.modal({closable: false,onDeny: function(){return false;},
-                            onApprove: function() {
-                                var modal = $(".modal.order-history");
-                                modal.find(".content .segment>.ui.positive.message").hide();
-                                modal.find(".content .segment>.ui.error.message").hide();
-                            }})
+                    extraInfoCont.modal({
+                        closable: false, onDeny: function () {
+                            return false;
+                        },
+                        onApprove: function () {
+                            var modal = $(".modal.order-history");
+                            modal.find(".content .segment>.ui.positive.message").hide();
+                            modal.find(".content .segment>.ui.error.message").hide();
+                        }
+                    })
                         .modal('setting', 'transition', 'vertical flip');
 
-                    $('.button.btn-info').on("click",function() {
+                    $('.button.btn-info').on("click", function () {
 
-                        var id =$(this).parent("form").attr('id');
+                        var id = $(this).parent("form").attr('id');
                         var btnInfo = $(this);
                         btnInfo.addClass('loading');
                         $.ajax({
@@ -1048,10 +1100,10 @@ $(document).ready(function () {
                                     "<td>" + data.order.o_comments + "</td>" +
                                     "</tr>");
                                 tolkBody.append(
-                                    "<tr><td colspan='5'><div class='ui center aligned header'>"+
-                                    "Det finns ingen tolk tilldelats för denna ordning ännu."+
+                                    "<tr><td colspan='5'><div class='ui center aligned header'>" +
+                                    "Det finns ingen tolk tilldelats för denna ordning ännu." +
                                     "</div></td></tr>");
-                                if(data.order.o_state !== 'B') {
+                                if (data.order.o_state !== 'B') {
                                     $("#resendToTolk").addClass("disabled");
                                     $("#resendToClient").addClass("disabled");
                                 } else {
@@ -1105,7 +1157,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: "GET",
                     url: "src/misc/getCurrentOrOldOrderNum.php",
-                    data: { isManage: false },
+                    data: {isManage: false},
                     cache: true,
                     dataType: "json"
                 }).done(function (data) {
@@ -1119,12 +1171,12 @@ $(document).ready(function () {
                             var rem = num % 10;
                             if (rem === 0) {
                                 var numPage = num / 10;
-                                for(var k = 2; k <= numPage; k++) {
+                                for (var k = 2; k <= numPage; k++) {
                                     paginationContainer.append($('<a class="active item" id="mpage' + k + '">' + k + '</a>'));
                                 }
                             } else {
                                 var numPageRem = ((num - rem) / 10) + 1;
-                                for(var j = 2; j <= numPageRem; j++) {
+                                for (var j = 2; j <= numPageRem; j++) {
                                     paginationContainer.append($('<a class="active item" id="mpage' + j + '">' + j + '</a>'));
                                 }
                             }
@@ -1154,6 +1206,10 @@ $(document).ready(function () {
                                 infoMsg = 'Avbruten';
                                 btnColor = 'red';
                                 break;
+                            case "IC":
+                                infoMsg = 'Fortfarande pågår';
+                                btnColor = 'orange';
+                                break;
                         }
                         tBody.append(
                             "<tr>" +
@@ -1175,16 +1231,20 @@ $(document).ready(function () {
                         $(".typeTip").popup();
                     }
                     var extraInfoCont = $('.modal.order-history');
-                        extraInfoCont.modal({closable: false, onDeny: function(){return false;},
-                            onApprove: function() {
-                                var modal = $(".modal.order-history");
-                                modal.find(".content .segment>.ui.positive.message").hide();
-                                modal.find(".content .segment>.ui.error.message").hide();
-                            }})
+                    extraInfoCont.modal({
+                        closable: false, onDeny: function () {
+                            return false;
+                        },
+                        onApprove: function () {
+                            var modal = $(".modal.order-history");
+                            modal.find(".content .segment>.ui.positive.message").hide();
+                            modal.find(".content .segment>.ui.error.message").hide();
+                        }
+                    })
                         .modal('setting', 'transition', 'vertical flip');
 
-                    $('.button.btn-info').on("click",function() {
-                        var id =$(this).parent("form").attr('id');
+                    $('.button.btn-info').on("click", function () {
+                        var id = $(this).parent("form").attr('id');
                         var btnInfo = $(this);
                         btnInfo.addClass('loading');
                         $.ajax({
@@ -1208,10 +1268,10 @@ $(document).ready(function () {
                                     "<td>" + data.order.o_comments + "</td>" +
                                     "</tr>");
                                 tolkBody.append(
-                                    "<tr><td colspan='5'><div class='ui center aligned header'>"+
-                                    "Det finns ingen tolk tilldelats för denna ordning ännu."+
+                                    "<tr><td colspan='5'><div class='ui center aligned header'>" +
+                                    "Det finns ingen tolk tilldelats för denna ordning ännu." +
                                     "</div></td></tr>");
-                                if(data.order.o_state !== 'B') {
+                                if (data.order.o_state !== 'B') {
                                     $("#resendToTolk").addClass("disabled");
                                     $("#resendToClient").addClass("disabled");
                                 } else {
@@ -1329,7 +1389,7 @@ $(document).ready(function () {
         tolkSearchFrom.get(0).reset();
     });
 
-    setInterval(function() {
+    setInterval(function () {
         var lang = tolkSearchFrom.form('get value', 'language');
 
         if (!lang) {
@@ -1530,6 +1590,13 @@ $(document).ready(function () {
     $(".orderForm input, .orderForm select").on('input', function () {
         $(this).valid();
     });
+    $('.button.reset-btn').click(function () {
+        orderForm.form('clear');
+        orderForm.get(0).reset();
+        orderForm.form('reset');
+        $("#date").datepicker('setDate', new Date());
+        switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset').first());
+    });
     $('.button.order-btn').click(function () {
         $(".button.order-btn").removeClass("disabled");
         orderForm.removeClass("error transition visible");
@@ -1548,6 +1615,7 @@ $(document).ready(function () {
                 orderForm.form('reset');
                 orderForm.removeClass("loading");
                 switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset').first());
+                $("#date").datepicker('setDate', new Date());
             }
             else {
                 var errorElem = $(".ui.error.message");
@@ -1605,12 +1673,12 @@ function tolkMoreInfo(event) {
                 table1 = modal.find(".content").find(".description").find(".tolkExtraInfo").find('tbody'),
                 table2 = modal.find(".content").find(".description").find(".tolkExtraInfoOrder").find('tbody');//
             table1.empty();
-            $.each( langs, function() {
-                table1.append("<tr><td>"+ this.t_sprakName+"</td><td>"+this.t_rate+"</td><td>"+this.t_customerRate+"</td></tr>");
+            $.each(langs, function () {
+                table1.append("<tr><td>" + this.t_sprakName + "</td><td>" + this.t_rate + "</td><td>" + this.t_customerRate + "</td></tr>");
             });
             table2.empty();
             if (typeof orders != "undefined") {
-                $.each( orders, function( key, value ) {
+                $.each(orders, function (key, value) {
                     table2.append(
                         "<tr>" +
                         "<td>" + value.o_orderNumber + "</td>" +
@@ -1641,7 +1709,7 @@ function adjustTime(startH, startM, endH, endM) {
     }).each(function () {
         $(this).prop('disabled', true)
     });
-    if (startH.val() === endH.val()){
+    if (startH.val() === endH.val()) {
         endM.find('option').filter(function (index) {
             return index <= startM.val();
         }).each(function () {
@@ -1665,18 +1733,18 @@ function updateNewsletterEntries() {
         type: "GET",
         url: "src/misc/getAllNews.php",
         dataType: "json",
-        beforeSend: function() {
+        beforeSend: function () {
             newsContainer.addClass("loading");
         }
     }).done(function (data) {
         if (data.error === 0) {
             feed.empty();
             if (data.records.length > 0) {
-                for(var i = 0; i < data.records.length; i++) {
+                for (var i = 0; i < data.records.length; i++) {
                     var event = $('<div class="event" style="border: solid 1px #d3d3d3; margin-bottom: 5px"></div>');
 
                     var formManage = $('<form class="newsManageIDForm"></form>');
-                    formManage.append($('<input type="hidden" name="newsID"value="'+data.records[i].id+'"/>'));
+                    formManage.append($('<input type="hidden" name="newsID"value="' + data.records[i].id + '"/>'));
                     formManage.append($(' <div class="ui grid"> <div class="row"> <div class="column"> <div class="three ui vertical fluid inverted buttons"> <div class="mini ui blue inverted button btnNewsManageView">View </div> <div class="mini ui orange inverted button btnNewsManageEdit">Edit </div> <div class="mini ui red inverted button btnNewsManageDelete">Delete </div> </div> </div> </div> </div>'));
 
                     var label = $('<div class="label"></div>');
@@ -1686,7 +1754,7 @@ function updateNewsletterEntries() {
                     var context = $('<div class="content"></div>');
                     var summary = $('<div class="summary"></div>');
                     summary.html(data.records[i].header);
-                    var content = $('<div class="extra text">' +data.records[i].prescript+ '</div>');
+                    var content = $('<div class="extra text">' + data.records[i].prescript + '</div>');
                     context.append(summary);
                     context.append(content);
                     context.append($('<div class="meta"></div>'));

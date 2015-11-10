@@ -26,7 +26,7 @@ class SMS_Service
     }
 
     public function sendSMS() {
-        echo "<script>window.open('$this->url')</script>";
+        return $this->url;
     }
 
     /**

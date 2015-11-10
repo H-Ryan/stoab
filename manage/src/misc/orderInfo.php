@@ -20,11 +20,11 @@ if (!empty($referrer)) {
 } else {
     exit("Referrer not found. Please <a href='".$_SERVER['SCRIPT_NAME']."'>try again</a>.");
 }
-
+$db = null;
 $data = array();
 if(isset($_POST['orderId']))
 {
-    $db = null;
+
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
@@ -41,22 +41,21 @@ if(isset($_POST['orderId']))
         {
             session_regenerate_id();
             $_SESSION['order'] = $statement->fetch();
+            $data["error"] = 0;
         } else {
-            echo "Error. No such order.";
+            $data["error"] = 1;
+            $data["messageHeader"] = "Header";
+            $data["errorMessage"] = "Error. No such order.";
         }
     } catch (PDOException $e) {
         return $e->getMessage();
-    }
-    if ($db != null) {
-        $db->disconnect();
     }
 } else {
     $data["error"] = 1;
     $data["messageHeader"] = "Header";
     $data["errorMessage"] = "Error Message";
-    echo json_encode($data);
 }
-
-header("Location: ../../manage.php");
-
-exit;
+echo json_encode($data);
+if ($db != null) {
+    $db->disconnect();
+}

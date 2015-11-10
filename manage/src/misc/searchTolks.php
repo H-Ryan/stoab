@@ -26,8 +26,8 @@ $language = $_POST['language'];
 $city = (isset($_POST['city']) ? $_POST['city'] : "");
 $state = (isset($_POST['state']) ? $_POST['state'] : "");
 $tolkNum = (isset($_POST['tolkNum']) ? $_POST['tolkNum'] : "");
-$tolkFName = (isset($_POST['tolkFirstName']) ? $_POST['tolkFirstName'] : "");
-$tolkLName = (isset($_POST['tolkLastName']) ? $_POST['tolkLastName'] : "");
+$tolkFName = (isset($_POST['tolkFirstName']) ? "%".$_POST['tolkFirstName']."%" : "");
+$tolkLName = (isset($_POST['tolkLastName']) ? "%".$_POST['tolkLastName']."%" : "");
 
 $db = null;
 try {
@@ -99,7 +99,7 @@ try {
                 $statement = $con->prepare($query);
                 $statement->bindParam(":tolkNum", $tolkNum);
             } else {
-                if (!empty($tolkFName) && !empty($tolkLName)) {
+                if (!empty($tolkFName) && !empty($tolkLName) && (strlen($tolkFName) > 2 && strlen($tolkLName) > 2)) {
                     $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
                         " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,".
                         " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
@@ -108,10 +108,12 @@ try {
                         " AND t.t_personalNumber = s.t_personalNumber AND (u.u_firstName LIKE :tolkFName".
                         " OR u.u_lastName LIKE :tolkLName)";
                     $statement = $con->prepare($query);
-                    $statement->bindParam(":tolkFName", $tolkFName);
-                    $statement->bindParam(":tolkLName", $tolkLName);
+                    $statement->bindParam(":tolkFName", $tolkFName, PDO::PARAM_STR);
+                    $statement->bindParam(":tolkLName", $tolkLName, PDO::PARAM_STR);
+                    $data['tt'] = 0;
+                    $data['ttrt'] = $tolkLName;
                 } else {
-                    if (!empty($tolkFName)) {
+                    if (!empty($tolkFName) && strlen($tolkFName) > 2) {
                         $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
                             " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,".
                             " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
@@ -119,8 +121,9 @@ try {
                             " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
                             " AND t.t_personalNumber = s.t_personalNumber AND u.u_firstName LIKE :tolkFName";
                         $statement = $con->prepare($query);
-                        $statement->bindParam(":tolkFName", $tolkFName);
-                    } else {
+                        $data['tt'] = 1;
+                        $statement->bindParam(":tolkFName", $tolkFName, PDO::PARAM_STR);
+                    } else if (!empty($tolkLName) && strlen($tolkLName) > 2) {
                         $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
                             " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,".
                             " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
@@ -128,14 +131,24 @@ try {
                             " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
                             " AND t.t_personalNumber = s.t_personalNumber AND u.u_lastName LIKE :tolkLName";
                         $statement = $con->prepare($query);
-                        $statement->bindParam(":tolkLName", $tolkLName);
+                        $statement->bindParam(":tolkLName", $tolkLName, PDO::PARAM_STR);
+                        $data['tt'] = 2;
+                    } else {
+                        $query = "SELECT * FROM t_tolkar AS t WHERE  t.t_active =:isActive AND t.t_tolkNumber =:tolkNum";
+                        $statement = $con->prepare($query);
+                        $fail = 00000000000;
+                        $statement->bindParam(":tolkNum", $fail, PDO::PARAM_INT);
                     }
-
                 }
             }
+        } else {
+            $query = "SELECT * FROM t_tolkar AS t WHERE  t.t_active =:isActive AND t.t_tolkNumber =:tolkNum";
+            $statement = $con->prepare($query);
+            $fail = 00000000000;
+            $statement->bindParam(":tolkNum", $fail, PDO::PARAM_INT);
         }
     }
-
+    $data['ttrt'] = $tolkLName;
     $statement->bindParam(":isActive", $isActive);
     $statement->execute();
     $statement->setFetchMode(PDO::FETCH_OBJ);

@@ -59,9 +59,10 @@ try {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html style="height: auto;">
 <head lang="en">
     <meta charset="UTF-8">
+    <base target="_blank" />
     <title>Manage Order: <?php echo $order->o_orderNumber ?></title>
     <link rel="stylesheet" href="../lib/stoab/stoab.min.css"/>
     <link rel="stylesheet" href="../css/mod-sam/main.css"/>
@@ -176,9 +177,14 @@ try {
                                 </tbody>
                             </table>
                         </div>
-                        <div class="two fields">
+                        <div class="three fields">
                             <div class="field">
-                                <button type="button" class="ui orange button btnCancel">Avboka</button>
+                                <button type="button" class="ui red button btnCancel">Avboka</button>
+                            </div>
+                            <div class="field">
+                            <?php if ($tolk != null) {
+                                echo "<button type='button' class='ui orange button btnTolkCancel'>Annulleras av tolk</button>";
+                            }?>
                             </div>
                             <div class="field">
                                 <?php if ($tolk != null) {
@@ -189,6 +195,7 @@ try {
 
                                 ?>
                             </div>
+
                         </div>
                     </fieldset>
                 </form>
@@ -201,7 +208,7 @@ try {
                     <tr>
                         <th colspan="3">
                             <div class="ui segment">
-                                <div class="ui center aligned header">Mer information</div>
+                                <div class="ui center aligned header">Mer information: <?php echo $order->o_orderNumber ?></div>
                             </div>
                         </th>
                     </tr>
@@ -322,6 +329,31 @@ try {
         </div>
     </div>
     <div class="ui basic modal modalCancel">
+        <div class="center aligned header">
+            Varning
+        </div>
+        <div class="content">
+            <div class="image">
+                <i class="warning sign icon"></i>
+            </div>
+            <div class="description">
+                <div class="ui left aligned inverted header">
+                    Är du säker på att du vill avbryta denna order?
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="two fluid ui inverted buttons">
+                <div class="ui red cancel basic inverted button">
+                    <i class="remove icon"></i>Nej
+                </div>
+                <div class="ui green ok basic inverted button">
+                    <i class="checkmark icon"></i>Ja
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui basic modal modalTolkCancel">
         <div class="center aligned header">
             Varning
         </div>
