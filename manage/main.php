@@ -33,13 +33,13 @@ try {
     if ($statement->rowCount() > 0) {
         $user = $statement->fetch();
     }
-    $statement = $con->query("SELECT l_languageName FROM t_languages ORDER BY l_languageName");
+    $statement = $con->query("SELECT * FROM t_languages ORDER BY l_languageName");
     $statement->setFetchMode(PDO::FETCH_OBJ);
     $languages = array();
     while ($row = $statement->fetch()) {
-        $languages[] = $row->l_languageName;
+        $languages[$row->l_languageID] = $row->l_languageName;
     }
-    $statement = $con->query("SELECT c_cityName FROM t_city ORDER BY c_cityName");
+    $statement = $con->query("SELECT * FROM t_city ORDER BY c_cityName");
     $statement->setFetchMode(PDO::FETCH_OBJ);
     $cities = array();
     while ($row = $statement->fetch()) {

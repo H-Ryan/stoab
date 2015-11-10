@@ -24,8 +24,8 @@
                             <select id="language" name="language" class="ui search dropdown">
                                 <option selected value=''>Språk</option>
                                 <?php
-                                foreach ($languages as $lang) {
-                                    echo "<option value='" . $lang . "'>" . $lang . "</option>";
+                                foreach ($languages as $id=>$lang) {
+                                    echo "<option value='" . $id . "'>" . $lang . "</option>";
                                 }
                                 ?>
                             </select>
