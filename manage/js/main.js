@@ -2,14 +2,18 @@ $(document).ready(function () {
     "use strict";
     var orderForm = $('.ui.form.orderForm'),
         tolkSearchFrom = $('.ui.form.tolk-search'),
-        orderHistoryFilterForm = $("#orderFilterForm"),
-        orderManageFilterForm = $("#orderFilterFormManage"),
+        orderHistoryFilterForm = $('.ui.form.orderFilterForm'),
+        orderManageFilterForm = $('.ui.form.orderFilterFormManage'),
         modalResend = $('.ui.basic.modal.modalResend'),
-        emailSendForm = $("#formSendToFinance"),
+        emailSendForm = $('#formSendToFinance'),
         emailResendResult = $(".modal.emailResendResult"),
         modalOrderHistory = $(".modal.order-history"),
         modalUpdatesInfo = $(".modal.modalUpdatesInfo"),
-        manageWindow = null;
+        manageWindow = null,
+        startHour = $("#starttid"),
+        endHour = $("#sluttid"),
+        startMinute = $("#starttid1"),
+        endMinute = $("#sluttid1");
 
     $('.ui.fluid.accordion').accordion();
 
@@ -164,85 +168,11 @@ $(document).ready(function () {
         }
     }, {
         inline: true,
-        on: 'change',
-        transition: "slide down",
-        onSuccess: function () {
-            $.ajax({
-                type: "POST",
-                url: "src/misc/filterOrderManage.php",
-                data: orderManageFilterForm.filter(":visible").serialize(),
-                cache: false,
-                dataType: "json",
-                beforeSend: function () {
-                    $('.ui.dimmable .dimmer').dimmer('toggle');
-                }
-            }).done(function (data) {
-                orderManageFilterForm.form('reset');
-                orderManageFilterForm.get(0).reset();
-                if (data.error == 0) {
-                    var tBody = $('.orderManage tbody');
-                    tBody.find('tr').remove();
-                    $("#btnRemoveFilterManage").removeClass('disabled');
-                    if (data.orders.length > 0) {
-                        var paginationContainer = $(".page-manage");
-                        paginationContainer.find("a").remove();
-                        var orders = data.orders;
-                        var customers = data.customers;
-                        for (var i = 0; i < orders.length; i++) {
-                            var btnColor = 'orange';
-                            var infoMsg = 'Info';
-                            var state = orders[i].o_state;
-                            switch (state) {
-                                case 'O':
-                                    infoMsg = 'Beställ in Progress';
-                                    btnColor = 'orange';
-                                    break;
-                                case 'B':
-                                    infoMsg = 'Färdig';
-                                    btnColor = 'green';
-                                    break;
-                                case 'EC':
-                                    infoMsg = 'Avbruten';
-                                    btnColor = 'red';
-                                    break;
-                                case "IC":
-                                    infoMsg = 'Fortfarande pågår';
-                                    btnColor = 'orange';
-                                    break;
-                            }
-                            tBody.append(
-                                "<tr>" +
-                                "<td>" + orders[i].o_orderNumber + "</td>" +
-                                "<td>" + customers[i].k_organizationName + "</td>" +
-                                "<td>" + orders[i].o_orderer + "</td>" +
-                                "<td>" + orders[i].o_language + "</td>" +
-                                "<td class='typeTip' data-content='" + getFullTolkningType(orders[i].o_interpretationType) + "'>" + orders[i].o_interpretationType + "</td>" +
-                                "<td>" + orders[i].o_date + "</td>" +
-                                "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
-                                "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
-                                "<td>" +
-                                "<button type='button' id='" + orders[i].o_orderNumber + "' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
-                                "</form>" +
-                                "</td>" +
-                                "</tr>");
-                            $(".typeTip").popup();
-                        }
-                    } else {
-                        tBody.append("<tr><td colspan='9'><div class='ui text'>Inga order matchar din sökning parametrar.</div></td></tr>");
-                    }
-                    $('.ui.dimmable .dimmer').dimmer('toggle');
-                }
-            });
-        }
+        on: 'blur',
+        transition: "slide down"
     });
 
-    $("#btnRemoveFilterManage").click(function () {
-        $(".btn-update-manage").trigger("click");
-    });
 
-    $('#btnFilterManage').click(function () {
-        orderManageFilterForm.form("validate form");
-    });
 
     orderHistoryFilterForm.form({
         orderNumber: {
@@ -297,13 +227,25 @@ $(document).ready(function () {
         }
     }, {
         inline: true,
-        on: 'change',
-        transition: "slide down",
-        onSuccess: function () {
+        on: 'blur',
+        transition: "slide down"
+    });
+
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+
+    $("#btnRemoveFilterHistory").on("click", function () {
+        $(".btn-update-history").trigger("click");
+    });
+
+    $('.button.btnFilterHistory').on("click", function () {
+        if (orderHistoryFilterForm.filter(":visible").form("validate form")) {
             $.ajax({
                 type: "POST",
                 url: "src/misc/filterOrderHistory.php",
-                data: orderHistoryFilterForm.filter(":visible").serialize(),
+                data: orderHistoryFilterForm.serialize(),
                 cache: false,
                 dataType: "json",
                 beforeSend: function () {
@@ -312,10 +254,10 @@ $(document).ready(function () {
             }).done(function (data) {
                 orderHistoryFilterForm.form('reset');
                 orderHistoryFilterForm.get(0).reset();
+                var tBody = $('.orderHistory tbody:visible');
+                tBody.find('tr').remove();
+
                 if (data.error == 0) {
-                    var tBody = $('.orderHistory tbody');
-                    tBody.find('tr').remove();
-                    $("#btnRemoveFilterHistory").removeClass('disabled');
                     if (data.orders.length > 0) {
                         var paginationContainer = $(".page-history");
                         paginationContainer.find("a").remove();
@@ -438,22 +380,87 @@ $(document).ready(function () {
                     } else {
                         tBody.append("<tr><td colspan='9'><div class='ui text'>Inga order matchar din sökning parametrar.</div></td></tr>");
                     }
+                } else {
+                    tBody.append("<tr><td colspan='9'><div class='ui text'>Inga order matchar din sökning parametrar.</div></td></tr>");
+                }
+                $('.ui.dimmable .dimmer').dimmer('toggle');
+                $("#btnRemoveFilterHistory").removeClass('disabled');
+            });
+        }
+    });
+    $("#btnRemoveFilterManage").on("click", function () {
+        $(".btn-update-manage").trigger("click");
+    });
+
+    $('#btnFilterManage').on("click", function () {
+        if (orderManageFilterForm.filter(":visible").form("validate form")) {
+            $.ajax({
+                type: "POST",
+                url: "src/misc/filterOrderManage.php",
+                data: orderManageFilterForm.filter(":visible").serialize(),
+                cache: false,
+                dataType: "json",
+                beforeSend: function () {
+                    $('.ui.dimmable .dimmer').dimmer('toggle');
+                }
+            }).done(function (data) {
+                orderManageFilterForm.form('reset');
+                orderManageFilterForm.get(0).reset();
+                if (data.error == 0) {
+                    var tBody = $('.orderManage tbody:visible');
+                    tBody.find('tr').remove();
+                    $("#btnRemoveFilterManage").removeClass('disabled');
+                    if (data.orders.length > 0) {
+                        var paginationContainer = $(".page-manage");
+                        paginationContainer.find("a").remove();
+                        var orders = data.orders;
+                        var customers = data.customers;
+                        for (var i = 0; i < orders.length; i++) {
+                            var btnColor = 'orange';
+                            var infoMsg = 'Info';
+                            var state = orders[i].o_state;
+                            switch (state) {
+                                case 'O':
+                                    infoMsg = 'Beställ in Progress';
+                                    btnColor = 'orange';
+                                    break;
+                                case 'B':
+                                    infoMsg = 'Färdig';
+                                    btnColor = 'green';
+                                    break;
+                                case 'EC':
+                                    infoMsg = 'Avbruten';
+                                    btnColor = 'red';
+                                    break;
+                                case "IC":
+                                    infoMsg = 'Fortfarande pågår';
+                                    btnColor = 'orange';
+                                    break;
+                            }
+                            tBody.append(
+                                "<tr>" +
+                                "<td>" + orders[i].o_orderNumber + "</td>" +
+                                "<td>" + customers[i].k_organizationName + "</td>" +
+                                "<td>" + orders[i].o_orderer + "</td>" +
+                                "<td>" + orders[i].o_language + "</td>" +
+                                "<td class='typeTip' data-content='" + getFullTolkningType(orders[i].o_interpretationType) + "'>" + orders[i].o_interpretationType + "</td>" +
+                                "<td>" + orders[i].o_date + "</td>" +
+                                "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
+                                "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
+                                "<td>" +
+                                "<button type='button' id='" + orders[i].o_orderNumber + "' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
+                                "</form>" +
+                                "</td>" +
+                                "</tr>");
+                            $(".typeTip").popup();
+                        }
+                    } else {
+                        tBody.append("<tr><td colspan='9'><div class='ui text'>Inga order matchar din sökning parametrar.</div></td></tr>");
+                    }
                     $('.ui.dimmable .dimmer').dimmer('toggle');
                 }
             });
         }
-    });
-
-    jQuery.validator.setDefaults({
-        debug: true,
-        success: "valid"
-    });
-    $("#btnRemoveFilterHistory").click(function () {
-        $(".btn-update-history").trigger("click");
-    });
-
-    $('#btnFilterHistory').click(function () {
-        orderHistoryFilterForm.form("validate form");
     });
 
     $("#newsPrescript").change(function () {
@@ -634,10 +641,6 @@ $(document).ready(function () {
         return false;
     });
 
-    var startHour = $("#starttid");
-    var endHour = $("#sluttid");
-    var startMinute = $("#starttid1");
-    var endMinute = $("#sluttid1");
     adjustTime(startHour, startMinute, endHour, endMinute);
     startHour.change(function () {
         adjustTime(startHour, startMinute, endHour, endMinute);
@@ -722,12 +725,14 @@ $(document).ready(function () {
     });
 
     $("#date").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, minDate: 0});
-    $("#dateFilter").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1});
+    $("#dateFilter").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, maxDate: 0});
 
+    $(".orgTip").popup({inline: true, transition: "scale"});
+    $(".dateTip").popup({inline: true, transition: "scale"});
     $('.tolk-type').popup({inline: true, transition: "scale"});
+
     $('.radio.checkbox').checkbox();
     $('.menu .item').tab();
-
     $(".regOrganization").change(function () {
         var selectedOrg = $(".regOrganization option:selected").text();
         var selectedValue = orderForm.form('get value', 'regOrganization');
@@ -810,7 +815,7 @@ $(document).ready(function () {
             }
         }).done(function (data) {
             if (data.error == 0) {
-                var tBody = $('.orderManage tbody');
+                var tBody = $('.orderManage tbody:visible');
                 $('.orderManage').find('tbody').find('tr').remove();
                 if (data.orders.length > 0) {
                     var orders = data.orders;
@@ -1384,7 +1389,7 @@ $(document).ready(function () {
         }
     });
     $('.btnSearchTolk').click(function (e) {
-        tolkSearchFrom.form('validate form');
+        tolkSearchFrom.filter(":visible").form('validate form');
         tolkSearchFrom.form('clear');
         tolkSearchFrom.get(0).reset();
     });

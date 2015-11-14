@@ -37,49 +37,9 @@ if ($statement->rowCount() > 0) {
     </div>
     <div class="ui grid">
         <div class="centered row">
-            <div class="computer only sixteen wide column">
-                <form class="ui form" id="orderFilterForm">
-                    <div class="five fields">
-                        <div class="field">
-                            <label for="orderNumber">Ordernummer:</label>
-                            <input name="orderNumber" id="orderNumber"/>
-                        </div>
-                        <div class="field" style="position: relative; height: 50px;">
-                            <div class="ui vertical divider">
-                                eller
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label for="tolkNumber">Tolk nummer:</label>
-                            <input name="tolkNumber" id="tolkNumber"/>
-                        </div>
-                        <div class="field">
-                            <label for="clientNumber">Organisation:</label>
-                            <select id="clientNumber" name="clientNumber" class="ui search dropdown">
-                                <option selected value=''>Organisation</option>
-                                <<?php
-                                try {
-                                    $statement = $con->query("SELECT DISTINCT k_organizationName, k_kundNumber FROM t_kunder");
-                                    $statement->setFetchMode(PDO::FETCH_OBJ);
-                                    while ($row = $statement->fetch()) {
-                                        echo "<option value='" . $row->k_kundNumber . "'>" . $row->k_organizationName . "</option>";
-                                    }
-                                } catch (PDOException $e) {
-                                    return $e->getMessage();
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label for="dateFilter">Datum</label>
-                            <input id="dateFilter" type="text" title="Datum" name="dateFilter"
-                                   placeholder="YYYY-MM-DD"/>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <?php if( $detect->isMobile() || $detect->isTablet() ){ ?>
             <div class="mobile tablet only sixteen wide column">
-                <form class="ui form" id="orderFilterForm">
+                <form class="ui form orderFilterForm">
                     <div class="five fields">
                         <div class="field">
                             <label for="orderNumber">Ordernummer:</label>
@@ -95,40 +55,85 @@ if ($statement->rowCount() > 0) {
                             <input name="tolkNumber" id="tolkNumber"/>
                         </div>
                         <div class="field">
-                            <label for="clientNumber">Organisation:</label>
+                            <label for="clientNumber">Organisation:
+                                <i class="warning sign icon orgTip"
+                                    data-content="Observera att om en organisation hade en hel del beställningar under de senaste tre månaderna skulle det ta en hel del tid för att göra resultat. I stället för snabbare och mer tillförlitliga resultat kan du kombinera organisationen plus datum.">
+                                </i>
+                            </label>
                             <select id="clientNumber" name="clientNumber" class="ui search dropdown">
                                 <option selected value=''>Organisation</option>
-                                <<?php
-                                try {
-                                    $statement = $con->query("SELECT DISTINCT k_organizationName, k_kundNumber FROM t_kunder");
-                                    $statement->setFetchMode(PDO::FETCH_OBJ);
-                                    while ($row = $statement->fetch()) {
-                                        echo "<option value='" . $row->k_kundNumber . "'>" . $row->k_organizationName . "</option>";
-                                    }
-                                } catch (PDOException $e) {
-                                    return $e->getMessage();
+                                <?php
+                                foreach($kundOrgNums as $kundNum=>$orgNam) {
+                                    echo "<option value='" . $kundNum . "'>" . $orgNam . "</option>";
                                 }
                                 ?>
                             </select>
                         </div>
                         <div class="field">
                             <label for="dateFilter">Datum</label>
-                            <input id="dateFilter" type="text" title="Datum" name="dateFilter"
+                            <input id="dateFilter" class="dateTip"
+                                   data-content="Måste användas tillsammans med antingen tolken nummer eller en organisation!"
+                                   type="text" title="Datum" name="dateFilter"
                                    placeholder="YYYY-MM-DD"/>
                         </div>
                     </div>
                 </form>
             </div>
+            <?php } else { ?>
+            <div class="computer only sixteen wide column">
+                <form class="ui form orderFilterForm">
+                    <div class="five fields">
+                        <div class="field">
+                            <label for="orderNumber">Ordernummer:</label>
+                            <input name="orderNumber" id="orderNumber"/>
+                        </div>
+                        <div class="field" style="position: relative; height: 50px;">
+                            <div class="ui vertical divider">
+                                eller
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="tolkNumber">Tolk nummer:</label>
+                            <input name="tolkNumber" id="tolkNumber"/>
+                        </div>
+                        <div class="field">
+                            <label for="clientNumber">Organisation:
+                                <i class="warning sign icon orgTip"
+                                   data-content="Observera att om en organisation hade en hel del beställningar under de senaste tre månaderna skulle det ta en hel del tid för att göra resultat. I stället för snabbare och mer tillförlitliga resultat kan du kombinera organisationen plus datum.">
+                                </i>
+                            </label>
+                            <select id="clientNumber"
+                                    name="clientNumber" class="ui search dropdown">
+                                <option selected value=''>Organisation</option>
+                                <?php
+                                foreach($kundOrgNums as $kundNum=>$orgNam) {
+                                    echo "<option value='" . $kundNum . "'>" . $orgNam . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="dateFilter">Datum</label>
+                            <input id="dateFilter" class="dateTip"
+                                   data-content="Måste användas tillsammans med antingen tolken nummer eller en organisation!"
+                                   type="text" title="Datum" name="dateFilter"
+                                   placeholder="YYYY-MM-DD"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <?php } ?>
         </div>
         <div class="row">
             <div class="centered column">
-                <button type="button" class="ui inverted blue button" id="btnFilterHistory">Lägg till filter</button>
+                <button type="button" class="ui inverted blue button btnFilterHistory">Lägg till filter</button>
                 <button type="button" class="ui inverted orange button disabled" id="btnRemoveFilterHistory">Ta bort filter</button>
             </div>
         </div>
     </div>
     <div class="ui grid">
         <div class="row">
+            <?php if( $detect->isMobile() || $detect->isTablet() ){ ?>
             <div class="mobile tablet only sixteen wide column">
                 <div style="overflow-x: scroll; overflow-y: hidden;">
                     <?php if (count($orders) > 0) { ?>
@@ -200,6 +205,7 @@ if ($statement->rowCount() > 0) {
                     } ?>
                 </div>
             </div>
+            <?php } else { ?>
             <div class="computer only sixteen wide column">
                 <?php if (count($orders) > 0) { ?>
                     <table class="ui celled striped unstackable table orderHistory">
@@ -269,6 +275,7 @@ if ($statement->rowCount() > 0) {
                     echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>Det finns inga aktuella posten historik.</h3></div>";
                 } ?>
             </div>
+            <?php } ?>
         </div>
     </div>
     <?php if ($numHistory > 10) { ?>

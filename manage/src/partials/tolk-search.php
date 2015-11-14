@@ -11,13 +11,13 @@
             <div class="column">
                 <div class="ui grid">
                     <div class="row">
-                        <div class="computer only sixteen wide column">
+                        <?php if( $detect->isMobile()) { ?>
+                        <div class="mobile only sixteen wide column">
                             <form class="ui form tolk-search">
                                 <div class="fields">
                                     <div class="required three wide field">
                                         <label for="language">Språk:</label>
-                                        <select id="language" name="language"
-                                                class="ui fluid search dropdown searchLanguage">
+                                        <select id="language" name="language" class="ui search dropdown searchLanguage">
                                             <option value=''>Språk</option>
                                             <?php
                                             foreach($languages as $lang) {
@@ -28,7 +28,7 @@
                                     </div>
                                     <div class="three wide field">
                                         <label for="city">Ort:</label>
-                                        <select id="city" name="city" class="ui fluid search dropdown searchCity">
+                                        <select id="city" name="city" class="ui search dropdown searchCity">
                                             <option value=''>Ort</option>
                                             <?php
                                             foreach($cities as $city) {
@@ -37,9 +37,9 @@
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="three wide field">
+                                    <div class="two wide field">
                                         <label for="state">Län:</label>
-                                        <select id="state" name="state" class="ui fluid search dropdown searchState">
+                                        <select id="state" name="state" class="ui search dropdown searchState">
                                             <option value=''>Län</option>
                                             <?php
                                             try {
@@ -62,15 +62,13 @@
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="one wide field">
-                                        <div style="position: relative; height: 50px;">
-                                            <div class="ui vertical divider">
-                                                eller
-                                            </div>
+                                    <div class="two wide field">
+                                        <div class="ui horizontal divider">
+                                            eller
                                         </div>
                                     </div>
                                     <div class="two wide field">
-                                        <label for="tolkNum">Tolk num:</label>
+                                        <label for="tolkNum">Tolk nummer:</label>
                                         <input type="text" name="tolkNum" id="tolkNum"/>
                                     </div>
                                     <div class="two wide field">
@@ -84,6 +82,7 @@
                                 </div>
                             </form>
                         </div>
+                        <?php } else if($detect->isTablet() ) { ?>
                         <div class="tablet only sixteen wide column">
                             <form class="ui form tolk-search">
                                 <div class="three fields">
@@ -158,12 +157,14 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="mobile only sixteen wide column">
+                        <?php } else { ?>
+                        <div class="computer only sixteen wide column">
                             <form class="ui form tolk-search">
                                 <div class="fields">
                                     <div class="required three wide field">
                                         <label for="language">Språk:</label>
-                                        <select id="language" name="language" class="ui search dropdown searchLanguage">
+                                        <select id="language" name="language"
+                                                class="ui fluid search dropdown searchLanguage">
                                             <option value=''>Språk</option>
                                             <?php
                                             foreach($languages as $lang) {
@@ -174,7 +175,7 @@
                                     </div>
                                     <div class="three wide field">
                                         <label for="city">Ort:</label>
-                                        <select id="city" name="city" class="ui search dropdown searchCity">
+                                        <select id="city" name="city" class="ui fluid search dropdown searchCity">
                                             <option value=''>Ort</option>
                                             <?php
                                             foreach($cities as $city) {
@@ -183,9 +184,9 @@
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="two wide field">
+                                    <div class="three wide field">
                                         <label for="state">Län:</label>
-                                        <select id="state" name="state" class="ui search dropdown searchState">
+                                        <select id="state" name="state" class="ui fluid search dropdown searchState">
                                             <option value=''>Län</option>
                                             <?php
                                             try {
@@ -208,13 +209,15 @@
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="two wide field">
-                                        <div class="ui horizontal divider">
-                                            eller
+                                    <div class="one wide field">
+                                        <div style="position: relative; height: 50px;">
+                                            <div class="ui vertical divider">
+                                                eller
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="two wide field">
-                                        <label for="tolkNum">Tolk nummer:</label>
+                                        <label for="tolkNum">Tolk num:</label>
                                         <input type="text" name="tolkNum" id="tolkNum"/>
                                     </div>
                                     <div class="two wide field">
@@ -228,6 +231,7 @@
                                 </div>
                             </form>
                         </div>
+                        <?php } ?>
                     </div>
                     <div class="row">
                         <div class="centered column">
@@ -241,6 +245,7 @@
     <div class="ui basic fluid segment searchTolkResult">
         <div class="ui grid">
             <div class="row">
+                <?php  if( $detect->isMobile() || $detect->isTablet() ){ ?>
                 <div class="mobile tablet only sixteen wide column">
                     <div class="tolks" style="overflow-x: scroll; overflow-y: hidden;">
                         <table class='ui collapsing unstackable striped celled table tolksTable' style="display: none;">
@@ -263,6 +268,7 @@
                         </table>
                     </div>
                 </div>
+                <?php } else { ?>
                 <div class="computer only sixteen wide column">
                     <div class="tolks">
                         <table class='ui collapsing unstackable striped celled table tolksTable' style="display: none;">
@@ -285,6 +291,7 @@
                         </table>
                     </div>
                 </div>
+                <?php } ?>
             </div>
         </div>
 

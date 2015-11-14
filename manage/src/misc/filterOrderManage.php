@@ -23,9 +23,9 @@ if (!empty($referrer)) {
 }
 
 $data = array();
+$db = null;
 if(isset($_POST['orderNumber']) || isset($_POST['clientNumber']) || (isset($_POST['clientNumber']) && isset($_POST['orderNumber'])))
 {
-    $db = null;
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
@@ -81,12 +81,10 @@ if(isset($_POST['orderNumber']) || isset($_POST['clientNumber']) || (isset($_POS
                 }
             }
             $data['num'] = sizeof($data['orders']);
-            echo json_encode($data);
         } else {
             $data["error"] = 1;
             $data["messageHeader"] = "Header";
             $data["errorMessage"] = "Error Message";
-            echo json_encode($data);
         }
     } catch (PDOException $e) {
         return $e->getMessage();
@@ -96,8 +94,9 @@ if(isset($_POST['orderNumber']) || isset($_POST['clientNumber']) || (isset($_POS
     $data["error"] = 1;
     $data["messageHeader"] = "Header";
     $data["errorMessage"] = "Error Message";
-    echo json_encode($data);
+
 }
 if ($db != null) {
     $db->disconnect();
 }
+echo json_encode($data);

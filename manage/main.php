@@ -1,7 +1,13 @@
 <?php
 ini_set("session.use_only_cookies", TRUE);
 ini_set("session.use_trans_sid", FALSE);
+
 session_start();
+
+include "../src/db/dbConfig.php";
+include_once "../src/db/dbConnection.php";
+include_once "../src/misc/functions.php";
+include_once 'src/misc/Mobile_Detect.php';
 
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3200)) {
     session_unset();
@@ -17,10 +23,11 @@ if (!isset($_SESSION['CREATED'])) {
 if (empty($_SESSION['personal_number'])) {
     header('Location: index.php');
 }
+
+$detect = new Mobile_Detect;
+$db = null;
 try {
-    include "../src/db/dbConfig.php";
-    include_once "../src/db/dbConnection.php";
-    include_once "../src/misc/functions.php";
+
     $db = new dbConnection(HOST, DATABASE, USER, PASS);
     $con = $db->get_connection();
 
@@ -44,6 +51,12 @@ try {
     $cities = array();
     while ($row = $statement->fetch()) {
         $cities[] = $row->c_cityName;
+    }
+    $kundOrgNums = array();
+    $statement = $con->query("SELECT DISTINCT k_organizationName, k_kundNumber FROM t_kunder");
+    $statement->setFetchMode(PDO::FETCH_OBJ);
+    while ($row = $statement->fetch()) {
+        $kundOrgNums[$row->k_kundNumber] = $row->k_organizationName;
     }
 
 } catch (PDOException $e) {
@@ -70,6 +83,7 @@ try {
         <script type="text/javascript" src="../lib/jq-validate/additional-methods.min.js"></script>
         <script type="text/javascript" src="../lib/stoab/stoab.min.js"></script>
         <script type="text/javascript" src="../lib/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript" src="js/func.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 
         <!--[if lt IE 9]>
@@ -123,11 +137,11 @@ try {
                         <div class="left item">
                             <button type="button" class="ui inverted toggle button">Menu</button>
                         </div>
-                        <div class="item">
+                        <!--<div class="item">
                             <a id="updatesInfo">
-                                <span style="color:white; text-decoration-style: solid; text-blink: true">OBS!</span>
+                                <span style="color:white; text-decoration-style: solid; text-blink: true">OBS! </span>
                             </a>
-                        </div>
+                        </div>-->
                         <div class="right item">
                             <button type="button" class="right labeled icon small ui red button logout-btn">
                                 Logga Ut <i class="sign out right icon"></i>
@@ -232,4 +246,4 @@ try {
     </div>
     </body>
     </html>
-<?php $db->disconnect(); ?>
+<?php if($db != null) { $db->disconnect();} ?>

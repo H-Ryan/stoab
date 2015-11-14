@@ -87,9 +87,10 @@ try {
             $statement = $con->prepare($query);
             $statement->bindParam(":language", $language);
         }
-    } else {
+    }
+    else {
         if (!empty($tolkNum) || !empty($tolkFName) || !empty($tolkLName)) {
-            if (!empty($tolkNum) && (empty($tolkFName) && empty($tolkLName))) {
+            if (!empty($tolkNum) && (strlen($tolkFName) <= 2 && strlen($tolkLName) <= 2)) {
                 $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
                     " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,".
                     " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
@@ -97,7 +98,7 @@ try {
                     " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
                     " AND t.t_personalNumber = s.t_personalNumber AND t.t_tolkNumber =:tolkNum";
                 $statement = $con->prepare($query);
-                $statement->bindParam(":tolkNum", $tolkNum);
+                $statement->bindParam(":tolkNum", $tolkNum, PDO::PARAM_INT);
             } else {
                 if (!empty($tolkFName) && !empty($tolkLName) && (strlen($tolkFName) > 2 && strlen($tolkLName) > 2)) {
                     $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,".
@@ -170,16 +171,17 @@ try {
             }
             $prevTolk = $tolk;
         }
-        echo json_encode($data);
     } else {
         $data["error"] = 1;
         $data["messageHeader"] = "Header";
         $data["errorMessage"] = "Error Message";
-        echo json_encode($data);
+
     }
 } catch (PDOException $e) {
-    echo $e->getMessage();
+    $data["error"] = 1;
+    $data['exception'] = $e->getMessage();
 }
 if ($db != null) {
     $db->disconnect();
 }
+echo json_encode($data);

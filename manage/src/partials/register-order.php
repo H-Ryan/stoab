@@ -226,15 +226,9 @@
                             <select id="regOrganization" name="regOrganization"
                                     class="ui search dropdown regOrganization">
                                 <option selected value=''>Organisation</option>
-                                <<?php
-                                try {
-                                    $statement = $con->query("SELECT DISTINCT k_organizationName, k_kundNumber FROM t_kunder");
-                                    $statement->setFetchMode(PDO::FETCH_OBJ);
-                                    while ($row = $statement->fetch()) {
-                                        echo "<option value='" . $row->k_kundNumber . "'>" . $row->k_organizationName . "</option>";
-                                    }
-                                } catch (PDOException $e) {
-                                    return $e->getMessage();
+                                <?php
+                                foreach($kundOrgNums as $kundNum=>$orgNam) {
+                                    echo "<option value='" . $kundNum . "'>" . $orgNam . "</option>";
                                 }
                                 ?>
                             </select>

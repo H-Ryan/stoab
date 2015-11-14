@@ -21,13 +21,13 @@ if (!empty($referrer)) {
 } else {
     exit("Referrer not found. Please <a href='".$_SERVER['SCRIPT_NAME']."'>try again</a>.");
 }
-
+$db = null;
 $data = array();
 if(isset($_POST['orderNumber']) ||
     (isset($_POST['tolkNumber']) || (isset($_POST['tolkNumber']) && isset($_POST['dateFilter']))) ||
     (isset($_POST['clientNumber']) || (isset($_POST['clientNumber']) && isset($_POST['dateFilter']))))
 {
-    $db = null;
+
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
@@ -52,25 +52,21 @@ if(isset($_POST['orderNumber']) ||
                     $statement->bindParam(":dateFilter", $dateFilter);
                     $statement->bindParam(":tolkNum", $tolkNum);
                 } else {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_tolkarPersonalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNum) ORDER BY o_date DESC");
+                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date <= CURRENT_DATE - 1 AND o_tolkarPersonalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNum) AND o_date >= DATE_ADD(CURDATE(), INTERVAL -100 DAY) ORDER BY o_date DESC");
                     $statement->bindParam(":tolkNum", $tolkNum);
                 }
             } else if (!empty($clientNum)) {
                 if (!empty($dateFilter)) {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date >=:dateFilter AND o_date <= CURRENT_DATE - 1 AND o_kundNumber=:clientNum ORDER BY o_date DESC");
+                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_date >=:dateFilter AND o_date <= CURRENT_DATE - 1 AND o_kundNumber=:clientNum  ORDER BY o_date DESC");
                     $statement->bindParam(":dateFilter", $dateFilter);
                     $statement->bindParam(":clientNum", $clientNum);
                 } else {
-                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_kundNumber=:clientNum AND o_date <= CURRENT_DATE - 1 ORDER BY o_date DESC");
+                    $statement = $con->prepare("SELECT * FROM t_order WHERE o_kundNumber=:clientNum AND o_date <= CURRENT_DATE - 1 AND o_date >= DATE_ADD(CURDATE(), INTERVAL -100 DAY) ORDER BY o_date DESC");
                     $statement->bindParam(":clientNum", $clientNum);
                 }
             } else {
                 $data["error"] = 0;
                 $data['orders'] = array();
-                echo json_encode($data);
-                if ($db != null) {
-                    $db->disconnect();
-                }
                 return;
             }
         }
@@ -95,12 +91,11 @@ if(isset($_POST['orderNumber']) ||
                 }
             }
             $data['num'] = sizeof($data['orders']);
-            echo json_encode($data);
         } else {
             $data["error"] = 1;
+            $data["error1"] = 2;
             $data["messageHeader"] = "Header";
             $data["errorMessage"] = "Error Message";
-            echo json_encode($data);
         }
     } catch (PDOException $e) {
         return $e->getMessage();
@@ -108,10 +103,11 @@ if(isset($_POST['orderNumber']) ||
 
 } else {
     $data["error"] = 1;
+    $data["error1"] = 3;
     $data["messageHeader"] = "Header";
     $data["errorMessage"] = "Error Message";
-    echo json_encode($data);
 }
 if ($db != null) {
     $db->disconnect();
 }
+echo json_encode($data);
