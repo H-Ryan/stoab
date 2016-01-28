@@ -14,7 +14,7 @@
                         <h3>Beställ Tolk<br/>1. Uppdrag</h3>
                         <input type="hidden" name="organizationNumber" value="0000000000">
                         <input type="hidden" name="clientNumber" value="100000">
-
+                        <input type="hidden" name="orderer" value="<?php echo $_SESSION['personal_number'] ?>"/>
                         <div class="field">
                             <label for="client">Klient:</label>
                             <input id="client" name="client" type="text" placeholder="Klient" autofocus=""/>

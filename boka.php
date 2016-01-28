@@ -103,6 +103,7 @@ include_once "src/db/dbConfig.php";
                         <form class="ui fluid form tolkForm">
                             <fieldset id="order">
                                 <input type="hidden" name="organizationNumber" value="0000000000">
+                                <input type="hidden" name="orderer" value="100000">
                                 <input type="hidden" name="clientNumber" value="100000">
 
                                 <h3>Beställ Tolk<br/>1. Uppdrag</h3>

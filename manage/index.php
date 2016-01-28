@@ -15,7 +15,7 @@ if (!empty($_SESSION['personal_number'])) {
     <link rel="stylesheet" href="../css/mod-sam/form.css"/>
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../lib/stoab/stoab.min.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="manage/js/login.js"></script>
     <!--[if lt IE 9]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -32,7 +32,7 @@ if (!empty($_SESSION['personal_number'])) {
 <div class="ui page grid">
     <div class="five wide computer ten wide centered mobile column">
         <div class="ui basic horizontal segment">
-            <form class="ui large form loginManage" method="post" action="src/misc/loginManage.php">
+            <form class="ui large form loginManage" method="post" action="manage/src/misc/loginManage.php">
                 <fieldset class="basic segment">
                     <div class="ui error message">
                         <i class="close icon"></i>

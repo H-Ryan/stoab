@@ -1676,7 +1676,7 @@ function tolkMoreInfo(event) {
                 kunds = data.customers,
                 modal = $(".modal.tolkMoreInfoModal"),
                 table1 = modal.find(".content").find(".description").find(".tolkExtraInfo").find('tbody'),
-                table2 = modal.find(".content").find(".description").find(".tolkExtraInfoOrder").find('tbody');//
+                table2 = modal.find(".content").find(".description").find("#tolkCurrentJobs").find(".tolkExtraInfoOrder").find('tbody');//
             table1.empty();
             $.each(langs, function () {
                 table1.append("<tr><td>" + this.t_sprakName + "</td><td>" + this.t_rate + "</td><td>" + this.t_customerRate + "</td></tr>");

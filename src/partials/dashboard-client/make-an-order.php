@@ -9,6 +9,7 @@
             <fieldset id="order">
                 <h3>Beställ Tolk<br/>1. Uppdrag</h3>
                 <input type="hidden" name="organizationNumber" value="<?php echo $organizationNumber; ?>">
+                <input type="hidden" name="orderer" value="<?php echo $clientNumber; ?>">
                 <input type="hidden" name="clientNumber" value="<?php echo $clientNumber; ?>">
 
                 <div class="field">

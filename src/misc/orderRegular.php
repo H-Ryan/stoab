@@ -22,13 +22,13 @@ if (!empty($referrer)) {
 }
 
 $data = array();
-if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isset($_POST['client']) && isset($_POST['language']) && isset($_POST['type'])
+if (isset($_POST['orderer']) && isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isset($_POST['client']) && isset($_POST['language']) && isset($_POST['type'])
     && isset($_POST['tolk_type']) && isset($_POST['date']) && isset($_POST['start_hour']) && isset($_POST['start_minute'])
     && isset($_POST['end_hour']) && isset($_POST['end_minute']) && isset($_POST['contactPerson'])
     && isset($_POST['organization']) && isset($_POST['email']) && (isset($_POST['telephone']) || isset($_POST['mobile']))
     && isset($_POST['address']) && isset($_POST['post_code']) && isset($_POST['city'])
 ) {
-
+    $orderer = $_POST['orderer'];
     $organizationNumber = $_POST['organizationNumber'];
     $clientNumber = $_POST['clientNumber'];
     $client = $_POST['client'];
@@ -135,7 +135,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                     . "o_ipAddress ,o_state) VALUES (:orderNumber, :modifyPN, :involvedPN, :ipAddress, :state)";
                 $statement = $con->prepare($query);
                 $statement->bindParam(":orderNumber", $orderNumber);
-                $statement->bindParam(":modifyPN", $clientNumber);
+                $statement->bindParam(":modifyPN", $orderer);
                 $statement->bindParam(":involvedPN", $clientNumber);
                 $statement->bindParam(":ipAddress", getRealIpAddress());
                 $statement->bindParam(":state", $state);
@@ -302,7 +302,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                                     margin-left: 10%;'/>
                     <h2 style='text-align: center; margin-top: 5%;'>Beställning:</h2>
 
-                    <h2 style='text-align: center; margin-top: 5%;'>Uppdragsnr: " . $orderNumber. "</h2>
+                    <h2 style='text-align: center; margin-top: 5%;'>Uppdragsnr: " . $orderNumber . "</h2>
                     <table style='width: 80%;
                                     margin-left: 10%;
                                     margin-right: 10%;
