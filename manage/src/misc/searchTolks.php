@@ -46,7 +46,7 @@ try {
                     " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
                     " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
                     " AND t.t_personalNumber = s.t_personalNumber AND s.t_sprakName =:language".
-                    " AND u.u_state =:state AND u.u_city =:city";
+                    " AND u.u_state =:state AND u.u_city =:city ORDER BY u.u_firstName";
                 $statement = $con->prepare($query);
                 $statement->bindParam(":language",$language);
                 $statement->bindParam(":state",$state);
@@ -59,7 +59,7 @@ try {
                     " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
                     " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
                     " AND t.t_personalNumber = s.t_personalNumber AND s.t_sprakName =:language".
-                    " AND u.u_state =:state";
+                    " AND u.u_state =:state ORDER BY u.u_firstName";
                 $statement = $con->prepare($query);
                 $statement->bindParam(":language",$language);
                 $statement->bindParam(":state",$state);
@@ -70,7 +70,7 @@ try {
                     " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
                     " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
                     " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
-                    " AND t.t_personalNumber = s.t_personalNumber AND s.t_sprakName =:language".
+                    " AND t.t_personalNumber = s.t_personalNumber AND s.t_sprakName =:language ORDER BY u.u_firstName".
                     " AND u.u_city =:city";
                 $statement = $con->prepare($query);
                 $statement->bindParam(":language",$language);
@@ -83,7 +83,7 @@ try {
                 " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
                 " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
                 " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
-                " AND t.t_personalNumber = s.t_personalNumber AND s.t_sprakName =:language";
+                " AND t.t_personalNumber = s.t_personalNumber AND s.t_sprakName =:language ORDER BY u.u_firstName";
             $statement = $con->prepare($query);
             $statement->bindParam(":language", $language);
         }
@@ -96,7 +96,7 @@ try {
                     " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
                     " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
                     " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
-                    " AND t.t_personalNumber = s.t_personalNumber AND t.t_tolkNumber =:tolkNum";
+                    " AND t.t_personalNumber = s.t_personalNumber AND t.t_tolkNumber =:tolkNum ORDER BY u.u_firstName";
                 $statement = $con->prepare($query);
                 $statement->bindParam(":tolkNum", $tolkNum, PDO::PARAM_INT);
             } else {
@@ -107,7 +107,7 @@ try {
                         " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
                         " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
                         " AND t.t_personalNumber = s.t_personalNumber AND (u.u_firstName LIKE :tolkFName".
-                        " OR u.u_lastName LIKE :tolkLName)";
+                        " OR u.u_lastName LIKE :tolkLName) ORDER BY u.u_firstName";
                     $statement = $con->prepare($query);
                     $statement->bindParam(":tolkFName", $tolkFName, PDO::PARAM_STR);
                     $statement->bindParam(":tolkLName", $tolkLName, PDO::PARAM_STR);
@@ -120,7 +120,7 @@ try {
                             " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
                             " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
                             " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
-                            " AND t.t_personalNumber = s.t_personalNumber AND u.u_firstName LIKE :tolkFName";
+                            " AND t.t_personalNumber = s.t_personalNumber AND u.u_firstName LIKE :tolkFName ORDER BY u.u_firstName";
                         $statement = $con->prepare($query);
                         $data['tt'] = 1;
                         $statement->bindParam(":tolkFName", $tolkFName, PDO::PARAM_STR);
@@ -130,7 +130,7 @@ try {
                             " u.u_extraInfo, s.t_sprakName, s.t_rate, t.* FROM t_tolkar AS t,".
                             " t_users AS u, t_tolkSprak AS s WHERE u.u_role = 3 AND".
                             " t.t_active =:isActive AND u.u_personalNumber = t.t_personalNumber".
-                            " AND t.t_personalNumber = s.t_personalNumber AND u.u_lastName LIKE :tolkLName";
+                            " AND t.t_personalNumber = s.t_personalNumber AND u.u_lastName LIKE :tolkLName ORDER BY u.u_firstName";
                         $statement = $con->prepare($query);
                         $statement->bindParam(":tolkLName", $tolkLName, PDO::PARAM_STR);
                         $data['tt'] = 2;

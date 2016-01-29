@@ -14,7 +14,7 @@ $(document).ready(function () {
         transition: "scale"
     });
     $('.radio.checkbox').checkbox();
-    $('#date').datepicker({dateFormat: 'yy-mm-dd', minDate: 0 });
+    $('#date').datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, minDate: 0 });
     $('.dropdown').dropdown({transition: 'drop'});
 
     adjustTime(startHour, startMinute, endHour, endMinute);
@@ -144,12 +144,12 @@ $(document).ready(function () {
             },
             telephone: {
                 require_from_group: [1, ".phone-group"],
-                minlength: 9,
+                minlength: 8,
                 maxlength: 11
             },
             mobile: {
                 require_from_group: [1, ".phone-group"],
-                minlength: 9,
+                minlength: 8,
                 maxlength: 11
             },
             address: {

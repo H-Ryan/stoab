@@ -38,90 +38,90 @@ if ($statement->rowCount() > 0) {
     <div class="ui grid">
         <div class="centered row">
             <?php if( $detect->isMobile() || $detect->isTablet() ){ ?>
-            <div class="mobile tablet only sixteen wide column">
-                <form class="ui form orderFilterForm">
-                    <div class="five fields">
-                        <div class="field">
-                            <label for="orderNumber">Ordernummer:</label>
-                            <input name="orderNumber" id="orderNumber"/>
-                        </div>
-                        <div class="field">
-                            <div class="ui horizontal divider">
-                                eller
+                <div class="mobile tablet only sixteen wide column">
+                    <form class="ui form orderFilterForm">
+                        <div class="five fields">
+                            <div class="field">
+                                <label for="orderNumber">Ordernummer:</label>
+                                <input name="orderNumber" id="orderNumber"/>
+                            </div>
+                            <div class="field">
+                                <div class="ui horizontal divider">
+                                    eller
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="tolkNumber">Tolk nummer:</label>
+                                <input name="tolkNumber" id="tolkNumber"/>
+                            </div>
+                            <div class="field">
+                                <label for="clientNumber">Organisation:
+                                    <i class="warning sign icon orgTip"
+                                       data-content="Observera att om en organisation hade en hel del beställningar under de senaste tre månaderna skulle det ta en hel del tid för att göra resultat. I stället för snabbare och mer tillförlitliga resultat kan du kombinera organisationen plus datum.">
+                                    </i>
+                                </label>
+                                <select id="clientNumber" name="clientNumber" class="ui search dropdown">
+                                    <option selected value=''>Organisation</option>
+                                    <?php
+                                    foreach($kundOrgNums as $kundNum=>$orgNam) {
+                                        echo "<option value='" . $kundNum . "'>" . $orgNam . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="dateFilter">Datum</label>
+                                <input id="dateFilter" class="dateTip"
+                                       data-content="Måste användas tillsammans med antingen tolken nummer eller en organisation!"
+                                       type="text" title="Datum" name="dateFilter"
+                                       placeholder="YYYY-MM-DD"/>
                             </div>
                         </div>
-                        <div class="field">
-                            <label for="tolkNumber">Tolk nummer:</label>
-                            <input name="tolkNumber" id="tolkNumber"/>
-                        </div>
-                        <div class="field">
-                            <label for="clientNumber">Organisation:
-                                <i class="warning sign icon orgTip"
-                                    data-content="Observera att om en organisation hade en hel del beställningar under de senaste tre månaderna skulle det ta en hel del tid för att göra resultat. I stället för snabbare och mer tillförlitliga resultat kan du kombinera organisationen plus datum.">
-                                </i>
-                            </label>
-                            <select id="clientNumber" name="clientNumber" class="ui search dropdown">
-                                <option selected value=''>Organisation</option>
-                                <?php
-                                foreach($kundOrgNums as $kundNum=>$orgNam) {
-                                    echo "<option value='" . $kundNum . "'>" . $orgNam . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label for="dateFilter">Datum</label>
-                            <input id="dateFilter" class="dateTip"
-                                   data-content="Måste användas tillsammans med antingen tolken nummer eller en organisation!"
-                                   type="text" title="Datum" name="dateFilter"
-                                   placeholder="YYYY-MM-DD"/>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
             <?php } else { ?>
-            <div class="computer only sixteen wide column">
-                <form class="ui form orderFilterForm">
-                    <div class="five fields">
-                        <div class="field">
-                            <label for="orderNumber">Ordernummer:</label>
-                            <input name="orderNumber" id="orderNumber"/>
-                        </div>
-                        <div class="field" style="position: relative; height: 50px;">
-                            <div class="ui vertical divider">
-                                eller
+                <div class="computer only sixteen wide column">
+                    <form class="ui form orderFilterForm">
+                        <div class="five fields">
+                            <div class="field">
+                                <label for="orderNumber">Ordernummer:</label>
+                                <input name="orderNumber" id="orderNumber"/>
+                            </div>
+                            <div class="field" style="position: relative; height: 50px;">
+                                <div class="ui vertical divider">
+                                    eller
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="tolkNumber">Tolk nummer:</label>
+                                <input name="tolkNumber" id="tolkNumber"/>
+                            </div>
+                            <div class="field">
+                                <label for="clientNumber">Organisation:
+                                    <i class="warning sign icon orgTip"
+                                       data-content="Observera att om en organisation hade en hel del beställningar under de senaste tre månaderna skulle det ta en hel del tid för att göra resultat. I stället för snabbare och mer tillförlitliga resultat kan du kombinera organisationen plus datum.">
+                                    </i>
+                                </label>
+                                <select id="clientNumber"
+                                        name="clientNumber" class="ui search dropdown">
+                                    <option selected value=''>Organisation</option>
+                                    <?php
+                                    foreach($kundOrgNums as $kundNum=>$orgNam) {
+                                        echo "<option value='" . $kundNum . "'>" . $orgNam . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="dateFilter">Datum</label>
+                                <input id="dateFilter" class="dateTip"
+                                       data-content="Måste användas tillsammans med antingen tolken nummer eller en organisation!"
+                                       type="text" title="Datum" name="dateFilter"
+                                       placeholder="YYYY-MM-DD"/>
                             </div>
                         </div>
-                        <div class="field">
-                            <label for="tolkNumber">Tolk nummer:</label>
-                            <input name="tolkNumber" id="tolkNumber"/>
-                        </div>
-                        <div class="field">
-                            <label for="clientNumber">Organisation:
-                                <i class="warning sign icon orgTip"
-                                   data-content="Observera att om en organisation hade en hel del beställningar under de senaste tre månaderna skulle det ta en hel del tid för att göra resultat. I stället för snabbare och mer tillförlitliga resultat kan du kombinera organisationen plus datum.">
-                                </i>
-                            </label>
-                            <select id="clientNumber"
-                                    name="clientNumber" class="ui search dropdown">
-                                <option selected value=''>Organisation</option>
-                                <?php
-                                foreach($kundOrgNums as $kundNum=>$orgNam) {
-                                    echo "<option value='" . $kundNum . "'>" . $orgNam . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <label for="dateFilter">Datum</label>
-                            <input id="dateFilter" class="dateTip"
-                                   data-content="Måste användas tillsammans med antingen tolken nummer eller en organisation!"
-                                   type="text" title="Datum" name="dateFilter"
-                                   placeholder="YYYY-MM-DD"/>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
             <?php } ?>
         </div>
         <div class="row">
@@ -134,8 +134,83 @@ if ($statement->rowCount() > 0) {
     <div class="ui grid">
         <div class="row">
             <?php if( $detect->isMobile() || $detect->isTablet() ){ ?>
-            <div class="mobile tablet only sixteen wide column">
-                <div style="overflow-x: scroll; overflow-y: hidden;">
+                <div class="mobile tablet only sixteen wide column">
+                    <div style="overflow-x: scroll; overflow-y: hidden;">
+                        <?php if (count($orders) > 0) { ?>
+                            <table class="ui celled striped unstackable table orderHistory">
+                                <thead>
+                                <tr>
+                                    <th class="one wide">Ordernummer</th>
+                                    <th class="three wide">Avdelning</th>
+                                    <th class="three wide">Beställare</th>
+                                    <th class="three wide">Språk</th>
+                                    <th class="one wide">Typ</th>
+                                    <th class="two wide">Datum</th>
+                                    <th class="one wide">Starttid</th>
+                                    <th class="one wide">Sluttid</th>
+                                    <th class="one wide">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+
+                                for ($k = 0; $k < count($orders); $k++) {
+                                    $infoMsg = "info";
+                                    $btnColor = "orange";
+                                    $state = $orders[$k]->o_state;
+                                    switch ($state) {
+                                        case "O":
+                                            $infoMsg = 'Beställ in Progress';
+                                            $btnColor = 'orange';
+                                            break;
+                                        case "B":
+                                            $infoMsg = 'Färdig';
+                                            $btnColor = 'yellow';
+                                            break;
+                                        case "EC":
+                                            $infoMsg = 'Avbruten';
+                                            $btnColor = 'red';
+                                            break;
+                                        case "IC":
+                                            $infoMsg = 'Fortfarande pågår';
+                                            $btnColor = 'orange';
+                                            break;
+                                        case "R":
+                                            $infoMsg = 'Rapporterad';
+                                            $btnColor = 'green';
+                                            break;
+                                    }
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $orders[$k]->o_orderNumber; ?></td>
+                                        <td><?php echo $klient[$k]->k_organizationName; ?></td>
+                                        <td><?php echo $orders[$k]->o_orderer; ?></td>
+                                        <td><?php echo $orders[$k]->o_language; ?></td>
+                                        <td class="typeTip"
+                                            data-content="<?php echo getFullTolkningType($orders[$k]->o_interpretationType); ?>">
+                                            <?php echo $orders[$k]->o_interpretationType; ?>
+                                        </td>
+                                        <td><?php echo $orders[$k]->o_date; ?></td>
+                                        <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
+                                        <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>
+                                        <td>
+                                            <form class='ui form' id="<?php echo $orders[$k]->o_orderNumber; ?>">
+                                                <input type='hidden' name='orderId' value='<?php echo $orders[$k]->o_orderNumber; ?>'>
+                                                <button type='button'
+                                                        class="ui fluid <?php echo $btnColor; ?> button btn-info"><?php echo $infoMsg; ?></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                        <?php } else {
+                            echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>Det finns inga aktuella posten historik.</h3></div>";
+                        } ?>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <div class="computer only sixteen wide column">
                     <?php if (count($orders) > 0) { ?>
                         <table class="ui celled striped unstackable table orderHistory">
                             <thead>
@@ -175,6 +250,10 @@ if ($statement->rowCount() > 0) {
                                         $infoMsg = 'Fortfarande pågår';
                                         $btnColor = 'orange';
                                         break;
+                                    case "R":
+                                        $infoMsg = 'Rapporterad';
+                                        $btnColor = 'green';
+                                        break;
                                 }
                                 ?>
                                 <tr>
@@ -204,77 +283,6 @@ if ($statement->rowCount() > 0) {
                         echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>Det finns inga aktuella posten historik.</h3></div>";
                     } ?>
                 </div>
-            </div>
-            <?php } else { ?>
-            <div class="computer only sixteen wide column">
-                <?php if (count($orders) > 0) { ?>
-                    <table class="ui celled striped unstackable table orderHistory">
-                        <thead>
-                        <tr>
-                            <th class="one wide">Ordernummer</th>
-                            <th class="three wide">Avdelning</th>
-                            <th class="three wide">Beställare</th>
-                            <th class="three wide">Språk</th>
-                            <th class="one wide">Typ</th>
-                            <th class="two wide">Datum</th>
-                            <th class="one wide">Starttid</th>
-                            <th class="one wide">Sluttid</th>
-                            <th class="one wide">Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-
-                        for ($k = 0; $k < count($orders); $k++) {
-                            $infoMsg = "info";
-                            $btnColor = "orange";
-                            $state = $orders[$k]->o_state;
-                            switch ($state) {
-                                case "O":
-                                    $infoMsg = 'Beställ in Progress';
-                                    $btnColor = 'orange';
-                                    break;
-                                case "B":
-                                    $infoMsg = 'Färdig';
-                                    $btnColor = 'green';
-                                    break;
-                                case "EC":
-                                    $infoMsg = 'Avbruten';
-                                    $btnColor = 'red';
-                                    break;
-                                case "IC":
-                                    $infoMsg = 'Fortfarande pågår';
-                                    $btnColor = 'orange';
-                                    break;
-                            }
-                            ?>
-                            <tr>
-                                <td><?php echo $orders[$k]->o_orderNumber; ?></td>
-                                <td><?php echo $klient[$k]->k_organizationName; ?></td>
-                                <td><?php echo $orders[$k]->o_orderer; ?></td>
-                                <td><?php echo $orders[$k]->o_language; ?></td>
-                                <td class="typeTip"
-                                    data-content="<?php echo getFullTolkningType($orders[$k]->o_interpretationType); ?>">
-                                    <?php echo $orders[$k]->o_interpretationType; ?>
-                                </td>
-                                <td><?php echo $orders[$k]->o_date; ?></td>
-                                <td><?php echo convertTime($orders[$k]->o_startTime); ?></td>
-                                <td><?php echo convertTime($orders[$k]->o_endTime); ?></td>
-                                <td>
-                                    <form class='ui form' id="<?php echo $orders[$k]->o_orderNumber; ?>">
-                                        <input type='hidden' name='orderId' value='<?php echo $orders[$k]->o_orderNumber; ?>'>
-                                        <button type='button'
-                                                class="ui fluid <?php echo $btnColor; ?> button btn-info"><?php echo $infoMsg; ?></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                        </tbody>
-                    </table>
-                <?php } else {
-                    echo "<div class='ui fluid basic segment'><h3 class='ui center alligned header'>Det finns inga aktuella posten historik.</h3></div>";
-                } ?>
-            </div>
             <?php } ?>
         </div>
     </div>

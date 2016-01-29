@@ -21,7 +21,7 @@ class SMS_Service
             'to'        => $this->to,
             'text'      => $this->text
         );
-        $this->url = "https://www.rebvoice.com/myaccount/sendsms.php?".http_build_query($data);
+        $this->url = "https://www.rebvoice.com/sadafa/sendsms.php?".http_build_query($data);
         return $this;
     }
 

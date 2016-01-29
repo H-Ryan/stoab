@@ -49,11 +49,15 @@
                         break;
                     case "B":
                         $infoMsg = 'Färdig';
-                        $btnColor = 'green';
+                        $btnColor = 'yellow';
                         break;
                     case "EC":
                         $infoMsg = 'Avbokad';
                         $btnColor = 'red';
+                        break;
+                    case "R":
+                        $infoMsg = 'Rapporterad';
+                        $btnColor = 'green';
                         break;
                 }
                 ?>

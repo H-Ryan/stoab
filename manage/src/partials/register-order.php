@@ -255,7 +255,7 @@
                             </div>
                         </div>
                         <div class="required field">
-                            <label for="address">Plats:</label>
+                            <label for="address">Plats för tolkning:</label>
                             <input id="address" name="address" type="text" placeholder="Plats"/>
                         </div>
                         <div class="two fields">

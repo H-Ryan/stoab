@@ -84,7 +84,7 @@ $(document).ready(function () {
         });
     });
 
-    $("#date").datepicker({dateFormat: 'yy-mm-dd', minDate: 0 });
+    $("#date").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, minDate: 0 });
 
     $('.ui.fluid.accordion').accordion();
 
@@ -161,6 +161,10 @@ $(document).ready(function () {
                             case 'EC':
                                 infoMsg = 'Avbokad';
                                 btnColor = 'red';
+                                break;
+                            case "R":
+                                infoMsg = 'Rapporterad';
+                                btnColor = 'green';
                                 break;
                         }
                         tBody.append(
@@ -305,6 +309,10 @@ $(document).ready(function () {
                             case 'EC':
                                 infoMsg = 'Avbokad';
                                 btnColor = 'red';
+                                break;
+                            case "R":
+                                infoMsg = 'Rapporterad';
+                                btnColor = 'green';
                                 break;
                         }
                         tBody.append(
@@ -536,12 +544,12 @@ $(document).ready(function () {
             },
             telephone: {
                 require_from_group: [1, ".phone-group"],
-                minlength: 9,
+                minlength: 8,
                 maxlength: 11
             },
             mobile: {
                 require_from_group: [1, ".phone-group"],
-                minlength: 9,
+                minlength: 8,
                 maxlength: 11
             },
             address: {

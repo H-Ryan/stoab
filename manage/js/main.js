@@ -1,5 +1,5 @@
+"use strict";
 $(document).ready(function () {
-    "use strict";
     var orderForm = $('.ui.form.orderForm'),
         tolkSearchFrom = $('.ui.form.tolk-search'),
         orderHistoryFilterForm = $('.ui.form.orderFilterForm'),
@@ -285,6 +285,10 @@ $(document).ready(function () {
                                     infoMsg = 'Fortfarande pågår';
                                     btnColor = 'orange';
                                     break;
+                                case "R":
+                                    infoMsg = 'Rapporterad';
+                                    btnColor = 'green';
+                                    break;
                             }
                             tBody.append(
                                 "<tr>" +
@@ -394,10 +398,12 @@ $(document).ready(function () {
 
     $('#btnFilterManage').on("click", function () {
         if (orderManageFilterForm.filter(":visible").form("validate form")) {
+            var omData =  orderManageFilterForm.filter(":visible").serializeArray()
+            omData.push({ name: 'sortOption', value: $('#sortOptionManage').val()});
             $.ajax({
                 type: "POST",
                 url: "src/misc/filterOrderManage.php",
-                data: orderManageFilterForm.filter(":visible").serialize(),
+                data: omData,
                 cache: false,
                 dataType: "json",
                 beforeSend: function () {
@@ -435,6 +441,10 @@ $(document).ready(function () {
                                 case "IC":
                                     infoMsg = 'Fortfarande pågår';
                                     btnColor = 'orange';
+                                    break;
+                                case "R":
+                                    infoMsg = 'Rapporterad';
+                                    btnColor = 'green';
                                     break;
                             }
                             tBody.append(
@@ -656,7 +666,146 @@ $(document).ready(function () {
     });
 
     $('.ui.fluid.dropdown').dropdown();
-    $('.ui.search.dropdown').dropdown();
+    $('.ui.search.dropdown').dropdown( {fullTextSearch: true});
+    $('.ui.search.dropdown.sortLanguageOption').dropdown({
+        fullTextSearch: true,
+        onChange: function(value, text, $selectedItem) {
+            $.ajax({
+                type: "GET",
+                url: "src/misc/nextManagePage.php",
+                data: {pageNum: $("#updateCurrMPage").val(), sortOption: 2, lang: value},
+                cache: true,
+                dataType: "json",
+                beforeSend: function () {
+                    $('.ui.dimmable .manageDim').dimmer('toggle');
+                }
+            }).done(function (data) {
+                if (data.error == 0) {
+                    var tBody = $('.orderManage tbody:visible');
+                    $('.orderManage').find('tbody').find('tr').remove();
+                    if (data.orders.length > 0) {
+                        var orders = data.orders;
+                        var customers = data.customers;
+                        for (var i = 0; i < orders.length; i++) {
+                            var btnColor = 'orange';
+                            var infoMsg = 'Info';
+                            var state = orders[i].o_state;
+                            switch (state) {
+                                case 'O':
+                                    infoMsg = 'Beställ in Progress';
+                                    btnColor = 'orange';
+                                    break;
+                                case 'B':
+                                    infoMsg = 'Färdig';
+                                    btnColor = 'green';
+                                    break;
+                                case 'EC':
+                                    infoMsg = 'Avbruten';
+                                    btnColor = 'red';
+                                    break;
+                                case "IC":
+                                    infoMsg = 'Fortfarande pågår';
+                                    btnColor = 'orange';
+                                    break;
+                                case "R":
+                                    infoMsg = 'Rapporterad';
+                                    btnColor = 'green';
+                                    break;
+                            }
+                            tBody.append(
+                                "<tr>" +
+                                "<td>" + orders[i].o_orderNumber + "</td>" +
+                                "<td>" + customers[i].k_organizationName + "</td>" +
+                                "<td>" + orders[i].o_orderer + "</td>" +
+                                "<td>" + orders[i].o_language + "</td>" +
+                                "<td class='typeTip' data-content='" + getFullTolkningType(orders[i].o_interpretationType) + "'>" + orders[i].o_interpretationType + "</td>" +
+                                "<td>" + orders[i].o_date + "</td>" +
+                                "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
+                                "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
+                                "<td>" +
+                                "<button type='button' id='" + orders[i].o_orderNumber + "' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
+                                "</form>" +
+                                "</td>" +
+                                "</tr>");
+                            $(".typeTip").popup();
+                        }
+                    } else {
+                        tBody.append("<tr><td><div class='ui text'>För närvarande, har du inte några order.</div></td></tr>");
+                    }
+                    $('.ui.dimmable .manageDim').dimmer('toggle');
+                }
+            });
+        }
+    });
+    $('#sortOptionManage').dropdown({
+        onChange: function(value, text, $selectedItem) {
+            $.ajax({
+                type: "GET",
+                url: "src/misc/nextManagePage.php",
+                data: {pageNum: $("#updateCurrMPage").val(), sortOption: value},
+                cache: true,
+                dataType: "json",
+                beforeSend: function () {
+                    $('.ui.dimmable .manageDim').dimmer('toggle');
+                }
+            }).done(function (data) {
+                if (data.error == 0) {
+                    var tBody = $('.orderManage tbody:visible');
+                    $('.orderManage').find('tbody').find('tr').remove();
+                    if (data.orders.length > 0) {
+                        var orders = data.orders;
+                        var customers = data.customers;
+                        for (var i = 0; i < orders.length; i++) {
+                            var btnColor = 'orange';
+                            var infoMsg = 'Info';
+                            var state = orders[i].o_state;
+                            switch (state) {
+                                case 'O':
+                                    infoMsg = 'Beställ in Progress';
+                                    btnColor = 'orange';
+                                    break;
+                                case 'B':
+                                    infoMsg = 'Färdig';
+                                    btnColor = 'green';
+                                    break;
+                                case 'EC':
+                                    infoMsg = 'Avbruten';
+                                    btnColor = 'red';
+                                    break;
+                                case "IC":
+                                    infoMsg = 'Fortfarande pågår';
+                                    btnColor = 'orange';
+                                    break;
+                                case "R":
+                                    infoMsg = 'Rapporterad';
+                                    btnColor = 'green';
+                                    break;
+                            }
+                            tBody.append(
+                                "<tr>" +
+                                "<td>" + orders[i].o_orderNumber + "</td>" +
+                                "<td>" + customers[i].k_organizationName + "</td>" +
+                                "<td>" + orders[i].o_orderer + "</td>" +
+                                "<td>" + orders[i].o_language + "</td>" +
+                                "<td class='typeTip' data-content='" + getFullTolkningType(orders[i].o_interpretationType) + "'>" + orders[i].o_interpretationType + "</td>" +
+                                "<td>" + orders[i].o_date + "</td>" +
+                                "<td>" + convertTime(orders[i].o_startTime) + "</td>" +
+                                "<td>" + convertTime(orders[i].o_endTime) + "</td>" +
+                                "<td>" +
+                                "<button type='button' id='" + orders[i].o_orderNumber + "' class='ui " + btnColor + " fluid button btn_manage_order'>" + infoMsg + "</button>" +
+                                "</form>" +
+                                "</td>" +
+                                "</tr>");
+                            $(".typeTip").popup();
+                        }
+                    } else {
+                        tBody.append("<tr><td><div class='ui text'>För närvarande, har du inte några order.</div></td></tr>");
+                    }
+                    $('.ui.dimmable .manageDim').dimmer('toggle');
+                }
+            });
+        }
+    });
 
     $('.logout-btn').click(function () {
         $.ajax({type: "POST", url: "src/misc/logout.php"}).done(function () {
@@ -807,7 +956,7 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: "src/misc/nextManagePage.php",
-            data: {pageNum: pageNum},
+            data: {pageNum: pageNum, sortOption: $('#sortOptionManage').val()},
             cache: true,
             dataType: "json",
             beforeSend: function () {
@@ -840,6 +989,10 @@ $(document).ready(function () {
                             case "IC":
                                 infoMsg = 'Fortfarande pågår';
                                 btnColor = 'orange';
+                                break;
+                            case "R":
+                                infoMsg = 'Rapporterad';
+                                btnColor = 'green';
                                 break;
                         }
                         tBody.append(
@@ -935,6 +1088,10 @@ $(document).ready(function () {
                             case "IC":
                                 infoMsg = 'Fortfarande pågår';
                                 btnColor = 'orange';
+                                break;
+                            case "R":
+                                infoMsg = 'Rapporterad';
+                                btnColor = 'green';
                                 break;
                         }
                         tBody.append(
@@ -1045,6 +1202,10 @@ $(document).ready(function () {
                             case "IC":
                                 infoMsg = 'Fortfarande pågår';
                                 btnColor = 'orange';
+                                break;
+                            case "R":
+                                infoMsg = 'Rapporterad';
+                                btnColor = 'green';
                                 break;
                         }
                         tBody.append(
@@ -1214,6 +1375,10 @@ $(document).ready(function () {
                             case "IC":
                                 infoMsg = 'Fortfarande pågår';
                                 btnColor = 'orange';
+                                break;
+                            case "R":
+                                infoMsg = 'Rapporterad';
+                                btnColor = 'green';
                                 break;
                         }
                         tBody.append(
@@ -1486,12 +1651,12 @@ $(document).ready(function () {
             },
             telephone: {
                 require_from_group: [1, ".phone-group"],
-                minlength: 9,
+                minlength: 8,
                 maxlength: 11
             },
             mobile: {
                 require_from_group: [1, ".phone-group"],
-                minlength: 9,
+                minlength: 8,
                 maxlength: 11
             },
             address: {

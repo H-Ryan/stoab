@@ -135,7 +135,7 @@
                                         for ($j = 0; $j < 10; $j++) {
                                             if ($i == 2 && $j == 4)
                                                 break;
-                                            elseif ($i == 1 && $j == 2)
+                                            elseif ($i == 1 && $j == 3)
                                                 echo "<option selected='selected' value='" . intval($i . $j) . "'>$i$j</option>";
                                             else
                                                 echo "<option value='" . intval($i . $j) . "'>$i$j</option>";
@@ -146,8 +146,8 @@
                             </div>
                             <div class="field">
                                 <select title="Sluttid1" name="end_minute" id="sluttid1" class="ui fluid dropdown">
-                                    <option value="0">00</option>
-                                    <option value="1" selected>15</option>
+                                    <option value="0" selected>00</option>
+                                    <option value="1">15</option>
                                     <option value="2">30</option>
                                     <option value="3">45</option>
                                 </select>
@@ -194,7 +194,7 @@
                     </div>
                 </div>
                 <div class="required field">
-                    <label for="address">Plats:</label>
+                    <label for="address">Plats för tolkning:</label>
                     <input id="address" name="address" type="text" placeholder="Plats"
                            value="<?php echo $customerInfo->k_address; ?>"/>
                 </div>

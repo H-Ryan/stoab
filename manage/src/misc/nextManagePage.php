@@ -22,7 +22,7 @@ if (!empty($referrer)) {
 }
 
 $data = array();
-if(isset($_GET['pageNum']))
+if(isset($_GET['pageNum']) && isset($_GET['sortOption']))
 {
     $db = null;
     try {
@@ -34,9 +34,23 @@ if(isset($_GET['pageNum']))
     $pageNum = $_GET['pageNum'];
     $end = $pageNum * 10;
     $start = $end - 10;
+    $sortOption = $_GET['sortOption'];
     try {
         $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()) ORDER BY o_date ASC LIMIT :start, 10");
+        $statement = '';
+        if ($sortOption == 0) {
+            $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()) ORDER BY o_date ASC LIMIT :start, 10");
+        } else if ($sortOption == 1) {
+            $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW()) ORDER BY FIELD(o_state,'IC','O','B', 'EC') LIMIT :start, 10");
+        } else if ($sortOption == 2) {
+            if(isset($_GET['lang'])) {
+                $lang = $_GET['lang'];
+                $statement = $con->prepare("SELECT o_orderNumber, o_kundNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_language=:lang AND (o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE AND TIMESTAMP(DATE_ADD(o_date, INTERVAL +1 DAY), '08:15:00') > NOW())) ORDER BY FIELD(o_state,'IC','O','B', 'EC') LIMIT :start, 10");
+                $statement->bindParam(":lang", $lang);
+            }
+
+        }
+
         $statement->bindParam(":start", $start, PDO::PARAM_INT);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
@@ -61,7 +75,7 @@ if(isset($_GET['pageNum']))
         } else {
             $data["error"] = 1;
             $data["messageHeader"] = "Header";
-            $data["errorMessage"] = "Error Message";
+            $data["errorMessage"] = "Error1 Message";
             echo json_encode($data);
         }
     } catch (PDOException $e) {
