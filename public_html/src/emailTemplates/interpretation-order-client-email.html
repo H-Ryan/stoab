@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang='en'>
+    <meta charset='UTF-8'>
+    <title></title>
+</head>
+<body style='color: #000000; text-align: center;'>
+<p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
+    Tack för din beställning!<br/><br/>
+    Vänlingen kontrollera uppgifterna. Vi återkommer med bekräftelse så fort vi bokat rätt tolk till er.<br/>
+
+</p>
+<hr style='width: 80%;
+                                    margin-left: 10%;'/>
+<h2 style='text-align: center; margin-top: 5%;'>Beställning:</h2>
+
+<h2 style='text-align: center; margin-top: 5%;'>Uppdragsnr: {orderNumber}</h2>
+<table style='width: 80%;
+                                    margin-left: 10%;
+                                    margin-right: 10%;
+                                    text-align: center;
+                                    font-family: verdana, arial, sans-serif;
+                                    font-size: 14px;
+                                    color: #333333;
+                                    border-radius: 5px;
+                                    border: 1px solid #999999;' cellpadding='10'>
+    <thead>
+    <tr>
+        <th style='background-color: #599CFF;
+                                    font-size: 18px;
+                                    padding: 8px;
+                                    border-radius: inherit;
+                                    border: 1px solid #a9c6c9; '>Kontaktperson/Fakturering:
+        </th>
+        <th style='background-color: #599CFF;
+                                    font-size: 18px;
+                                    padding: 8px;
+                                    border-radius: inherit;
+                                    border: 1px solid #a9c6c9; '>Uppdrag:
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style='background-color: #d4e3e5;
+                                    border-radius: 5px;'>
+        <td style='padding: 8px;
+                                    border-radius: inherit;
+                                    border: 1px solid #a9c6c9; width: 50%;'>
+            <div style='vertical-align:top; margin-top:5%;'>
+                <div>
+                    <span style='font-weight:bold;'>Beställare:</span>
+                    <p>{contactPerson}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Företag/ Organisation:</span>
+                    <p>{organization}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>E-postadress:</span>
+                    <p>{email}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Telefon:</span>
+                    <p>{telephone}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Mobil:</span>
+                    <p>{mobile}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Plats:</span>
+                    <p>{address}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Postnummer:</span>
+                    <p>{post_code}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Ort:</span>
+                    <p>{city}</p>
+                </div>
+            </div>
+        </td>
+        <td style='padding: 8px;
+                                    border-radius: inherit;
+                                    border: 1px solid #a9c6c9; width: 50%;'>
+            <div style='vertical-align:top; margin-top:5%;'>
+                <div>
+                    <span style='font-weight:bold;'>Klient: </span>
+                    <p>{client}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Språk: </span>
+                    <p>{language}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Typ tolkning: </span>
+                    <p>{interpType}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Datum: </span>
+                    <p>{date}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Starttid: </span>
+                    <p>{timeStart}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Sluttid: </span>
+                    <p>{timeEnd}</p>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<hr style='width: 80%; margin-left: 10%;'/>
+<div>
+    <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
+        Om informationen ovan är felaktig eller om du vill ändra något, vänligen kontakta oss.
+        Med vänliga hälsningar STÖ AB.
+    </p>
+</div>
+<hr style='width: 80%; margin-left: auto;margin-right: auto;'/>
+<footer style='margin-left: 10%; width:80%'>
+    <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
+
+    <p><label style='font-weight:bold;'>ADRESS:</label> Nya Boulevarden 10, 291 31 Kristianstad </p>
+
+    <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@tolktjanst.se'> info@tolktjanst.se</a></p>
+
+    <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'> www.tolktjanst.com</a></p>
+
+    <p><label style='font-weight:bold;'>TELEFON:</label> 010 166 10 10</p>
+
+    <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
+
+</footer>
+</body>
+</html>

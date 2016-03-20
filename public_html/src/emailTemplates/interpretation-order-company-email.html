@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang='en'>
+    <meta charset='UTF-8'>
+    <title></title>
+</head>
+<body style='color: #000000; text-align: center;'>
+<hr style='width: 80%;
+                                    margin-left: 10%;'/>
+<h2 style='text-align: center; margin-top: 5%;'>Beställning:</h2>
+
+<h2 style='text-align: center; margin-top: 5%;'>Uppdragsnr: " . {orderNumber} . "</h2>
+<table style='width: 80%;
+                                    margin-left: 10%;
+                                    margin-right: 10%;
+                                    text-align: center;
+                                    font-family: verdana, arial, sans-serif;
+                                    font-size: 14px;
+                                    color: #333333;
+                                    border-radius: 5px;
+                                    border: 1px solid #999999;' cellpadding='10'>
+    <thead>
+    <tr>
+        <th style='background-color: #599CFF;
+                                    font-size: 18px;
+                                    padding: 8px;
+                                    border-radius: inherit;
+                                    border: 1px solid #a9c6c9; '>Kontaktperson/Fakturering:
+        </th>
+        <th style='background-color: #599CFF;
+                                    font-size: 18px;
+                                    padding: 8px;
+                                    border-radius: inherit;
+                                    border: 1px solid #a9c6c9; '>Uppdrag:
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style='background-color: #d4e3e5;
+                                    border-radius: 5px;'>
+        <td style='padding: 8px;
+                                    border-radius: inherit;
+                                    border: 1px solid #a9c6c9; width: 50%;'>
+            <div style='vertical-align:top; margin-top:5%;'>
+                <div>
+                    <span style='font-weight:bold;'>Beställare: </span>
+                    <p>{contactPerson}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Företag/ Organisation: </span>
+                    <p>{organization}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>E-postadress: </span>
+                    <p>{email}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Telefon:</span>
+                    <p>{telephone}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Mobil: </span>
+                    <p>{mobile}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Plats: </span>
+                    <p>{address}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Postnummer: </span>
+                    <p>{post_code}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Ort: </span>
+                    <p>{city}</p>
+                </div>
+            </div>
+        </td>
+        <td style='padding: 8px;
+                                    border-radius: inherit;
+                                    border: 1px solid #a9c6c9; width: 50%;'>
+            <div style='vertical-align:top; margin-top:5%;'>
+                <div>
+                    <span style='font-weight:bold;'>Klient: </span>
+                    <p>{client}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Språk: </span>
+                    <p>{language}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Typ av tolkning: </span>
+                    <p>{interpType}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Datum: </span>
+                    <p>{date}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Starttid: </span>
+                    <p>{timeStart}</p>
+                </div>
+                <div>
+                    <span style='font-weight:bold;'>Sluttid: </span>
+                    <p>{timeEnd}</p>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<hr style='width: 80%; margin-left: 10%;'/>
+</body>
+</html>

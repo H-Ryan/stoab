@@ -1,0 +1,208 @@
+/* custom font */
+
+.customFont {
+    font-family: georgia, serif, sans-serif;
+}
+
+/* file upload */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    background: red;
+    cursor: inherit;
+    display: block;
+}
+
+input[readonly] {
+    background-color: white !important;
+    cursor: text !important;
+}
+
+/* header logo on mobile */
+@media (max-width: 479px) {
+    #header .header-logo img {
+        max-width: 180px;
+        max-height: 54px;
+    }
+}
+
+/* ------------ services ----------------------- */
+/* quinary is gray colour */
+.text-xl {
+    font-size: 3em;
+    font-weight: 500;
+}
+
+html .featured-box-quinary .icon-featured {
+    background-color: #a6a6a6;
+}
+
+html .featured-box-quinary h4 {
+    color: #a6a6a6;
+}
+
+html .featured-box-quinary a {
+    color: #a6a6a6;
+}
+
+html .featured-box-quinary .box-content {
+    border-top-color: #a6a6a6;
+}
+
+html .featured-boxes-style-3 .featured-box.featured-box-quinary .icon-featured {
+    border-color: #a6a6a6;
+    color: #a6a6a6;
+}
+
+html .featured-boxes-style-4 .featured-box.featured-box-quinary .icon-featured {
+    border-color: #a6a6a6;
+    color: #a6a6a6;
+}
+
+html .featured-boxes-style-5 .featured-box.featured-box-quinary .icon-featured {
+    color: #a6a6a6;
+}
+
+html .featured-boxes-style-6 .featured-box.featured-box-quinary .icon-featured {
+    color: #a6a6a6;
+}
+
+html .featured-boxes-style-8 .featured-box.featured-box-quinary .icon-featured {
+    color: #a6a6a6;
+}
+
+html .featured-box-effect-2.featured-box-quinary .icon-featured:after {
+    box-shadow: 0 0 0 3px #a6a6a6;
+}
+
+html .featured-box-effect-3.featured-box-quinary .icon-featured:after {
+    box-shadow: 0 0 0 10px #a6a6a6;
+}
+
+html .featured-box-effect-3.featured-box-quinary:hover .icon-featured {
+    background: #a6a6a6 !important;
+}
+
+/* quinary is purple colour */
+html section.section-senary {
+    background-color: #9A3FB2 !important;
+    border-color: #933ca9 !important;
+}
+
+html section.section-senary h1,
+html section.section-senary h2,
+html section.section-senary h3,
+html section.section-senary h4,
+html section.section-senary h5,
+html section.section-senary h6 {
+    color: #FFF;
+}
+
+html section.section-senary p {
+    color: #e6e6e6;
+}
+
+/* quinary is orange colour */
+html section.section-septenary {
+    background-color: #fc601c !important;
+    border-color: #fc4f03 !important;
+}
+
+html section.section-septenary h1,
+html section.section-septenary h2,
+html section.section-septenary h3,
+html section.section-septenary h4,
+html section.section-septenary h5,
+html section.section-septenary h6 {
+    color: #FFF;
+}
+
+html section.section-septenary p {
+    color: #e6e6e6;
+}
+
+/* ------ courses ----------------- */
+a .thumb-info:hover {
+    border: 1px solid #1ca4e8;
+    color: #777;
+}
+
+a .thumb-info-caption-text {
+    color: #777;
+}
+
+.course-text:hover {
+    text-decoration: none;
+}
+
+/* ------------ controls ----------------------- */
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+/* -------------- main page -------------------*/
+.customLink a {
+    color: white;
+}
+
+.customLink a:hover {
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.header-nav-top a {
+    color: #999;
+}
+
+ul.history li .featured-box-secondary .box-content {
+    border-top-color: #1ca4e8;
+}
+
+ul.history li .featured-box-tertiary .box-content {
+    border-top-color: #478f3a;
+}
+
+ul.history li .featured-box-quaternary .box-content {
+    border-top-color: #b5282b;
+}
+
+/*-------------- about us page ----------------- */
+li.isotope-item {
+    line-height: 16px;
+    padding-right: 5px;
+    padding-left: 5px
+
+}
+
+/* ----------- work with us page ------------------- */
+html body .tabs.tabs-bottom .nav-tabs li.active a.quaternary:hover, html body .tabs.tabs-bottom .nav-tabs li a.quaternary:hover, html body .tabs.tabs-bottom .nav-tabs li.active a.quaternary {
+    border-bottom-color: #b5282b;
+}
+
+html body .tabs.tabs-bottom .nav-tabs li.active a.secondary:hover, html body .tabs.tabs-bottom .nav-tabs li a.secondary:hover, html body .tabs.tabs-bottom .nav-tabs li.active a.secondary {
+    border-bottom-color: #1ca4e8;
+}
+
+html body .tabs.tabs-bottom .nav-tabs li.active a.tertiary:hover, html body .tabs.tabs-bottom .nav-tabs li a.tertiary:hover, html body .tabs.tabs-bottom .nav-tabs li.active a.tertiary {
+    border-bottom-color: #478f3a;
+}
+
+.featured-boxes-style-3 .featured-box .icon-featured {
+    width: 50px;
+    height: 50px;
+    line-height: 48px;
+    font-size: 20px;
+}

@@ -1,0 +1,11 @@
+.ui.grid {
+    position: relative;
+    margin: 0;
+}
+.retrievePass, .tolk_retrievePass {
+    display: none;
+}
+
+a , a:hover {
+    text-decoration: none;
+}
