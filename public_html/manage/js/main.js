@@ -134,38 +134,40 @@ $(document).ready(function () {
     });
 
     orderManageFilterForm.form({
-        orderNumber: {
-            identifier: 'orderNumber',
-            optional: true,
-            rules: [
-                {
-                    type: 'length[6]',
-                    prompt: 'Ordernummer måste vara minst 6 tecken.'
-                },
-                {
-                    type: 'maxLength[6]',
-                    prompt: 'Ordernummer måste vara minst 6 tecken.'
-                }
-            ]
-        },
-        clientNumber: {
-            identifier: 'clientNumber',
-            optional: true,
-            rules: [
-                {
-                    type: 'length[6]',
-                    prompt: 'Kund nummer måste vara minst 6 tecken.'
-                },
-                {
-                    type: 'maxLength[6]',
-                    prompt: 'Kund nummer måste vara minst 6 tecken.'
-                },
-                {
-                    type: 'integer',
-                    prompt: 'Kund nummer innehåller ogiltiga tecken.'
-                }
-            ]
-        }
+        fields: {
+			orderNumber: {
+				identifier: 'orderNumber',
+				optional: true,
+				rules: [
+					{
+						type: 'length[6]',
+						prompt: 'Ordernummer måste vara minst 6 tecken.'
+					},
+					{
+						type: 'maxLength[6]',
+						prompt: 'Ordernummer måste vara minst 6 tecken.'
+					}
+				]
+			},
+			clientNumber: {
+				identifier: 'clientNumber',
+				optional: true,
+				rules: [
+					{
+						type: 'length[6]',
+						prompt: 'Kund nummer måste vara minst 6 tecken.'
+					},
+					{
+						type: 'maxLength[6]',
+						prompt: 'Kund nummer måste vara minst 6 tecken.'
+					},
+					{
+						type: 'integer',
+						prompt: 'Kund nummer innehåller ogiltiga tecken.'
+					}
+				]
+			}
+		}
     }, {
         inline: true,
         on: 'blur',
@@ -174,57 +176,59 @@ $(document).ready(function () {
 
 
     orderHistoryFilterForm.form({
-        orderNumber: {
-            identifier: 'orderNumber',
-            optional: true,
-            rules: [
-                {
-                    type: 'length[6]',
-                    prompt: 'Ordernummer måste vara minst 6 tecken.'
-                },
-                {
-                    type: 'maxLength[6]',
-                    prompt: 'Ordernummer måste vara minst 6 tecken.'
-                }
-            ]
-        },
-        tolkNumber: {
-            identifier: 'tolkNumber',
-            optional: true,
-            rules: [
-                {
-                    type: 'length[4]',
-                    prompt: 'Tolk nummer måste vara minst 4 tecken.'
-                },
-                {
-                    type: 'maxLength[4]',
-                    prompt: 'Tolk nummer måste vara minst 4 tecken.'
-                },
-                {
-                    type: 'integer',
-                    prompt: 'Tolk nummer innehåller ogiltiga tecken.'
-                }
-            ]
-        },
-        clientNumber: {
-            identifier: 'clientNumber',
-            optional: true,
-            rules: [
-                {
-                    type: 'length[6]',
-                    prompt: 'Kund nummer måste vara minst 6 tecken.'
-                },
-                {
-                    type: 'maxLength[6]',
-                    prompt: 'Kund nummer måste vara minst 6 tecken.'
-                },
-                {
-                    type: 'integer',
-                    prompt: 'Kund nummer innehåller ogiltiga tecken.'
-                }
-            ]
-        }
-    }, {
+		fields: {
+			orderNumber: {
+				identifier: 'orderNumber',
+				optional: true,
+				rules: [
+					{
+						type: 'length[6]',
+						prompt: 'Ordernummer måste vara minst 6 tecken.'
+					},
+					{
+						type: 'maxLength[6]',
+						prompt: 'Ordernummer måste vara minst 6 tecken.'
+					}
+				]
+			},
+			tolkNumber: {
+				identifier: 'tolkNumber',
+				optional: true,
+				rules: [
+					{
+						type: 'length[4]',
+						prompt: 'Tolk nummer måste vara minst 4 tecken.'
+					},
+					{
+						type: 'maxLength[4]',
+						prompt: 'Tolk nummer måste vara minst 4 tecken.'
+					},
+					{
+						type: 'integer',
+						prompt: 'Tolk nummer innehåller ogiltiga tecken.'
+					}
+				]
+			},
+			clientNumber: {
+				identifier: 'clientNumber',
+				optional: true,
+				rules: [
+					{
+						type: 'length[6]',
+						prompt: 'Kund nummer måste vara minst 6 tecken.'
+					},
+					{
+						type: 'maxLength[6]',
+						prompt: 'Kund nummer måste vara minst 6 tecken.'
+					},
+					{
+						type: 'integer',
+						prompt: 'Kund nummer innehåller ogiltiga tecken.'
+					}
+				]
+			}
+		}
+	}, {
         inline: true,
         on: 'blur',
         transition: "slide down"
@@ -1484,16 +1488,18 @@ $(document).ready(function () {
     });
 
     tolkSearchFrom.form({
-        language: {
-            identifier: 'language',
-            optional: true,
-            rules: [
-                {
-                    type: 'empty',
-                    prompt: 'Välj ett av de språk från rullgardinsmenyn.'
-                }
-            ]
-        }
+		fields: {
+			language: {
+				identifier: 'language',
+				optional: true,
+				rules: [
+					{
+						type: 'empty',
+						prompt: 'Välj ett av de språk från rullgardinsmenyn.'
+					}
+				]
+			}
+		}
     }, {
         inline: true,
         on: 'blur',
