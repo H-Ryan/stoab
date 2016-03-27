@@ -47,9 +47,10 @@ if(isset($_POST['customerNumber']) && isset($_POST['password']))
         {
             $personalNumber = $user->k_personalNumber;
             $customerNumber = $user->k_kundNumber;
+            $ipAddress = getRealIpAddress();
             $statement = $con->prepare("INSERT INTO t_loginLog (l_personalNumber, l_ipAddress) VALUES (:personalNumber, :ip)");
             $statement->bindParam(":personalNumber", $personalNumber);
-            $statement->bindParam(":ip", getRealIpAddress());
+            $statement->bindParam(":ip", $ipAddress);
             $statement->execute();
             $data["error"] = 0;
             session_regenerate_id();

@@ -45,8 +45,9 @@ if(isset($_POST['interpreter_email']) && isset($_POST['interpreter_password']))
             $personalNumber = $user->t_personalNumber;
             $customerNumber = $user->t_tolkNumber;
             $statement = $con->prepare("INSERT INTO t_loginLog (l_personalNumber, l_ipAddress) VALUES (:personalNumber, :ip)");
+            $ipAddress = getRealIpAddress();
             $statement->bindParam(":personalNumber", $personalNumber);
-            $statement->bindParam(":ip", getRealIpAddress());
+            $statement->bindParam(":ip", $ipAddress);
             $statement->execute();
             $data["error"] = 0;
             session_regenerate_id();

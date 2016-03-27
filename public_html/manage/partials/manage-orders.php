@@ -35,7 +35,7 @@ if ($statement->rowCount() > 0) {
     </div>
     <div class="ui grid">
         <div class="row">
-            <<?php if ($detect->isMobile() || $detect->isTablet()) { ?>
+            <?php if ($detect->isMobile() || $detect->isTablet()) { ?>
                 <div class="mobile tablet only sixteen wide column">
                     <form class="ui form orderFilterFormManage">
                         <div class="field">

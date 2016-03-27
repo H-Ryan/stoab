@@ -38,23 +38,3 @@
     color: #fff;
     text-shadow: none;
 }
-
-.error:not(.field):not(.valid):not(.form):not(.message) {
-    display: inline-block;
-    background-color: #d95c5c!important;
-    border-color: #d95c5c!important;
-    color: #fff!important;
-    font-size: .8571rem;
-    vertical-align: baseline;
-    line-height: 1;
-    margin: 1% auto 2% auto;
-    background-image: none;
-    padding: .6em .8em;
-    text-transform: none;
-    font-weight: 700;
-    border-radius: .2857rem;
-    transition: background .2s ease;
-    text-align: center;
-    width: 50%;
-    box-sizing: inherit;
-}

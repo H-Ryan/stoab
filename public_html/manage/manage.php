@@ -1,10 +1,10 @@
 <?php
-ini_set("session.use_only_cookies", TRUE);
-ini_set("session.use_trans_sid", FALSE);
+ini_set("session.use_only_cookies", true);
+ini_set("session.use_trans_sid", false);
 session_start();
 
 $referrer = $_SERVER['HTTP_REFERER'];
-if (!empty($referrer)) {
+if ( ! empty($referrer)) {
     $uri = parse_url($referrer);
     if ($uri['host'] != $_SERVER['HTTP_HOST']) {
         exit ("Form submission from $referrer not allowed.");
@@ -18,7 +18,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     session_destroy();
 }
 $_SESSION['LAST_ACTIVITY'] = time();
-if (!isset($_SESSION['CREATED'])) {
+if ( ! isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();
 } else if (time() - $_SESSION['CREATED'] > 3200) {
     session_regenerate_id(true);
@@ -30,27 +30,27 @@ if (empty($_SESSION['personal_number']) &&
     header('Location: index.php');
 }
 $order = $_SESSION['order'];
-$tolk = null;
+$tolk  = null;
 try {
     include "../src/db/dbConfig.php";
     include_once "../src/db/dbConnection.php";
     include_once "../src/misc/functions.php";
-    $db = new dbConnection(HOST, DATABASE, USER, PASS);
-    $con = $db->get_connection();
+    $db         = new dbConnection(HOST, DATABASE, USER, PASS);
+    $con        = $db->get_connection();
     $tolkNumber = "";
     if ($order->o_tolkarPersonalNumber != null) {
         $tolkNumber = $order->o_tolkarPersonalNumber;
-        $query = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,"
-            . " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,"
-            . " u.u_extraInfo, t.* FROM t_tolkar AS t, t_users AS u WHERE u.u_role = 3"
-            . " AND t.t_active = 1 AND t.t_personalNumber=:tolkNumber AND u.u_personalNumber = t.t_personalNumber";
-        $statement = $con->prepare($query);
+        $query      = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,"
+                      . " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,"
+                      . " u.u_extraInfo, t.* FROM t_tolkar AS t, t_users AS u WHERE u.u_role = 3"
+                      . " AND t.t_active = 1 AND t.t_personalNumber=:tolkNumber AND u.u_personalNumber = t.t_personalNumber";
+        $statement  = $con->prepare($query);
         $statement->bindParam(":tolkNumber", $tolkNumber);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $orders = array();
         if ($statement->rowCount() > 0) {
-            $tolk = $statement->fetch();
+            $tolk       = $statement->fetch();
             $tolkNumber = $tolk->t_tolkNumber;
         }
     }
@@ -62,14 +62,16 @@ try {
 <html style="height: auto;">
 <head lang="en">
     <meta charset="UTF-8">
-    <base target="_blank" />
+    <base target="_blank"/>
     <title>Manage Order: <?php echo $order->o_orderNumber ?></title>
     <link rel="stylesheet" href="../vendor/stoab/stoab.min.css"/>
     <link rel="stylesheet" href="../css/mod-sam/main.css"/>
     <link rel="stylesheet" href="../css/mod-sam/form.css"/>
     <link rel="stylesheet" href="css/manage.css"/>
+    <link rel="stylesheet" href="../vendor/date/jquery-ui.min.css"/>
 
     <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../vendor/date/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../vendor/stoab/stoab.min.js"></script>
     <script type="text/javascript" src="js/manage.js"></script>
     <!--[if lt IE 9]>
@@ -91,7 +93,8 @@ try {
             <div class="ui piled horizontal segment">
                 <form class="ui form assignTolk">
                     <fieldset class="ui basic segment">
-                        <input type="hidden" id="orderNumber" name="orderNumber" value="<?php echo $order->o_orderNumber ?>"/>
+                        <input type="hidden" id="orderNumber" name="orderNumber"
+                               value="<?php echo $order->o_orderNumber ?>"/>
                         <input type="hidden" name="employee" value="<?php echo $_SESSION['personal_number'] ?>"/>
 
                         <div class="ui centered grid">
@@ -182,9 +185,9 @@ try {
                                 <button type="button" class="ui red button btnCancel">Avboka</button>
                             </div>
                             <div class="field">
-                            <?php if ($tolk != null) {
-                                echo "<button type='button' class='ui orange button btnTolkCancel'>Annulleras av tolk</button>";
-                            }?>
+                                <?php if ($tolk != null) {
+                                    echo "<button type='button' class='ui orange button btnTolkCancel'>Annulleras av tolk</button>";
+                                } ?>
                             </div>
                             <div class="field">
                                 <?php if ($tolk != null) {
@@ -208,7 +211,11 @@ try {
                     <tr>
                         <th colspan="3">
                             <div class="ui segment">
-                                <div class="ui center aligned header">Mer information: <?php echo $order->o_orderNumber ?></div>
+                                <div class="ui center aligned header">Mer
+                                    information: <?php echo $order->o_orderNumber ?> |
+                                    <button type="button" class="ui button" id="btnEditOrderInfo">Edit Order Info
+                                    </button>
+                                </div>
                             </div>
                         </th>
                     </tr>
@@ -294,21 +301,30 @@ try {
                 </div>
                 <form class="ui form" id="resendEmailForm">
                     <input type="hidden" name="orderNumber" value="<?php echo $order->o_orderNumber ?>"/>
-                    <input type="hidden" name="tolkNumber" value="<?php echo ($order->o_tolkarPersonalNumber != null) ? $order->o_tolkarPersonalNumber : '' ?>"/>
+                    <input type="hidden" name="tolkNumber"
+                           value="<?php echo ($order->o_tolkarPersonalNumber != null) ? $order->o_tolkarPersonalNumber : '' ?>"/>
                     <div class="ui grid">
                         <div class="row">
                             <div class="ten wide column">
                                 <div class="ui header">
                                     Skicka tolk uppdrag bekräftelse
                                 </div>
-                                <button type="button" id="resendToTolk" class="ui teal inverted button <?php echo (($tolk == null) ? 'disabled' : '')  ?>">Till tolk</button>
-                                <button type="button" id="resendToClientAboutTolk" class="ui purple inverted button <?php echo (($tolk == null) ? 'disabled' : '')  ?>">Till kunden</button>
+                                <button type="button" id="resendToTolk"
+                                        class="ui teal inverted button <?php echo(($tolk == null) ? 'disabled' : '') ?>">
+                                    Till tolk
+                                </button>
+                                <button type="button" id="resendToClientAboutTolk"
+                                        class="ui purple inverted button <?php echo(($tolk == null) ? 'disabled' : '') ?>">
+                                    Till kunden
+                                </button>
                             </div>
                             <div class="six wide column">
                                 <div class="ui header">
                                     Skicka orderbekräftelse
                                 </div>
-                                <button type="button" id="resendToClient" class="ui yellow inverted button">Till kunden</button>
+                                <button type="button" id="resendToClient" class="ui yellow inverted button">Till
+                                    kunden
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -463,10 +479,13 @@ try {
             </div>
             <div class="description">
                 <label for="newComment">Content:</label>
-                <textarea style="margin: 0; width: 700px; height: 128px; z-index: auto; position: relative; line-height: 20px; font-size: 12px; transition: none; color: black; overflow: auto;" id="newComment">
+                <textarea
+                    style="margin: 0; width: 700px; height: 128px; z-index: auto; position: relative; line-height: 20px; font-size: 12px; transition: none; color: black; overflow: auto;"
+                    id="newComment">
                     <?php echo $order->o_comments ?>
                 </textarea>
-                <p id="errMessage" style="display: none;">There was an error and the comment was not updated, try refreshing the page!</p>
+                <p id="errMessage" style="display: none;">There was an error and the comment was not updated, try
+                    refreshing the page!</p>
             </div>
         </div>
         <div class="actions">
@@ -478,6 +497,155 @@ try {
                     <i class="checkmark icon"></i>Save
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="ui small modal editOrder">
+        <div class="ui inverted blue segment">
+            <div class="white header">Redigera orderinformation</div>
+        </div>
+        <div class="content">
+            <form class="ui small form" id="editOrderForm" onsubmit="return false;">
+                <div class="ui grid stackable">
+                    <div class=" row">
+                        <div class="centered column">
+                            <input type="hidden" id="orderNumber" name="orderNumber"
+                                   value="<?php echo $order->o_orderNumber ?>"/>
+                            <input type="hidden" name="employee" value="<?php echo $_SESSION['personal_number'] ?>"/>
+
+                            <div class="three fields">
+                                <div class="field">
+                                    <label for="date">Datum</label>
+                                    <input id="date" type="text" title="Datum" name="date"
+                                           value="<?php echo $order->o_date ?>" placeholder="YYYY-MM-DD"/>
+                                </div>
+                                <div class="field">
+                                    <label for="startTime">Starttid</label>
+                                    <div id="startTime" class="two fields">
+                                        <?php
+                                        $startH = (integer)(($order->o_startTime - ($order->o_startTime % 4)) / 4);
+                                        $startM = (integer)($order->o_startTime % 4);
+                                        $endH = (integer)(($order->o_endTime - ($order->o_endTime % 4)) / 4);
+                                        $endM = (integer)($order->o_endTime % 4);
+                                        $minutes = ['00', '15', '30', '45'];
+                                        ?>
+                                        <div class="field">
+                                            <select class="ui fluid search selection dropdown" id="starttid"
+                                                    name="start_hour">
+                                                <?php
+                                                for ($i = 0; $i < 3; $i++) {
+                                                    for ($j = 0; $j < 10; $j++) {
+                                                        if (intval($i . $j) === 24) {
+                                                            break;
+                                                        } elseif (intval($i . $j) === $startH) {
+                                                            echo "<option selected value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                        } else {
+                                                            echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="field">
+                                            <select name="start_minute" id="starttid1"
+                                                    class="ui fluid dropdown">
+                                                <?php
+                                                for ($i = 0; $i < 4; $i++) {
+                                                    if ($i === $startM) {
+                                                        echo "<option selected value=\"" . $i . "\">$minutes[$i]</option>";
+                                                    } else {
+                                                        echo "<option value=\"" . $i . "\">$minutes[$i]</option>";
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="endTime">Sluttid</label>
+
+                                    <div id="endTime" class="two fields">
+                                        <div class="field">
+                                            <select class="ui fluid search selection dropdown" id="sluttid"
+                                                    name="end_hour">
+                                                <?php
+                                                for ($i = 0; $i < 3; $i++) {
+                                                    for ($j = 0; $j < 10; $j++) {
+                                                        if (intval($i . $j) === 24) {
+                                                            break;
+                                                        } elseif (intval($i . $j) === $endH) {
+                                                            echo "<option selected value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                        } else {
+                                                            echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="field">
+                                            <select name="end_minute" id="sluttid1"
+                                                    class="ui fluid dropdown">
+                                                <?php
+                                                for ($i = 0; $i < 4; $i++) {
+                                                    if ($i === $endM) {
+                                                        echo "<option selected value=\"" . $i . "\">$minutes[$i]</option>";
+                                                    } else {
+                                                        echo "<option value=\"" . $i . "\">$minutes[$i]</option>";
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label for="orderer">Kontaktperson:</label>
+                                    <input id="orderer" name="orderer" type="text" placeholder="Kontaktperson"
+                                           value="<?php echo $order->o_orderer ?>"/>
+                                </div>
+                                <div class="field">
+                                    <label for="email">E-postadress:</label>
+                                    <input id="email" name="email" type="email" placeholder="E-post"
+                                           value="<?php echo $order->o_email ?>"/>
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label for="telephone">Telefon:</label>
+                                    <input id="telephone" name="telephone" type="text" placeholder="Telefon"
+                                           value="<?php echo $order->o_tel ?>" class="phone-group"/>
+                                </div>
+                                <div class="field">
+                                    <label for="telephone">Mobil:</label>
+                                    <input id="telephone" name="mobile" type="text" placeholder="Mobil"
+                                           value=" <?php echo $order->o_mobile ?>" class="phone-group"/>
+                                </div>
+                            </div>
+                            <div class="required field">
+                                <label for="address">Plats för tolkning:</label>
+                                <input id="address" name="address" type="text" placeholder="Plats"
+                                       value=" <?php echo $order->o_address ?>"/>
+                            </div>
+                            <div class="field">
+                                <div class="ui error message" id="orderEditErrorField">
+                                    <div class="header">Fel</div>
+                                    <p>Fyll i de obligatoriska fälten.</p>
+                                </div>
+                                <button type="button" class="ui blue right labeled icon button" id="editOrderBtn">
+                                    <i class="right arrow icon"></i>
+                                    Skicka
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="action">
         </div>
     </div>
 </div>

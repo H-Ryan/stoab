@@ -25,13 +25,14 @@ if (!empty($referrer)) {
 $emailer = new Emails();
 $data = array();
 
+$db = null;
 $finance_subject = "STÖ AB - Ekonomi (Annullerade beställningen)";
 if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
     $orderNumber = $_POST['orderNumber'];
     $employeeNumber = $_POST['employee'];
     $canceled = "EC";
     $emptyTolk = null;
-    $db = null;
+    $ipAddress = getRealIpAddress();
     $tolkSubject = 'STÖ AB - Avbokning.';
     $customerSubject = "STÖ AB - Avbokning.";
     try {
@@ -282,7 +283,7 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                         $statement->bindParam(":orderNumber", $orderNumber);
                         $statement->bindParam(":modifyPN", $employeeNumber);
                         $statement->bindParam(":involvedPN", $order->o_kundNumber);
-                        $statement->bindParam(":ipAddress", getRealIpAddress());
+                        $statement->bindParam(":ipAddress", $ipAddress);
                         $statement->bindParam(":state", $canceled);
                         $statement->execute();
                         if ($statement->rowCount() > 0) {
@@ -528,7 +529,7 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                     $statement->bindParam(":orderNumber", $orderNumber);
                     $statement->bindParam(":modifyPN", $employeeNumber);
                     $statement->bindParam(":involvedPN", $order->o_kundNumber);
-                    $statement->bindParam(":ipAddress", getRealIpAddress());
+                    $statement->bindParam(":ipAddress", $ipAddress);
                     $statement->bindParam(":state", $canceled);
                     $statement->execute();
                     if ($statement->rowCount() > 0) {

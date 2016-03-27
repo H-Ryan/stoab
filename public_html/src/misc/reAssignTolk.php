@@ -24,6 +24,7 @@ if (!empty($referrer)) {
 }
 $emailer = new Emails();
 $data = array();
+$db = null;
 
 $finance_subject = "STÖ AB - Ekonomi.";
 if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST['employee'])) {
@@ -31,7 +32,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
     $orderNumber = $_POST['orderNumber'];
     $employeeNumber = $_POST['employee'];
     $booked = "B";
-    $db = null;
+    $ipAddress = getRealIpAddress();
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
@@ -81,7 +82,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                             $statement->bindParam(":orderNumber", $orderNumber);
                             $statement->bindParam(":modifyPN", $employeeNumber);
                             $statement->bindParam(":involvedPN", $order->o_kundNumber);
-                            $statement->bindParam(":ipAddress", getRealIpAddress());
+                            $statement->bindParam(":ipAddress", $ipAddress);
                             $statement->bindParam(":state", $booked);
                             $statement->execute();
                             if ($statement->rowCount() > 0) {

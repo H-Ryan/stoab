@@ -1,6 +1,19 @@
 "use strict";
 $(document).ready(function () {
+    $.fn.form.settings.rules.oneOf = function(value, fieldIdentifiers) {
+        var $form = $(this);
+
+        return !!value || fieldIdentifiers.split(',').some(function(fieldIdentifier) {
+                return $form.find('#' + fieldIdentifier).val() ||
+                    $form.find('[name="' + fieldIdentifier +'"]').val() ||
+                    $form.find('[data-validate="'+ fieldIdentifier +'"]').val();
+
+            });
+    };
+
     var orderForm = $('.ui.form.orderForm'),
+        companySearchForm = $('.ui.form.company-search'),
+        companySearchBtn = $('.btnSearchCompany'),
         tolkSearchFrom = $('.ui.form.tolk-search'),
         orderHistoryFilterForm = $('.ui.form.orderFilterForm'),
         orderManageFilterForm = $('.ui.form.orderFilterFormManage'),
@@ -32,11 +45,16 @@ $(document).ready(function () {
             if (manageWindow) {
                 if (!manageWindow.closed)
                     manageWindow.location.reload();
-                else
+                else {
                     manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
+                    //manageWindow = window.open("http://localhost/workspace/stoab/public_html/manage/manage.php", "_blank");
+                }
             }
-            else
+            else {
                 manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
+                //manageWindow = window.open("http://localhost/workspace/stoab/public_html/manage/manage.php", "_blank");
+            }
+
             btn.removeClass('loading');
         });
         btn.removeClass('loading');
@@ -135,39 +153,39 @@ $(document).ready(function () {
 
     orderManageFilterForm.form({
         fields: {
-			orderNumber: {
-				identifier: 'orderNumber',
-				optional: true,
-				rules: [
-					{
-						type: 'length[6]',
-						prompt: 'Ordernummer måste vara minst 6 tecken.'
-					},
-					{
-						type: 'maxLength[6]',
-						prompt: 'Ordernummer måste vara minst 6 tecken.'
-					}
-				]
-			},
-			clientNumber: {
-				identifier: 'clientNumber',
-				optional: true,
-				rules: [
-					{
-						type: 'length[6]',
-						prompt: 'Kund nummer måste vara minst 6 tecken.'
-					},
-					{
-						type: 'maxLength[6]',
-						prompt: 'Kund nummer måste vara minst 6 tecken.'
-					},
-					{
-						type: 'integer',
-						prompt: 'Kund nummer innehåller ogiltiga tecken.'
-					}
-				]
-			}
-		}
+            orderNumber: {
+                identifier: 'orderNumber',
+                optional: true,
+                rules: [
+                    {
+                        type: 'length[6]',
+                        prompt: 'Ordernummer måste vara minst 6 tecken.'
+                    },
+                    {
+                        type: 'maxLength[6]',
+                        prompt: 'Ordernummer måste vara minst 6 tecken.'
+                    }
+                ]
+            },
+            clientNumber: {
+                identifier: 'clientNumber',
+                optional: true,
+                rules: [
+                    {
+                        type: 'length[6]',
+                        prompt: 'Kund nummer måste vara minst 6 tecken.'
+                    },
+                    {
+                        type: 'maxLength[6]',
+                        prompt: 'Kund nummer måste vara minst 6 tecken.'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Kund nummer innehåller ogiltiga tecken.'
+                    }
+                ]
+            }
+        }
     }, {
         inline: true,
         on: 'blur',
@@ -176,59 +194,59 @@ $(document).ready(function () {
 
 
     orderHistoryFilterForm.form({
-		fields: {
-			orderNumber: {
-				identifier: 'orderNumber',
-				optional: true,
-				rules: [
-					{
-						type: 'length[6]',
-						prompt: 'Ordernummer måste vara minst 6 tecken.'
-					},
-					{
-						type: 'maxLength[6]',
-						prompt: 'Ordernummer måste vara minst 6 tecken.'
-					}
-				]
-			},
-			tolkNumber: {
-				identifier: 'tolkNumber',
-				optional: true,
-				rules: [
-					{
-						type: 'length[4]',
-						prompt: 'Tolk nummer måste vara minst 4 tecken.'
-					},
-					{
-						type: 'maxLength[4]',
-						prompt: 'Tolk nummer måste vara minst 4 tecken.'
-					},
-					{
-						type: 'integer',
-						prompt: 'Tolk nummer innehåller ogiltiga tecken.'
-					}
-				]
-			},
-			clientNumber: {
-				identifier: 'clientNumber',
-				optional: true,
-				rules: [
-					{
-						type: 'length[6]',
-						prompt: 'Kund nummer måste vara minst 6 tecken.'
-					},
-					{
-						type: 'maxLength[6]',
-						prompt: 'Kund nummer måste vara minst 6 tecken.'
-					},
-					{
-						type: 'integer',
-						prompt: 'Kund nummer innehåller ogiltiga tecken.'
-					}
-				]
-			}
-		}
-	}, {
+        fields: {
+            orderNumber: {
+                identifier: 'orderNumber',
+                optional: true,
+                rules: [
+                    {
+                        type: 'length[6]',
+                        prompt: 'Ordernummer måste vara minst 6 tecken.'
+                    },
+                    {
+                        type: 'maxLength[6]',
+                        prompt: 'Ordernummer måste vara minst 6 tecken.'
+                    }
+                ]
+            },
+            tolkNumber: {
+                identifier: 'tolkNumber',
+                optional: true,
+                rules: [
+                    {
+                        type: 'length[4]',
+                        prompt: 'Tolk nummer måste vara minst 4 tecken.'
+                    },
+                    {
+                        type: 'maxLength[4]',
+                        prompt: 'Tolk nummer måste vara minst 4 tecken.'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Tolk nummer innehåller ogiltiga tecken.'
+                    }
+                ]
+            },
+            clientNumber: {
+                identifier: 'clientNumber',
+                optional: true,
+                rules: [
+                    {
+                        type: 'length[6]',
+                        prompt: 'Kund nummer måste vara minst 6 tecken.'
+                    },
+                    {
+                        type: 'maxLength[6]',
+                        prompt: 'Kund nummer måste vara minst 6 tecken.'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Kund nummer innehåller ogiltiga tecken.'
+                    }
+                ]
+            }
+        }
+    }, {
         inline: true,
         on: 'blur',
         transition: "slide down"
@@ -876,14 +894,17 @@ $(document).ready(function () {
         });
     });
 
-    $("#date").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, minDate: 0});
+    $("#date").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, minDate: 0,
+        onSelect: function() {
+            orderForm.form('validate form');
+        }});
     $("#dateFilter").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, maxDate: 0});
 
     $(".orgTip").popup({inline: true, transition: "scale"});
     $(".dateTip").popup({inline: true, transition: "scale"});
     $('.tolk-type').popup({inline: true, transition: "scale"});
 
-    $('.radio.checkbox').checkbox();
+    $('.ui.radio.checkbox').checkbox();
     $('.menu .item').tab();
     $(".regOrganization").change(function () {
         var selectedOrg = $(".regOrganization option:selected").text();
@@ -1488,18 +1509,18 @@ $(document).ready(function () {
     });
 
     tolkSearchFrom.form({
-		fields: {
-			language: {
-				identifier: 'language',
-				optional: true,
-				rules: [
-					{
-						type: 'empty',
-						prompt: 'Välj ett av de språk från rullgardinsmenyn.'
-					}
-				]
-			}
-		}
+        fields: {
+            language: {
+                identifier: 'language',
+                optional: true,
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Välj ett av de språk från rullgardinsmenyn.'
+                    }
+                ]
+            }
+        }
     }, {
         inline: true,
         on: 'blur',
@@ -1578,238 +1599,244 @@ $(document).ready(function () {
         }
     }, 500);
 
-    orderForm.validate({
-        errorPlacement: function (error, element) {
-            if (element.attr("name") == "telephone" || element.attr("name") == "mobile") {
-                error.appendTo(element.closest('.fields'));
-            } else {
-                error.appendTo(element.closest('.field'));
-            }
-        },
-        ignore: ":hidden:not(select)",
-        errorElement: "div",
-        errorClass: "error",
-        validClass: "valid",
-        onfocusout: function (element) {
-            this.element(element);
-        },
-        onkeyup: false,
-        highlight: function (element, errorClass, validClass) {
-            $(element).closest('.field').addClass(errorClass).removeClass(validClass);
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).closest('.field').addClass(validClass).removeClass(errorClass);
-        },
-        groups: {
-            phone_group: "telephone mobile"
-        },
-        rules: {
+    orderForm.form({
+        inline: true,
+        delay: true,
+        on: 'blur',
+        transition: "scale",
+        fields: {
             client: {
-                maxlength: 90,
-                minlength: 3
+                identifier: 'client',
+                optional: true,
+                rules: [
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Den kund området bör<br />innehålla mindre än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Den kund området bör<br />innehålla mer än {ruleValue} tecken.'
+                    }
+                ]
             },
             language: {
-                required: true
+                identifier: 'language',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Välj ett av de språk från rullgardinsmenyn.'
+                    }
+                ]
             },
             type: {
-                required: true
+                identifier: 'type',
+                rules: [
+                    {
+                        type: 'checked',
+                        prompt: 'Fält typ av tolkning krävs.'
+                    }
+                ]
             },
             tolk_type: {
-                required: true
+                identifier: 'tolk_type',
+                rules: [
+                    {
+                        type: 'checked',
+                        prompt: 'Fält tolk nivå krävs.'
+                    }
+                ]
             },
             date: {
-                required: true,
-                date: true
+                identifier: 'date',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fältet Datum krävs.'
+                    },
+                    {
+                        type: 'regExp[/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/]',
+                        prompt: 'Fältet innehåller ogiltigt datum.'
+                    }
+                ]
             },
             start_hour: {
-                required: true,
-                digits: true,
-                range: [0, 23]
+                identifier: 'start_hour',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer[0..23]',
+                        prompt: 'Fel'
+                    }
+                ]
             },
             start_minute: {
-                required: true,
-                digits: true
+                identifier: 'start_minute',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Fel'
+                    }
+                ]
             },
             end_hour: {
-                required: true,
-                digits: true,
-                range: [0, 23]
+                identifier: 'end_hour',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer[0..23]',
+                        prompt: 'Fel'
+                    }
+                ]
             },
             end_minute: {
-                required: true,
-                digits: true
+                identifier: 'end_minute',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Fel'
+                    }
+                ]
             },
             contactPerson: {
-                required: true,
-                minlength: 3,
-                maxlength: 90
+                identifier: 'contactPerson',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält beställaren krävs.'
+                    },
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Fält Beställaren bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Fält Beställaren bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
             },
             organization: {
-                required: true,
-                minlength: 3,
-                maxlength: 60
+                identifier: 'organization',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält organisation krävs.'
+                    },
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Fält organisation bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Fält organisation bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
             },
             email: {
-                required: true,
-                maxlength: 150,
-                email: true
+                identifier: 'email',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält e-postadress krävs.'
+                    },
+                    {
+                        type: 'email',
+                        prompt: 'Den här e-post är inte giltig.'
+                    }
+                ]
             },
             telephone: {
-                require_from_group: [1, ".phone-group"],
-                minlength: 8,
-                maxlength: 11
-            },
-            mobile: {
-                require_from_group: [1, ".phone-group"],
-                minlength: 8,
-                maxlength: 11
-            },
-            address: {
-                required: true,
-                maxlength: 100,
-                minlength: 5
-            },
-            post_code: {
-                required: true,
-                digits: true,
-                maxlength: 5,
-                minlength: 5
-            },
-            city: {
-                required: true
-            },
-            message: {
-                maxlength: 255
-            }
-        },
-        messages: {
-            client: {
-                maxlength: "Den kund området bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Den kund området bör<br />innehålla mer än {0} tecken."
-            },
-            date: {
-                required: "Fältet Datum krävs.",
-                date: "Fältet innehåller ogiltigt datum."
-            },
-            language: {
-                required: "Välj ett av de språk från rullgardinsmenyn."
-            },
-            type: {
-                required: "Fält typ av tolkning krävs."
-            },
-            tolk_type: {
-                required: "Fält typ av tolkning krävs."
-            },
-            contactPerson: {
-                required: "Fält Beställaren krävs.",
-                maxlength: "Fält Beställaren bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fält Beställaren bör<br />innehålla mer än {0} tecken."
-            },
-            organization: {
-                required: "Fält Organisation krävs.",
-                maxlength: "Fält Organisation bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fält Organisation bör<br />innehålla mer än {0} tecken."
-            },
-            email: {
-                required: "Fält e-postadress krävs.",
-                email: "Den här e-post är inte giltig.",
-                maxlength: "Fältet e-postadress ska<br />innehålla mindre än {0} tecken."
-            },
-            telephone: {
-                regex: "Fält telefon är ogiltig.",
-                maxlength: "Fältet Telefon bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fältet Telefon bör<br />innehålla mer än {0} tecken."
-            },
-            mobile: {
-                regex: "Fält Mobil är ogiltig.",
-                maxlength: "Fältet Mobil bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fältet Mobil bör<br />innehålla mer än {0} tecken."
+                identifier: 'telephone',
+                rules: [
+                    {
+                        type: 'oneOf[mobile]',
+                        prompt: 'Du måste ange antingen hemnummer eller mobilnummer eller både.'
+                    }
+                ]
             },
             address: {
-                required: "Fält plats krävs.",
-                maxlength: "Fält Plats bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fält Plats bör<br />innehålla mer än {0} tecken."
+                identifier: 'address',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält plats krävs.'
+                    },
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Den plats området bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Den plats området bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
             },
             post_code: {
-                required: "Fält post nummer krävs.",
-                digits: "Fält post nummer ska<br />endast innehålla siffror.",
-                maxlength: "Fält Postnummer bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fält Postnummer bör<br />innehålla mer än {0} tecken."
+                identifier: 'post_code',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält post nummer krävs.'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Fält Postnummer ska<br />endast innehålla siffror.'
+                    },
+                    {
+                        type: 'minLength[5]',
+                        prompt: 'Fält Postnummer bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[5]',
+                        prompt: 'Fält postnummer bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
             },
             city: {
-                required: "Välj en av städerna från rullgardinslistan."
+                identifier: 'city',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Välj en av städerna från rullgardinslistan.'
+                    }
+                ]
             },
             message: {
-                maxlength: "Fält plats bör<br />innehålla mindre än {0} tecken."
-            },
-            end_hour: {
-                required: "Fel",
-                digits: "Fel",
-                range: "Fel"
-            },
-            end_minute: {
-                required: "Fel",
-                digits: "Fel"
-            },
-            start_hour: {
-                required: "Fel",
-                digits: "Fel",
-                range: "Fel"
-            },
-            start_minute: {
-                required: "Fel",
-                digits: "Fel"
+                identifier: 'message',
+                optional: true,
+                rules: [
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Fält Kommentar bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Fält Kommentar bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
             }
-
         }
     });
 
-    jQuery.extend(jQuery.validator.messages, {
-        require_from_group: "Fyll i minst ett av dessa områden."
-    });
-
-    $(".orderForm input, .orderForm select").on('input', function () {
-        $(this).valid();
-    });
-    $('.button.reset-btn').click(function () {
-        orderForm.form('clear');
-        orderForm.get(0).reset();
-        orderForm.form('reset');
-        $("#date").datepicker();
-        switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset').first());
-    });
-    $('.button.order-btn').click(function () {
-        $(".button.order-btn").removeClass("disabled");
-        orderForm.removeClass("error transition visible");
-        $.ajax({
-            type: "POST",
-            url: "../src/misc/orderRegular.php",
-            data: orderForm.serialize(),
-            dataType: "json",
-            beforeSend: function () {
-                orderForm.addClass("loading");
-            }
-        }).done(function (data) {
-            if (data.error == 0) {
-                orderForm.form('clear');
-                orderForm.get(0).reset();
-                orderForm.form('reset');
-                orderForm.removeClass("loading");
-                switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset').first());
-                $("#date").datepicker();
-            }
-            else {
-                var errorElem = $(".ui.error.message");
-                orderForm.removeClass("loading").addClass("error");
-                errorElem.children("p").text("Error Message");
-                errorElem.children('.header').text("Error");
-            }
-        });
-    });
+    /*$(".orderForm input, .orderForm select").on('input', function () {
+     $(this).valid();
+     });*/
 
     $(".button.next-btn").click(function () {
-        orderForm.validate();
-        if (orderForm.valid()) {
+        if (orderForm.form('is valid')) {
             switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset:visible').next());
         }
     });
@@ -1818,13 +1845,69 @@ $(document).ready(function () {
         switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset:visible').prev());
     });
 
+
+    $('.button.reset-btn').click(function () {
+        orderForm.form('clear');
+        $("#date").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, minDate: 0,
+            onSelect: function() {
+                orderForm.form('validate form');
+            }});
+        $('#customer').find(':input').prop('disabled', true);
+        $('#comment').find(':input').prop('disabled', true);
+        if (!orderForm.find('fieldset').first().is(":visible")) {
+            switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset').first());
+        }
+    });
+    $('.button.order-btn').click(function (e) {
+        e.preventDefault();
+        if (orderForm.form('is valid')) {
+            $.ajax({
+                type: "POST",
+                url: "../src/misc/orderRegular.php",
+                data: orderForm.serialize(),
+                dataType: "json",
+                beforeSend: function () {
+                    orderForm.addClass("loading");
+                }
+            }).done(function (data) {
+                var errorElem = $("#orderErrorField");
+                if (typeof data === 'object') {
+                    if (data.error == 0) {
+                        orderForm.removeClass("loading");
+                        orderForm.form('reset');
+                        orderForm.form('clear');
+                        $("#date").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, minDate: 0,
+                            onSelect: function() {
+                                orderForm.form('validate form');
+                            }});
+                        $('#customer').find(':input').prop('disabled', true);
+                        $('#comment').find(':input').prop('disabled', true);
+                        switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset').first());
+                        return;
+                    }
+                    orderForm.removeClass("loading").addClass("error");
+                    errorElem.children("p").text(data.errorMessage);
+                    errorElem.children('.header').text(data.header);
+                    return;
+                }
+                orderForm.removeClass("loading").addClass("error");
+                errorElem.children("p").text('There is a problem in the script');
+                errorElem.children('.header').text('PHP error');
+
+            });
+        }
+    });
+
     $('.page.dimmer').hide();
+    $('#customer').find(':input').prop('disabled', true);
+    $('#comment').find(':input').prop('disabled', true);
 });
 
 function switchFromTo(from, to) {
     $(from).transition({
         animation: 'vertical flip', duration: '500ms',
         onComplete: function () {
+            $(to).find(':input').prop('disabled', false);
             $(to).transition({animation: 'vertical flip', duration: '500ms'});
         }
     });
@@ -1883,18 +1966,22 @@ function tolkMoreInfo(event) {
 }
 
 function adjustTime(startH, startM, endH, endM) {
+    endH.siblings('.menu').find('.item').removeClass('disabled');
+    endM.siblings('.menu').find('.item').removeClass('disabled');
     endH.find('option').prop('disabled', false);
     endM.find('option').prop('disabled', false);
     endH.find('option').filter(function (index) {
         return index < startH.val();
     }).each(function () {
-        $(this).prop('disabled', true)
+        $(this).prop('disabled', true);
+        endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
     });
     if (startH.val() === endH.val()) {
         endM.find('option').filter(function (index) {
             return index <= startM.val();
         }).each(function () {
-            $(this).prop('disabled', true)
+            $(this).prop('disabled', true);
+            endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
         });
     }
 }

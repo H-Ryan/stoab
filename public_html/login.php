@@ -195,7 +195,7 @@
                                                     <a href="#" id="linkToLogin">Logga in</a>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <button type="submit"
+                                                    <button type="button"
                                                             class="btn btn-primary pull-right mb-xl"
                                                             data-loading-text="Loading..." id="btnResetPassword">Skicka
                                                     </button>
@@ -205,7 +205,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-md-6">
                                 <div id="interpreterLoginBox"
                                      class="featured-box featured-box-primary align-left m-none">
                                     <div class="box-content">
@@ -256,7 +256,7 @@
 															</span>
                                                 </div>-->
                                                 <div class="col-md-6">
-                                                    <button type="submit" id="interpreterLoginBtn"
+                                                    <button type="button" id="interpreterLoginBtn"
                                                             class="btn btn-primary pull-right mb-xl"
                                                             data-loading-text="Loading...">Logga in
                                                     </button>

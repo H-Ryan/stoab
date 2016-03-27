@@ -124,6 +124,9 @@ $(document).ready(function () {
             }
         }
     });
+    $('.form-group .radio').find('input:radio[name=type]').change(function(){
+        adjustTime(startHour, startMinute, endHour, endMinute);
+    });
 
 }).apply(this, [jQuery]);
 
@@ -135,12 +138,72 @@ $('#clearform').on('click', function () {
 function adjustTime(startH, startM, endH, endM) {
     endH.find('option').prop('disabled', false);
     endM.find('option').prop('disabled', false);
-    endH.find('option').filter(function (index) {
-        return index < startH.val();
-    }).each(function () {
-        $(this).prop('disabled', true)
-    });
-    if (startH.val() === endH.val()){
+    var selectedType = $('.form-group .radio').find('input:radio[name=type]:checked').val();
+    if (startH.val() === endH.val()) {
+        if (selectedType) {
+            if (selectedType === "TT") {
+                endH.find('option').filter(function (index) {
+                    return index < startH.val();
+                }).each(function () {
+                    $(this).prop('disabled', true)
+                });
+
+                endM.find('option').filter(function (index) {
+                    return parseInt(index, 10) <= parseInt(startM.val(), 10) + 1;
+                }).each(function () {
+                    $(this).prop('disabled', true)
+                });
+                return;
+            } else if (selectedType === "KT") {
+                endH.find('option').filter(function (index) {
+                    return index <= startH.val();
+                }).each(function () {
+                    $(this).prop('disabled', true)
+                });
+
+                endM.find('option').filter(function (index) {
+                    return parseInt(index) <= parseInt(startM.val(), 10) + 3;
+                }).each(function () {
+                    $(this).prop('disabled', true)
+                });
+                return;
+            }
+        }
+        endM.find('option').filter(function (index) {
+            return index <= startM.val();
+        }).each(function () {
+            $(this).prop('disabled', true)
+        });
+    } else {
+        if (selectedType) {
+            if (selectedType === "TT") {
+                endH.find('option').filter(function (index) {
+                    return ((parseInt(endH.val()) * 4) + parseInt(index)) <= ((parseInt(startH.val()) * 4) + parseInt(startM.val()) + 1);
+                }).each(function () {
+                    $(this).prop('disabled', true)
+                });
+
+                endM.find('option').filter(function (index) {
+                    return ((parseInt(endH.val()) * 4) + parseInt(index)) <= ((parseInt(startH.val()) * 4) + parseInt(startM.val()) + 1);
+                }).each(function () {
+                    $(this).prop('disabled', true)
+                });
+                return;
+            } else if (selectedType === "KT") {
+                endH.find('option').filter(function (index) {
+                    return index <= startH.val();
+                }).each(function () {
+                    $(this).prop('disabled', true)
+                });
+
+                endM.find('option').filter(function (index) {
+                    return ((parseInt(endH.val()) * 4) + parseInt(index)) <= ((parseInt(startH.val()) * 4) + parseInt(startM.val()) + 3);
+                }).each(function () {
+                    $(this).prop('disabled', true)
+                });
+                return;
+            }
+        }
         endM.find('option').filter(function (index) {
             return index <= startM.val();
         }).each(function () {

@@ -24,13 +24,13 @@ if (!empty($referrer)) {
     exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
 }
 $data = array();
-
+$db = null;
 if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
     $orderNumber = $_POST['orderNumber'];
     $employeeNumber = $_POST['employee'];
     $canceled = "IC";
     $emptyTolk = null;
-    $db = null;
+
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
@@ -67,10 +67,11 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                         $query = "INSERT INTO t_orderLog (o_orderNumber, o_modifyPersonalNumber, o_involvedPersonalNumber, "
                             . "o_ipAddress ,o_state) VALUES (:orderNumber, :modifyPN, :involvedPN, :ipAddress, :state)";
                         $statement = $con->prepare($query);
+                        $ipAddress = getRealIpAddress();
                         $statement->bindParam(":orderNumber", $orderNumber);
                         $statement->bindParam(":modifyPN", $employeeNumber);
                         $statement->bindParam(":involvedPN", $order->o_kundNumber);
-                        $statement->bindParam(":ipAddress", getRealIpAddress());
+                        $statement->bindParam(":ipAddress", $ipAddress);
                         $statement->bindParam(":state", $canceled);
                         $statement->execute();
                         if ($statement->rowCount() > 0) {
@@ -90,6 +91,10 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                     $data["messageHeader"] = "Error";
                     $data["errorMessage"] = "Problem with selecting the tolk assigned to this order.";
                 }
+            } else {
+                $data["error"] = 1;
+                $data["messageHeader"] = "Error";
+                $data["errorMessage"] = "There is no interpreter assigned to this assignment";
             }
         } else {
             $data["error"] = 1;
@@ -97,14 +102,17 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
             $data["errorMessage"] = "Problem with selecting this order.";
         }
     } catch (PDOException $e) {
-        if ($db != null) {
-            $db->disconnect();
-        }
-        return $e->getMessage();
+        $data["error"] = 1;
+        $data["messageHeader"] = "Error";
+        $data["errorMessage"] = "Problem with query.";
     }
+} else {
+    $data["error"] = 1;
+    $data["messageHeader"] = "Error";
+    $data["errorMessage"] = "Missing parameters.";
 }
 if ($db != null) {
     $db->disconnect();
 }
-session_regenerate_id();
+
 echo json_encode($data);

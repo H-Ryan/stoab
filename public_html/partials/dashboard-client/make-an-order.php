@@ -4,91 +4,54 @@
 * Time: 10:34 PM
 -->
 <div class="ui grid">
-    <div class="centered seven wide column">
-        <form class="ui form orderForm" onsubmit="return false;">
-            <fieldset id="order">
+    <div class="centered seven wide computer sixteen wide mobile ten wide tablet column">
+        <form class="ui form orderForm">
+            <fieldset>
                 <h3>Beställ Tolk<br/>1. Uppdrag</h3>
                 <input type="hidden" name="organizationNumber" value="<?php echo $organizationNumber; ?>">
                 <input type="hidden" name="orderer" value="<?php echo $clientNumber; ?>">
                 <input type="hidden" name="clientNumber" value="<?php echo $clientNumber; ?>">
-
                 <div class="field">
                     <label for="client">Klient:</label>
                     <input id="client" name="client" type="text" placeholder="Klient" autofocus=""/>
                 </div>
-                <div class="required field">
+                <div class="field">
                     <label for="language">Språk:</label>
-                    <select id="language" name="language" class="ui search dropdown">
-                        <option value=''>Språk</option>
-                        <?php
-                        try {
-                            $statement = $con->query("SELECT * FROM t_languages ORDER BY l_languageName");
-                            $statement->setFetchMode(PDO::FETCH_OBJ);
-                            while ($row = $statement->fetch()) {
-                                echo "<option value='" . $row->l_languageID . "'>" . $row->l_languageName . "</option>";
+                    <div class="ui fluid search selection dropdown">
+                        <input id="language" type="hidden" name="language">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Språk</div>
+                        <div class="menu">
+                            <?php
+                            foreach ($languages as $id => $lang) {
+                                echo "<div class=\"item\" data-value=\"$id\">$lang</div>";
                             }
-                        } catch (PDOException $e) {
-                            return $e->getMessage();
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="ui basic segment">
-                    <div class="required inline fields">
-                        <label for="type">Typ av tolkning.</label>
-
-                        <div class="ui segment">
-                            <div class="ui grid">
-                                <div class="two column row">
-                                    <div class="left floated column">
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
-                                                <label for="KT">Kontakttolkning</label>
-                                                <input id="KT" type="radio" name="type" value="KT">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="left floated column">
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
-                                                <label for="TT">Telefontolkning</label>
-                                                <input id="TT" type="radio" name="type" value="TT">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--<div class="two column row">
-                                    <div class="left floated column">
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
-                                                <label for="KP">Kontaktperson</label>
-                                                <input id="KP" type="radio" name="type" value="KP">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="column">
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
-                                                <label for="SH">Studiehandledning</label>
-                                                <input id="SH" type="radio" name="type" value="SH">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="column">
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
-                                                <label for="SS">Språkstöd</label>
-                                                <input id="SS" type="radio" name="type" value="SS">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>-->
-                            </div>
+                            ?>
                         </div>
-                        <input type="hidden" value="NI" name="tolk_type"/>
                     </div>
                 </div>
-                <div class="required field">
+                <div class="field">
+                    <label for="type">Typ av tolkning.</label>
+                    <div class="ui segment">
+                        <div class="grouped fields">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input id="KT" type="radio" name="type" value="KT"
+                                           tabindex="0" class="hidden">
+                                    <label for="KT">Kontakttolkning</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input id="TT" type="radio" name="type" value="TT" tabindex="0"
+                                           class="hidden">
+                                    <label for="TT">Telefontolkning</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
                     <label for="date">Datum</label>
                     <input id="date" type="text" title="Datum" name="date" placeholder="YYYY-MM-DD"/>
                 </div>
@@ -98,24 +61,27 @@
 
                         <div id="startTime" class="two fields">
                             <div class="field">
-                                <select title="Starttid" name="start_hour" id="starttid" class="ui fluid dropdown">
+                                <select class="ui fluid search selection dropdown" id="starttid"
+                                        name="start_hour">
                                     <?php
                                     for ($i = 0; $i < 3; $i++) {
                                         for ($j = 0; $j < 10; $j++) {
-                                            if ($i == 2 && $j == 4)
+                                            if ($i == 2 && $j == 4) {
                                                 break;
-                                            elseif ($i == 1 && $j == 2)
-                                                echo "<option selected='selected' value='" . intval($i . $j) . "'>$i$j</option>";
-                                            else
-                                                echo "<option value='" . intval($i . $j) . "'>$i$j</option>";
+                                            } elseif ($i == 1 && $j == 2) {
+                                                echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                            } else {
+                                                echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                            }
                                         }
                                     }
                                     ?>
                                 </select>
                             </div>
                             <div class="field">
-                                <select title="Starttid" name="start_minute" id="starttid1" class="ui fluid dropdown">
-                                    <option value="0" selected>00</option>
+                                <select name="start_minute" id="starttid1"
+                                        class="ui fluid dropdown">
+                                    <option value="0">00</option>
                                     <option value="1">15</option>
                                     <option value="2">30</option>
                                     <option value="3">45</option>
@@ -128,24 +94,26 @@
 
                         <div id="endTime" class="two fields">
                             <div class="field">
-                                <select title="Sluttid" name="end_hour" id="sluttid" class="ui fluid dropdown">
+                                <select class="ui fluid search selection dropdown" id="sluttid" name="end_hour">
                                     <?php
                                     for ($i = 0; $i < 3; $i++) {
                                         for ($j = 0; $j < 10; $j++) {
-                                            if ($i == 2 && $j == 4)
+                                            if ($i == 2 && $j == 4) {
                                                 break;
-                                            elseif ($i == 1 && $j == 3)
-                                                echo "<option selected='selected' value='" . intval($i . $j) . "'>$i$j</option>";
-                                            else
-                                                echo "<option value='" . intval($i . $j) . "'>$i$j</option>";
+                                            } elseif ($i == 1 && $j == 3) {
+                                                echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                            } else {
+                                                echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                            }
                                         }
                                     }
                                     ?>
                                 </select>
                             </div>
                             <div class="field">
-                                <select title="Sluttid1" name="end_minute" id="sluttid1" class="ui fluid dropdown">
-                                    <option value="0" selected>00</option>
+                                <select name="end_minute" id="sluttid1"
+                                        class="ui fluid dropdown">
+                                    <option value="0" selected="selected">00</option>
                                     <option value="1">15</option>
                                     <option value="2">30</option>
                                     <option value="3">45</option>
@@ -154,13 +122,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="field">
-                    <button type="button"
-                            class="ui blue right labeled icon button next-btn">
-                        <i class="right arrow icon"></i>
-                        Nästa
-                    </button>
+                <div class="two fields">
+                    <div class="field">
+                        <button type="button"
+                                class="ui reset red labeled icon button reset-btn">
+                            Reset <i class="left close icon"></i>
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button"
+                                class="ui blue right labeled icon button next-btn">
+                            <i class="right arrow icon"></i>
+                            Nästa
+                        </button>
+                    </div>
                 </div>
+
             </fieldset>
             <fieldset id="customer">
                 <h3>Beställ Tolk<br/>2. Kontaktperson / Fakturering</h3>
@@ -181,12 +158,12 @@
                            value="<?php echo $customerInfo->k_email; ?>"/>
                 </div>
                 <div class="two fields">
-                    <div class="required field">
+                    <div class="field">
                         <label for="telephone">Telefon:</label>
                         <input id="telephone" name="telephone" type="text" placeholder="Telefon"
                                value="<?php echo $customerInfo->k_tel; ?>" class="phone-group"/>
                     </div>
-                    <div class="required field">
+                    <div class="field">
                         <label for="telephone">Mobil:</label>
                         <input id="telephone" name="mobile" type="text" placeholder="Mobil"
                                value="<?php echo $customerInfo->k_mobile; ?>" class="phone-group"/>
@@ -205,31 +182,31 @@
                     </div>
                     <div class="required field">
                         <label for="city">Ort:</label>
-                        <select id="city" name="city" class="ui search dropdown">
+                        <select id="city" name="city" class="ui fluid search selection dropdown">
                             <option value=''>Ort</option>
                             <?php
-                            try {
-                                $statement = $con->query("SELECT * FROM t_city ORDER BY c_cityName");
-                                $statement->setFetchMode(PDO::FETCH_OBJ);
-                                while ($row = $statement->fetch()) {
-                                    if ($row->c_cityName == $customerInfo->k_city) {
-                                        echo "<option value='" . $row->c_cityName . "' selected>" . $row->c_cityName . "</option>";
-                                    } else {
-                                        echo "<option value='" . $row->c_cityName . "'>" . $row->c_cityName . "</option>";
-                                    }
+                            foreach ($cities as $city) {
+                                if ($city == $customerInfo->k_city) {
+                                    echo "<option value='" . $city . "' selected>" . $city . "</option>";
+                                } else {
+                                    echo "<option value='" . $city . "'>" . $city . "</option>";
                                 }
-                            } catch (PDOException $e) {
-                                return $e->getMessage();
                             }
                             ?>
                         </select>
                     </div>
                 </div>
-                <div class="two fields">
+                <div class="three fields">
                     <div class="field">
                         <button type="button"
                                 class="ui blue orange labeled icon button back-btn">
                             Tillbaka <i class="left arrow icon"></i>
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button"
+                                class="ui reset red labeled icon button reset-btn">
+                            Reset <i class="left close icon"></i>
                         </button>
                     </div>
                     <div class="field">
@@ -248,7 +225,11 @@
                     <label for="message">Kommentar</label>
                     <textarea id="message" name="message"></textarea>
                 </div>
-                <div class="two fields">
+                <div class="ui error message" id="orderErrorField">
+                    <div class="header">Fel</div>
+                    <p id="orderErrorMessage">Några av de former åkrar är ogiltiga.</p>
+                </div>
+                <div class="three fields">
                     <div class="field">
                         <button type="button"
                                 class="ui blue orange labeled icon button back-btn">
@@ -257,14 +238,16 @@
                     </div>
                     <div class="field">
                         <button type="button"
+                                class="ui reset red labeled icon button reset-btn">
+                            Reset <i class="left close icon"></i>
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button"
                                 class="ui blue right labeled icon button order-btn">
                             <i class="right arrow icon"></i> Boka
                         </button>
                     </div>
-                </div>
-                <div class="ui error message">
-                    <div class="header">Fel</div>
-                    <p>Några av de former åkrar är ogiltiga.</p>
                 </div>
             </fieldset>
         </form>

@@ -53,6 +53,18 @@ if (empty($_SESSION['organization_number']) && empty($_SESSION['user_number'])) 
                 $i++;
             }
         }
+        $statement = $con->query( "SELECT * FROM t_languages ORDER BY l_languageName" );
+        $statement->setFetchMode( PDO::FETCH_OBJ );
+        $languages = array();
+        while ( $row = $statement->fetch() ) {
+            $languages[ $row->l_languageID ] = $row->l_languageName;
+        }
+        $statement = $con->query( "SELECT * FROM t_city ORDER BY c_cityName" );
+        $statement->setFetchMode( PDO::FETCH_OBJ );
+        $cities = array();
+        while ( $row = $statement->fetch() ) {
+            $cities[] = $row->c_cityName;
+        }
     } catch (PDOException $e) {
         return $e->getMessage();
     }

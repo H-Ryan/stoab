@@ -23,9 +23,9 @@ if (!empty($referrer)) {
 }
 
 $data = array();
+$db = null;
 if(isset($_POST['orderNumber']) && isset($_POST['data']))
 {
-    $db = null;
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();

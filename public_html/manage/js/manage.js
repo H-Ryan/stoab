@@ -2,10 +2,20 @@
  * Created by Samuil on 21-02-2015.
  */
 $(document).ready(function () {
+    $.fn.form.settings.rules.oneOf = function (value, fieldIdentifiers) {
+        var $form = $(this);
+
+        return !!value || fieldIdentifiers.split(',').some(function (fieldIdentifier) {
+                return $form.find('#' + fieldIdentifier).val() ||
+                    $form.find('[name="' + fieldIdentifier + '"]').val() ||
+                    $form.find('[data-validate="' + fieldIdentifier + '"]').val();
+
+            });
+    };
     var manageForm = $('.ui.form.assignTolk'),
         resendForm = $("#resendEmailForm"),
         tolkTable = $('.ui.table.tolkTable'),
-        modalResend= $('.modal.modalResend'),
+        modalResend = $('.modal.modalResend'),
         modalAssign = $('.basic.modal.modalAssign'),
         modalReAssign = $('.basic.modal.modalReAssign'),
         modalCancel = $('.basic.modal.modalCancel'),
@@ -20,7 +30,200 @@ $(document).ready(function () {
         btnEditComment = $('#btnEditComment'),
         modalEditComment = $('.modal.modalEditComment'),
         taNewComment = $("#newComment"),
-        errMessage = $("#errMessage");
+        errMessage = $("#errMessage"),
+        editOrderModal = $('.modal.editOrder'),
+        btnEditModal = $('#btnEditOrderInfo'),
+        editOrderForm = $('#editOrderForm'),
+        btnSubmitEditForm = $('#editOrderBtn'),
+        startHour = $("#starttid"),
+        endHour = $("#sluttid"),
+        startMinute = $("#starttid1"),
+        endMinute = $("#sluttid1");
+
+    $('.ui.dropdown').dropdown();
+
+    $("#date").datepicker({
+        dateFormat: 'yy-mm-dd', firstDay: 1, minDate: 0,
+        onSelect: function () {
+            editOrderForm.form('validate form');
+        }
+    });
+
+    btnEditModal.on('click', function () {
+        editOrderModal.modal('show');
+    });
+
+    btnSubmitEditForm.on('click', function () {
+        if (editOrderForm.form('is valid')) {
+            $.ajax({
+                type: "POST",
+                url: "../src/misc/updateOrderInfo.php",
+                data: editOrderForm.serialize(),
+                dataType: "json",
+                beforeSend: function () {
+                    editOrderModal.addClass("loading");
+                }
+            }).done(function (data) {
+                var errorElem = $("#orderEditErrorField");
+                if (typeof data === 'object') {
+                    if (data.error == 0) {
+                        $.ajax({
+                            type: "POST",
+                            url: "../src/misc/orderInfo.php",
+                            data: {'orderId': $("#orderNumber").val()},
+                            dataType: "json"
+                        }).done(function (data) {
+                            window.location.reload();
+                        });
+                        return;
+                    }
+                    editOrderForm.removeClass("loading").addClass("error");
+                    errorElem.children("p").text();
+                    errorElem.children('.header').text();
+                    return;
+                }
+                editOrderForm.removeClass("loading").addClass("error");
+                errorElem.children("p").text('There is a problem in the script');
+                errorElem.children('.header').text('PHP error');
+
+            });
+        }
+    });
+
+    editOrderModal.modal({
+        onHide: function () {
+            editOrderForm.form('reset');
+        }
+    });
+
+    editOrderForm.form({
+        inline: true,
+        delay: true,
+        on: 'blur',
+        transition: "scale",
+        fields: {
+            date: {
+                identifier: 'date',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fältet Datum krävs.'
+                    },
+                    {
+                        type: 'regExp[/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/]',
+                        prompt: 'Fältet innehåller ogiltigt datum.'
+                    }
+                ]
+            },
+            start_hour: {
+                identifier: 'start_hour',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer[0..23]',
+                        prompt: 'Fel'
+                    }
+                ]
+            },
+            start_minute: {
+                identifier: 'start_minute',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Fel'
+                    }
+                ]
+            },
+            end_hour: {
+                identifier: 'end_hour',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer[0..23]',
+                        prompt: 'Fel'
+                    }
+                ]
+            },
+            end_minute: {
+                identifier: 'end_minute',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Fel'
+                    }
+                ]
+            },
+            contactPerson: {
+                identifier: 'contactPerson',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält beställaren krävs.'
+                    },
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Fält Beställaren bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Fält Beställaren bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
+            }, email: {
+                identifier: 'email',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält e-postadress krävs.'
+                    },
+                    {
+                        type: 'email',
+                        prompt: 'Den här e-post är inte giltig.'
+                    }
+                ]
+            },
+            telephone: {
+                identifier: 'telephone',
+                rules: [
+                    {
+                        type: 'oneOf[mobile]',
+                        prompt: 'Du måste ange antingen hemnummer eller mobilnummer eller både.'
+                    }
+                ]
+            },
+            address: {
+                identifier: 'address',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält plats krävs.'
+                    },
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Den plats området bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Den plats området bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
+            }
+        }
+    });
 
     modalEditComment.modal({
         closable: false,
@@ -33,7 +236,7 @@ $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: "../src/misc/updateComment.php",
-                data: {'orderNumber': $("#orderNumber").val(), 'data': taNewComment.val() },
+                data: {'orderNumber': $("#orderNumber").val(), 'data': taNewComment.val()},
                 dataType: "json"
             }).done(function (data) {
                 if (data.error == 0) {
@@ -47,7 +250,7 @@ $(document).ready(function () {
         }
     }).modal('attach events', btnEditComment, 'show');
 
-    $('.close.icon').click(function() {
+    $('.close.icon').click(function () {
         $('.ui.message').hide();
     });
     manageForm.form({
@@ -128,7 +331,7 @@ $(document).ready(function () {
         manageForm.form('validate form');
         return false;
     });
-    btnAssign.on('click', function() {
+    btnAssign.on('click', function () {
         manageForm.form('validate form');
         if (isValid) {
             $('.basic.modal.modalAssign').modal('show');
@@ -136,7 +339,7 @@ $(document).ready(function () {
         return false;
     });
 
-    btnReAssign.on('click', function() {
+    btnReAssign.on('click', function () {
         manageForm.form('validate form');
         if (isValid) {
             $('.basic.modal.modalReAssign').modal('show');
@@ -179,7 +382,7 @@ $(document).ready(function () {
         onApprove: function () {
             $.ajax({
                 type: "POST",
-                url: "../src/misc/tolkCancel.php",
+                url: "../src/misc/interpreter/tolkCancel.php",
                 data: manageForm.serialize(),
                 dataType: "json",
                 beforeSend: function () {
@@ -255,7 +458,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#resendToTolk").on('click', function() {
+    $("#resendToTolk").on('click', function () {
         modalResend.modal('show');
         modalResend.modal({
             closable: false,
@@ -288,7 +491,7 @@ $(document).ready(function () {
             }
         });
     });
-    $("#resendToClient").on('click', function() {
+    $("#resendToClient").on('click', function () {
         modalResend.modal('show');
         modalResend.modal({
             closable: false,
@@ -323,7 +526,7 @@ $(document).ready(function () {
             }
         });
     });
-    $("#resendToClientAboutTolk").on('click', function() {
+    $("#resendToClientAboutTolk").on('click', function () {
         modalResend.modal('show');
         modalResend.modal({
             closable: false,
@@ -358,6 +561,19 @@ $(document).ready(function () {
             }
         });
     });
+    adjustTime(startHour, startMinute, endHour, endMinute);
+    startHour.change(function () {
+        adjustTime(startHour, startMinute, endHour, endMinute);
+    });
+    endHour.change(function () {
+        adjustTime(startHour, startMinute, endHour, endMinute);
+    });
+    startMinute.change(function () {
+        adjustTime(startHour, startMinute, endHour, endMinute);
+    });
+    endMinute.change(function () {
+        adjustTime(startHour, startMinute, endHour, endMinute);
+    });
 });
 
 function refreshWindow() {
@@ -369,4 +585,29 @@ function refreshWindow() {
     }).done(function (data) {
         window.location.reload();
     });
+}
+function convertTime(value) {
+    var minutes = ["00", "15", "30", "45"];
+    return ((value - (value % 4)) / 4) + ":" + minutes[(value % 4)];
+}
+
+function adjustTime(startH, startM, endH, endM) {
+    endH.siblings('.menu').find('.item').removeClass('disabled');
+    endM.siblings('.menu').find('.item').removeClass('disabled');
+    endH.find('option').prop('disabled', false);
+    endM.find('option').prop('disabled', false);
+    endH.find('option').filter(function (index) {
+        return index < startH.val();
+    }).each(function () {
+        $(this).prop('disabled', true);
+        endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+    });
+    if (startH.val() === endH.val()) {
+        endM.find('option').filter(function (index) {
+            return index <= startM.val();
+        }).each(function () {
+            $(this).prop('disabled', true);
+            endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+        });
+    }
 }

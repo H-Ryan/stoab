@@ -22,10 +22,9 @@ if (!empty($referrer)) {
 }
 
 $data = array();
+$db = null;
 if (isset($_POST['branch_number'])) {
     $branch_number = $_POST['branch_number'];
-
-    $db = null;
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
@@ -37,17 +36,18 @@ if (isset($_POST['branch_number'])) {
         if ($statement->rowCount() > 0) {
             $data["error"] = 0;
             $data['orgInfo'] = $statement->fetch();
-            echo json_encode($data);
         } else {
             $data["error"] = 1;
             $data["messageHeader"] = "Header";
             $data["errorMessage"] = "Error Message";
-            echo json_encode($data);
         }
     } catch (PDOException $e) {
-        return $e->getMessage();
-    }
-    if ($db != null) {
-        $db->disconnect();
+        $data["error"] = 1;
+        $data["messageHeader"] = "Header";
+        $data["errorMessage"] = "Database error";
     }
 }
+if ($db != null) {
+    $db->disconnect();
+}
+echo json_encode($data);

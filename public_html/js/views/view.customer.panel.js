@@ -1,9 +1,20 @@
 $(document).ready(function () {
     "use strict";
+    $.fn.form.settings.rules.oneOf = function(value, fieldIdentifiers) {
+        var $form = $(this);
+
+        return !!value || fieldIdentifiers.split(',').some(function(fieldIdentifier) {
+                return $form.find('#' + fieldIdentifier).val() ||
+                    $form.find('[name="' + fieldIdentifier +'"]').val() ||
+                    $form.find('[data-validate="'+ fieldIdentifier +'"]').val();
+
+            });
+    };
     $(".typeTip").popup();
     var orderForm = $('.ui.form.orderForm');
     var changeForm = $('.ui.form.changePass');
-    $('.dropdown').dropdown({transition: 'drop'});
+    $('.ui.dropdown').dropdown();
+    $('.ui.search.dropdown').dropdown({fullTextSearch: true});
     var startHour = $("#starttid");
     var endHour = $("#sluttid");
     var startMinute = $("#starttid1");
@@ -256,7 +267,8 @@ $(document).ready(function () {
         });
     });
 
-    $('.refresh_order').on("click", function () {
+    $('.refresh_order').on("click", function (e) {
+        e.preventDefault();
         $.ajax({
             type: "POST",
             url: "./src/misc/orderHistory.php",
@@ -471,233 +483,301 @@ $(document).ready(function () {
             changeForm.removeClass("error");
         }
     });
-    $('.ui.button.reset-btn').click(function () {
-        changeForm.form('validate form');
-        return false;
-    });
 
-    orderForm.validate({
-        errorPlacement: function (error, element) {
-            if (element.attr("name") == "telephone" || element.attr("name") == "mobile") {
-                error.appendTo(element.closest('.fields'));
-            } else {
-                error.appendTo(element.closest('.field'));
-            }
-        },
-        ignore: ":hidden:not(select)",
-        errorElement: "div",
-        errorClass: "error",
-        validClass: "valid",
-        onfocusout: function (element) {
-            this.element(element);
-        },
-        onkeyup: false,
-        highlight: function (element, errorClass, validClass) {
-            $(element).closest('.field').addClass(errorClass).removeClass(validClass);
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).closest('.field').addClass(validClass).removeClass(errorClass);
-        },
-        groups: {
-            phone_group: "telephone mobile"
-        },
-        rules: {
+    orderForm.form({
+        inline: true,
+        delay: true,
+        on: 'blur',
+        transition: "scale",
+        fields: {
             client: {
-                maxlength: 90,
-                minlength: 3
+                identifier: 'client',
+                optional: true,
+                rules: [
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Den kund området bör<br />innehålla mindre än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Den kund området bör<br />innehålla mer än {ruleValue} tecken.'
+                    }
+                ]
             },
             language: {
-                required: true
+                identifier: 'language',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Välj ett av de språk från rullgardinsmenyn.'
+                    }
+                ]
             },
             type: {
-                required: true
-            },
-            tolk_type: {
-                required: true
+                identifier: 'type',
+                rules: [
+                    {
+                        type: 'checked',
+                        prompt: 'Fält typ av tolkning krävs.'
+                    }
+                ]
             },
             date: {
-                required: true,
-                date: true
+                identifier: 'date',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fältet Datum krävs.'
+                    },
+                    {
+                        type: 'regExp[/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/]',
+                        prompt: 'Fältet innehåller ogiltigt datum.'
+                    }
+                ]
             },
             start_hour: {
-                required: true,
-                digits: true
+                identifier: 'start_hour',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer[0..23]',
+                        prompt: 'Fel'
+                    }
+                ]
             },
             start_minute: {
-                required: true,
-                digits: true
+                identifier: 'start_minute',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Fel'
+                    }
+                ]
             },
             end_hour: {
-                required: true,
-                digits: true
+                identifier: 'end_hour',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer[0..23]',
+                        prompt: 'Fel'
+                    }
+                ]
             },
             end_minute: {
-                required: true,
-                digits: true
+                identifier: 'end_minute',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fel'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Fel'
+                    }
+                ]
             },
             contactPerson: {
-                required: true,
-                minlength: 3,
-                maxlength: 90
+                identifier: 'contactPerson',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält beställaren krävs.'
+                    },
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Fält Beställaren bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Fält Beställaren bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
             },
             organization: {
-                required: true,
-                minlength: 3,
-                maxlength: 60
+                identifier: 'organization',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält organisation krävs.'
+                    },
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Fält organisation bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Fält organisation bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
             },
             email: {
-                required: true,
-                maxlength: 150,
-                email: true
+                identifier: 'email',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält e-postadress krävs.'
+                    },
+                    {
+                        type: 'email',
+                        prompt: 'Den här e-post är inte giltig.'
+                    }
+                ]
             },
             telephone: {
-                require_from_group: [1, ".phone-group"],
-                minlength: 8,
-                maxlength: 11
-            },
-            mobile: {
-                require_from_group: [1, ".phone-group"],
-                minlength: 8,
-                maxlength: 11
-            },
-            address: {
-                required: true,
-                maxlength: 100,
-                minlength: 5
-            },
-            post_code: {
-                required: true,
-                digits: true,
-                maxlength: 5,
-                minlength: 5
-            },
-            city: {
-                required: true
-            },
-            message: {
-                maxlength: 255
-            }
-        },
-        messages: {
-            client: {
-                maxlength: "Den kund området bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Den kund området bör<br />innehålla mer än {0} tecken."
-            },
-            date: {
-                required: "Fältet Datum krävs.",
-                date: "Fältet innehåller ogiltigt datum."
-            },
-            language: {
-                required: "Välj ett av de språk från rullgardinsmenyn."
-            },
-            type: {
-                required: "Fält typ av tolkning krävs."
-            },
-            tolk_type: {
-                required: "Fält typ av tolkning krävs."
-            },
-            contactPerson: {
-                required: "Fält Beställaren krävs.",
-                maxlength: "Fält Beställaren bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fält Beställaren bör<br />innehålla mer än {0} tecken."
-            },
-            organization: {
-                required: "Fält Organisation krävs.",
-                maxlength: "Fält Organisation bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fält Organisation bör<br />innehålla mer än {0} tecken."
-            },
-            email: {
-                required: "Fält e-postadress krävs.",
-                email: "Den här e-post är inte giltig.",
-                maxlength: "Fältet e-postadress ska<br />innehålla mindre än {0} tecken."
-},
-            telephone: {
-                regex: "Fält telefon är ogiltig.",
-                maxlength: "Fältet Telefon bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fältet Telefon bör<br />innehålla mer än {0} tecken."
-            },
-            mobile: {
-                regex: "Fält Mobil är ogiltig.",
-                maxlength: "Fältet Mobil bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fältet Mobil bör<br />innehålla mer än {0} tecken."
+                identifier: 'telephone',
+                rules: [
+                    {
+                        type: 'oneOf[mobile]',
+                        prompt: 'Du måste ange antingen hemnummer eller mobilnummer eller både.'
+                    }
+                ]
             },
             address: {
-                required: "Fält plats krävs.",
-                maxlength: "Fält Plats bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fält Plats bör<br />innehålla mer än {0} tecken."
+                identifier: 'address',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält plats krävs.'
+                    },
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Den plats området bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Den plats området bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
             },
             post_code: {
-                required: "Fält post nummer krävs.",
-                digits: "Fält post nummer ska<br />endast innehålla siffror.",
-                maxlength: "Fält Postnummer bör<br />innehålla mindre än {0} tecken.",
-                minlength: "Fält Postnummer bör<br />innehålla mer än {0} tecken."
+                identifier: 'post_code',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Fält post nummer krävs.'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Fält Postnummer ska<br />endast innehålla siffror.'
+                    },
+                    {
+                        type: 'minLength[5]',
+                        prompt: 'Fält Postnummer bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[5]',
+                        prompt: 'Fält postnummer bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
             },
             city: {
-                required: "Välj en av städerna från rullgardinslistan."
+                identifier: 'city',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Välj en av städerna från rullgardinslistan.'
+                    }
+                ]
             },
             message: {
-                maxlength: "Fält plats bör<br />innehålla mindre än {0} tecken."
-            },
-            end_hour: {
-                required: "Fel"
-            },
-            end_minute: {
-                required: "Fel"
+                identifier: 'message',
+                optional: true,
+                rules: [
+                    {
+                        type: 'minLength[3]',
+                        prompt: 'Fält Kommentar bör<br />innehålla mer än {ruleValue} tecken.'
+                    },
+                    {
+                        type: 'maxLength[90]',
+                        prompt: 'Fält Kommentar bör<br />innehålla mindre än {ruleValue} tecken.'
+                    }
+                ]
             }
-
         }
     });
 
-    jQuery.extend(jQuery.validator.messages, {
-        require_from_group: "Fyll i minst ett av dessa områden."
-    });
-
-    $(".ui.form.orderForm input, select").on('input', function () {
-        $(this).valid();
-    });
-    $('.button.order-btn').click(function () {
-        $(".button.order-btn").removeClass("disabled");
-        orderForm.removeClass("error transition visible");
-        $.ajax({
-            type: "POST",
-            url: "./src/misc/orderRegular.php",
-            data: orderForm.serialize(),
-            dataType: "json",
-            beforeSend: function () {
-                orderForm.addClass("loading");
-            }
-        }).done(function (data) {
-            if (data.error == 0) {
-                orderForm.form('reset');
-                orderForm.get(0).reset();
-                orderForm.removeClass("loading");
-                switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset').first());
-            }
-            else {
-                var errorElem = $(".ui.error.message");
-                orderForm.removeClass("loading").addClass("error");
-                errorElem.children("p").text("Error Message");
-                errorElem.children('.header').text("Error");
-            }
-        });
-    });
-
-    $(".button.next-btn").click(function () {
-        orderForm.validate();
-        if (orderForm.valid()) {
+    $(".button.next-btn").click(function (e) {
+        e.preventDefault();
+        adjustTime(startHour, startMinute, endHour, endMinute);
+        if (orderForm.form('is valid')) {
             switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset:visible').next());
         }
     });
 
-    $(".button.back-btn").click(function () {
+    $(".button.back-btn").click(function (e) {
+        e.preventDefault();
         switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset:visible').prev());
+    });
+
+
+    $('.button.reset-btn').on('click', function (e) {
+        e.preventDefault();
+        orderForm.form('reset');
+        $("#date").datepicker();
+        $('#customer').find(':input').prop('disabled', true);
+        $('#comment').find(':input').prop('disabled', true);
+        console.log(!orderForm.find('fieldset').first().is(":visible"));
+        if (!orderForm.find('fieldset').first().is(":visible")) {
+            switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset').first());
+        }
+    });
+    $('.button.order-btn').click(function (e) {
+        e.preventDefault();
+        if (orderForm.form('is valid')) {
+            $.ajax({
+                type: "POST",
+                url: "./src/misc/orderRegular.php",
+                data: orderForm.serialize(),
+                dataType: "json",
+                beforeSend: function () {
+                    orderForm.addClass("loading");
+                }
+            }).done(function (data) {
+                var errorElem = $("#orderErrorField");
+                if (typeof data === 'object') {
+                    if (data.error == 0) {
+                        orderForm.removeClass("loading");
+                        orderForm.form('reset');
+                        $("#date").datepicker();
+                        $('#customer').find(':input').prop('disabled', true);
+                        $('#comment').find(':input').prop('disabled', true);
+                        switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset').first());
+                        return;
+                    }
+                    orderForm.removeClass("loading").addClass("error");
+                    errorElem.children("p").text(data.errorMessage);
+                    errorElem.children('.header').text(data.header);
+                    return;
+                }
+                orderForm.removeClass("loading").addClass("error");
+                errorElem.children("p").text('There is a problem in the script');
+                errorElem.children('.header').text('PHP error');
+            });
+        }
+    });
+    $('#customer').find(':input').prop('disabled', true);
+    $('#comment').find(':input').prop('disabled', true);
+    $('.ui.radio.checkbox').children('input:radio[name=type]').change(function(){
+        adjustTime(startHour, startMinute, endHour, endMinute);
     });
 });
 
 function switchFromTo(from, to) {
     $(from).transition({
-        animation: 'vertical flip', duration: '500ms',
+        animation: 'vertical flip', duration: '400ms',
         onComplete: function () {
+            $(to).find(':input').prop('disabled', false);
             $(to).transition({animation: 'vertical flip', duration: '500ms'});
         }
     });
@@ -709,18 +789,90 @@ function convertTime(value) {
 }
 
 function adjustTime(startH, startM, endH, endM) {
+    endH.siblings('.menu').find('.item').removeClass('disabled');
+    endM.siblings('.menu').find('.item').removeClass('disabled');
     endH.find('option').prop('disabled', false);
     endM.find('option').prop('disabled', false);
-    endH.find('option').filter(function (index) {
-        return index < startH.val();
-    }).each(function () {
-        $(this).prop('disabled', true)
-    });
+    var selectedType = $('.ui.radio.checkbox.checked').children('input:radio[name=type]').val();
     if (startH.val() === endH.val()) {
+        if (selectedType) {
+            if (selectedType === "TT") {
+                endH.find('option').filter(function (index) {
+                    return index < startH.val();
+                }).each(function () {
+                    $(this).prop('disabled', true);
+                    endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                });
+
+                endM.find('option').filter(function (index) {
+                    return parseInt(index, 10) <= parseInt(startM.val(), 10) + 1;
+                }).each(function () {
+                    $(this).prop('disabled', true);
+                    endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                });
+                return;
+            } else if (selectedType === "KT") {
+                endH.find('option').filter(function (index) {
+                    return index <= startH.val();
+                }).each(function () {
+                    $(this).prop('disabled', true);
+                    endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                });
+
+                endM.find('option').filter(function (index) {
+                    return parseInt(index) <= parseInt(startM.val(), 10) + 3;
+                }).each(function () {
+                    $(this).prop('disabled', true);
+                    endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                });
+                return;
+            }
+        }
         endM.find('option').filter(function (index) {
             return index <= startM.val();
         }).each(function () {
-            $(this).prop('disabled', true)
+            $(this).prop('disabled', true);
+            endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+        });
+    } else {
+        if (selectedType) {
+            if (selectedType === "TT") {
+                endH.find('option').filter(function (index) {
+                    return index < startH.val();
+                }).each(function () {
+                    $(this).prop('disabled', true);
+                    endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                });
+
+                endM.find('option').filter(function (index) {
+                    return ((parseInt(endH.val()) * 4) + parseInt(index)) <= ((parseInt(startH.val()) * 4) + parseInt(startM.val()) + 1);
+                }).each(function () {
+                    $(this).prop('disabled', true);
+                    endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                });
+                return;
+            } else if (selectedType === "KT") {
+                endH.find('option').filter(function (index) {
+                    return index <= startH.val();
+                }).each(function () {
+                    $(this).prop('disabled', true);
+                    endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                });
+
+                endM.find('option').filter(function (index) {
+                    return ((parseInt(endH.val()) * 4) + parseInt(index)) <= ((parseInt(startH.val()) * 4) + parseInt(startM.val()) + 3);
+                }).each(function () {
+                    $(this).prop('disabled', true);
+                    endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                });
+                return;
+            }
+        }
+        endM.find('option').filter(function (index) {
+            return index <= startM.val();
+        }).each(function () {
+            $(this).prop('disabled', true);
+            endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
         });
     }
 }
