@@ -42,7 +42,7 @@ try {
         $tolkNumber = $order->o_tolkarPersonalNumber;
         $query      = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,"
                       . " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,"
-                      . " u.u_extraInfo, t.* FROM t_tolkar AS t, t_users AS u WHERE u.u_role = 3"
+                      . " u.u_extraInfo, t.* FROM t_tolkar AS t, t_users AS u WHERE (u.u_role = 3 OR u.u_role = 1)"
                       . " AND t.t_active = 1 AND t.t_personalNumber=:tolkNumber AND u.u_personalNumber = t.t_personalNumber";
         $statement  = $con->prepare($query);
         $statement->bindParam(":tolkNumber", $tolkNumber);
@@ -512,12 +512,31 @@ try {
                                    value="<?php echo $order->o_orderNumber ?>"/>
                             <input type="hidden" name="employee" value="<?php echo $_SESSION['personal_number'] ?>"/>
 
-                            <div class="three fields">
+                            <div class="two fields">
                                 <div class="field">
-                                    <label for="date">Datum</label>
-                                    <input id="date" type="text" title="Datum" name="date"
-                                           value="<?php echo $order->o_date ?>" placeholder="YYYY-MM-DD"/>
+                                    <label for="orderer">Kontaktperson:</label>
+                                    <input id="orderer" name="orderer" type="text" placeholder="Kontaktperson"
+                                           value="<?php echo $order->o_orderer ?>"/>
                                 </div>
+                                <div class="field">
+                                    <label for="email">E-postadress:</label>
+                                    <input id="email" name="email" type="email" placeholder="E-post"
+                                           value="<?php echo $order->o_email ?>"/>
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label for="telephone">Telefon:</label>
+                                    <input id="telephone" name="telephone" type="text" placeholder="Telefon"
+                                           value="<?php echo $order->o_tel ?>" class="phone-group"/>
+                                </div>
+                                <div class="field">
+                                    <label for="telephone">Mobil:</label>
+                                    <input id="telephone" name="mobile" type="text" placeholder="Mobil"
+                                           value=" <?php echo $order->o_mobile ?>" class="phone-group"/>
+                                </div>
+                            </div>
+                            <div class="three fields">
                                 <div class="field">
                                     <label for="startTime">Starttid</label>
                                     <div id="startTime" class="two fields">
@@ -600,29 +619,31 @@ try {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="two fields">
                                 <div class="field">
-                                    <label for="orderer">Kontaktperson:</label>
-                                    <input id="orderer" name="orderer" type="text" placeholder="Kontaktperson"
-                                           value="<?php echo $order->o_orderer ?>"/>
-                                </div>
-                                <div class="field">
-                                    <label for="email">E-postadress:</label>
-                                    <input id="email" name="email" type="email" placeholder="E-post"
-                                           value="<?php echo $order->o_email ?>"/>
+                                    <label for="date">Datum</label>
+                                    <input id="date" type="text" title="Datum" name="date"
+                                           value="<?php echo $order->o_date ?>" placeholder="YYYY-MM-DD"/>
                                 </div>
                             </div>
-                            <div class="two fields">
-                                <div class="field">
-                                    <label for="telephone">Telefon:</label>
-                                    <input id="telephone" name="telephone" type="text" placeholder="Telefon"
-                                           value="<?php echo $order->o_tel ?>" class="phone-group"/>
-                                </div>
-                                <div class="field">
-                                    <label for="telephone">Mobil:</label>
-                                    <input id="telephone" name="mobile" type="text" placeholder="Mobil"
-                                           value=" <?php echo $order->o_mobile ?>" class="phone-group"/>
+                            <div class="field">
+                                <label for="type">Typ av tolkning.</label>
+                                <div class="ui segment">
+                                    <div class="grouped fields">
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <input id="KT" type="radio" <?php echo $order->o_interpretationType == 'KT' ? 'checked' : ''; ?> name="type" value="KT"
+                                                       tabindex="0" class="hidden">
+                                                <label for="KT">Kontakttolkning</label>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <input id="TT" type="radio" <?php echo $order->o_interpretationType == 'TT' ? 'checked' : ''; ?> name="type" value="TT" tabindex="0"
+                                                       class="hidden">
+                                                <label for="TT">Telefontolkning</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="required field">

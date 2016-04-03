@@ -4,7 +4,6 @@
  * Date: 09-11-2015
  * Time: 7:47 PM
  */
-
 ini_set("session.use_only_cookies", TRUE);
 ini_set("session.use_trans_sid", FALSE);
 session_start();
@@ -23,8 +22,10 @@ if (!empty($referrer)) {
 } else {
     exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
 }
-$data = array();
+$data = [];
 $db = null;
+$emailer = new Emails();
+$tolkSubject = 'STÖ AB - Avbokning.';
 if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
     $orderNumber = $_POST['orderNumber'];
     $employeeNumber = $_POST['employee'];
@@ -46,10 +47,10 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
             $timeEnd = convertTime($order->o_endTime);
 
             if ($order->o_tolkarPersonalNumber != null) {
-                $query = "SELECT t.t_tolkNumber, u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,"
-                    . " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,"
-                    . " u.u_extraInfo, t.* FROM t_tolkar AS t, t_users AS u WHERE u.u_role = 3"
-                    . " AND t.t_active = 1 AND t.t_personalNumber=:tolkPersonalNumber AND u.u_personalNumber =:tolkPersonalNumber";
+                $query = "SELECT t.t_tolkNumber, u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,
+                 u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,
+                 u.u_extraInfo, t.* FROM t_tolkar AS t, t_users AS u WHERE (u.u_role = 3 OR u.u_role = 1)
+                 AND t.t_active = 1 AND t.t_personalNumber=:tolkPersonalNumber AND u.u_personalNumber =:tolkPersonalNumber";
                 $statement = $con->prepare($query);
                 $statement->bindParam(":tolkPersonalNumber", $order->o_tolkarPersonalNumber);
                 $statement->execute();
@@ -75,6 +76,128 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                         $statement->bindParam(":state", $canceled);
                         $statement->execute();
                         if ($statement->rowCount() > 0) {
+                            //Send email
+                            $messageToOldTolkCancel = "<!DOCTYPE html><html>
+                            <head>
+                                <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+                            </head>
+                            <body>
+                            <div>
+                                <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
+                                Hej!<br/>Här kommer avboknings bekräftelse. Du blivit avbokat från följande tolk uppdrag.</p>
+                            </div>
+                            <hr style='width: 80%; margin-left: 10%;'/>
+                            <table style='width: 80%; margin-left: 10%; margin-right: 10%; text-align: center;
+                                    font-family: verdana, arial, sans-serif; font-size: 14px; color: #333333;
+                                    border-radius: 5px; border: 1px solid #999999;' cellpadding='10'>
+                                <thead>
+                                <tr>
+                                    <th style='background-color: #599CFF; font-size: 18px; padding: 8px;
+                                                border-radius: inherit; border: 1px solid black;'>
+                                        Uppdrag: " . $order->o_orderNumber . "
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Datum:</span> " . $order->o_date . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Starttid:</span> " . $timeStart . "</p>
+                                        <p><span style='font-weight:bold;'>Sluttid:</span> " . $timeEnd . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Plats:</span> " . $order->o_address . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Postnummer:</span> " . $order->o_zipCode . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Ort:</span> " . $order->o_city . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Typ av uppdrag:</span> " . $interpType . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Språk:</span> " . $order->o_language . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Klient:</span> " . $order->o_client . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Kontaktperson:</span> " . $order->o_orderer . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Telefonnr:</span> " . $order->o_tel . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>Mobile:</span> " . $order->o_mobile . "</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                                        <p><span style='font-weight:bold;'>E-postadress:</span> " . $order->o_email . "</p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr style='width: 80%;margin-left: auto; margin-right: auto;'/>
+                            <div>
+                                <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
+                                    Tack för samarbetet.
+                                </p>
+                            </div>
+                            <hr style='width: 80%;
+                                            margin-left: 10%;'/>
+                            <footer style='margin-left: 10%; width:80%'>
+                            <h2>STÖ Sarvari Tolkning och Översättning AB</h2>
+
+                            <p><label style='font-weight:bold;'>ADRESS:</label> Nya Boulevarden 10, 291 31 Kristianstad </p>
+
+                            <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@tolktjanst.se'> info@tolktjanst.se</a></p>
+
+                            <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.tolktjanst.com'> www.tolktjanst.com</a></p>
+
+                            <p><label style='font-weight:bold;'>TELEFON:</label> 010 166 10 10</p>
+
+                            <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
+
+                            </footer>
+                            </body>
+                            </html>";
+                            $emailer->send_email($tolk->u_email, $tolk->u_firstName . " " . $tolk->u_lastName, $tolkSubject, $messageToOldTolkCancel);
+
+                            //Send SMS
+                            $smsService = new SMS_Service();
+                            $text = "Hej,
+                                Uppdrag ($orderNumber) har förändrats eller Avbrutits.
+                                Var vänlig kontrollera din e-post.
+                                OBS! Du kan inte svara på detta meddelande.
+                                Mvh STÖ AB";
+                            $smsService->setTo($tolk->u_mobile);
+                            $smsService->setText($text);
+                            $data["smsURL"] = $smsService->generateSMS()->sendSMS();
                             $data["error"] = 0;
                         }else {
                             $data["error"] = 1;

@@ -21,13 +21,14 @@ if (!empty($referrer)) {
 } else {
     exit("Referrer not found. Please <a href='".$_SERVER['SCRIPT_NAME']."'>try again</a>.");
 }
-$data = array();
+$data = [];
+$db = null;
 if(isset($_POST['tolkEmail'])
     && isset($_POST['oldPassword'])
     && isset($_POST['newPass'])
     && isset($_POST['newPassRep']))
 {
-    $db = null;
+
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
@@ -49,22 +50,21 @@ if(isset($_POST['tolkEmail'])
         {
             $data["error"] = 0;
             session_regenerate_id();
-            echo json_encode($data);
         } else {
             $data["error"] = 1;
             $data["messageHeader"] = "Fel";
             $data["errorMessage"] = "Lösenordet du har skrivit är felaktig.";
-            echo json_encode($data);
         }
     } catch (PDOException $e) {
-        return $e->getMessage();
-    }
-    if ($db != null) {
-        $db->disconnect();
+        $data["error"] = 2;
+        $data["errorMessage"] = $e->getMessage();
     }
 } else {
-    $data["error"] = 1;
+    $data["error"] = 3;
     $data["messageHeader"] = "Header";
     $data["errorMessage"] = "Error Message";
-    echo json_encode($data);
 }
+if ($db != null) {
+    $db->disconnect();
+}
+echo json_encode($data);

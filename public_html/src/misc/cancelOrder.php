@@ -722,18 +722,6 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                         </html>";
                             $emailer->send_email("ekonomi@sarvari.se", "Ekonomi", $finance_subject, $messageToFinance);
                         }
-                        //SMS
-                        $smsService = new SMS_Service();
-                        $text = "Hej, "
-                            ."ditt uppdrag ($orderNumber) har avbrutits. "
-                            ."Var vänlig kontrollera din e-post. "
-                            ."OBS! Du kan inte svara på detta meddelande. "
-                            ."Mvh STÖ AB";
-
-                        $smsService->setTo($tolk->u_mobile);
-                        $smsService->setText($text);
-                        $data["smsURL"] = $smsService->generateSMS()->sendSMS();
-
                     } else {
                         $data["error"] = 1;
                         $data["messageHeader"] = "Error";
@@ -751,10 +739,9 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
             $data["errorMessage"] = "Problem with Order log.";
         }
     } catch (PDOException $e) {
-        if ($db != null) {
-            $db->disconnect();
-        }
-        return $e->getMessage();
+        $data["error"] = 1;
+        $data["messageHeader"] = "Error";
+        $data["errorMessage"] = "DB query problem";
     }
 }
 if ($db != null) {

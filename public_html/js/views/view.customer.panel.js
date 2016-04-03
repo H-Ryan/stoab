@@ -428,31 +428,32 @@ $(document).ready(function () {
         });
     });
     changeForm.form({
-        oldPassword: {
-            identifier: 'oldPassword',
-            optional: false,
-            rules: [
-                {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
-                {type: 'length[6]', prompt: 'Detta fält bör innehålla mer än 6 tecken.'}
-            ]
+        fields: {
+            oldPassword: {
+                identifier: 'oldPassword',
+                optional: false,
+                rules: [
+                    {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
+                    {type: 'length[6]', prompt: 'Detta fält bör innehålla mer än 6 tecken.'}
+                ]
+            },
+            newPass: {
+                identifier: 'newPass',
+                optional: false,
+                rules: [
+                    {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
+                    {type: 'length[6]', prompt: 'Ditt lösenord bör innehålla mer än 6 tecken.'}
+                ]
+            },
+            newPassRep: {
+                identifier: 'newPassRep',
+                optional: false,
+                rules: [
+                    {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
+                    {type: 'match[newPass]', prompt: 'Fälten matchar inte.'}
+                ]
+            }
         },
-        newPass: {
-            identifier: 'newPass',
-            optional: false,
-            rules: [
-                {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
-                {type: 'length[6]', prompt: 'Ditt lösenord bör innehålla mer än 6 tecken.'}
-            ]
-        },
-        newPassRep: {
-            identifier: 'newPassRep',
-            optional: false,
-            rules: [
-                {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
-                {type: 'match[newPass]', prompt: 'Fälten matchar inte.'}
-            ]
-        }
-    }, {
         inline: true,
         on: 'blur',
         onSuccess: function () {

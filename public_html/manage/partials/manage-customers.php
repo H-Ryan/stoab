@@ -20,7 +20,7 @@
         <div class="ui grid">
             <div class="row">
                 <div class="tolks">
-                    <table class='ui collapsing unstackable striped celled table tolksTable' style="display: none;">
+                    <table class='ui collapsing unstackable striped celled table tolksTable'>
                         <thead>
                         <tr>
                             <th class='one wide'>Kundnummer</th>

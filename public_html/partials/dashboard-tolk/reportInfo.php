@@ -89,10 +89,6 @@
                                     <span id="dateCreatedValue"></span>
                                     <div class="ui divider"></div>
                                 </div>
-                                <div class="item">
-                                    <div class="ui header">Datum uppdateras</div>
-                                    <span id="dateUpdatedValue"></span>
-                                </div>
                             </div>
                         </div>
                     </div>

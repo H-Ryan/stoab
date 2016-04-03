@@ -37,6 +37,7 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee']) && isset($_POST['d
     $end_hour       = $_POST['end_hour'];
     $end_minute     = $_POST['end_minute'];
     $contactPerson  = $_POST['orderer'];
+    $tolk_type      = $_POST['type'];
     $email          = $_POST['email'];
     $address        = $_POST['address'];
     $telephone      = "";
@@ -60,10 +61,11 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee']) && isset($_POST['d
         return $e->getMessage();
     }
     try {
-        $query       = "UPDATE t_order SET o_orderer=:contactPerson, o_email=:email, o_tel=:telephone,o_mobile=:mobile,
+        $query     = "UPDATE t_order SET o_orderer=:contactPerson, o_interpretationType=:tolkType, o_email=:email, o_tel=:telephone,o_mobile=:mobile,
  o_address=:address, o_date=:interpDate, o_startTime=:startTime, o_endTime=:endTime WHERE o_orderNumber=:orderNumber;";
-        $statement   = $con->prepare($query);
+        $statement = $con->prepare($query);
         $statement->bindParam(":contactPerson", $contactPerson);
+        $statement->bindParam(":tolkType", $tolk_type);
         $statement->bindParam(":email", $email);
         $statement->bindParam(":telephone", $telephone);
         $statement->bindParam(":mobile", $mobile);
@@ -73,11 +75,11 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee']) && isset($_POST['d
         $statement->bindParam(":endTime", $endTime);
         $statement->bindParam(":orderNumber", $orderNumber);
         if ($statement->execute() > 0) {
-            $query = "INSERT INTO t_orderLog (o_orderNumber, o_modifyPersonalNumber, o_involvedPersonalNumber, "
-                     . "o_ipAddress ,o_state) VALUES (:orderNumber, :modifyPN, :involvedPN, :ipAddress, :state)";
+            $query     = "INSERT INTO t_orderLog (o_orderNumber, o_modifyPersonalNumber, o_involvedPersonalNumber, "
+                         . "o_ipAddress ,o_state) VALUES (:orderNumber, :modifyPN, :involvedPN, :ipAddress, :state)";
             $statement = $con->prepare($query);
-            $state = 'modified';
-            $involved = '';
+            $state     = 'modified';
+            $involved  = '';
             $statement->bindParam(":orderNumber", $orderNumber);
             $statement->bindParam(":modifyPN", $employeeNumber);
             $statement->bindParam(":involvedPN", $state);

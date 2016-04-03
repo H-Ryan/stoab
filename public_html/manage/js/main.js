@@ -46,13 +46,13 @@ $(document).ready(function () {
                 if (!manageWindow.closed)
                     manageWindow.location.reload();
                 else {
-                    manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
-                    //manageWindow = window.open("http://localhost/workspace/stoab/public_html/manage/manage.php", "_blank");
+                    //manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
+                    manageWindow = window.open("http://localhost/workspace/stoab/public_html/manage/manage.php", "_blank");
                 }
             }
             else {
-                manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
-                //manageWindow = window.open("http://localhost/workspace/stoab/public_html/manage/manage.php", "_blank");
+                //manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
+                manageWindow = window.open("http://localhost/workspace/stoab/public_html/manage/manage.php", "_blank");
             }
 
             btn.removeClass('loading');
@@ -152,6 +152,9 @@ $(document).ready(function () {
     });
 
     orderManageFilterForm.form({
+        inline: true,
+        on: 'blur',
+        transition: "slide down",
         fields: {
             orderNumber: {
                 identifier: 'orderNumber',
@@ -186,14 +189,13 @@ $(document).ready(function () {
                 ]
             }
         }
-    }, {
-        inline: true,
-        on: 'blur',
-        transition: "slide down"
     });
 
 
     orderHistoryFilterForm.form({
+        inline: true,
+        on: 'blur',
+        transition: "slide down",
         fields: {
             orderNumber: {
                 identifier: 'orderNumber',
@@ -246,10 +248,6 @@ $(document).ready(function () {
                 ]
             }
         }
-    }, {
-        inline: true,
-        on: 'blur',
-        transition: "slide down"
     });
 
     jQuery.validator.setDefaults({
@@ -1509,19 +1507,6 @@ $(document).ready(function () {
     });
 
     tolkSearchFrom.form({
-        fields: {
-            language: {
-                identifier: 'language',
-                optional: true,
-                rules: [
-                    {
-                        type: 'empty',
-                        prompt: 'Välj ett av de språk från rullgardinsmenyn.'
-                    }
-                ]
-            }
-        }
-    }, {
         inline: true,
         on: 'blur',
         transition: "slide down",
@@ -1577,9 +1562,22 @@ $(document).ready(function () {
         },
         onFailure: function () {
             tolkSearchFrom.removeClass("error").removeClass("transition").removeClass("visible");
+        },
+        fields: {
+            language: {
+                identifier: 'language',
+                optional: true,
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Välj ett av de språk från rullgardinsmenyn.'
+                    }
+                ]
+            }
         }
     });
     $('.btnSearchTolk').click(function (e) {
+        e.preventDefault();
         tolkSearchFrom.filter(":visible").form('validate form');
         tolkSearchFrom.form('clear');
         tolkSearchFrom.get(0).reset();

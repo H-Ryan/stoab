@@ -23,7 +23,7 @@ if (!empty($referrer)) {
 }
 $data = [];
 $db = null;
-if(isset($_POST['tolk_number']) && isset($_POST['tolk_re_email']))
+if(isset($_POST['interpreter_number']) && isset($_POST['interpreter_re_email']))
 {
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
@@ -32,8 +32,8 @@ if(isset($_POST['tolk_number']) && isset($_POST['tolk_re_email']))
         return $e->getMessage();
     }
     try {
-        $tolkNumber = $_POST['tolk_number'];
-        $tolkEmail = $_POST['tolk_re_email'];
+        $tolkNumber = $_POST['interpreter_number'];
+        $tolkEmail = $_POST['interpreter_re_email'];
         $password = genOrderPassword();
         $newPass = encrypt_password($password);
         $statement = $con->prepare("UPDATE t_users SET u_password = :newPass WHERE u_email = :email AND u_personalNumber IN (SELECT t_personalNumber FROM t_tolkar WHERE t_tolkNumber=:tolkNumber) ");

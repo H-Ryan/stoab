@@ -21,9 +21,9 @@ if (!empty($referrer)) {
     exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
 }
 
-$data = array();
+$data = [];
+$db = null;
 if (isset($_POST['orderId'])) {
-    $db = null;
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
@@ -32,7 +32,7 @@ if (isset($_POST['orderId'])) {
     }
     try {
         $orderNumber = $_POST['orderId'];
-        $statement = $con->prepare("SELECT o_orderNumber, o_state, o_address, o_zipCode, o_city, o_client, o_comments, o_tolkarPersonalNumber FROM t_order WHERE o_orderNumber=:orderNumber");
+        $statement = $con->prepare("SELECT o_orderNumber,o_kunderPersonalNumber, o_state, o_address, o_zipCode, o_city, o_client, o_tel, o_mobile, o_comments, o_tolkarPersonalNumber FROM t_order WHERE o_orderNumber=:orderNumber");
         $statement->bindParam(":orderNumber", $orderNumber);
         $statement->execute();
 
@@ -49,43 +49,57 @@ if (isset($_POST['orderId'])) {
                     $statement->bindParam(":personalNumber", $tolkNum);
                     $statement->bindParam(":tolkPersonalNumber", $tolkNum);
                     $statement->execute();
-
                     $statement->setFetchMode(PDO::FETCH_OBJ);
                     if ($statement->rowCount() > 0) {
-                        $data["error"] = 0;
-                        $data['order'] = $order;
-                        $data['tolk'] = $statement->fetch();
-                        echo json_encode($data);
+                        $tolk =  $statement->fetch();
+                        $orgPersonalNum = $order->o_kunderPersonalNumber;
+                        $query = "SELECT k_organizationName FROM t_kunder WHERE k_personalNumber=:orgPersonalNum";
+                        $statement = $con->prepare($query);
+                        $statement->bindParam(":orgPersonalNum", $orgPersonalNum);
+                        $statement->execute();
+
+                        $statement->setFetchMode(PDO::FETCH_OBJ);
+                        if ($statement->rowCount() > 0) {
+                            $data["error"] = 0;
+                            $data['order'] = $order;
+                            $data['tolk'] = $tolk;
+                            $data['org'] = $statement->fetch();
+                        } else {
+                            $data["error"] = 1;
+                            $data["messageHeader"] = "Header";
+                            $data["errorMessage"] = "Error Message";
+                        }
                     } else {
-                        $data["error"] = 1;
+                        $data["error"] = 2;
                         $data["messageHeader"] = "Header";
                         $data["errorMessage"] = "Error Message";
-                        echo json_encode($data);
                     }
                 } catch (PDOException $e) {
-                    echo $e->getMessage();
+                    $data["error"] = 3;
+                    $data["messageHeader"] = "Header";
+                    $data["errorMessage"] = "Error Message";
                 }
             } else {
                 $data["error"] = 0;
                 $data['order'] = $order;
-                echo json_encode($data);
             }
         } else {
-            $data["error"] = 2;
+            $data["error"] = 4;
             $data["messageHeader"] = "Header";
             $data["errorMessage"] = "Error Message";
-            echo json_encode($data);
         }
     } catch
     (PDOException $e) {
-        return $e->getMessage();
-    }
-    if ($db != null) {
-        $db->disconnect();
+        $data["error"] = 5;
+        $data["messageHeader"] = "Header";
+        $data["errorMessage"] = "Error Message";
     }
 } else {
-    $data["error"] = 1;
+    $data["error"] = 6;
     $data["messageHeader"] = "Header";
     $data["errorMessage"] = "Error Message";
-    echo json_encode($data);
 }
+if ($db != null) {
+    $db->disconnect();
+}
+echo json_encode($data);

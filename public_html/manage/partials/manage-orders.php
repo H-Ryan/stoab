@@ -227,7 +227,7 @@ if ($statement->rowCount() > 0) {
                                         break;
                                     case "B":
                                         $infoMsg = 'Färdig';
-                                        $btnColor = 'yellow';
+                                        $btnColor = 'green';
                                         break;
                                     case "EC":
                                         $infoMsg = 'Avbruten';

@@ -9,11 +9,12 @@
         <table class="ui celled table orderExtra">
             <thead>
             <tr>
+                <th>Organisations namn</th>
                 <th>Gatuadress</th>
                 <th>Postnummer</th>
                 <th>Ort</th>
-                <th>Klient</th>
-                <th>Kommentar</th>
+                <th>Telefon</th>
+                <th>Mobile</th>
             </tr>
             </thead>
             <tbody>

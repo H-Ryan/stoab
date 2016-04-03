@@ -10,7 +10,7 @@ class SMS_Service
     var $to = "";
     var $text = "";
 
-    function SMS_Service() {}
+    function __construct() {}
 
     public function generateSMS()
     {

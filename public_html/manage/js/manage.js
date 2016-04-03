@@ -183,7 +183,17 @@ $(document).ready(function () {
                         prompt: 'Fält Beställaren bör<br />innehålla mindre än {ruleValue} tecken.'
                     }
                 ]
-            }, email: {
+            },
+            type: {
+                identifier: 'type',
+                rules: [
+                    {
+                        type: 'checked',
+                        prompt: 'Fält typ av tolkning krävs.'
+                    }
+                ]
+            },
+            email: {
                 identifier: 'email',
                 rules: [
                     {
@@ -254,29 +264,6 @@ $(document).ready(function () {
         $('.ui.message').hide();
     });
     manageForm.form({
-        tolkNumber: {
-            identifier: 'tolkNumber',
-            rules: [
-                {
-                    type: 'empty',
-                    prompt: 'Tolkens nummer krävs.'
-                },
-                {
-                    type: 'integer',
-                    prompt: 'Tolkens numret ska vara ett numeriskt värde.'
-                },
-                {
-                    type: 'length[4]',
-                    prompt: 'Tolkens numret ska vara exakt fyra tecken.'
-                },
-                {
-                    type: 'maxLength[4]',
-                    prompt: 'Tolkens numret ska vara exakt fyra tecken.'
-                }
-
-            ]
-        }
-    }, {
         inline: true,
         on: 'change',
         transition: "slide down",
@@ -325,6 +312,30 @@ $(document).ready(function () {
             btnVerify.prop("disabled", true);
             btnAssign.prop("disabled", true);
             btnReAssign.prop("disabled", true);
+        },
+        fields: {
+            tolkNumber: {
+                identifier: 'tolkNumber',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Tolkens nummer krävs.'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Tolkens numret ska vara ett numeriskt värde.'
+                    },
+                    {
+                        type: 'length[4]',
+                        prompt: 'Tolkens numret ska vara exakt fyra tecken.'
+                    },
+                    {
+                        type: 'maxLength[4]',
+                        prompt: 'Tolkens numret ska vara exakt fyra tecken.'
+                    }
+
+                ]
+            }
         }
     });
     btnVerify.click(function () {
@@ -362,8 +373,7 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
                 if (data.error == 0) {
-                    window.open(data.smsURL, "_blank");
-                    refreshWindow()
+                    tt
                 } else {
                     var errorElem = manageForm.find(".error.message");
                     errorElem.find('.header').text(data.messageHeader);
@@ -390,7 +400,8 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
                 if (data.error == 0) {
-                    refreshWindow()
+                    window.open(data.smsURL, "_blank");
+                    refreshWindow();
                 } else {
                     var errorElem = manageForm.find(".error.message");
                     errorElem.find('.header').text(data.messageHeader);
@@ -418,7 +429,7 @@ $(document).ready(function () {
             }).done(function (data) {
                 if (data.error == 0) {
                     window.open(data.smsURL, "_blank");
-                    refreshWindow()
+                    refreshWindow();
                 } else {
                     var errorElem = manageForm.find(".error.message");
                     errorElem.find('.header').text(data.messageHeader);
@@ -446,7 +457,7 @@ $(document).ready(function () {
             }).done(function (data) {
                 if (data.error == 0) {
                     window.open(data.smsURL, "_blank");
-                    refreshWindow()
+                    refreshWindow();
                 } else {
                     var errorElem = manageForm.find(".error.message");
                     errorElem.find('.header').text(data.messageHeader);
@@ -600,14 +611,14 @@ function adjustTime(startH, startM, endH, endM) {
         return index < startH.val();
     }).each(function () {
         $(this).prop('disabled', true);
-        endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+        endH.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
     });
     if (startH.val() === endH.val()) {
         endM.find('option').filter(function (index) {
             return index <= startM.val();
         }).each(function () {
             $(this).prop('disabled', true);
-            endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+            endM.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
         });
     }
 }

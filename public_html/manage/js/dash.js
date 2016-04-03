@@ -17,6 +17,9 @@ var lastModified = 0,
     customerFeed = $('.feed.customerFeed'),
     interpreterFeed = $('.feed.interpreterFeed'),
     dashboardMenuItem = $(".vertical.sidebar.menu").find("[data-tab='sixth']");
+$('.menu .item')
+    .tab()
+;
 
 $(function () {
     $.ajax({
@@ -264,7 +267,7 @@ $(document).ready(function () {
 function postFeedEvent(feed, data) {
     var event = $('<div class="event"></div>'),
         content = $('<div class="content"></div>'),
-        summary = $('<div class="summary"></div>'),
+        summary = $('<div class="summary" style="text-align: left;"></div>'),
         date = $('<div class="date"></div>'),
         extraText = $('<div class="extra text"></div>');
     event.append($('<div class="label"><i class="circular inverted blue comment icon"></i></div>'));

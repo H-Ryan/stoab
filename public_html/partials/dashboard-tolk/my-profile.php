@@ -172,9 +172,8 @@
     <div class="content">
         <form class="ui small form changePass" onsubmit="return false;">
             <div class="ui grid stackable">
-                <div class="centered row">
-                    <div class="three wide column"></div>
-                    <div class="ten wide column">
+                <div class="row">
+                    <div class="centered ten wide column">
                         <div class="ui error message">
                             <div class="header">Fel</div>
                             <p>Fyll i de obligatoriska fälten.</p>
@@ -200,11 +199,10 @@
                             </button>
                         </div>
                     </div>
-                    <div class="three wide column"></div>
                 </div>
             </div>
         </form>
     </div>
-    <div class="action">
+    <div class="actions">
     </div>
 </div>

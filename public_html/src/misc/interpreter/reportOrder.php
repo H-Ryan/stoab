@@ -19,11 +19,12 @@ if (!empty($referrer)) {
 
 $data = [];
 $db = null;
-if (isset($_POST['rep_mission_id']) && isset($_POST['rep_extra_time']) && isset($_POST['rep_customer_name'])) {
+if (isset($_POST['tolk_number']) && isset($_POST['rep_mission_id']) && isset($_POST['rep_extra_time']) && isset($_POST['rep_customer_name'])) {
 
     $rep_mission_id = $_POST['rep_mission_id'];
     $rep_extra_time = $_POST['rep_extra_time'];
     $rep_customer_name = $_POST['rep_customer_name'];
+    $tolkNumber = $_POST['tolk_number'];
 
     $rep_outlay = "";
     if (isset($_POST['rep_outlay'])) {
@@ -54,6 +55,7 @@ if (isset($_POST['rep_mission_id']) && isset($_POST['rep_extra_time']) && isset(
             . "VALUES (:rep_mission_id, :rep_extra_time, :rep_mileage, :rep_ticket_cost , :rep_time, "
             . ":rep_comments, :rep_customer_name, :r_reportTime)";
         $statement = $con->prepare($query);
+        $date = date("Y-m-d H:i:s");
         $statement->bindParam(":rep_mission_id", $rep_mission_id);
         $statement->bindParam(":rep_extra_time", $rep_extra_time);
         $statement->bindParam(":rep_mileage", $rep_mileage);
@@ -61,7 +63,7 @@ if (isset($_POST['rep_mission_id']) && isset($_POST['rep_extra_time']) && isset(
         $statement->bindParam(":rep_time", $rep_time);
         $statement->bindParam(":rep_comments", $rep_comments);
         $statement->bindParam(":rep_customer_name", $rep_customer_name);
-        $statement->bindParam(":r_reportTime", date("Y-m-d H:i:s"));
+        $statement->bindParam(":r_reportTime", $date);
         $statement->execute();
         if ($statement->rowCount() > 0) {
             $query = "UPDATE t_order SET o_state =:state WHERE o_orderNumber=:orderNumber;";
@@ -73,7 +75,7 @@ if (isset($_POST['rep_mission_id']) && isset($_POST['rep_extra_time']) && isset(
             $statement->setFetchMode(PDO::FETCH_OBJ);
             $orders = array();
             if ($statement->rowCount() > 0) {
-                $query = "SELECT u.u_firstName, u.u_lastName, u.u_email t.* FROM t_tolkar AS t, t_users AS u
+                $query = "SELECT u.u_firstName, u.u_lastName, u.u_email, t.* FROM t_tolkar AS t, t_users AS u
 WHERE (u.u_role = 3 OR u.u_role = 1) AND t.t_active = 1 AND t.t_tolkNumber=:tolkNumber AND u.u_personalNumber = t.t_personalNumber";
                 $statement = $con->prepare($query);
                 $statement->bindParam(":tolkNumber", $tolkNumber);
@@ -107,6 +109,7 @@ WHERE (u.u_role = 3 OR u.u_role = 1) AND t.t_active = 1 AND t.t_tolkNumber=:tolk
 
     } catch (PDOException $e) {
         $data['error'] = 4;
+        $data['message'] = $e->getMessage();
     }
 } else {
     $data['error'] = 5;

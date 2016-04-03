@@ -13,9 +13,11 @@ $(document).ready(function () {
     $('.dropdown').dropdown({transition: 'drop'});
 
     var changeForm = $('.ui.form.changePass'),
-        reportOutlay = $('#rep_outlay').parent(),
-        reportHours = $('#rep_hours').parent(),
-        reportMinutes = $('#rep_minutes').parent(),
+        changePassModal = $('.modal.change-pass'),
+        repOutlay = $('.dropdown.repOutlay'),
+        reportOutlay = $('#rep_outlay'),
+        reportHours = $('#rep_hours'),
+        reportMinutes = $('#rep_minutes'),
         reportMileage = $('#rep_mileage'),
         reportTicketCost = $('#rep_ticket_cost'),
         reportOrderForm = $('#reportOrderForm'),
@@ -23,10 +25,14 @@ $(document).ready(function () {
         reportingModal = $('.modal.reporting'),
         reportInfoBtn = $('#btn-report-info');
 
-    reportHours.addClass('disabled');
-    reportMinutes.addClass('disabled');
+    reportHours.prop('disabled', true);
+    reportMinutes.prop('disabled', true);
     reportMileage.prop('disabled', true);
     reportTicketCost.prop('disabled', true);
+
+    reportHours.parents('.dropdown').addClass('disabled');
+    reportMinutes.parents('.dropdown').addClass('disabled');
+
     reportButton.on('click', function () {
         reportOrderForm.form("validate form");
         if (reportOrderForm.form('is valid')) {
@@ -54,115 +60,140 @@ $(document).ready(function () {
         }
 
     });
-    reportOrderForm.form({
-        rep_extra_time: {
-            identifier: "rep_extra_time",
-            rules: [
-                {
-                    type: 'empty',
-                    prompt: 'Please select extra time'
-                }
-            ]
-        },
-        rep_customer_name: {
-            identifier: "rep_customer_name",
-            rules: [
-                {
-                    type: 'length[5]',
-                    prompt: 'Please enter at least 3 characters'
-                },
-                {
-                    type: 'empty',
-                    prompt: 'Please enter the customer\'s name'
-                }
-            ]
-        },
-        rep_comments: {
-            identifier: "rep_comments",
-            optional: true,
-            rules: [
-                {
-                    type: 'length[5]',
-                    prompt: 'Please enter at least 5 characters'
-                },
-                {
-                    type: 'maxLength[255]',
-                    prompt: 'Please enter at most 255 characters'
-                }
-            ]
-        },
-        rep_mileage: {
-            identifier: "rep_mileage",
-            rules: [
-                {
-                    type: 'empty',
-                    prompt: 'Please enter the mileage'
-                },
-                {
-                    type: 'integer',
-                    prompt: 'Please enter a valid number'
-                }
-            ]
-        },
-        rep_hours: {
-            identifier: "rep_hours",
-            rules: [
-                {
-                    type: 'empty',
-                    prompt: 'Please select the hours'
-                }
-            ]
-        },
-        rep_minutes: {
-            identifier: "rep_minutes",
-            rules: [
-                {
-                    type: 'empty',
-                    prompt: 'Please select the minutes'
-                }
-            ]
-        },
-        rep_ticket_cost: {
-            identifier: "rep_ticket_cost",
-            rules: [
-                {
-                    type: 'empty',
-                    prompt: 'Please enter the ticket cost'
-                }
-            ]
+
+    reportingModal.modal({
+        onHide: function () {
+            reportOrderForm.form('reset');
+            reportOrderForm.get(0).reset();
         }
-    }, {
+    });
+
+    reportOrderForm.form({
+        fields: {
+            rep_extra_time: {
+                identifier: "rep_extra_time",
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Please select extra time'
+                    }
+                ]
+            },
+            rep_customer_name: {
+                identifier: "rep_customer_name",
+                rules: [
+                    {
+                        type: 'length[5]',
+                        prompt: 'Please enter at least 3 characters'
+                    },
+                    {
+                        type: 'empty',
+                        prompt: 'Please enter the customer\'s name'
+                    }
+                ]
+            },
+            rep_comments: {
+                identifier: "rep_comments",
+                optional: true,
+                rules: [
+                    {
+                        type: 'length[5]',
+                        prompt: 'Please enter at least 5 characters'
+                    },
+                    {
+                        type: 'maxLength[255]',
+                        prompt: 'Please enter at most 255 characters'
+                    }
+                ]
+            },
+            rep_mileage: {
+                identifier: "rep_mileage",
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Please enter the mileage'
+                    },
+                    {
+                        type: 'integer',
+                        prompt: 'Please enter a valid number'
+                    }
+                ]
+            },
+            rep_hours: {
+                identifier: "rep_hours",
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Please select the hours'
+                    }
+                ]
+            },
+            rep_minutes: {
+                identifier: "rep_minutes",
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Please select the minutes'
+                    }
+                ]
+            },
+            rep_ticket_cost: {
+                identifier: "rep_ticket_cost",
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Please enter the ticket cost'
+                    }
+                ]
+            }
+        },
         inline: true,
         on: 'blur',
-        transition: "slide down"
+        transition: "slide down",
+        onFailure: function () {
+            reportOrderForm.removeClass("error");
+        }
     });
-    reportOutlay.dropdown({
+    repOutlay.dropdown({
         transition: 'drop',
-        onChange: function (value, text, $selectedItem) {
+        onChange: function (value, text, $choise) {
+            console.log((value + 1) + " " + $choise);
             switch (value) {
-                case 0:
-                    reportHours.addClass('disabled');
-                    reportMinutes.addClass('disabled');
+                case '0':
+                    reportHours.prop('disabled', true);
+                    reportMinutes.prop('disabled', true);
                     reportMileage.prop('disabled', true);
                     reportTicketCost.prop('disabled', true);
+
+                    reportHours.parents('.dropdown').addClass('disabled');
+                    reportMinutes.parents('.dropdown').addClass('disabled');
                     break;
-                case 1:
-                    reportHours.removeClass('disabled');
-                    reportMinutes.removeClass('disabled');
+                case '1':
+                    reportHours.prop('disabled', false);
+                    reportMinutes.prop('disabled', false);
                     reportMileage.prop('disabled', false);
                     reportTicketCost.prop('disabled', true);
+
+                    reportHours.parents('.dropdown').removeClass('disabled');
+                    reportMinutes.parents('.dropdown').removeClass('disabled');
                     break;
-                case 2:
-                    reportHours.removeClass('disabled');
-                    reportMinutes.removeClass('disabled');
+                case '2':
+                    reportHours.prop('disabled', false);
+                    reportMinutes.prop('disabled', false);
                     reportMileage.prop('disabled', true);
                     reportTicketCost.prop('disabled', false);
+
+                    reportHours.parents('.dropdown').removeClass('disabled');
+                    reportMinutes.parents('.dropdown').removeClass('disabled');
                     break;
                 default:
-                    reportHours.addClass('disabled');
-                    reportMinutes.addClass('disabled');
+                    reportHours.prop('disabled', true);
+                    reportMinutes.prop('disabled', true);
                     reportMileage.prop('disabled', true);
                     reportTicketCost.prop('disabled', true);
+
+                    reportHours.parents('.dropdown').addClass('disabled');
+                    reportMinutes.parents('.dropdown').addClass('disabled');
                     break;
             }
         }
@@ -433,84 +464,84 @@ $(document).ready(function () {
         });
     });
 
-    $('.modal.change-pass')
-        .modal({
+    $('.btn-change-pass').on('click', function (e) {
+        e.preventDefault();
+        changePassModal.modal('show');
+    });
+    changePassModal.modal(
+        {
+            transition : 'scale',
             onHide: function () {
                 changeForm.form('reset');
                 changeForm.get(0).reset();
                 changeForm.removeClass("loading");
-                return false;
             }
-        })
-        .modal('setting', 'transition', 'scale')
-        .modal('attach events', '.btn-change-pass', 'show');
+        });
     changeForm.form({
-        oldPassword: {
-            identifier: 'oldPassword',
-            optional: false,
-            rules: [
-                {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
-                {type: 'length[6]', prompt: 'Detta fält bör innehålla mer än 6 tecken.'}
-            ]
+        fields: {
+            oldPassword: {
+                identifier: 'oldPassword',
+                optional: false,
+                rules: [
+                    {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
+                    {type: 'length[6]', prompt: 'Detta fält bör innehålla mer än 6 tecken.'}
+                ]
+            },
+            newPass: {
+                identifier: 'newPass',
+                optional: false,
+                rules: [
+                    {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
+                    {type: 'length[6]', prompt: 'Ditt lösenord bör innehålla mer än 6 tecken.'}
+                ]
+            },
+            newPassRep: {
+                identifier: 'newPassRep',
+                optional: false,
+                rules: [
+                    {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
+                    {type: 'match[newPass]', prompt: 'Fälten matchar inte.'}
+                ]
+            }
         },
-        newPass: {
-            identifier: 'newPass',
-            optional: false,
-            rules: [
-                {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
-                {type: 'length[6]', prompt: 'Ditt lösenord bör innehålla mer än 6 tecken.'}
-            ]
-        },
-        newPassRep: {
-            identifier: 'newPassRep',
-            optional: false,
-            rules: [
-                {type: 'empty', prompt: 'Detta fält får inte vara tomt.'},
-                {type: 'match[newPass]', prompt: 'Fälten matchar inte.'}
-            ]
-        }
-    }, {
         inline: true,
         on: 'blur',
-        onSuccess: function () {
-            changeForm.removeClass("error");
-            $.ajax({
-                type: "POST",
-                url: "src/misc/tolkResetPassword.php",
-                data: changeForm.serialize(),
-                dataType: "json",
-                beforeSend: function () {
-                    changeForm.addClass("loading");
-                }
-            }).done(function (data) {
-                if (data.error == 0) {
-                    changeForm.get(0).reset();
-                    changeForm.removeClass("loading");
-                    $('.modal.change-pass').modal('hide');
-                }
-                else {
-                    var errorElem = changeForm.find(".ui.error.message");
-                    changeForm.removeClass("loading").addClass("error");
-                    errorElem.children("p").text(data.errorMessage);
-                    errorElem.children('.header').text(data.messageHeader);
-                }
-            });
-        },
         onFailure: function () {
             changeForm.removeClass("error");
         }
     });
 
-    $('.ui.button.reset-btn').click(function () {
-        changeForm[0].reset();
-        return false;
+    $('.ui.button.reset-btn').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "src/misc/interpreter/tolkResetPassword.php",
+            data: changeForm.serialize(),
+            dataType: "json",
+            beforeSend: function () {
+                changeForm.addClass("loading");
+            }
+        }).done(function (data) {
+            if (data.error == 0) {
+                changeForm.form('reset');
+                changeForm.get(0).reset();
+                changeForm.removeClass("loading");
+                changePassModal.modal('hide');
+            }
+            else {
+                var errorElem = changeForm.find(".ui.error.message");
+                changeForm.removeClass("loading").addClass("error");
+                errorElem.children("p").text(data.errorMessage);
+                errorElem.children('.header').text(data.messageHeader);
+            }
+        });
     });
 
     jQuery.extend(jQuery.validator.messages, {
         require_from_group: "Fyll i minst ett av dessa områden."
     });
 
-    orderHistoryTableBody.on("click", ".button.btn-report-info",function () {
+    orderHistoryTableBody.on("click", ".button.btn-report-info", function () {
         var reportingInfoModal = $('.modal.order-reporting-info');
         var id = $(this).parent("form").attr('id');
         $(this).addClass('loading');
@@ -528,18 +559,17 @@ $(document).ready(function () {
                 $('#languageInfoValue').text(data.order.o_language);
                 $('#typeInfoValue').text(getFullTolkningType(data.order.o_interpretationType));
                 $('#addressInfoValue').text(data.order.o_address);
-                $('#cityZipInfoValue').text(data.order.o_city + ", "  + data.order.o_zipCode);
+                $('#cityZipInfoValue').text(data.order.o_city + ", " + data.order.o_zipCode);
                 $('#dateInfoValue').text(data.order.o_date);
                 $('#startEndTimeInfo').text(convertTime(data.order.o_startTime) + " - " + convertTime(data.order.o_endTime));
 
                 $('#extraTimeValue').text(getExtraTime(data.report.t_extraTime));
                 $('#carDistanceValue').text(data.report.r_carDistance);
                 $('#ticketCostValue').text(data.report.r_ticketCost);
-                $('#travelTimeValue').text(getFullTolkningType(data.order.o_interpretationType));
+                $('#travelTimeValue').text(convertTime(data.report.r_travelTime));
                 $('#customerNameValue').text(data.report.r_customerName);
                 $('#commentsValue').text(data.report.r_comments);
                 $('#dateCreatedValue').text(data.report.r_reportTime);
-                $('#dateUpdatedValue').text(data.report.r_reportUpdateTime);
 
                 reportingInfoModal.modal('show');
                 $('#' + id).find('.button').removeClass('loading');
@@ -551,7 +581,7 @@ $(document).ready(function () {
         });
     });
 
-    currentOrdersTableBody.on("click", ".button.btn-info",function () {
+    currentOrdersTableBody.on("click", ".button.btn-info", function () {
         var extraInfoCont = $('.modal.order-info');
         var id = $(this).parent("form").attr('id');
         $(this).addClass('loading');
@@ -569,11 +599,12 @@ $(document).ready(function () {
                 tolkBody.find('tr').remove();
                 orderBody.append(
                     "<tr>" +
+                    "<td>" + data.org.k_organizationName + "</td>" +
                     "<td>" + data.order.o_address + "</td>" +
                     "<td>" + data.order.o_zipCode + "</td>" +
                     "<td>" + data.order.o_city + "</td>" +
-                    "<td>" + data.order.o_client + "</td>" +
-                    "<td>" + data.order.o_comments + "</td>" +
+                    "<td>" + data.order.o_tel + "</td>" +
+                    "<td>" + data.order.o_mobile + "</td>" +
                     "</tr>");
                 extraInfoCont.modal('show');
                 $('#' + id).find('.button').removeClass('loading');
@@ -585,7 +616,7 @@ $(document).ready(function () {
         });
     });
 
-    reportingOrdersTableBody.on("click", "#reportBtn",function (e) {
+    reportingOrdersTableBody.on("click", "#reportBtn", function (e) {
         e.preventDefault();
         var id = $(this).parent("form").attr('id');
         $(this).addClass('loading');
@@ -604,16 +635,20 @@ $(document).ready(function () {
                 $('#languageValue').text(data.order.o_language);
                 $('#typeValue').text(getFullTolkningType(data.order.o_interpretationType));
                 $('#addressValue').text(data.order.o_address);
-                $('#cityZipValue').text(data.order.o_city + ", "  + data.order.o_zipCode);
+                $('#cityZipValue').text(data.order.o_city + ", " + data.order.o_zipCode);
                 $('#dateValue').text(data.order.o_date);
                 $('#startEndTime').text(convertTime(data.order.o_startTime) + " - " + convertTime(data.order.o_endTime));
 
-                if(data.order.o_interpretationType == "TT") {
-                    reportOutlay.addClass('disabled');
-                    reportHours.addClass('disabled');
-                    reportMinutes.addClass('disabled');
-                    reportMileage.addClass('disabled');
-                    reportTicketCost.addClass('disabled');
+                if (data.order.o_interpretationType == "TT") {
+                    reportOutlay.prop('disabled', true);
+                    repOutlay.addClass('disabled');
+                    reportHours.prop('disabled', true);
+                    reportMinutes.prop('disabled', true);
+                    reportMileage.prop('disabled', true);
+                    reportTicketCost.prop('disabled', true);
+
+                    reportHours.parents('.dropdown').addClass('disabled');
+                    reportMinutes.parents('.dropdown').addClass('disabled');
                     //$('#rep_customer_name').addClass('disabled');
                 }
                 reportingModal.modal('show');

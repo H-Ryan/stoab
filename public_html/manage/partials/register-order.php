@@ -127,9 +127,9 @@
                                                 <div class="ui popup"><span>Rättstolk</span></div>
                                             </div>
                                             <div class="field">
-                                                <div class="ui radio checkbox tolk-type">
+                                                <div class="ui radio checkbox tolk-type checked">
                                                     <label for="ff">NI</label>
-                                                    <input id="ff" value="NI" type="radio" name="tolk_type"
+                                                    <input id="ff" value="NI" checked type="radio" name="tolk_type"
                                                            class="hidden">
                                                 </div>
                                                 <div class="ui popup"><span>Inte viktigt</span></div>

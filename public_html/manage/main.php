@@ -59,7 +59,7 @@ try {
 		$kundOrgNums[ $row->k_kundNumber ] = $row->k_organizationName;
 	}
     $customers = array();
-    $statement   = $con->query( "select k_organizationName as Namn, k_kundNumber as Kundnummer, k_personalNumber as Telefon, k_mobile as Mobil, concat(k_firstName, ' ', k_lastName) as Kontaktperson, k_email as Epost , concat(k_address, ' - ', k_zipCode, ' ', k_city) as Adress from t_kunder where k_kundNumber != '100000' order by k_organizationName" );
+    $statement   = $con->query( "select k_organizationName as Namn, k_kundNumber as Kundnummer, k_tel as Telefon, k_mobile as Mobil, concat(k_firstName, ' ', k_lastName) as Kontaktperson, k_email as Epost , concat(k_address, ' - ', k_zipCode, ' ', k_city) as Adress from t_kunder where k_kundNumber != '100000' order by k_organizationName" );
     $statement->setFetchMode( PDO::FETCH_OBJ );
     while ( $row = $statement->fetch() ) {
         $customers[ $row->Kundnummer ] = $row;
@@ -113,7 +113,7 @@ try {
 		<a class="teal item" data-tab="second"><i class="book icon"></i>Beställa</a>
 		<a class="teal item" data-tab="third"><i class="tasks icon"></i>Hantera order</a>
 		<a class="teal item" data-tab="fourth"><i class="history icon"></i>Orderhistorik</a>
-		<a class="teal item" aria-disabled="true" data-tab="fifth"><i class="warning sign icon"></i>Hantera
+		<a class="teal item" aria-disabled="true" data-tab="fifth"><i class="users icon"></i>Hantera
 			kunder</a>
 		<a class="teal item" data-tab="sixth"><i class="comments outline icon"></i>Dashboard</a>
 

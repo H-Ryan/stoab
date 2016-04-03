@@ -8,43 +8,39 @@
 <div class="ui piled segment">
     <div class="ui stackable grid">
         <div class="row">
-            <div class="five wide column">
-                <div class="ui header">Interna anteckningar:</div>
-                <div class="ui horizontal divider"></div>
-                <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
-                    <div class="ui feed internalFeed"></div>
+            <div class="centered column">
+                <div class="ui top attached tabular three item menu">
+                    <a class="item active" data-tab="commentInterpreter">Anteckningar om tolkar</a>
+                    <a class="item" data-tab="commentCustomer">Anteckningar om kunderna</a>
+                    <a class="item" data-tab="commentInternal">Interna anteckningar</a>
                 </div>
-                <div class="ui teal labeled icon button btnNoteInternal">
-                    Skicka en anteckning
-                    <i class="add icon"></i>
+                <div class="ui bottom attached tab segment active" data-tab="commentInterpreter">
+                    <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
+                        <div class="ui feed interpreterFeed"></div>
+                    </div>
+                    <div class="ui teal labeled icon button btnNoteInterpreter">
+                        Skicka en anteckning
+                        <i class="add icon"></i>
+                    </div>
                 </div>
-            </div>
-            <div class="five wide column">
-                <div class="ui header">Anteckningar om kunderna:</div>
-                <div class="ui horizontal divider"></div>
-                <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
-                    <div class="ui feed customerFeed"></div>
+                <div class="ui bottom attached tab segment" data-tab="commentCustomer">
+                    <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
+                        <div class="ui feed customerFeed"></div>
+                    </div>
+                    <div class="ui teal labeled icon button btnNoteCustomer">
+                        Skicka en anteckning
+                        <i class="add icon"></i>
+                    </div>
                 </div>
-                <div class="ui teal labeled icon button btnNoteCustomer">
-                    Skicka en anteckning
-                    <i class="add icon"></i>
+                <div class="ui bottom attached tab segment" data-tab="commentInternal">
+                    <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
+                        <div class="ui feed internalFeed"></div>
+                    </div>
+                    <div class="ui teal labeled icon button btnNoteInternal">
+                        Skicka en anteckning
+                        <i class="add icon"></i>
+                    </div>
                 </div>
-            </div>
-            <div class="five wide column">
-                <div class="ui header">Anteckningar om tolkar:</div>
-                <div class="ui horizontal divider"></div>
-                <div class="ui segment" style="height: 400px; max-height: 400px; overflow-y: auto;">
-                    <div class="ui feed interpreterFeed"></div>
-                </div>
-                <div class="ui teal labeled icon button btnNoteInterpreter">
-                    Skicka en anteckning
-                    <i class="add icon"></i>
-                </div>
-            </div>
-            <div class="one wide column">
-                <button type="button" class="ui inverted small blue disabled button" id="btnAddTolkComment">
-                    Add
-                </button>
             </div>
         </div>
     </div>

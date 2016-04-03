@@ -294,9 +294,9 @@
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                        <label for="interpreter_email">E-post:</label>
-                                                        <input type="email" name="email"
-                                                               id="interpreter_email"
+                                                        <label for="tolk_re_email">E-post:</label>
+                                                        <input type="email" name="interpreter_re_email"
+                                                               id="tolk_re_email"
                                                                class="form-control input-lg"
                                                                data-rule-maxlength="90"
                                                                data-rule-email="true"

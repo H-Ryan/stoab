@@ -54,10 +54,11 @@
                     <div class="ui segment">
                         <form class="ui form" id="reportOrderForm">
                             <input type="hidden" name="rep_mission_id" id="rep_mission_id" value="">
+                            <input type="hidden" name="tolk_number" value="<?php echo $_SESSION['tolk_number']; ?>">
                             <div class="two fields">
                                 <div class="field">
                                     <label for="rep_extra_time">Extra tid</label>
-                                    <select id="rep_extra_time" name="rep_extra_time" class="ui dropdown">
+                                    <select id="rep_extra_time" name="rep_extra_time" class="ui fluid dropdown">
                                         <option value="0">00:00</option>
                                         <option value="1">00:15</option>
                                         <option value="2">00:30</option>
@@ -71,7 +72,7 @@
                                 </div>
                                 <div class="field">
                                     <label for="rep_outlay">Utlägg</label>
-                                    <select id="rep_outlay" name="rep_outlay" class="ui dropdown">
+                                    <select id="rep_outlay" name="rep_outlay" class="ui fluid dropdown repOutlay">
                                         <option selected value="0">Ingen utlägg</option>
                                         <option value="1">Egen bil</option>
                                         <option value="2">Kollektivtrafik</option>
@@ -86,12 +87,13 @@
                                         <?php
                                         for ($i = 0; $i < 3; $i++) {
                                             for ($j = 0; $j < 10; $j++) {
-                                                if ($i == 2 && $j == 4)
+                                                if ($i == 2 && $j == 4) {
                                                     break;
-                                                elseif ($i == 0 && $j == 0)
+                                                } elseif ($i == 0 && $j == 0) {
                                                     echo "<option selected='selected' value='" . intval($i . $j) . "'>$i$j</option>";
-                                                else
+                                                } else {
                                                     echo "<option value='" . intval($i . $j) . "'>$i$j</option>";
+                                                }
                                             }
                                         }
                                         ?>
@@ -105,6 +107,8 @@
                                         for ($i = 0; $i < 12; $i++) {
                                             if ($i == 0) {
                                                 echo "<option selected='selected' value='" . intval($i) . "'>00</option>";
+                                            } else if ($i == 1) {
+                                                echo "<option value='" . intval($i) . "'>05</option>";
                                             } else {
                                                 echo "<option value='" . intval($i) . "'>" . $i * $interv . "</option>";
                                             }

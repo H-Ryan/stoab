@@ -21,7 +21,7 @@ if (!empty($referrer)) {
     exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
 }
 
-$data = array();
+$data = [];
 $language = $_POST['language'];
 $city = (isset($_POST['city']) ? $_POST['city'] : "");
 $state = (isset($_POST['state']) ? $_POST['state'] : "");
