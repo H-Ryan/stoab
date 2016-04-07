@@ -19,7 +19,8 @@ if (!empty($referrer)) {
 
 $data = [];
 $db = null;
-if (isset($_POST['tolk_number']) && isset($_POST['rep_mission_id']) && isset($_POST['rep_extra_time']) && isset($_POST['rep_customer_name'])) {
+if (isset($_POST['tolk_number']) && isset($_POST['rep_mission_id']) && isset($_POST['rep_extra_time'])
+    && isset($_POST['rep_customer_name'])) {
 
     $rep_mission_id = $_POST['rep_mission_id'];
     $rep_extra_time = $_POST['rep_extra_time'];
@@ -32,7 +33,7 @@ if (isset($_POST['tolk_number']) && isset($_POST['rep_mission_id']) && isset($_P
     }
     $rep_time = "";
     if (isset($_POST['rep_hours']) && isset($_POST['rep_minutes'])) {
-        $rep_time = ($_POST['rep_hours'] * 4) + isset($_POST['rep_minutes']);
+        $rep_time = ($_POST['rep_hours'] * 12) + $_POST['rep_minutes'];
     }
     $rep_mileage = 0;
     if (isset($_POST['rep_mileage'])) {
@@ -88,7 +89,7 @@ WHERE (u.u_role = 3 OR u.u_role = 1) AND t.t_active = 1 AND t.t_tolkNumber=:tolk
                     $contact_email_content = file_get_contents("../../emailTemplates/report-confirmation-email.html");
                     $var = ["{rep_mission_id}", "{rep_extra_time}", "{rep_travel_time}", "{rep_mileage}",
                         "{rep_ticket_cost}", "{rep_client_name}", "{rep_comment}"];
-                    $val = [$rep_mission_id, getExtraTime($rep_extra_time), $_POST['rep_hours'].":".$_POST['rep_minutes'], $rep_mileage." km",
+                    $val = [$rep_mission_id, getExtraTime($rep_extra_time), convertTravelTime(($_POST['rep_hours'] * 12) + $_POST['rep_minutes']), $rep_mileage." km",
                         $rep_ticket_cost." SEK", $rep_customer_name, $rep_comments];
                     $emailContent = str_replace($var, $val, $contact_email_content);
 

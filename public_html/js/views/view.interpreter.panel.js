@@ -157,7 +157,6 @@ $(document).ready(function () {
     repOutlay.dropdown({
         transition: 'drop',
         onChange: function (value, text, $choise) {
-            console.log((value + 1) + " " + $choise);
             switch (value) {
                 case '0':
                     reportHours.prop('disabled', true);
@@ -563,10 +562,10 @@ $(document).ready(function () {
                 $('#dateInfoValue').text(data.order.o_date);
                 $('#startEndTimeInfo').text(convertTime(data.order.o_startTime) + " - " + convertTime(data.order.o_endTime));
 
-                $('#extraTimeValue').text(getExtraTime(data.report.t_extraTime));
+                $('#extraTimeValue').text(getExtraTime(parseInt(data.report.r_extraTime)));
                 $('#carDistanceValue').text(data.report.r_carDistance);
                 $('#ticketCostValue').text(data.report.r_ticketCost);
-                $('#travelTimeValue').text(convertTime(data.report.r_travelTime));
+                $('#travelTimeValue').text(convertTravelTime(data.report.r_travelTime));
                 $('#customerNameValue').text(data.report.r_customerName);
                 $('#commentsValue').text(data.report.r_comments);
                 $('#dateCreatedValue').text(data.report.r_reportTime);
@@ -661,10 +660,6 @@ $(document).ready(function () {
     });
 });
 
-function getTravelTime(value) {
-
-}
-
 function getExtraTime(value) {
     switch (value) {
         case 0:
@@ -703,6 +698,13 @@ function getExtraTime(value) {
 function convertTime(value) {
     var minutes = ["00", "15", "30", "45"];
     return ((value - (value % 4)) / 4) + ":" + minutes[(value % 4)];
+}
+
+
+function convertTravelTime(value) {
+    value = parseInt(value);
+    var minutes = ["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"];
+    return ((value - (value % 12)) / 12) + ":" + minutes[(value % 12)];
 }
 
 function adjustTime(startH, startM, endH, endM) {

@@ -193,7 +193,7 @@
                             <input id="newPassRep" name="newPassRep" type="password"/>
                         </div>
                         <div class="field">
-                            <button type="button" class="ui blue right labeled icon button reset-btn">
+                            <button type="button" class="ui blue right labeled icon button reset-pass-btn">
                                 <i class="right arrow icon"></i>
                                 Skicka
                             </button>

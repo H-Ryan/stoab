@@ -123,7 +123,6 @@ $(document).ready(function () {
                             postFeedEvent(customerFeed, data.newEvent);
                             noteTextForm.get(0).reset();
                             close = true;
-                            console.log(close);
                         } else {
                             addMessageModal.find(".actions .button").addClass("disabled");
                             resultPostErrorModal.find(".content .description>p").text(data.message);

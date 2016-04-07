@@ -1,24 +1,27 @@
 $(document).ready(function () {
     "use strict";
-    $.fn.form.settings.rules.oneOf = function(value, fieldIdentifiers) {
+    $.fn.form.settings.rules.oneOf = function (value, fieldIdentifiers) {
         var $form = $(this);
 
-        return !!value || fieldIdentifiers.split(',').some(function(fieldIdentifier) {
+        return !!value || fieldIdentifiers.split(',').some(function (fieldIdentifier) {
                 return $form.find('#' + fieldIdentifier).val() ||
-                    $form.find('[name="' + fieldIdentifier +'"]').val() ||
-                    $form.find('[data-validate="'+ fieldIdentifier +'"]').val();
+                    $form.find('[name="' + fieldIdentifier + '"]').val() ||
+                    $form.find('[data-validate="' + fieldIdentifier + '"]').val();
 
             });
     };
     $(".typeTip").popup();
-    var orderForm = $('.ui.form.orderForm');
-    var changeForm = $('.ui.form.changePass');
+    var orderForm = $('.ui.form.orderForm'),
+        changeForm = $('.ui.form.changePass'),
+        startHour = $("#starttid"),
+        endHour = $("#sluttid"),
+        startMinute = $("#starttid1"),
+        endMinute = $("#sluttid1"),
+        changePassModal = $('.modal.change-pass');
+
     $('.ui.dropdown').dropdown();
     $('.ui.search.dropdown').dropdown({fullTextSearch: true});
-    var startHour = $("#starttid");
-    var endHour = $("#sluttid");
-    var startMinute = $("#starttid1");
-    var endMinute = $("#sluttid1");
+
     adjustTime(startHour, startMinute, endHour, endMinute);
     startHour.change(function () {
         adjustTime(startHour, startMinute, endHour, endMinute);
@@ -40,19 +43,19 @@ $(document).ready(function () {
         });
         return false;
     });
-    $('.modal.change-pass')
-        .modal({
-            onHide: function () {
-                changeForm.form('reset');
-                changeForm.get(0).reset();
-                changeForm.removeClass("loading");
-                return false;
-            }
-        })
-        .modal('setting', 'transition', 'scale')
-        .modal('attach events', '.btn-change-pass', 'show');
-    $('.modal.tolk-info')
-        .modal('setting', 'transition', 'scale');
+    changePassModal.modal({
+        transition: 'scale',
+        onHide: function () {
+            changeForm.form('reset');
+            changeForm.get(0).reset();
+            changeForm.removeClass("loading");
+        }
+    });
+    $('.btn-change-pass').on('click', function (e) {
+        e.preventDefault();
+        changePassModal.modal('show');
+    });
+    $('.modal.tolk-info').modal({transition: 'scale'});
     //TODO
     $('.button.btn-info').on("click", function () {
         var extraInfoCont = $('.modal.tolk-info');
@@ -721,6 +724,10 @@ $(document).ready(function () {
         switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset:visible').prev());
     });
 
+    $('.button.reset-pass-btn').on('click', function (e) {
+        e.preventDefault();
+        changeForm.form('validate form');
+    });
 
     $('.button.reset-btn').on('click', function (e) {
         e.preventDefault();
@@ -728,7 +735,6 @@ $(document).ready(function () {
         $("#date").datepicker();
         $('#customer').find(':input').prop('disabled', true);
         $('#comment').find(':input').prop('disabled', true);
-        console.log(!orderForm.find('fieldset').first().is(":visible"));
         if (!orderForm.find('fieldset').first().is(":visible")) {
             switchFromTo(orderForm.find('fieldset:visible'), orderForm.find('fieldset').first());
         }
@@ -769,7 +775,7 @@ $(document).ready(function () {
     });
     $('#customer').find(':input').prop('disabled', true);
     $('#comment').find(':input').prop('disabled', true);
-    $('.ui.radio.checkbox').children('input:radio[name=type]').change(function(){
+    $('.ui.radio.checkbox').children('input:radio[name=type]').change(function () {
         adjustTime(startHour, startMinute, endHour, endMinute);
     });
 });
@@ -802,14 +808,14 @@ function adjustTime(startH, startM, endH, endM) {
                     return index < startH.val();
                 }).each(function () {
                     $(this).prop('disabled', true);
-                    endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                    endH.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
                 });
 
                 endM.find('option').filter(function (index) {
                     return parseInt(index, 10) <= parseInt(startM.val(), 10) + 1;
                 }).each(function () {
                     $(this).prop('disabled', true);
-                    endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                    endM.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
                 });
                 return;
             } else if (selectedType === "KT") {
@@ -817,14 +823,14 @@ function adjustTime(startH, startM, endH, endM) {
                     return index <= startH.val();
                 }).each(function () {
                     $(this).prop('disabled', true);
-                    endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                    endH.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
                 });
 
                 endM.find('option').filter(function (index) {
                     return parseInt(index) <= parseInt(startM.val(), 10) + 3;
                 }).each(function () {
                     $(this).prop('disabled', true);
-                    endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                    endM.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
                 });
                 return;
             }
@@ -833,7 +839,7 @@ function adjustTime(startH, startM, endH, endM) {
             return index <= startM.val();
         }).each(function () {
             $(this).prop('disabled', true);
-            endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+            endM.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
         });
     } else {
         if (selectedType) {
@@ -842,14 +848,14 @@ function adjustTime(startH, startM, endH, endM) {
                     return index < startH.val();
                 }).each(function () {
                     $(this).prop('disabled', true);
-                    endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                    endH.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
                 });
 
                 endM.find('option').filter(function (index) {
                     return ((parseInt(endH.val()) * 4) + parseInt(index)) <= ((parseInt(startH.val()) * 4) + parseInt(startM.val()) + 1);
                 }).each(function () {
                     $(this).prop('disabled', true);
-                    endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                    endM.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
                 });
                 return;
             } else if (selectedType === "KT") {
@@ -857,14 +863,14 @@ function adjustTime(startH, startM, endH, endM) {
                     return index <= startH.val();
                 }).each(function () {
                     $(this).prop('disabled', true);
-                    endH.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                    endH.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
                 });
 
                 endM.find('option').filter(function (index) {
                     return ((parseInt(endH.val()) * 4) + parseInt(index)) <= ((parseInt(startH.val()) * 4) + parseInt(startM.val()) + 3);
                 }).each(function () {
                     $(this).prop('disabled', true);
-                    endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+                    endM.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
                 });
                 return;
             }
@@ -873,7 +879,7 @@ function adjustTime(startH, startM, endH, endM) {
             return index <= startM.val();
         }).each(function () {
             $(this).prop('disabled', true);
-            endM.parent('.dropdown').find('*[data-value="'+ $(this).val() +'"]').addClass('disabled');
+            endM.parent('.dropdown').find('*[data-value="' + $(this).val() + '"]').addClass('disabled');
         });
     }
 }
