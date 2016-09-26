@@ -1613,9 +1613,9 @@ window.theme = {};
 
 // Sticky
 (function(theme, $) {
-	
+
 	theme = theme || {};
-	
+
 	var instanceName = '__sticky';
 
 	var PluginSticky = function($el, opts) {
@@ -1683,7 +1683,7 @@ window.theme = {};
 			} else {
 				return new PluginSticky($this, opts);
 			}
-			
+
 		});
 	}
 
@@ -2039,7 +2039,7 @@ window.theme = {};
 					e.preventDefault();
 					$.get(self.options.refreshCaptchaURL, function(url) {
 						$('#captcha-image').attr('src', url);
-					});					
+					});
 				});
 
 			},
@@ -2149,9 +2149,9 @@ window.theme = {};
 
 // Word Rotate
 (function(theme, $) {
-	
+
 	theme = theme || {};
-	
+
 	var instanceName = '__wordRotate';
 
 	var PluginWordRotate = function($el, opts) {
@@ -2208,7 +2208,7 @@ window.theme = {};
 				.width(firstItem.width() + "px")
 				.append(firstItemClone);
 
-			$el				
+			$el
 				.addClass("active");
 
 			setInterval(function() {
@@ -2257,7 +2257,7 @@ window.theme = {};
 			} else {
 				return new PluginWordRotate($this, opts);
 			}
-			
+
 		});
 	}
 
@@ -2764,7 +2764,7 @@ window.theme = {};
 						self.deactivateStickyHeader();
 					}
 				};
-				
+
 				// Activate Sticky Header
 				self.activateStickyHeader = function() {
 
@@ -2825,12 +2825,12 @@ window.theme = {};
 						logoSmallWidth = parseInt($logo.attr('data-sticky-width') ? $logo.attr('data-sticky-width') : 'auto'),
 						logoSmallHeight = parseInt($logo.attr('data-sticky-height') ? $logo.attr('data-sticky-height') : 'auto');
 
-					if (self.options.stickyChangeLogoWrapper) {
-						$logoWrapper.css({
-							'width': $logo.outerWidth(true),
-							'height': $logo.outerHeight(true)
-						});
-					}
+					// if (self.options.stickyChangeLogoWrapper) {
+					// 	$logoWrapper.css({
+					// 		'width': $logo.outerWidth(true),
+					// 		'height': $logo.outerHeight(true)
+					// 	});
+					// }
 
 					self.changeLogo = function(activate) {
 						if(activate) {

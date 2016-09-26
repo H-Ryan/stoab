@@ -1,6 +1,6 @@
 <?php
-ini_set("session.use_only_cookies", TRUE);
-ini_set("session.use_trans_sid", FALSE);
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 session_start();
 ?>
 <header id="header"
@@ -11,8 +11,8 @@ session_start();
                 <div class="header-column">
                     <div class="header-logo">
                         <a href="index.php">
-                            <img alt="Porto" width="212" height="63" data-sticky-width="156" data-sticky-height="47"
-                                 data-sticky-top="33" src="img/logo1.png">
+                            <img alt="Porto" width="87" height="98" data-sticky-width="43" data-sticky-height="50"
+                                 data-sticky-top="30" src="img/logo2.png">
                         </a>
                     </div>
                 </div>
@@ -56,13 +56,22 @@ session_start();
                                         </li>
                                         <li>
                                             <?php
-                                            if (!empty($_SESSION['organization_number']) && !empty($_SESSION['user_number'])) { ?>
+                                            if (!empty($_SESSION['organization_number']) && !empty($_SESSION['user_number'])) {
+                                                ?>
                                                 <a data-hash data-hash-offset="70" href="kundpanel.php">Min panel</a>
-                                            <?php } else if(!empty($_SESSION['personal_number']) && !empty($_SESSION['tolk_number'])) { ?>
+                                            <?php
+
+                                            } elseif (!empty($_SESSION['personal_number']) && !empty($_SESSION['tolk_number'])) {
+                                                ?>
                                                 <a data-hash data-hash-offset="70" href="tolkpanel.php">Min panel</a>
-                                            <?php } else { ?>
+                                            <?php
+
+                                            } else {
+                                                ?>
                                                 <a data-hash data-hash-offset="70" href="login.php">Logga in</a>
-                                            <?php } ?>
+                                            <?php
+
+                                            } ?>
                                         </li>
                                     </ul>
                                 </nav>
@@ -76,18 +85,20 @@ session_start();
 </header>
 <?php
 if (isset($arrResult)) {
-    if ($arrResult['response'] == 'success') {
-        ?>
+                                                if ($arrResult['response'] == 'success') {
+                                                    ?>
         <div class="alert alert-success" id="contactSuccess">
             Vi har mottagit ditt dokument. Vi återkommer så snart som möjligt.
         </div>
         <?php
-    } else if ($arrResult['response'] == 'error') {
-        ?>
+
+                                                } elseif ($arrResult['response'] == 'error') {
+                                                    ?>
         <div class="alert alert-danger" id="contactError">
             Misslyckad sändning, försök igen. (<?php echo $arrResult['error']; ?>)
         </div>
         <?php
-    }
-}
+
+                                                }
+                                            }
 ?>

@@ -1,6 +1,6 @@
 <?php
-include_once "./src/db/dbConnection.php";
-include_once "./src/db/dbConfig.php";
+include_once './src/db/dbConnection.php';
+include_once './src/db/dbConfig.php';
 try {
     $db = new dbConnection(HOST, DATABASE, USER, PASS);
     $con = $db->get_connection();
@@ -72,7 +72,7 @@ try {
     <!--========================================================
                         HEADER
     =========================================================-->
-    <?php include("./partials/shared/header.php"); ?>
+    <?php include './partials/shared/header.php'; ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
@@ -112,7 +112,7 @@ try {
                              data-x="center"
                              data-y="210"
                              data-start="500"
-                             style="font-size: 50px; z-index: 5; color:#fff"
+                             style="font-size: 50px; z-index: 5; color: #e78900 !important; text-shadow: 0 2px 2px #424242;"
                              data-transform_in="y:[100%];s:500;"
                              data-transform_out="opacity:0;s:500;">DIN SPRÅKPARTNER
                         </div>
@@ -155,7 +155,7 @@ try {
                              data-splitin="chars"
                              data-splitout="none"
                              data-responsive_offset="on"
-                             style="font-size: 50px; line-height: 55px;"
+                             style="font-size: 50px; line-height: 55px; color: #e78900 !important; text-shadow: 0 2px 2px #424242;"
                              data-elementdelay="0.05">VI SKAPAR KOMMUNIKATION<br/>MELLAN SPRÅK OCH KULTURER
                         </div>
 
@@ -183,7 +183,7 @@ try {
                              data-x="center"
                              data-y="200"
                              data-start="400"
-                             style="font-size: 50px; z-index: 5; color:#fff"
+                             style="font-size: 50px; z-index: 5; color: #e78900 !important; text-shadow: 0 2px 2px #424242;"
                              data-transform_in="y:[100%];s:500;"
                              data-transform_out="opacity:0;s:500;">KVALITETEN I FÖRETAGET UTGÖRS <br/>AV NOGGRANT
                             UTVALDA TOLKAR
@@ -194,7 +194,7 @@ try {
         </div>
         <div class="home-intro light mb-none pt-sm" id="home-intro">
             <div class="container">
-                <?php include("subHeader.php"); ?>
+                <?php include 'subHeader.php'; ?>
             </div>
         </div>
         <div class="container-fluid">
@@ -289,17 +289,20 @@ try {
                          data-plugin-options='{"responsive": {"0": {"items": 1}, "479": {"items": 1}, "768": {"items": 2}, "979": {"items": 3}, "1199": {"items": 3}}, "items": 3, "margin": 10, "loop": false, "nav": true, "dots": false}'>
 
                         <?php
-                        $statement = $con->query("SELECT * FROM t_newsLetter WHERE n_time >= CURRENT_DATE() - 30 AND n_flag=1 ORDER BY n_time DESC");
+                        $statement = $con->query('SELECT * FROM t_newsLetter WHERE n_time >= CURRENT_DATE() - 30 AND n_flag=1 ORDER BY n_time DESC');
                         $statement->execute();
                         $statement->setFetchMode(PDO::FETCH_OBJ);
                         if ($statement->rowCount() > 0) {
-                            while ($row = $statement->fetch()) { ?>
+                            while ($row = $statement->fetch()) {
+                                ?>
                                 <div>
                                     <div class="recent-posts">
                                         <article class="post">
                                             <div class="date">
-                                                <span class="day"><?php $d = new DateTime($row->n_time); echo $d->format('d') ?></span>
-                                                <span class="month"><?php $m = new DateTime($row->n_time); echo $d->format('M') ?></span>
+                                                <span class="day"><?php $d = new DateTime($row->n_time);
+                                echo $d->format('d') ?></span>
+                                                <span class="month"><?php $m = new DateTime($row->n_time);
+                                echo $d->format('M') ?></span>
                                             </div>
                                             <h4>
                                                 <a href="nyheter.php?id=<?php echo $row->n_ID ?>"><?php echo $row->n_title; ?></a>
@@ -312,9 +315,11 @@ try {
                                         </article>
                                     </div>
                                 </div>
-                            <?php }
+                            <?php
+
+                            }
                         } else {
-                            echo "<div><h2>Just nu har vi inte några nyheter!</h2></div>";
+                            echo '<div><h2>Just nu har vi inte några nyheter!</h2></div>';
                         }
                         ?>
                     </div>
@@ -326,7 +331,7 @@ try {
     <!--========================================================
                               FOOTER
     =========================================================-->
-    <?php include("./partials/shared/footer.html"); ?>
+    <?php include './partials/shared/footer.html'; ?>
 
 </div>
 
