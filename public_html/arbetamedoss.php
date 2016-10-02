@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>STÖ AB - Sarvari tolkning och översättning</title>
+    <title>Tolkning i Kristianstad AB - Arbeta med oss</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="STÖ AB">
+    <meta name="author" content="Tolkning i Kristianstad AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>

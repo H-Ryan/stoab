@@ -209,7 +209,8 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php for ($k = 1; $k < 5; $k++) { ?>
+                                                <?php for ($k = 1; $k < 5; ++$k) {
+    ?>
                                                     <tr>
                                                         <td>
                                                             <input type="text" name="from<?php echo $k ?>"
@@ -240,7 +241,8 @@
                                                                    class="form-control">
                                                         </td>
                                                     </tr>
-                                                <?php } ?>
+                                                <?php
+} ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -270,7 +272,8 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <?php for ($g = 1; $g < 4; $g++) { ?>
+                                            <?php for ($g = 1; $g < 4; ++$g) {
+    ?>
                                             <tr>
                                                 <td>
                                                     <input type="text" name="training<?php echo $g ?>"
@@ -293,7 +296,8 @@
                                                            class="form-control">
                                                 </td>
                                             </tr>
-                                            <?php } ?>
+                                            <?php
+} ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -402,7 +406,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-12">
                                             <p class="mb-none">* Översättningar som
-                                                förmedlas via STÖ AB ska utföras i
+                                                förmedlas via Tolkning i Kristianstad AB ska utföras i
                                                 enlighet medLagen 1975:689 Tystnadsplikt
                                                 för vissa översättare.<br/>
                                                 * Översättningen ska levereras i tid och

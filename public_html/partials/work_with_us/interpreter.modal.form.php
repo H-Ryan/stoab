@@ -189,14 +189,15 @@
                                     </div>
                                 </div>
                                 <div id="w2-profile" class="tab-pane">
-                                    <?php for ($i = 1; $i < 6; $i++) { ?>
+                                    <?php for ($i = 1; $i < 6; ++$i) {
+    ?>
                                         <div class="form-group">
                                             <div class="col-sm-6">
                                                 <?php if ($i == 1) {
-                                                    echo '<label for="language1">Språk:</label>';
-                                                } else {
-                                                    echo "";
-                                                } ?>
+        echo '<label for="language1">Språk:</label>';
+    } else {
+        echo '';
+    } ?>
                                                 <input type="text" name="language<?php echo $i; ?>"
                                                        id="language<?php echo $i; ?>"
                                                        class="form-control interpreter-language-group"
@@ -205,23 +206,27 @@
                                                        data-msg-minlength="Fält Språk <?php echo $i; ?> bör innehålla mer än 3 tecken."
                                                        data-msg-maxlength="Fältet Språk <?php echo $i; ?> bör innehålla mindre än 90."
                                                        data-rule-maxlength="90"
-                                                    <?php if ($i == 1) { ?>
+                                                    <?php if ($i == 1) {
+        ?>
                                                         data-msg-required="Du måste välja minst ett språk."
-                                                        data-rule-required='true' <?php } ?>>
+                                                        data-rule-required='true' <?php
+    } ?>>
                                             </div>
                                             <div class="col-sm-6">
                                                 <?php if ($i == 1) {
-                                                    echo '<label for="languageCompetence1">Kompetens:</label>';
-                                                } else {
-                                                    echo "";
-                                                } ?>
+        echo '<label for="languageCompetence1">Kompetens:</label>';
+    } else {
+        echo '';
+    } ?>
                                                 <select
                                                     class="form-control input-lg mb-md interpreter-language-competence-group"
                                                     name="langCompetence<?php echo $i; ?>"
                                                     id="langCompetence<?php echo $i; ?>"
-                                                    <?php if ($i == 1) { ?>
+                                                    <?php if ($i == 1) {
+        ?>
                                                         data-rule-required='true'
-                                                        data-msg-required="Välj ett språk från listan." <?php } ?>>
+                                                        data-msg-required="Välj ett språk från listan." <?php
+    } ?>>
                                                     <option value="">Kompetens</option>
                                                     <option
                                                         value="AT- Auktoriserad tolk">
@@ -251,7 +256,8 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    <?php } ?>
+                                    <?php
+} ?>
                                 </div>
                                 <div id="w2-confirm" class="tab-pane">
                                     <div class="form-group">
@@ -295,7 +301,7 @@
                                             <p>Ja, jag samtycker till och är fullt
                                                 införstådd med att den information
                                                 jag skickar kan registreras och
-                                                lagras av STÖ AB enligt
+                                                lagras av Tolkning i Kristianstad AB enligt
                                                 personuppgiftslagen (1998:204).</p>
                                         </div>
                                         <div class="col-sm-1"></div>

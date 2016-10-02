@@ -49,7 +49,7 @@
                     </div>
                     <div class="column">
                         <div class="ui horizontal segment">
-                            <p class="text_5"><?php echo $tolkInfo->u_firstName." ".$tolkInfo->u_lastName ?></p>
+                            <p class="text_5"><?php echo $tolkInfo->u_firstName.' '.$tolkInfo->u_lastName ?></p>
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
     <tfoot class="full-width">
         <tr>
             <th colspan="2">
-                <p>Kontakta STÖ AB om någon av informationen är felaktig.</p>
+                <p>Kontakta Tolkning i Kristianstad AB om någon av informationen är felaktig.</p>
             </th>
         </tr>
     </tfoot>

@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>STÖ AB - Sarvari tolkning och översättning</title>
+    <title>Tolkning i Kristianstad AB - Logga in</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="STÖ AB">
+    <meta name="author" content="Tolkning i Kristianstad AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -334,7 +334,7 @@
                                 <p>Bland våra kunder finns offentliga myndigheter, privata företag, skolor och
                                     privatpersoner.<br>
                                     Vi har erfarenhet av tolkning och översättning.<br>
-                                    Vill du bli kund hos STÖ AB ? <br>
+                                    Vill du bli kund hos Tolkning i Kristianstad AB ? <br>
                                     Registrera dig genom att klicka på knappen nedan och fyll i formuläret.<br>
                                     Vi arbetar vi med hög kvalitet och snabb service.<br>
                                     Vi ger dig en kostnadsfri utbildning hur man använder sig av tolk via kontakt eller

@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>STÖ AB - Sarvari tolkning och översättning</title>
+    <title>Tolkning i Kristianstad AB - Om oss</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="STÖ AB">
+    <meta name="author" content="Tolkning i Kristianstad AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -83,7 +83,7 @@
                 <div class="col-md-12">
                     <div class="toggle toggle-primary" data-plugin-toggle>
                         <section class="toggle active">
-                            <label>Kort om STÖ AB</label>
+                            <label>Kort om Tolkning i Kristianstad AB</label>
                             <div class="toggle-content pr-lg pl-lg">
                                 <p>Vi levererar kompletta kommunikationslösningar inom tolkning, översättning,
                                     språkstöd, utbildningar samt förmedling av kontaktpersoner. Våra uppdrag utförs till
@@ -250,7 +250,7 @@
                                 <p>Vi vill vara den obestridda specialisten på tolkning och översättning i samhället. Vi
                                     strävar efter att vara förstahandsvalet och vi arbetar ständigt med att utveckla och
                                     förbättra vårt arbetssätt! Vi finns till för att underlätta i vardagen. Vi erbjuder
-                                    snabba och enkla lösningar till attraktiva priser! Vi på STÖ AB arbetar som ett team
+                                    snabba och enkla lösningar till attraktiva priser! Vi på Tolkning i Kristianstad AB arbetar som ett team
                                     vilket ger möjlighet till en snabb och god service!</p>
                             </div>
                         </section>

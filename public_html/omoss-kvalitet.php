@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>3 Columns | Porto - Responsive HTML5 Template 4.4.0</title>
+    <title>Tolkning i Kristianstad AB - Kvalitet</title>
 
     <meta name="keywords" content="HTML5 Template"/>
     <meta name="description" content="Porto - Responsive HTML5 Template">
@@ -54,7 +54,7 @@
     <!--========================================================
                         HEADER
     =========================================================-->
-    <?php include("./partials/shared/header.php"); ?>
+    <?php include './partials/shared/header.php'; ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
@@ -162,7 +162,7 @@
     <!--========================================================
                               FOOTER
     =========================================================-->
-    <?php include("./partials/shared/footer.html"); ?>
+    <?php include './partials/shared/footer.html'; ?>
 </div>
 
 <!-- Vendor -->

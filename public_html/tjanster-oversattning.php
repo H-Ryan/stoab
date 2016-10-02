@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tolkning i Kristianstad AB - Sarvari tolkning och översättning</title>
+    <title>Tolkning i Kristianstad AB - Tjänster / Översättning</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">

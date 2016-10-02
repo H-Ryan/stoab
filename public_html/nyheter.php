@@ -1,9 +1,9 @@
 <?php
-ini_set("session.use_only_cookies", TRUE);
-ini_set("session.use_trans_sid", FALSE);
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 session_start();
-include_once "./src/db/dbConnection.php";
-include_once "./src/db/dbConfig.php";
+include_once './src/db/dbConnection.php';
+include_once './src/db/dbConfig.php';
 try {
     $db = new dbConnection(HOST, DATABASE, USER, PASS);
     $con = $db->get_connection();
@@ -19,11 +19,11 @@ try {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>STÖ AB - Sarvari tolkning och översättning / Nyheter</title>
+    <title>Tolkning i Kristianstad AB - Nyheter</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="STÖ AB">
+    <meta name="author" content="Tolkning i Kristianstad AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -73,7 +73,7 @@ try {
     <!--========================================================
                         HEADER
     =========================================================-->
-    <?php include("./partials/shared/header.php"); ?>
+    <?php include './partials/shared/header.php'; ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
@@ -85,7 +85,7 @@ try {
                         <h2 class="heading-quaternary m-sm">Om oss </h2>
                     </div>
                     <div class="col-md-10">
-                        <?php include("subHeader.php"); ?>
+                        <?php include 'subHeader.php'; ?>
                     </div>
                 </div>
 
@@ -95,8 +95,8 @@ try {
             <div class="row mt-xlg">
                 <div class="col-md-12">
                     <?php
-                    $statement = $con->prepare("SELECT * FROM t_newsLetter WHERE n_ID=:id");
-                    $statement->bindParam(":id", $_GET['id']);
+                    $statement = $con->prepare('SELECT * FROM t_newsLetter WHERE n_ID=:id');
+                    $statement->bindParam(':id', $_GET['id']);
                     $statement->execute();
                     $statement->setFetchMode(PDO::FETCH_OBJ);
                     $row = null;
@@ -119,7 +119,7 @@ try {
     <!--========================================================
                               FOOTER
     =========================================================-->
-    <?php include("./partials/shared/footer.html"); ?>
+    <?php include './partials/shared/footer.html'; ?>
 
 </div>
 
