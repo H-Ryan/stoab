@@ -4,7 +4,7 @@ ini_set('session.use_trans_sid', false);
 session_start();
 ?>
 <header id="header"
-        data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 57, "stickySetTop": "-57px", "stickyChangeLogo": true}'>
+        data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 40, "stickySetTop": "-40px", "stickyChangeLogo": true}'>
     <div class="header-body">
         <div class="header-container container">
             <div class="header-row">
@@ -32,7 +32,7 @@ session_start();
                     </div>
                     <div class="header-row">
                         <div class="header-nav">
-                            <button class="btn header-btn-collapse-nav" data-toggle="collapse"
+                            <button class="btn header-btn-collapse-nav" data-toggle="collapse" 
                                     data-target=".header-nav-main">
                                 <i class="fa fa-bars"></i>
                             </button>

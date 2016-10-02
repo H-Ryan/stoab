@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tolkning i Kristianstad AB</title>
+    <title>Tolkning i Kristianstad AB - Samarbetsavtal</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
@@ -95,11 +95,11 @@ Denna överenskommelse skall innefatta de tolkar som tar sina uppdrag via <b>Tol
 <div class="col-md-10 col-md-push-1">
 <p class="lead">Vid tillsättning av uppdrag skall de tolkar som äger högsta kompetens prioriteras. Prioriteringsordning innebär att:</p>
 <ul style="text-align: left;" class="lead" >
-<li >I första hand skall de tolkar som av Kammarkollegiet erhållit specialkompetens för sjukvårdstolkning eller/och rättstolkning prioriteras för de uppdrag som ligger inom kompetensområdet eller kräver sådan kompetens samt arvoderas avtalsmässigt för specialkompetens.
-</li>
-<li>I andra hand skall av Kammarkollegiet auktoriserad tolkprioriteras.</li>
-<li>I de språk där auktorisation saknas samt då det saknas tillgång till auktoriserad tolk av annan anledning skall tolk som genomgått fullständigt tolkutbildningprioriteras.</li>
-<li>Skulle annan tolk än de ovannämnda anlitas är minimum kravet att denna skall ha genomgått introduktionskursen ”tolkteknik/tolketik” samt testas med TSR:s lämplighetstest för tolkaspiranter. Idag aktiva tolkar som formellt inte genomgått teoretisk utbildning motsvarande ovanstående grundutbildning, men som ändå förvärvat motsvarande kompetens genom lång yrkesutövning och praktisk arbete skall likställas medminimumkravet.</li>
+  <li >I första hand skall de tolkar som av Kammarkollegiet erhållit specialkompetens för sjukvårdstolkning eller/och rättstolkning prioriteras för de uppdrag som ligger inom kompetensområdet eller kräver sådan kompetens samt arvoderas avtalsmässigt för specialkompetens.
+  </li>
+  <li>I andra hand skall av Kammarkollegiet auktoriserad tolkprioriteras.</li>
+  <li>I de språk där auktorisation saknas samt då det saknas tillgång till auktoriserad tolk av annan anledning skall tolk som genomgått fullständigt tolkutbildningprioriteras.</li>
+  <li>Skulle annan tolk än de ovannämnda anlitas är minimum kravet att denna skall ha genomgått introduktionskursen ”tolkteknik/tolketik” samt testas med TSR:s lämplighetstest för tolkaspiranter. Idag aktiva tolkar som formellt inte genomgått teoretisk utbildning motsvarande ovanstående grundutbildning, men som ändå förvärvat motsvarande kompetens genom lång yrkesutövning och praktisk arbete skall likställas medminimumkravet.</li>
 </ul>
 <p class="lead" >För uppdrag hos Migrationsverket, familjerätten, socialförvaltningen eller försäkringskassan skall uppdraget arvoderas som tolkning motsvarande specialkompetens om uppdraget är sådan art och svårighet att specialkompetens erfordras, samt att uppdraget utförs av en tolk som innehar sådan kompetens som uppdraget kräver. En förutsättning för att detta ska kunna tillämpas är att kunden godkänner detta,
 All tolkning som innefattas av Domstolsverkets taxor för tolkar skall arvoderas enligt denna förordning.
@@ -112,17 +112,21 @@ I denna överenskommelse är parterna överens om att <b>Tolkning i Kristianstad
 </ul>
 <p class="lead" style="font-weight: bold;">§ 2 KONTAKTTOLKNING</p>
 
-  <ul style="text-align: left;" class="lead" >
+  <ul style="text-align: left;" class="lead">
 <li>Kontakttolkning arvoderas alltid för minst en timme om ingen annan överenskommelse finns mellan Vision-tolk och Tolkning i Kristianstad AB.</li>
 <li>Tolkning i Kristianstad AB skall försöka verka för att upphandlande myndighetdefinierar förfrågningsunderlaget och skall-kraven utifrån denna princip.</li>
 <li>Tolk har rätt till full ersättning för varje utdebiterat/slutfört uppdrag samt uppdrag som omfattas av beskrivning i §4. I de fall felbokning/dubbelbokning sker utan hans/hennes påverkan skall tolken hållas skadelös och erhålla ersättning för uppdraget samt uppkomna kostnader. Detta förutsatt att Tolkning i Kristianstad AB och tolk är överens gällande den aktuellabokningen.</li>
 <li>Platstolkning skall i möjligaste mån följa närhetsprincipen ochmiljöcertifieringstänkandet varvid högst meriterande tolk med bostadsadress närmast tolkstället skallprioriteras.</li>
-    <ul>
-      <p class="lead">
-§ 3 AVBESTÄLLNINGSTID
-• Alla uppdrag som återkallas senare än 18 timmar före uppdraget skall arvoderas som utfört tolkuppdrag för den tiden uppdraget gällde inklusive eventuellt uppkomna kostnader så som påbörjad resa och dyl
-.Erbjuds tolken ersättningsuppdrag skall detta uppdrag motsvara det avbeställda uppdraget i tid, plats och kompetensnivå .Skulle ersättningsuppdraget inte motsvara det avbeställda uppdragets villkor i tid, plats kompetens skall mellanskillnad utgå. Denna punkt ärdispositiv.
-• Ett uppdrag anses vara avbokat vid den tidpunkten då tolkförmedlaren meddelat tolken detta antingen via E-post, sms eller telefon.
+    </ul>
+        <p class="lead" style="font-weight: bold;">§ 3 AVBESTÄLLNINGSTID</p>
+        <ul style="text-align: left;" class="lead" >
+        <li>Alla uppdrag som återkallas senare än 18 timmar före uppdraget skall arvoderas som utfört tolkuppdrag för den tiden uppdraget gällde inklusive eventuellt uppkomna kostnader så som påbörjad resa och dyl
+</li>
+        <li>Erbjuds tolken ersättningsuppdrag skall detta uppdrag motsvara det avbeställda uppdraget i tid, plats och kompetensnivå .Skulle ersättningsuppdraget inte motsvara det avbeställda uppdragets villkor i tid, plats kompetens skall mellanskillnad utgå. Denna punkt ärdispositiv.
+</li>
+        <li>Ett uppdrag anses vara avbokat vid den tidpunkten då tolkförmedlaren meddelat tolken detta antingen via E-post, sms eller telefon.</li>
+        <li>Avvikelser/allmänna kvalitetsbedömningar</li>
+        </ul>
 Samarbetsavtal
 §4 TOLKARS TILLGÄNGLIGHET&&ANBPKNING
 • Avbokar tolken uppdraget (utan giltig orsak) senare än 18 timmar så debiteras tolken en avgift på 100 kr. Är avbokningen av sådan karaktär att Tolkning i Kristianstad AB inte har möjlighet att tillsätta uppdraget och företagets kund kräver vite är tolk skyldig att godkänna detta om tolken inte har giltiga skäl så som dokumenterad sjukdom eller dylikt. Denna punkt förutsätter att det finns en dialog mellan tolken och Tolkning i Kristianstad AB och att man löser detta i dialog ochsamförstånd.
@@ -145,7 +149,7 @@ Vision har rätt att ta del av förmedlingens tillsättningsstatistik avseende k
 § 9 TVISTER
 Skulle det förekomma tvist mellan tolkförmedling och ansluten medlem skall facklig tolkrepresentant samt representant från tolkorganisation informeras och beredas möjlighet att bisitta/representera medlemmen.
 § 10 ÖVRIGT
-Detta avtal är ett komplement till arvodesavtalet. </p><p class="lead" style="text-align: center;">
+Detta avtal är ett komplement till arvodesavtalet. <p class="lead" style="text-align: center;">
 Med vänliga hälsning <br>
 Tolkning i Kristianstad Verkställande Direktör Bayaneh Rahmani
                       </p></div>

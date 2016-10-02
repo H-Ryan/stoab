@@ -1,6 +1,6 @@
 <?php
-include_once "./src/db/dbConnection.php";
-include_once "./src/db/dbConfig.php";
+include_once './src/db/dbConnection.php';
+include_once './src/db/dbConfig.php';
 
 try {
     $db = new dbConnection(HOST, DATABASE, USER, PASS);
@@ -10,7 +10,7 @@ try {
 }
 $languages = [];
 try {
-    $statement = $con->query("SELECT * FROM t_languages ORDER BY l_languageName");
+    $statement = $con->query('SELECT * FROM t_languages ORDER BY l_languageName');
     $statement->setFetchMode(PDO::FETCH_OBJ);
     while ($row = $statement->fetch()) {
         $languages[$row->l_languageID] = $row->l_languageName;
@@ -22,8 +22,9 @@ try {
 ?>
 <div class="col-md-6 col-sm-12 mt-xs">
     <h4 class="heading-quaternary mb-none pull-right" style="font-size:16px"><strong>
-            <a href="tel:+46-10-166-1010"><img class="m-xs" src="img/icons/24-hour-support.png" alt="Ringa"/></a>Kontakta
-            oss på : 010-166 10 10
+            <a href="tel:+46-10-542-4210"><img class="m-xs" src="img/icons/24-hour-support.png" alt="Ringa"/></a>
+            <a href="tel:+46-10-542-4210"></a>Kontakta
+            oss på : (010) 542 42 10
         </strong></h4>
 </div>
 <div class="col-md-6 col-sm-12">
@@ -112,7 +113,7 @@ try {
                                                 <option value=''>Språk</option>
                                                 <?php
                                                 foreach ($languages as $key => $value) {
-                                                    echo "<option value='" . $key . "'>" . $value . "</option>";
+                                                    echo "<option value='".$key."'>".$value.'</option>';
                                                 }
                                                 ?>
                                             </select>
@@ -179,14 +180,15 @@ try {
                                                         data-rule-digits="true"
                                                         data-msg-required="Fält starttid krävs.">
                                                     <?php
-                                                    for ($i = 0; $i < 3; $i++) {
-                                                        for ($j = 0; $j < 10; $j++) {
-                                                            if ($i == 2 && $j == 4)
+                                                    for ($i = 0; $i < 3; ++$i) {
+                                                        for ($j = 0; $j < 10; ++$j) {
+                                                            if ($i == 2 && $j == 4) {
                                                                 break;
-                                                            elseif ($i == 1 && $j == 2)
-                                                                echo "<option selected='selected' value='" . intval($i . $j) . "'>$i$j</option>";
-                                                            else
-                                                                echo "<option value='" . intval($i . $j) . "'>$i$j</option>";
+                                                            } elseif ($i == 1 && $j == 2) {
+                                                                echo "<option selected='selected' value='".intval($i.$j)."'>$i$j</option>";
+                                                            } else {
+                                                                echo "<option value='".intval($i.$j)."'>$i$j</option>";
+                                                            }
                                                         }
                                                     }
                                                     ?>
@@ -213,14 +215,15 @@ try {
                                                         data-rule-required="true"
                                                         data-rule-digits="true" data-msg-required="Fält sluttid krävs.">
                                                     <?php
-                                                    for ($i = 0; $i < 3; $i++) {
-                                                        for ($j = 0; $j < 10; $j++) {
-                                                            if ($i == 2 && $j == 4)
+                                                    for ($i = 0; $i < 3; ++$i) {
+                                                        for ($j = 0; $j < 10; ++$j) {
+                                                            if ($i == 2 && $j == 4) {
                                                                 break;
-                                                            elseif ($i == 1 && $j == 3)
-                                                                echo "<option selected='selected' value='" . intval($i . $j) . "'>$i$j</option>";
-                                                            else
-                                                                echo "<option value='" . intval($i . $j) . "'>$i$j</option>";
+                                                            } elseif ($i == 1 && $j == 3) {
+                                                                echo "<option selected='selected' value='".intval($i.$j)."'>$i$j</option>";
+                                                            } else {
+                                                                echo "<option value='".intval($i.$j)."'>$i$j</option>";
+                                                            }
                                                         }
                                                     }
                                                     ?>
@@ -359,10 +362,10 @@ try {
                                                     <option value=''>Ort</option>
                                                     <?php
                                                     try {
-                                                        $statement = $con->query("SELECT * FROM t_city ORDER BY c_cityName");
+                                                        $statement = $con->query('SELECT * FROM t_city ORDER BY c_cityName');
                                                         $statement->setFetchMode(PDO::FETCH_OBJ);
                                                         while ($row = $statement->fetch()) {
-                                                            echo "<option value='" . $row->c_cityName . "'>" . $row->c_cityName . "</option>";
+                                                            echo "<option value='".$row->c_cityName."'>".$row->c_cityName.'</option>';
                                                         }
                                                     } catch (PDOException $e) {
                                                         return $e->getMessage();
@@ -537,7 +540,7 @@ try {
                                     <option value=''>Språk</option>
                                     <?php
                                     foreach ($languages as $key => $value) {
-                                        echo "<option value='" . $value . "'>" . $value . "</option>";
+                                        echo "<option value='".$value."'>".$value.'</option>';
                                     }
                                     ?>
                                 </select>
@@ -551,7 +554,7 @@ try {
                                     <option value=''>Språk</option>
                                     <?php
                                     foreach ($languages as $key => $value) {
-                                        echo "<option value='" . $value . "'>" . $value . "</option>";
+                                        echo "<option value='".$value."'>".$value.'</option>';
                                     }
                                     ?>
                                 </select>

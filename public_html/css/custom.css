@@ -33,6 +33,7 @@ input[readonly] {
 /* header logo on mobile */
 @media (max-width: 479px) {
     #header .header-logo img {
+        width: 50px !important;
         max-width: 180px;
         max-height: 54px;
     }
