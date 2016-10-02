@@ -1,14 +1,14 @@
 <?php
-ini_set("session.use_only_cookies", TRUE);
-ini_set("session.use_trans_sid", FALSE);
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 error_reporting(E_ALL); ini_set('display_errors', 1);
 session_start();
 
-$qInfo = "SELECT * FROM t_users WHERE (u_role=1 OR u_role=3) AND u_personalNumber=:personal_number";
-$qHistoryNum = "SELECT COUNT(*) AS id FROM t_order
-WHERE o_tolkarPersonalNumber =:personal_number AND o_state=:state ORDER BY o_date";
-$qHistoryOrders = "SELECT o_orderNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state
-FROM t_order WHERE o_tolkarPersonalNumber =:personal_number AND o_state=:state ORDER BY o_date DESC LIMIT 10";
+$qInfo = 'SELECT * FROM t_users WHERE (u_role=1 OR u_role=3) AND u_personalNumber=:personal_number';
+$qHistoryNum = 'SELECT COUNT(*) AS id FROM t_order
+WHERE o_tolkarPersonalNumber =:personal_number AND o_state=:state ORDER BY o_date';
+$qHistoryOrders = 'SELECT o_orderNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state
+FROM t_order WHERE o_tolkarPersonalNumber =:personal_number AND o_state=:state ORDER BY o_date DESC LIMIT 10';
 $qCurrOrderNum = "SELECT COUNT(*) AS id FROM t_order
 WHERE o_tolkarPersonalNumber =:personal_number AND o_state<>:state
 AND (o_date >= CURRENT_DATE OR ((DATE_ADD(o_date, INTERVAL +1 DAY)) = CURRENT_DATE
@@ -33,7 +33,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 $_SESSION['LAST_ACTIVITY'] = time();
 if (!isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();
-} else if (time() - $_SESSION['CREATED'] > 1800) {
+} elseif (time() - $_SESSION['CREATED'] > 1800) {
     session_regenerate_id(true);
     $_SESSION['CREATED'] = time();
 }
@@ -41,9 +41,9 @@ if (empty($_SESSION['personal_number']) && empty($_SESSION['tolk_number'])) {
     header('Location: login.php');
 } else {
     try {
-        include "src/db/dbConfig.php";
-        include_once "src/db/dbConnection.php";
-        include_once "src/misc/functions.php";
+        include 'src/db/dbConfig.php';
+        include_once 'src/db/dbConnection.php';
+        include_once 'src/misc/functions.php';
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
     } catch (PDOException $e) {
@@ -54,28 +54,28 @@ if (empty($_SESSION['personal_number']) && empty($_SESSION['tolk_number'])) {
         $personal_number = $_SESSION['personal_number'];
         $tolk_number = $_SESSION['tolk_number'];
         $statement = $con->prepare($qInfo);
-        $statement->bindParam(":personal_number", $personal_number);
+        $statement->bindParam(':personal_number', $personal_number);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $tolkInfo = $statement->fetch();
         $statement = $con->prepare($qCurrOrderNum);
-        $statement->bindParam(":personal_number", $personal_number);
-        $statement->bindParam(":state", $state);
+        $statement->bindParam(':personal_number', $personal_number);
+        $statement->bindParam(':state', $state);
         $statement->execute();
         $cNum = $statement->fetchColumn();
         $statement = $con->prepare($qHistoryNum);
-        $statement->bindParam(":personal_number", $personal_number);
-        $statement->bindParam(":state", $state);
+        $statement->bindParam(':personal_number', $personal_number);
+        $statement->bindParam(':state', $state);
         $statement->execute();
         $hNum = $statement->fetchColumn();
         $statement = $con->prepare($qReportNum);
-        $statement->bindParam(":personal_number", $personal_number);
-        $statement->bindParam(":state", $state);
+        $statement->bindParam(':personal_number', $personal_number);
+        $statement->bindParam(':state', $state);
         $statement->execute();
         $rNum = $statement->fetchColumn();
         $statement = $con->prepare($qHistoryOrders);
-        $statement->bindParam(":personal_number", $personal_number);
-        $statement->bindParam(":state", $state);
+        $statement->bindParam(':personal_number', $personal_number);
+        $statement->bindParam(':state', $state);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $orderHistory = array();
@@ -83,12 +83,12 @@ if (empty($_SESSION['personal_number']) && empty($_SESSION['tolk_number'])) {
             $i = 0;
             while ($order = $statement->fetch()) {
                 $orderHistory[$i] = $order;
-                $i++;
+                ++$i;
             }
         }
         $statement = $con->prepare($qCurrentOrders);
-        $statement->bindParam(":personal_number", $personal_number);
-        $statement->bindParam(":state", $state);
+        $statement->bindParam(':personal_number', $personal_number);
+        $statement->bindParam(':state', $state);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $orders = array();
@@ -96,12 +96,12 @@ if (empty($_SESSION['personal_number']) && empty($_SESSION['tolk_number'])) {
             $i = 0;
             while ($order = $statement->fetch()) {
                 $orders[$i] = $order;
-                $i++;
+                ++$i;
             }
         }
         $statement = $con->prepare($qReportingOrders);
-        $statement->bindParam(":personal_number", $personal_number);
-        $statement->bindParam(":state", $state);
+        $statement->bindParam(':personal_number', $personal_number);
+        $statement->bindParam(':state', $state);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $orderToReport = array();
@@ -109,7 +109,7 @@ if (empty($_SESSION['personal_number']) && empty($_SESSION['tolk_number'])) {
             $i = 0;
             while ($order = $statement->fetch()) {
                 $orderToReport[$i] = $order;
-                $i++;
+                ++$i;
             }
         }
     } catch (PDOException $e) {
@@ -168,42 +168,42 @@ if (empty($_SESSION['personal_number']) && empty($_SESSION['tolk_number'])) {
         <section>
             <div class="container">
                 <div class="row custom">
-                    <div class="ui top blue inverted attached tabular menu" style="background: #005494">
-                        <?php include('partials/dashboard-tolk/menu.php'); ?>
+                    <div class="ui top inverted attached tabular menu" style="background: #e9e9e9; padding: 0 0 2px 2px; color: #424242 !important">
+                        <?php include 'partials/dashboard-tolk/menu.php'; ?>
                     </div>
                 </div>
                 <div class="row custom">
                     <div class="ui bottom attached active tab" data-tab="first">
                         <div class="ui segment">
-                            <?php include('partials/dashboard-tolk/my-profile.php'); ?>
+                            <?php include 'partials/dashboard-tolk/my-profile.php'; ?>
                         </div>
                     </div>
                     <div class="ui bottom attached tab" data-tab="second">
                         <div class="ui segment">
-                            <?php include('partials/dashboard-tolk/current-orders.php'); ?>
+                            <?php include 'partials/dashboard-tolk/current-orders.php'; ?>
                         </div>
                     </div>
                     <div class="ui bottom attached tab" data-tab="third">
                         <div class="ui segment">
-                            <?php include('partials/dashboard-tolk/order-reporting.php'); ?>
+                            <?php include 'partials/dashboard-tolk/order-reporting.php'; ?>
                         </div>
                     </div>
                     <div class="ui bottom attached tab" data-tab="fourth">
                         <div class="ui segment">
-                            <?php include('partials/dashboard-tolk/order-history.php'); ?>
+                            <?php include 'partials/dashboard-tolk/order-history.php'; ?>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Report Modal -->
-        <?php include('partials/dashboard-tolk/reportInfo.php'); ?>
+        <?php include 'partials/dashboard-tolk/reportInfo.php'; ?>
         <!-- Report Modal -->
-        <?php include('partials/dashboard-tolk/report.php'); ?>
+        <?php include 'partials/dashboard-tolk/report.php'; ?>
         <!-- Order Information Modal -->
-        <?php include('partials/dashboard-tolk/order-information.php'); ?>
+        <?php include 'partials/dashboard-tolk/order-information.php'; ?>
     </div>
-    <?php include("partials/shared/footer-kund.html"); ?>
+    <?php include 'partials/shared/footer-kund.html'; ?>
     </body>
     </html>
 <?php $db->disconnect(); ?>

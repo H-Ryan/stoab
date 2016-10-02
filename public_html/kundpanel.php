@@ -1,6 +1,6 @@
 <?php
-ini_set("session.use_only_cookies", TRUE);
-ini_set("session.use_trans_sid", FALSE);
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 session_start();
 
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
@@ -10,7 +10,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 $_SESSION['LAST_ACTIVITY'] = time();
 if (!isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();
-} else if (time() - $_SESSION['CREATED'] > 1800) {
+} elseif (time() - $_SESSION['CREATED'] > 1800) {
     session_regenerate_id(true);
     $_SESSION['CREATED'] = time();
 }
@@ -18,9 +18,9 @@ if (empty($_SESSION['organization_number']) && empty($_SESSION['user_number'])) 
     header('Location: login.php');
 } else {
     try {
-        include "./src/db/dbConfig.php";
-        include_once "./src/db/dbConnection.php";
-        include_once "./src/misc/functions.php";
+        include './src/db/dbConfig.php';
+        include_once './src/db/dbConnection.php';
+        include_once './src/misc/functions.php';
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
     } catch (PDOException $e) {
@@ -29,20 +29,20 @@ if (empty($_SESSION['organization_number']) && empty($_SESSION['user_number'])) 
     try {
         $organizationNumber = $_SESSION['organization_number'];
         $clientNumber = $_SESSION['user_number'];
-        $statement = $con->prepare("SELECT * FROM t_kunder WHERE k_role=4 AND k_personalNumber=:organizationNumber AND k_kundNumber=:clientNumber");
-        $statement->bindParam(":organizationNumber", $organizationNumber);
-        $statement->bindParam(":clientNumber", $clientNumber);
+        $statement = $con->prepare('SELECT * FROM t_kunder WHERE k_role=4 AND k_personalNumber=:organizationNumber AND k_kundNumber=:clientNumber');
+        $statement->bindParam(':organizationNumber', $organizationNumber);
+        $statement->bindParam(':clientNumber', $clientNumber);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $customerInfo = $statement->fetch();
-        $statement = $con->prepare("SELECT COUNT(*) AS id FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber");
-        $statement->bindParam(":organizationNumber", $organizationNumber);
-        $statement->bindParam(":clientNumber", $clientNumber);
+        $statement = $con->prepare('SELECT COUNT(*) AS id FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber');
+        $statement->bindParam(':organizationNumber', $organizationNumber);
+        $statement->bindParam(':clientNumber', $clientNumber);
         $statement->execute();
         $num = $statement->fetchColumn();
-        $statement = $con->prepare("SELECT o_orderNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber ORDER BY o_date DESC LIMIT 10");
-        $statement->bindParam(":organizationNumber", $organizationNumber);
-        $statement->bindParam(":clientNumber", $clientNumber);
+        $statement = $con->prepare('SELECT o_orderNumber, o_orderer, o_language, o_interpretationType, o_date, o_startTime, o_endTime, o_state FROM t_order WHERE o_kunderPersonalNumber =:organizationNumber AND o_kundNumber=:clientNumber ORDER BY o_date DESC LIMIT 10');
+        $statement->bindParam(':organizationNumber', $organizationNumber);
+        $statement->bindParam(':clientNumber', $clientNumber);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $orders = array();
@@ -50,19 +50,19 @@ if (empty($_SESSION['organization_number']) && empty($_SESSION['user_number'])) 
             $i = 0;
             while ($order = $statement->fetch()) {
                 $orders[$i] = $order;
-                $i++;
+                ++$i;
             }
         }
-        $statement = $con->query( "SELECT * FROM t_languages ORDER BY l_languageName" );
-        $statement->setFetchMode( PDO::FETCH_OBJ );
+        $statement = $con->query('SELECT * FROM t_languages ORDER BY l_languageName');
+        $statement->setFetchMode(PDO::FETCH_OBJ);
         $languages = array();
-        while ( $row = $statement->fetch() ) {
+        while ($row = $statement->fetch()) {
             $languages[ $row->l_languageID ] = $row->l_languageName;
         }
-        $statement = $con->query( "SELECT * FROM t_city ORDER BY c_cityName" );
-        $statement->setFetchMode( PDO::FETCH_OBJ );
+        $statement = $con->query('SELECT * FROM t_city ORDER BY c_cityName');
+        $statement->setFetchMode(PDO::FETCH_OBJ);
         $cities = array();
-        while ( $row = $statement->fetch() ) {
+        while ($row = $statement->fetch()) {
             $cities[] = $row->c_cityName;
         }
     } catch (PDOException $e) {
@@ -121,24 +121,24 @@ if (empty($_SESSION['organization_number']) && empty($_SESSION['user_number'])) 
         <section>
             <div class="container">
                 <div class="row custom">
-                    <div class="ui top inverted attached tabular menu" style="background: #005494">
-                        <?php include('./partials/dashboard-client/menu.php'); ?>
+                    <div class="ui top inverted attached tabular menu" style="background: #e9e9e9; padding: 0 0 2px 2px; color: #424242 !important">
+                        <?php include './partials/dashboard-client/menu.php'; ?>
                     </div>
                 </div>
                 <div class="row custom">
                     <div class="ui bottom attached active tab" data-tab="first">
                         <div class="ui segment">
-                            <?php include('./partials/dashboard-client/my-profile.php'); ?>
+                            <?php include './partials/dashboard-client/my-profile.php'; ?>
                         </div>
                     </div>
                     <div class="ui bottom attached tab" data-tab="second">
                         <div class="ui segment">
-                            <?php include('./partials/dashboard-client/order-history.php'); ?>
+                            <?php include './partials/dashboard-client/order-history.php'; ?>
                         </div>
                     </div>
                     <div class="ui bottom attached tab" data-tab="third">
                         <div class="ui segment">
-                            <?php include('./partials/dashboard-client/make-an-order.php'); ?>
+                            <?php include './partials/dashboard-client/make-an-order.php'; ?>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ if (empty($_SESSION['organization_number']) && empty($_SESSION['user_number'])) 
         </section>
 
     </div>
-    <?php include("./partials/shared/footer-kund.html"); ?>
+    <?php include './partials/shared/footer-kund.html'; ?>
     </body>
     </html>
 <?php $db->disconnect(); ?>
