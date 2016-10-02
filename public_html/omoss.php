@@ -60,7 +60,7 @@
     <!--========================================================
                         HEADER
     =========================================================-->
-    <?php include("./partials/shared/header.php"); ?>
+    <?php include './partials/shared/header.php'; ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
@@ -72,7 +72,7 @@
                         <h2 class="heading-quaternary m-sm">Om oss </h2>
                     </div>
                     <div class="col-md-10">
-                        <?php include("subHeader.php"); ?>
+                        <?php include 'subHeader.php'; ?>
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@
                         <section class="toggle active">
                             <label>Kort om STÖ AB</label>
                             <div class="toggle-content pr-lg pl-lg">
-                                <p>Vi på STÖ levererar kompletta kommunikationslösningar inom tolkning, översättning,
+                                <p>Vi levererar kompletta kommunikationslösningar inom tolkning, översättning,
                                     språkstöd, utbildningar samt förmedling av kontaktpersoner. Våra uppdrag utförs till
                                     högsta kvalitet men till konkurrenskraftiga priser. Detta åstadkommer vi genom en
                                     personlig kontakt med våra kunder, noggrann rekrytering och genom ett effektivt
@@ -95,7 +95,7 @@
                         <section class="toggle">
                             <label>Kvalitet</label>
                             <div class="toggle-content pr-lg pl-lg">
-                                <p>STÖ AB´s kvalitetspolicy är utvecklad i enlighet med vår affärsidé, vision och våra
+                                <p>Vår kvalitetspolicy är utvecklad i enlighet med vår affärsidé, vision och våra
                                     värderingar. Vi vill med denna policy beskriva hur vi ska agera för att visa respekt
                                     gentemot våra samverkansorgan samt strategiskt höja kvaliteten. Alla medarbetare som
                                     är anslutna till företaget har tagit del av denna dokumentation och är överens samt
@@ -237,7 +237,7 @@
                                 <p class="pl-md">Vår vision är att skapa ett ett samhälle där alla kan kommunicera med
                                     varandra.</p>
                                 <h6 class="lead heading-primary mb-none ">Affärsidé</h6>
-                                <p class="pl-md">STÖ är ett företag vars affärsidé är att skapa kommunikation mellan
+                                <p class="pl-md">Tolkning i Kristianstad AB är ett företag vars affärsidé är att skapa kommunikation mellan
                                     människor och kulturer. Genom innovativa kommunikationslösningar anpassar vi våra
                                     tjänster till modern tid. Våra tjänster lämpar sig främst till skolor, boende,
                                     myndigheter och kommuner och tjänsterna kännetecknas av hög kvalitet, stort
@@ -276,7 +276,7 @@
                                             <p>Alla våra medarbetare har ett stort engagemang att vilja hjälpa våra
                                                 kunder att få det som de vill ha. Vårt kvalitetsarbete och den genuina
                                                 hjälpsamhet som våra medarbetare har går hand i hand med varandra. På
-                                                STÖ har vi en atmosfär där alla våra medarbetare alltid strävar efter
+                                                Företaget har vi en atmosfär där alla våra medarbetare alltid strävar efter
                                                 att ge sitt yttersta och det finns en ambition och ödmjukhet som vi
                                                 gärna förmedlar till vår omgivning</p>
                                         </div>
@@ -285,7 +285,7 @@
                                         <div>
                                             <h4>Personligt bemötande</h4>
                                             <p>Vi vill vara en verksamhet där våra kunder känner att de får personlig
-                                                kontakt. Var och en av oss som arbetar på STÖ vill vara där för dig som
+                                                kontakt. Var och en av oss som arbetar på Tolkning i Kristianstad AB vill vara där för dig som
                                                 kund, vilket innebär att vi föredrar den verbala kontakten med våra
                                                 kunder. Relationen mellan oss och våra kunder baseras på tillit och
                                                 engagemang, och vi strävar efter att vara 100% kontaktbar oavsett på
@@ -312,12 +312,12 @@
                 <div class="team-list sort-destination" data-sort-id="team">
                     <div class="col-md-3 col-sm-6 col-xs-12 isotope-item leadership">
                         <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
-										<span class="thumb-info-wrapper">										
+										<span class="thumb-info-wrapper">
 												<img src="img/team/nemat.jpg" class="img-responsive" alt="">
 												<span class="thumb-info-title">
 													<span class="thumb-info-inner">Nemat Sarvari</span>
 													<span class="thumb-info-type">Verkställande Direktör</span>
-												</span>										
+												</span>
 										</span>
                             <div class="thumb-info-caption">
                                 <ul class="list list-icons list-icons-style-3 ml-xs">
@@ -332,12 +332,12 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 isotope-item leadership">
                         <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
-										<span class="thumb-info-wrapper">										
+										<span class="thumb-info-wrapper">
 												<img src="img/team/rami.jpg" class="img-responsive" alt="">
 												<span class="thumb-info-title">
 													<span class="thumb-info-inner">Rami Farajallah</span>
 													<span class="thumb-info-type">Vice VD/Huvudkoordinator</span>
-												</span>										
+												</span>
 										</span>
                             <div class="thumb-info-caption">
                                 <ul class="list list-icons list-icons-style-3 ml-xs">
@@ -352,12 +352,12 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 isotope-item leadership">
                         <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
-										<span class="thumb-info-wrapper">										
+										<span class="thumb-info-wrapper">
 												<img src="img/team/ryan.jpg" class="img-responsive" alt="">
 												<span class="thumb-info-title">
 													<span class="thumb-info-inner">Hamed Talebi</span>
 													<span class="thumb-info-type">IT ansvarig</span>
-												</span>										
+												</span>
 										</span>
                             <div class="thumb-info-caption">
                                 <ul class="list list-icons list-icons-style-3 ml-xs">
@@ -372,12 +372,12 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 isotope-item leadership">
                         <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
-										<span class="thumb-info-wrapper">										
+										<span class="thumb-info-wrapper">
 												<img src="img/team/anci.jpg" class="img-responsive" alt="">
 												<span class="thumb-info-title">
 													<span class="thumb-info-inner">Anci Larsdotter-Persson</span>
 													<span class="thumb-info-type">Marknadskoordinator</span>
-												</span>										
+												</span>
 										</span>
                             <div class="thumb-info-caption">
                                 <ul class="list list-icons list-icons-style-3 ml-xs">
@@ -392,13 +392,13 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 isotope-item leadership">
                         <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
-										<span class="thumb-info-wrapper">										
+										<span class="thumb-info-wrapper">
 												<img src="img/team/yasmine.jpg" class="img-responsive" alt="">
 												<span class="thumb-info-title">
 													<span class="thumb-info-inner">Yasmine Farajallah</span>
 													<span
                                                         class="thumb-info-type"> Ansvarig tillsättning/koordinator</span>
-												</span>										
+												</span>
 										</span>
                             <div class="thumb-info-caption">
                                 <ul class="list list-icons list-icons-style-3 ml-xs">
@@ -414,12 +414,12 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 isotope-item leadership">
                         <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
-										<span class="thumb-info-wrapper">										
+										<span class="thumb-info-wrapper">
 												<img src="img/team/bayaneh.jpg" class="img-responsive" alt="">
 												<span class="thumb-info-title">
 													<span class="thumb-info-inner">Bayaneh Rahmani</span>
 													<span class="thumb-info-type">Ekonomi Chef</span>
-												</span>										
+												</span>
 										</span>
                             <div class="thumb-info-caption">
                                 <ul class="list list-icons list-icons-style-3 ml-xs">
@@ -434,12 +434,12 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 isotope-item leadership">
                         <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
-										<span class="thumb-info-wrapper">										
+										<span class="thumb-info-wrapper">
 												<img src="img/team/ahmad.jpg" class="img-responsive" alt="">
 												<span class="thumb-info-title">
 													<span class="thumb-info-inner">Ahmad Ibrahim</span>
 													<span class="thumb-info-type">Ekonomiassistent</span>
-												</span>										
+												</span>
 										</span>
                             <div class="thumb-info-caption">
                                 <ul class="list list-icons list-icons-style-3 ml-xs">
@@ -451,12 +451,12 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 isotope-item leadership">
                         <div class="thumb-info thumb-info-hide-wrapper-bg mb-xlg">
-										<span class="thumb-info-wrapper">										
+										<span class="thumb-info-wrapper">
 												<img src="img/team/woman.jpg" class="img-responsive" alt="">
 												<span class="thumb-info-title">
 													<span class="thumb-info-inner">Victoria Magnusson</span>
 													<span class="thumb-info-type">Marknadskoordinator</span>
-												</span>										
+												</span>
 										</span>
                             <div class="thumb-info-caption">
                                 <ul class="list list-icons list-icons-style-3 ml-xs">
@@ -476,7 +476,7 @@
     <!--========================================================
                               FOOTER
     =========================================================-->
-    <?php include("./partials/shared/footer.html"); ?>
+    <?php include './partials/shared/footer.html'; ?>
 
 </div>
 

@@ -21,11 +21,11 @@ session_start();
                         <nav class="header-nav-top">
                             <ul class="nav nav-pills">
                                 <li class="hidden-xs">
-                                    <span class="ws-nowrap"><i class="fa fa-phone"></i> (010)166 10 10</span>
+                                    <span class="ws-nowrap"><i class="fa fa-phone"></i> <a href="tel:+46-10-542-4210">(010) 542 42 10</a></span>
                                 </li>
                                 <li class="hidden-xs">
                                         <span class="ws-nowrap"><i class="fa fa-envelope"></i> <a
-                                                href="mailto: info@tolktjanst.se">info@tolktjanst.se</a></span>
+                                                href="mailto: info@c4tolk.se">info@c4tolk.se</a></span>
                                 </li>
                             </ul>
                         </nav>

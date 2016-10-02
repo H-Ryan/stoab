@@ -61,7 +61,7 @@
     <!--========================================================
                         HEADER
     =========================================================-->
-    <?php include("./partials/shared/header.php"); ?>
+    <?php include './partials/shared/header.php'; ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
@@ -73,7 +73,7 @@
                         <h2 class="heading-quaternary m-md">Arbeta med oss </h2>
                     </div>
                     <div class="col-md-9">
-                        <?php include("subHeader.php"); ?>
+                        <?php include 'subHeader.php'; ?>
                     </div>
                 </div>
             </div>
@@ -141,16 +141,14 @@
                                 <div>
                                     <div class="center">
                                         <h3>Arbeta Som Tolk</h3>
-                                        <p>Vi på STÖ AB behandlar våra tolkar med respekt och vi har program för
-                                            utbildning och utveckling för att säkerställa att de uppfyller sin högsta
-                                            möjliga potential. Vi välkomnar alla sökande som är intresserade av en ny
-                                            karriär som tolk.<br/><br/>Vi söker kontinuerligt auktoriserade och
-                                            utbildade tolkar för kontakt- och distanstolkning. Vi anlitar tolkar vid
-                                            behov på timbasis, arvodet varierar beroende på typ av uppdrag.<br/><br/>Om
-                                            du är intresserad av att arbeta som tolk hos oss behöver vi ett utdrag ur
-                                            polisens belastningsregister.<br/><br/>När vi fått in din ansökan, samt
-                                            utdrag från polisregistret kontaktar vi dig.<br/><br/>OBS!<br/>Vi vill inte
-                                            att du bifogar CV eller övriga dokument.</p>
+                                        <p>Vi behandlar våra tolkar med respekt och vi har program för utbildning och utveckling för att säkerställa att de uppfyller sin högsta möjliga potential.
+                                          Vi välkomnar alla sökande som är intresserade av en ny karriär som tolk.<br/><br/>
+                                          Vi söker kontinuerligt auktoriserade och utbildade tolkar för kontakt- och distanstolkning.
+                                          Vi anlitar tolkar vid behov på timbasis, arvodet varierar beroende på typ av uppdrag.<br/><br/>
+                                          Om du är intresserad av att arbeta som tolk hos oss behöver vi ett utdrag ur polisens belastningsregister.<br/><br/>
+                                          När vi fått in din ansökan, samt utdrag från polisregistret kontaktar vi dig.<br/><br/>
+                                          OBS!<br/>
+                                          Vi vill inte att du bifogar CV eller övriga dokument.</p>
                                         <button class="btn btn-borders btn-primary mr-xs mb-sm" data-toggle="modal"
                                                 data-target="#interpreterModalForm">
                                             Intresseanmälan
@@ -158,12 +156,11 @@
 
                                     </div>
                                     <hr/>
-                                    <?php include('./partials/work_with_us/interpreter.modal.form.php'); ?>
+                                    <?php include './partials/work_with_us/interpreter.modal.form.php'; ?>
                                     <ol class="list list-ordened list-ordened-style-3">
                                         <li>
                                             <h4>Polisens belastningsregister</h4>
-                                            <p>Vänligen klicka på länken nedan, då kommer blanketten för utdrag av
-                                                belastningsregistret upp.</p>
+                                            <p>Vänligen klicka på länken nedan, då kommer blanketten för utdrag av belastningsregistret upp.</p>
                                             <a href="https://polisen.se/Global/www%20och%20Intrapolis/Blanketter/Registerutdrag/Enkla%20blanketter%20i%20Acrobat%204.0/RPS_442_3_1401_Utdrag_ur_BR_for_enskild_paragraf_9_1st_Skriv_ut_och_fyll_i.pdf"
                                                class="btn btn-borders btn-primary mr-xs mb-sm" target="_blank">Klick
                                                 här</a>
@@ -172,10 +169,9 @@
                                         </li>
                                         <li>
                                             <h4>Skicka in belastningsregistret, eventuella tolkutbildningsbevis samt
-                                                porträttbil.</h4>
+                                                porträttbild.</h4>
                                             <p>Skicka in belastningsregister, bevis på era eventuella tolkutbildningar
-                                                och en bild (Passfoto) 4*6cm till er tolkbricka. Till adress nedan. STÖ
-                                                AB, Nya boulevarden 10, 291 32 Kristianstad.</p>
+                                                och en bild (Passfoto) 4*6cm till er tolkbricka. Till adress nedan BOX 21,291 21 Kristianstad</p>
                                         </li>
                                         <li>
                                             <h4>Kontroll av polisregister/Avtal</h4>
@@ -201,13 +197,13 @@
                                 </div>
                                 <hr>
                                 <!-- formModal1 -->
-                                <?php include('./partials/work_with_us/translator.modal.form.php'); ?>
+                                <?php include './partials/work_with_us/translator.modal.form.php'; ?>
                             </div>
                             <div class="tab-pane" id="workWithLangAnalysis">
                                 <div class="center">
                                     <h3>Arbeta med språkanalys</h3>
                                     <p>Är du intresserad av att arbeta med språkanalys?<br>Kontakta oss på <a
-                                            href="mailto:sprakanalys@tolktjanst.se">sprakanalys@tolktjanst.se</a><br>Bifoga
+                                            href="mailto: info@c4tolk.se">info@c4tolk.se</a><br>Bifoga
                                         gärna intyg, betyg eller examensbevis.</p>
                                 </div>
                             </div>
@@ -215,7 +211,7 @@
                                 <div class="center">
                                     <h3>Arbeta som kursledare</h3>
                                     <p>Är du intresserad av att arbeta som kursledare?<br>Kontakta oss på <a
-                                            href="mailto:kurser@tolktjanst.se">kurser@tolktjanst.se</a><br>Bifoga gärna
+                                            href="mailto:info@c4tolk.se">info@c4tolk.se</a><br>Bifoga gärna
                                         intyg, betyg eller examensbevis.</p>
                                 </div>
                             </div>
@@ -230,7 +226,7 @@
     <!--========================================================
                               FOOTER
     =========================================================-->
-    <?php include("./partials/shared/footer.html"); ?>
+    <?php include './partials/shared/footer.html'; ?>
 
 </div>
 

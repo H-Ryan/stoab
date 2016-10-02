@@ -270,9 +270,9 @@ try {
                 </div>
                 <div class="row">
                     <div class="col-md-12 center">
-                        <p class="lead">Ett företag med stora visioner, vi brinner för enkla lösningar och för en god
-                            kommunikation. Vi har ett genuint intresse för människor och allas rätt i samhället och för
-                            att tillgodose era behov har vi full service dygnet runt.</p>
+                        <p class="lead">Ett företag med stora visioner, vi brinner för enkla lösningar
+                          och för en god kommunikation. Vi har ett genuint intresse för människor och
+                          allas rätt i samhället och för att tillgodose era behov har vi full service dygnet runt.</p>
                         <a class="btn btn-primary" href="omoss.php">Läs mer</a>
                     </div>
                 </div>

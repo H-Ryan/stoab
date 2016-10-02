@@ -60,7 +60,7 @@
     <!--========================================================
                         HEADER
     =========================================================-->
-    <?php include("./partials/shared/header.php"); ?>
+    <?php include './partials/shared/header.php'; ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
@@ -73,7 +73,7 @@
                         </h2>
                     </div>
                     <div class="col-md-9">
-                        <?php include("subHeader.php"); ?>
+                        <?php include 'subHeader.php'; ?>
                     </div>
                 </div>
             </div>
@@ -85,14 +85,14 @@
 
                     <h1 class="center heading-quaternary mb-xlg">Tolkning</h1>
 
-                    <p class="lead">Som tolkförmedlare har STÖ på kort tid blivit ett eftertraktat företag att samarbeta
+                    <p class="lead">Som tolkförmedlare har Tolkning i Kristianstad AB på kort tid blivit ett eftertraktat företag att samarbeta
                         med. Företaget har tillgång till tolkar som innehar tolkkunskap inom 75 språk och ytterligare 25
-                        dialekter. Tolkarna som är anlitade av oss genomgår en noggrann rekrytering för att vi på STÖ
+                        dialekter. Tolkarna som är anlitade av oss genomgår en noggrann rekrytering för att vi på Tolkning i Kristianstad AB
                         vill upprätthålla den höga kvalitet vi är kända för. Vi erbjuder tolkar på olika nivå; övriga
                         tolkar, godkända tolkar samt tolkar som är auktoriserade enligt kammarkollegiets regelverk.
                         Genom att erbjuda kvalitetstolkar på olika nivå möjliggör det för våra kunder att anpassa våra
                         tjänster till deras behov. <br/><br/>
-                        Tolkverksamheten inom STÖ möjliggör kommunikation när språkbarriärerna blir för stora mellan två
+                        Tolkverksamheten inom Tolkning i Kristianstad AB möjliggör kommunikation när språkbarriärerna blir för stora mellan två
                         eller flera personer. Med hjälp av våra tolkar, som behärskar språken från parterna i samtalet,
                         kan tolken hjälpa personerna som inte förstår varandra att kommunicera.</p>
                 </div>
@@ -434,7 +434,7 @@
     <!--========================================================
                               FOOTER
     =========================================================-->
-    <?php include("./partials/shared/footer.html"); ?>
+    <?php include './partials/shared/footer.html'; ?>
 
 </div>
 

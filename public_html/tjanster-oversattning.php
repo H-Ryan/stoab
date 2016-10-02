@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>STÖ AB - Sarvari tolkning och översättning</title>
+    <title>Tolkning i Kristianstad AB - Sarvari tolkning och översättning</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="STÖ AB">
+    <meta name="author" content="Tolkning i Kristianstad AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -60,7 +60,7 @@
     <!--========================================================
                         HEADER
     =========================================================-->
-    <?php include("./partials/shared/header.php"); ?>
+    <?php include './partials/shared/header.php'; ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
@@ -73,7 +73,7 @@
                         </h2>
                     </div>
                     <div class="col-md-9">
-                        <?php include("subHeader.php"); ?>
+                        <?php include 'subHeader.php'; ?>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
 
                     <h1 class="center heading-quaternary  mb-xlg">Översättning</h1>
 
-                    <p class="lead">Vi på STÖ översätter all form av dokumentation. Exempelvis validerar vi körkort och
+                    <p class="lead">Vi på Tolkning i Kristianstad översätter all form av dokumentation. Exempelvis validerar vi körkort och
                         betyg. Vi översätter juridiska dokument, dokument från myndigheter, bank, försäkringar, sjukvård
                         osv på alla språk.<br/> <br/> Våra översättare väljs ut med omsorg och vi är noga med att matcha
                         texten som ska översättas med lämplig kunskapsprofil.
@@ -95,7 +95,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="heading-quaternary mt-xl center">Våra tjänster</h3>
+                    <h3 class="heading-quaternary mt-xl center">Översättning</h3>
                 </div>
             </div>
 
@@ -240,7 +240,7 @@
     <!--========================================================
                               FOOTER
     =========================================================-->
-    <?php include("./partials/shared/footer.html"); ?>
+    <?php include './partials/shared/footer.html'; ?>
 
 </div>
 

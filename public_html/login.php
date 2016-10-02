@@ -60,7 +60,7 @@
     <!--========================================================
                         HEADER
     =========================================================-->
-    <?php include("./partials/shared/header.php"); ?>
+    <?php include './partials/shared/header.php'; ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
@@ -72,7 +72,7 @@
                         <h2 class="heading-quaternary m-md">Logga in </h2>
                     </div>
                     <div class="col-md-9">
-                        <?php include("subHeader.php"); ?>
+                        <?php include 'subHeader.php'; ?>
                     </div>
                 </div>
             </div>
@@ -336,7 +336,7 @@
                                     Vi har erfarenhet av tolkning och översättning.<br>
                                     Vill du bli kund hos STÖ AB ? <br>
                                     Registrera dig genom att klicka på knappen nedan och fyll i formuläret.<br>
-                                    På STÖ AB arbetar vi med hög kvalitet och snabb service.<br>
+                                    Vi arbetar vi med hög kvalitet och snabb service.<br>
                                     Vi ger dig en kostnadsfri utbildning hur man använder sig av tolk via kontakt eller
                                     telefon.<br>
                                     Vi hoppas att ni finner detta intressant och att ni vill ta del av denna utbildning.
@@ -682,7 +682,7 @@
     <!--========================================================
                               FOOTER
     =========================================================-->
-    <?php include("./partials/shared/footer.html"); ?>
+    <?php include './partials/shared/footer.html'; ?>
 
 </div>
 

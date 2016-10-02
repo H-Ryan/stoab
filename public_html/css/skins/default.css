@@ -3,11 +3,11 @@ a {
 }
 
 a:hover {
-	color: #424242;
+	color: #65361c;
 }
 
 a:focus {
-	color: #424242;
+	color: #65361c;
 }
 
 a:active {
@@ -17,7 +17,7 @@ a:active {
 html .heading-primary,
 html .lnk-primary,
 html .text-color-primary {
-	color: #424242 !important;
+	color: #65361c !important;
 }
 
 html .heading.heading-primary h1,
@@ -62,7 +62,7 @@ html .heading.heading-tertiary h6 {
 html .heading-quaternary,
 html .lnk-quaternary,
 html .text-color-quaternary {
-	color: #424242 !important;
+	color: #65361c !important;
 }
 
 html .heading.heading-quaternary h1,
@@ -1390,7 +1390,7 @@ html section.section-default-scale-6 {
 }
 
 html section.section-default-scale-7 {
-	background-color: #424242 !important;
+	background-color: #65361c !important;
 	border-top-color: #3a3a3a !important;
 }
 
@@ -1591,14 +1591,14 @@ html .page-header-color.page-header-light .breadcrumb > .active {
 }
 
 html .toggle-primary .toggle label {
-	color: #424242;
-	border-left-color: #424242;
-	border-right-color: #424242;
+	color: #65361c;
+	border-left-color: #65361c;
+	border-right-color: #65361c;
 }
 
 html .toggle-primary .toggle.active > label {
-	background-color: #424242;
-	border-color: #424242;
+	background-color: #65361c;
+	border-color: #65361c;
 	color: #FFF;
 }
 
@@ -3453,11 +3453,11 @@ html .counters .counter-light strong {
 }
 
 .featured-box-primary .box-content {
-	border-top-color: #424242;
+	border-top-color: #65361c;
 }
 
 html .featured-box-primary .icon-featured {
-	background-color: #424242;
+	background-color: #65361c;
 }
 
 html .featured-box-primary h4 {
@@ -3465,7 +3465,7 @@ html .featured-box-primary h4 {
 }
 
 html .featured-box-primary .box-content {
-	border-top-color: #424242;
+	border-top-color: #65361c;
 }
 
 html .featured-box-secondary .icon-featured {

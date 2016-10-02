@@ -60,7 +60,7 @@
     <!--========================================================
                         HEADER
     =========================================================-->
-    <?php include("./partials/shared/header.php"); ?>
+    <?php include './partials/shared/header.php'; ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
@@ -73,7 +73,7 @@
                         </h2>
                     </div>
                     <div class="col-md-9">
-                        <?php include("subHeader.php"); ?>
+                        <?php include 'subHeader.php'; ?>
                     </div>
                 </div>
             </div>
@@ -236,9 +236,9 @@
                         <h6 class="lead heading-primary m-none">Undervisningsform</h6>
                         <p>Undervisningen kommer ske i förläsningsform och där finns utrymme för diskussioner och
                             frågor. Undervisaren delar ut material som krävs.</p>
-                        <h6 class="lead heading-primary m-none">Anmälan</h6>
-                        <p>Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@tolktjanst.se.
-                            Observera att anmälan är bindande.</p>
+                        <h6 class="lead heading-primary m-none">Anmälan till denna kurs</h6>
+                        <p>För bokning eller mer information av språkanalys, var god kontakta vår kundservice.
+                          Du anmäler dig genom att skicka dina personuppgifter till e-post info@c4tolk.se  Observera att anmälan är bindande.</p>
                     </div>
                 </div>
             </div>
@@ -451,7 +451,7 @@
     <!--========================================================
                               FOOTER
     =========================================================-->
-    <?php include("./partials/shared/footer.html"); ?>
+    <?php include './partials/shared/footer.html'; ?>
 
 </div>
 

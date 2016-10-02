@@ -60,7 +60,7 @@
     <!--========================================================
                         HEADER
     =========================================================-->
-    <?php include("./partials/shared/header.php"); ?>
+    <?php include './partials/shared/header.php'; ?>
     <!--========================================================
                               CONTENT
     =========================================================-->
@@ -73,7 +73,7 @@
                         <h2 class="heading-quaternary m-md">Kontakta oss</h2>
                     </div>
                     <div class="col-md-9">
-                        <?php include("subHeader.php"); ?>
+                        <?php include 'subHeader.php'; ?>
                     </div>
                 </div>
             </div>
@@ -177,13 +177,12 @@
 
                     <div id="googlemaps" class="google-map small mt-xs"></div>
                     <ul class="list list-icons list-icons-style-3 mt-sm">
-                        <li><i class="fa fa-map-marker"></i> <strong>Adress:</strong> Nya Boulevarden 10, 291 31
-                            Kristianstad
+                        <li><i class="fa fa-map-marker"></i> <strong>Besök adress:</strong>
                         </li>
-                        <li><i class="fa fa-phone"></i> <strong>Telefon:</strong> (010) 166-10-10</li>
-                        <li><i class="fa fa-fax"></i> <strong>Fax:</strong> 0451 25 38 34</li>
+                        <li><i class="fa fa-phone"></i> <strong>Telefon:</strong> <a href="tel:+46-10-542-4210">(010) 542 42 10</a></li>
                         <li><i class="fa fa-envelope"></i> <strong>E-Post:</strong> <a
-                                href="mailto: info@tolktjanst.se"> info@tolktjanst.se</a></li>
+                                href="mailto: info@c4tolk.se"> info@c4tolk.se</a></li>
+                        <li><i class="fa fa-envelope"></i> <strong>Post Adress: BOX 21, 291 21, Kristianstad</strong></li>
                     </ul>
 
 
@@ -198,7 +197,7 @@
     <!--========================================================
                               FOOTER
     =========================================================-->
-    <?php include("./partials/shared/footer.html"); ?>
+    <?php include './partials/shared/footer.html'; ?>
 </div>
 
 <!-- Vendor -->
