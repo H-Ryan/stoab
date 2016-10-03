@@ -31,7 +31,7 @@ if (isset($_POST['name']) && isset($_POST['personalNumber']) && !empty($_POST['a
     $city_date = $_POST['city_date'];
     $subject = 'Samarbetsavtal';
     $tolk_subject = 'Tolkning i Kristianstad AB - Samarbetsavtal';
-    $messageToTolkAssign = "<!DOCTYPE html><html>
+    $messageToTolkAssign = "<!DOCTYPE html>
             <head>
                 <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
             </head>
@@ -159,34 +159,33 @@ if (isset($_POST['name']) && isset($_POST['personalNumber']) && !empty($_POST['a
                 Tolkning i Kristianstad Verkställande Direktör Bayaneh Rahmani
               </p>
             </div>
-          </div>
             <table style='width: 80%; margin-left: 10%; margin-right: 10%; text-align: center;
-                    font-family: verdana, arial, sans-serif; font-size: 14px; color: #333333;
-                    border-radius: 5px; border: 1px solid #999999;' cellpadding='10'>
+                    font-family: verdana, arial, sans-serif; font-size: 14px; color: #fff;
+                    border-radius: 5px; border: 3px solid #424242;' cellpadding='10'>
                 <thead></thead>
                 <tbody>
                 <tr>
-                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                    <td style='background-color: #ff9900; padding: 8px; border: 1px solid #fff;'>
                         <p><span style='font-weight:bold;'>Namnförtydligande:</span> " .$name."</p>
                     </td>
                 </tr>
                 <tr>
-                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                    <td style='background-color: #ff9900; padding: 8px; border: 1px solid #fff;'>
                         <p><span style='font-weight:bold;'>Personnummer:</span> " .$personalNumber."</p>
                     </td>
                 </tr>
                 <tr>
-                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                    <td style='background-color: #ff9900; padding: 8px; border: 1px solid #fff;'>
                         <p><span style='font-weight:bold;'>Adress:</span> " .$address."</p>
                     </td>
                 </tr>
                 <tr>
-                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                    <td style='background-color: #ff9900; padding: 8px; border: 1px solid #fff;'>
                         <p><span style='font-weight:bold;'>Email adress:</span> " .$email."</p>
                     </td>
                 </tr>
                 <tr>
-                    <td style='background-color: #d4e3e5; padding: 8px; border: 1px solid #a9c6c9;'>
+                    <td style='background-color: #ff9900; padding: 8px; border: 1px solid #fff;'>
                         <p><span style='font-weight:bold;'>Ort/Datum:</span> " .$city_date."</p>
                     </td>
                 </tr>

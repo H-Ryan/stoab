@@ -116,7 +116,7 @@
                 </div>
               </div>
                 <p class="lead" style="font-weight: bold;">§4 TOLKARS TILLGÄNGLIGHET & ANBPKNING</p>
-                <div class="row">
+              <div class="row">
                 <div class="col-md-10 col-md-push-1">
                   <ul style="text-align: left;" class="lead" >
                     <li>Avbokar tolken uppdraget (utan giltig orsak) senare än 18 timmar så debiteras tolken en avgift på 100 kr.
@@ -128,8 +128,8 @@
                   </ul>
                 </div>
               </div>
-                <p class="lead" style="font-weight: bold;">§ 5 FÖRUTSÄTTNINGAR FÖR ERSÄTTNING</p>
-                <p class="lead">
+              <p class="lead" style="font-weight: bold;">§ 5 FÖRUTSÄTTNINGAR FÖR ERSÄTTNING</p>
+              <p class="lead">
                   Om tolk är försenad till tolkuppdraget, skall motsvarande tid dras från arvodet. Ovanstående gäller dock inte
                   om förseningen beror på omständigheter som tolken inte kunnat påverka själv, dvs. force majeure eller sjukdom.
                   Uteblir tolk från ett uppdrag utan att ha meddelat <b>Tolkning i Kristianstad AB</b> om orsaken, kommer avdrag
@@ -137,9 +137,9 @@
                   Kräver kunden Vite – görs motsvarande avdrag på tolkens kommande ersättning hos <b>Tolkning i Kristianstad AB</b>.
                   Krav på ersättning för utförda uppdrag, ska lämnas in snarast, dock senast första vardagen i nästkommande månad.
                   Sker inte detta kommer uppdraget att arvoderas utifrån beställd tid.
-                </p>
-                <p class="lead" style="font-weight: bold;">§6 FRISKVÅRD och FÖRSÄKRING</p>
-                <div class="row">
+              </p>
+              <p class="lead" style="font-weight: bold;">§6 FRISKVÅRD och FÖRSÄKRING</p>
+              <div class="row">
                 <div class="col-md-10 col-md-push-1">
                   <ul style="text-align: left;" class="lead" >
                     <li>Tolkar som tolkar mer än 500 timmar/år ersätts med 500 kr mot uppvisat kvitto gällande någon form av friskvård. Därefter sjunker summan med antal timmar (t.ex. 252 timmar = 252 kr).Denna punkt är dispositiv.</li>
@@ -149,11 +149,11 @@
                   </ul>
                 </div>
               </div>
-                <p class="lead" style="font-weight: bold;">§7 KOMPETENSUTVECKLING</p>
-                <p class="lead">
+              <p class="lead" style="font-weight: bold;">§7 KOMPETENSUTVECKLING</p>
+              <p class="lead">
                   Tolk som är registrerad vid <b>Tolkning i Kristianstad AB</b> och tolkar kontinuerligt erhåller ersättning för:
-                </p>
-                <div class="row">
+              </p>
+              <div class="row">
                 <div class="col-md-10 col-md-push-1">
                   <ul style="text-align: left;" class="lead" >
                     <li>Anmälningsavgiften i samband med avläggande av auktorisationsprov hos Kammarkollegiet, samt ett andra försök.</li>
