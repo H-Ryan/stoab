@@ -179,7 +179,7 @@
                     <ul class="list list-icons list-icons-style-3 mt-sm">
                         <li><i class="fa fa-map-marker"></i> <strong>Besök adress:</strong>
                         </li>
-                        <li><i class="fa fa-phone"></i> <strong>Telefon:</strong> <a href="tel:+46-10-542-4210">(010) 542 42 10</a></li>
+                        <li><i class="fa fa-phone"></i> <strong>Telefon:</strong> <a href="tel:+46-10-516-4210">(010) 516 42 10</a></li>
                         <li><i class="fa fa-envelope"></i> <strong>E-Post:</strong> <a
                                 href="mailto: info@c4tolk.se"> info@c4tolk.se</a></li>
                         <li><i class="fa fa-envelope"></i> <strong>Post Adress: BOX 21, 291 21, Kristianstad</strong></li>

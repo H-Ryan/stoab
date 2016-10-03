@@ -22,9 +22,9 @@ try {
 ?>
 <div class="col-md-6 col-sm-12 mt-xs">
     <h4 class="heading-quaternary mb-none pull-right" style="font-size:16px"><strong>
-            <a href="tel:+46-10-542-4210"><img class="m-xs" src="img/icons/24-hour-support.png" alt="Ringa"/></a>
-            <a href="tel:+46-10-542-4210"></a>Kontakta
-            oss på : (010) 542 42 10
+            <a href="tel:+46-10-516-4210"><img class="m-xs" src="img/icons/24-hour-support.png" alt="Ringa"/></a>
+            <a href="tel:+46-10-516-4210"></a>Kontakta
+            oss på : (010) 516 42 10
         </strong></h4>
 </div>
 <div class="col-md-6 col-sm-12">

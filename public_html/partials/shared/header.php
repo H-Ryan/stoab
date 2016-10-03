@@ -21,7 +21,7 @@ session_start();
                         <nav class="header-nav-top">
                             <ul class="nav nav-pills">
                                 <li class="hidden-xs">
-                                    <span class="ws-nowrap"><i class="fa fa-phone"></i> <a href="tel:+46-10-542-4210">(010) 542 42 10</a></span>
+                                    <span class="ws-nowrap"><i class="fa fa-phone"></i> <a href="tel:+46-10-516-4210">(010) 516 42 10</a></span>
                                 </li>
                                 <li class="hidden-xs">
                                         <span class="ws-nowrap"><i class="fa fa-envelope"></i> <a
@@ -32,7 +32,7 @@ session_start();
                     </div>
                     <div class="header-row">
                         <div class="header-nav">
-                            <button class="btn header-btn-collapse-nav" data-toggle="collapse" 
+                            <button class="btn header-btn-collapse-nav" data-toggle="collapse"
                                     data-target=".header-nav-main">
                                 <i class="fa fa-bars"></i>
                             </button>
