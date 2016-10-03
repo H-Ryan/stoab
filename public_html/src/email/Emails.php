@@ -21,8 +21,8 @@ class Emails
             // $this->mail->Username = EMAIL_USER; // SMTP account username
             // $this->mail->Password = EMAIL_PASS;        // SMTP account password
             // $this->mail->SMTPSecure = EMAIL_ENCRYPT;
-            $this->mail->AddReplyTo('info@c4tolk.se', 'Tolkning i Kristianstad AB');
-            $this->mail->SetFrom('noreply@c4tolk.se', 'Tolkning i Kristianstad AB');
+            $this->mail->AddReplyTo('info@c4tolk.com', 'Tolkning i Kristianstad AB');
+            $this->mail->SetFrom('noreply@c4tolk.com', 'Tolkning i Kristianstad AB');
         } catch (phpmailerException $e) {
             $msg['error'] = true;
             $msg['mailError'] = $e->errorMessage();
