@@ -71,7 +71,7 @@ if (isset($_POST['name']) && isset($_POST['personalNumber']) && !empty($_POST['a
             </body>
             </html>";
 
-    $emailer->send_email($toEmail, $name, $tolk_subject, $messageToTolkAssign);
+    $emailer->send_email($toEmail, 'Tolkning i Kristianstad AB', $tolk_subject, $messageToTolkAssign);
     $data['error'] = 0;
     $data['messageHeader'] = 'Framgång';
     $data['positiveMessage'] = 'E-postmeddelandet har skickats.';

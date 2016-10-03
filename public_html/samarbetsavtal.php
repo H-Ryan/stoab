@@ -215,7 +215,7 @@
                       <label class="col-sm-2 control-label" for="address">Adress:</label>
                       <div class="col-sm-10">
                           <input type="text" name="address" id="address" class="form-control"
-                                 placeholder="Plats"
+                                 placeholder="Adress"
                                  data-rule-maxlength="90"
                                  data-rule-minlength="5"
                                  data-rule-required="true"
@@ -327,9 +327,13 @@
                         if (typeof data.responseJSON === 'object') {
                             if (data.responseJSON.error === 0) {
                               window.location.replace("http://c4tolk.se");
+                            } else {
+                              error.removeClass('hidden');
+                              btnSubmit.removeClass('disabled');
                             }
-                            error.removeClass('hidden');
-                            btnSubmit.removeClass('disabled');
+                        } else {
+                          error.removeClass('hidden');
+                          btnSubmit.removeClass('disabled');
                         }
                     }
                 });
