@@ -2,25 +2,24 @@
 /**
  * User: Samuil
  * Date: 18-06-2015
- * Time: 3:20 PM
+ * Time: 3:20 PM.
  */
-
-ini_set("session.use_only_cookies", TRUE);
-ini_set("session.use_trans_sid", FALSE);
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 session_start();
 header('Content-type: application/json');
-include "../db/dbConfig.php";
-include "../db/dbConnection.php";
-include "functions.php";
-require "../email/Emails.php";
+include '../db/dbConfig.php';
+include '../db/dbConnection.php';
+include 'functions.php';
+require '../email/Emails.php';
 $referrer = $_SERVER['HTTP_REFERER'];
 if (!empty($referrer)) {
     $uri = parse_url($referrer);
     if ($uri['host'] != $_SERVER['HTTP_HOST']) {
-        exit ("Form submission from $referrer not allowed.");
+        exit("Form submission from $referrer not allowed.");
     }
 } else {
-    exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
+    exit("Referrer not found. Please <a href='".$_SERVER['SCRIPT_NAME']."'>try again</a>.");
 }
 
 $data = [];
@@ -31,7 +30,6 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
     && isset($_POST['organization']) && isset($_POST['email']) && (isset($_POST['telephone']) || isset($_POST['mobile']))
     && isset($_POST['address']) && isset($_POST['post_code']) && isset($_POST['city'])
 ) {
-
     $organizationNumber = $_POST['organizationNumber'];
     $clientNumber = $_POST['clientNumber'];
     $client = $_POST['client'];
@@ -46,27 +44,27 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
     $contactPerson = $_POST['contactPerson'];
     $organization = $_POST['organization'];
     $email = $_POST['email'];
-    $telephone = "";
+    $telephone = '';
     if (isset($_POST['telephone'])) {
         $telephone = $_POST['telephone'];
     }
-    $mobile = "";
+    $mobile = '';
     if (isset($_POST['mobile'])) {
         $mobile = $_POST['mobile'];
     }
     $address = $_POST['address'];
     $post_code = $_POST['post_code'];
     $city = $_POST['city'];
-    $message = "";
+    $message = '';
     if (isset($_POST['message'])) {
         $message = $_POST['message'];
     }
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();
-        $query = "SELECT l_languageName FROM t_languages WHERE l_languageID=:languageID";
+        $query = 'SELECT l_languageName FROM t_languages WHERE l_languageID=:languageID';
         $statement = $con->prepare($query);
-        $statement->bindParam(":languageID", $language);
+        $statement->bindParam(':languageID', $language);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $obj = $statement->fetch();
@@ -81,7 +79,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
             'AT' => 'Auktoriserad Tolk',
             'ST' => 'Sjukvårdstolk',
             'RT' => 'Rättstolk',
-            'NI' => 'Inte viktigt'
+            'NI' => 'Inte viktigt',
         );
         $tolkType = $tolkType[$tolk_type];
         $interpType = getFullTolkningType($type);
@@ -113,13 +111,13 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                                     border: 1px solid #999999;' cellpadding='10'>
                         <thead>
                         <tr>
-                            <th style='background-color: #599CFF;
+                            <th style='background-color: #ff9900;
                                     font-size: 18px;
                                     padding: 8px;
                                     border-radius: inherit;
                                     border: 1px solid #a9c6c9; '>Kontaktperson/Fakturering:
                             </th>
-                            <th style='background-color: #599CFF;
+                            <th style='background-color: #ff9900;
                                     font-size: 18px;
                                     padding: 8px;
                                     border-radius: inherit;
@@ -128,7 +126,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                         </tr>
                         </thead>
                         <tbody>
-                        <tr style='background-color: #d4e3e5;
+                        <tr style='background-color: #e9e9e9;
                                     border-radius: 5px;'>
                             <td style='padding: 8px;
                                     border-radius: inherit;
@@ -205,7 +203,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                                     margin-top:3%;
                                     margin-bottom:1.5%;
                                     margin-left:15%;
-                                    background-color: #d4e3e5;
+                                    background-color: #e9e9e9;
                                     padding: 8px;
                                     border-radius: inherit;
                                     border: 1px solid #a9c6c9;'>
@@ -218,18 +216,16 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
                     </html>";
         $emailer = new Emails();
 
-        $subjectCompany = "Ny order - (Från webbplats)";
+        $subjectCompany = 'Ny order - (Från webbplats)';
 
-        $query = "SELECT k_email FROM t_kunder WHERE k_kundNumber=:clientNumber AND k_personalNumber=:organizationNumber";
+        $query = 'SELECT k_email FROM t_kunder WHERE k_kundNumber=:clientNumber AND k_personalNumber=:organizationNumber';
 
-        $data['error'] = ($emailer->send_email("info@tolktjanst.se", "STÖ AB", $subjectCompany, $bodyToCompany)) ? 0 : 1;
-
+        $data['error'] = ($emailer->send_email('kundtjanst@c4tolk.se', 'Tolkning i Kristianstad AB', $subjectCompany, $bodyToCompany)) ? 0 : 1;
     } catch (PDOException $e) {
         $data['error'] = 2;
     }
 } else {
     $data['error'] = 3;
-
 }
 if ($db != null) {
     $db->disconnect();

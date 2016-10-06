@@ -189,11 +189,11 @@
                                     </div>
                                 </div>
                                 <div id="w2-profile" class="tab-pane">
-                                    <?php for ($i = 1; $i < 6; ++$i) {
+                                    <?php for ($i = 0; $i < 5; ++$i) {
     ?>
                                         <div class="form-group">
                                             <div class="col-sm-6">
-                                                <?php if ($i == 1) {
+                                                <?php if ($i == 0) {
         echo '<label for="language1">Språk:</label>';
     } else {
         echo '';
@@ -201,7 +201,7 @@
                                                 <input type="text" name="language<?php echo $i; ?>"
                                                        id="language<?php echo $i; ?>"
                                                        class="form-control interpreter-language-group"
-                                                       placeholder="Språk <?php echo $i; ?>:"
+                                                       placeholder="<?php echo ($i == 0) ? 'Modersmål' : "Språk $i" ?>:"
                                                        data-rule-minlength="3"
                                                        data-msg-minlength="Fält Språk <?php echo $i; ?> bör innehålla mer än 3 tecken."
                                                        data-msg-maxlength="Fältet Språk <?php echo $i; ?> bör innehålla mindre än 90."
@@ -210,6 +210,7 @@
         ?>
                                                         data-msg-required="Du måste välja minst ett språk."
                                                         data-rule-required='true' <?php
+
     } ?>>
                                             </div>
                                             <div class="col-sm-6">
@@ -226,6 +227,7 @@
         ?>
                                                         data-rule-required='true'
                                                         data-msg-required="Välj ett språk från listan." <?php
+
     } ?>>
                                                     <option value="">Kompetens</option>
                                                     <option
@@ -257,6 +259,7 @@
                                             </div>
                                         </div>
                                     <?php
+
 } ?>
                                 </div>
                                 <div id="w2-confirm" class="tab-pane">

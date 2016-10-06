@@ -2,23 +2,23 @@
 /**
  * User: Samuil
  * Date: 11-03-2016
- * Time: 7:21 AM
+ * Time: 7:21 AM.
  */
-ini_set("session.use_only_cookies", TRUE);
-ini_set("session.use_trans_sid", FALSE);
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 session_start();
 session_cache_limiter('nocache');
-header('Expires: ' . gmdate('r', 0));
+header('Expires: '.gmdate('r', 0));
 header('Content-type: application/json');
-require "../email/Emails.php";
+require '../email/Emails.php';
 $referrer = $_SERVER['HTTP_REFERER'];
 if (!empty($referrer)) {
     $uri = parse_url($referrer);
     if ($uri['host'] != $_SERVER['HTTP_HOST']) {
-        exit ("Form submission from $referrer not allowed.");
+        exit("Form submission from $referrer not allowed.");
     }
 } else {
-    exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
+    exit("Referrer not found. Please <a href='".$_SERVER['SCRIPT_NAME']."'>try again</a>.");
 }
 
 if (isset($_POST['org_name']) && isset($_POST['org_number'])
@@ -83,9 +83,9 @@ if (isset($_POST['org_name']) && isset($_POST['org_number'])
 <p><b>Postnummer:</b> $branch_zip</p>
 <p><b>Postort:</b> $branch_city</p>";
     }
-    $emailContent .= "</body></html>";
+    $emailContent .= '</body></html>';
 
-echo json_encode(["error" => $emailer->send_email("info@sarvari.se", "STÖ AB", "Kund registrering begäran", $emailContent) ? 0 : 1]);
+    echo json_encode(['error' => $emailer->send_email('info@sarvari.se', 'Tolkning i Kristianstad AB', 'Kund registrering begäran', $emailContent) ? 0 : 1]);
 } else {
     echo json_encode(['error' => 1]);
 }

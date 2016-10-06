@@ -2,23 +2,23 @@
 /**
  * User: Samuil
  * Date: 01-04-2015
- * Time: 2:23 PM
+ * Time: 2:23 PM.
  */
-ini_set("session.use_only_cookies", TRUE);
-ini_set("session.use_trans_sid", FALSE);
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 session_start();
 session_cache_limiter('nocache');
-header('Expires: ' . gmdate('r', 0));
+header('Expires: '.gmdate('r', 0));
 header('Content-type: application/json');
-require "../email/Emails.php";
+require '../email/Emails.php';
 $referrer = $_SERVER['HTTP_REFERER'];
 if (!empty($referrer)) {
     $uri = parse_url($referrer);
     if ($uri['host'] != $_SERVER['HTTP_HOST']) {
-        exit ("Form submission from $referrer not allowed.");
+        exit("Form submission from $referrer not allowed.");
     }
 } else {
-    exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
+    exit("Referrer not found. Please <a href='".$_SERVER['SCRIPT_NAME']."'>try again</a>.");
 }
 
 if (isset($_POST['name']) && isset($_POST['companyName'])
@@ -32,11 +32,11 @@ if (isset($_POST['name']) && isset($_POST['companyName'])
     $message = $_POST['message'];
 
     $emailer = new Emails();
-    $contact_email_content = file_get_contents("../emailTemplates/contact-email.html");
-    $var = ["{name}", "{companyName}", "{phone}", "{subject}", "{email}", "{message}"];
+    $contact_email_content = file_get_contents('../emailTemplates/contact-email.html');
+    $var = ['{name}', '{companyName}', '{phone}', '{subject}', '{email}', '{message}'];
     $val = [$name, $foretagsnamn, $phone, $subject, $email, $message];
     $emailContent = str_replace($var, $val, $contact_email_content);
-    echo json_encode(["error" => !$emailer->send_email("info@tolktjanst.se", "STÖ AB", "Kontaktformulär", $emailContent)]);
+    echo json_encode(['error' => !$emailer->send_email('kundtjanst@c4tolk.se', 'Tolkning i Kristianstad AB', 'Kontaktformulär', $emailContent)]);
 } else {
     echo json_encode(['error' => true]);
 }

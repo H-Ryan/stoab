@@ -1,0 +1,81 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+</head>
+<body>
+<p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
+Den följande ordning har markerats som slutförd. Gå vidare till fakturering och redovisning.
+</p>
+<hr style='width: 80%;
+            margin-left: 10%;'/>
+<h2 style='text-align: center; margin-top: 5%;'>Tolkuppdrag</h2>
+
+<h2 style='text-align: center; margin-top: 5%;'>Uppdragsnr: $order->o_{orderNumber}</h2>
+<table style='width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+            text-align: center;
+            font-family: verdana, arial, sans-serif;
+            font-size: 14px;
+            color: #333333;
+            border-radius: 5px;
+            border: 1px solid #999999;' cellpadding='10'>
+<thead>
+<tr>
+    <th style='background-color: #ff9900; font-size: 18px;padding: 8px;
+                border-radius: inherit; border: 1px solid black;'>Uppdrag
+    </th>
+    <th style='background-color: #ff9900; font-size: 18px;padding: 8px;
+                border-radius: inherit; border: 1px solid black;'>Tolk
+    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td style='background-color: #e9e9e9;padding: 8px;border: 1px solid #a9c6c9;'>
+        <p><span style='font-weight:bold;'>Kundnummer:</span> " .$order->o_{kundNumber}."</p>
+        <p><span style='font-weight:bold;'>Datum:</span> " .$order->o_{date}."</p>
+
+        <p><span style='font-weight:bold;'>Starttid:</span> " .${timeStart}."</p>
+
+        <p><span style='font-weight:bold;'>Sluttid:</span> " .${timeEnd}."</p>
+
+        <p><span style='font-weight:bold;'>Plats:</span> " .$order->o_{address}."</p>
+
+        <p><span style='font-weight:bold;'>Postnummer:</span> " .$order->o_{zipCode}."</p>
+
+        <p><span style='font-weight:bold;'>Ort:</span> " .$order->o_{city}."</p>
+
+        <p><span style='font-weight:bold;'>Typ av uppdrag:</span> " .${interpType}."</p>
+
+        <p><span style='font-weight:bold;'>Språk:</span> " .$order->o_{language}."</p>
+
+        <p><span style='font-weight:bold;'>Klient:</span> " .$order->o_{client}."</p>
+
+        <p><span style='font-weight:bold;'>Kontaktperson:</span> " .$order->o_{orderer}."</p>
+
+        <p><span style='font-weight:bold;'>Telefonnr:</span> " .$order->o_{tel}."</p>
+
+        <p><span style='font-weight:bold;'>Mobil:</span> " .$order->o_{mobile}."</p>
+
+        <p><span style='font-weight:bold;'>E-postadress:</span> " .$order->o_{email}."</p>
+    </td>
+    <td style='background-color: #e9e9e9;padding: 8px;border: 1px solid #a9c6c9;'>
+        <p><span style='font-weight:bold;'>Tolknummer:</span> $tolk->t_{tolkNumber}</p>
+        <p><span style='font-weight:bold;'>Namn:</span> " .$tolk->u_{firstName}.' '.$tolk->u_{lastName}."</p>
+
+        <p><span style='font-weight:bold;'>Telefonnr:</span> " .$tolk->u_{tel}."</p>
+
+        <p><span style='font-weight:bold;'>Mobil:</span> 0" .$tolk->u_{mobile}."</p>
+
+        <p><span style='font-weight:bold;'>E-postadress:</span> " .$tolk->u_{email}."</p>
+
+        <p><span style='font-weight:bold;'>Hemort:</span> " .$tolk->u_{city}."</p>
+    </td>
+</tr>
+</tbody>
+</table>
+<hr style='width: 80%;
+            margin-left: 10%;'/>
+</body>
+</html>

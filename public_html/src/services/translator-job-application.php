@@ -2,23 +2,23 @@
 /**
  * User: Samuil
  * Date: 11-03-2016
- * Time: 12:22 AM
+ * Time: 12:22 AM.
  */
-ini_set("session.use_only_cookies", TRUE);
-ini_set("session.use_trans_sid", FALSE);
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 session_start();
 session_cache_limiter('nocache');
-header('Expires: ' . gmdate('r', 0));
+header('Expires: '.gmdate('r', 0));
 header('Content-type: application/json');
-require "../email/Emails.php";
+require '../email/Emails.php';
 $referrer = $_SERVER['HTTP_REFERER'];
 if (!empty($referrer)) {
     $uri = parse_url($referrer);
     if ($uri['host'] != $_SERVER['HTTP_HOST']) {
-        exit ("Form submission from $referrer not allowed.");
+        exit("Form submission from $referrer not allowed.");
     }
 } else {
-    exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
+    exit("Referrer not found. Please <a href='".$_SERVER['SCRIPT_NAME']."'>try again</a>.");
 }
 if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['personalNumber'])
     && isset($_POST['gender']) && isset($_POST['email'])
@@ -33,46 +33,46 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
             width: 100%;
             height: 100%;
             font-family: Lato,\"Helvetica Neue\",Arial,Helvetica,sans-serif;'>";
-    $emailContent .= "<h2>ÖVERSÄTTARE Intresseanmälan</h2>";
-    $emailContent .= printRow("Namn:", $_POST['firstName']);
-    $emailContent .= printRow("Efternamn:", $_POST['firstName']);
-    $emailContent .= printRow("Personnummer:", $_POST['personalNumber']);
-    $emailContent .= printRow("Kön:", $_POST['gender']);
-    $emailContent .= printRow("E-post:", $_POST['email']);
+    $emailContent .= '<h2>ÖVERSÄTTARE Intresseanmälan</h2>';
+    $emailContent .= printRow('Namn:', $_POST['firstName']);
+    $emailContent .= printRow('Efternamn:', $_POST['firstName']);
+    $emailContent .= printRow('Personnummer:', $_POST['personalNumber']);
+    $emailContent .= printRow('Kön:', $_POST['gender']);
+    $emailContent .= printRow('E-post:', $_POST['email']);
     if (isset($_POST['phoneHome']) && $_POST['phoneMobile']) {
         $phoneHome = $_POST['phoneHome'];
         $mobile = $_POST['phoneMobile'];
-        $emailContent .= printRow("Telefon (bostad):", $phoneHome);
-        $emailContent .= printRow("Mobiltelefon:", $mobile);
+        $emailContent .= printRow('Telefon (bostad):', $phoneHome);
+        $emailContent .= printRow('Mobiltelefon:', $mobile);
     } else {
         if (isset($_POST['phoneHome'])) {
             $phoneHome = $_POST['phoneHome'];
-            $emailContent .= printRow("Telefon (bostad):", $phoneHome);
-        } else if (isset($_POST['phoneMobile'])) {
+            $emailContent .= printRow('Telefon (bostad):', $phoneHome);
+        } elseif (isset($_POST['phoneMobile'])) {
             $mobile = $_POST['phoneMobile'];
-            $emailContent .= printRow("Mobiltelefon:", $mobile);
+            $emailContent .= printRow('Mobiltelefon:', $mobile);
         }
     }
-    $emailContent .= printRow("Gatuadress:", $_POST['address']);
-    $subject = "";
+    $emailContent .= printRow('Gatuadress:', $_POST['address']);
+    $subject = '';
     if (isset($_POST['subject'])) {
         if (strlen($_POST['subject']) > 0) {
             if (isset($_POST['otherSubject'])) {
                 if (strlen($_POST['otherSubject']) > 0) {
-                    $subject = $_POST['subject'] . " och " . $_POST['otherSubject'];
+                    $subject = $_POST['subject'].' och '.$_POST['otherSubject'];
                 } else {
                     $subject = $_POST['subject'];
                 }
             } else {
                 $subject = $_POST['subject'];
             }
-        } else if (isset($_POST['otherSubject'])) {
+        } elseif (isset($_POST['otherSubject'])) {
             if (strlen($_POST['otherSubject']) > 0) {
                 $subject = $_POST['otherSubject'];
             }
         }
     }
-    $emailContent .= printRow("Ämnesområde:", $subject);
+    $emailContent .= printRow('Ämnesområde:', $subject);
     $prices = ['1', '2', '3', '4'];
 
     $emailContent .= "<h4>Språk:</h4><table style='width: 80%;
@@ -107,22 +107,22 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
                                             </tr>
                                             </thead>
                                             <tbody>";
-    for ($i = 0; $i < sizeof($prices); $i++) {
-        if (isset($_POST['from' . $prices[$i]]) && isset($_POST['to' . $prices[$i]]) && isset($_POST['priceWord' . $prices[$i]])
-            && isset($_POST['priceHour' . $prices[$i]]) && isset($_POST['authorized' . $prices[$i]])
-            && isset($_POST['monthOrYear' . $prices[$i]])
+    for ($i = 0; $i < sizeof($prices); ++$i) {
+        if (isset($_POST['from'.$prices[$i]]) && isset($_POST['to'.$prices[$i]]) && isset($_POST['priceWord'.$prices[$i]])
+            && isset($_POST['priceHour'.$prices[$i]]) && isset($_POST['authorized'.$prices[$i]])
+            && isset($_POST['monthOrYear'.$prices[$i]])
         ) {
-            $from = $_POST['from' . $prices[$i]];
-            $to = $_POST['to' . $prices[$i]];
-            $priceWord = $_POST['priceWord' . $prices[$i]];
-            $priceHour = $_POST['priceHour' . $prices[$i]];
-            $authorized = $_POST['authorized' . $prices[$i]];
-            $monthOrYear = $_POST['monthOrYear' . $prices[$i]];
+            $from = $_POST['from'.$prices[$i]];
+            $to = $_POST['to'.$prices[$i]];
+            $priceWord = $_POST['priceWord'.$prices[$i]];
+            $priceHour = $_POST['priceHour'.$prices[$i]];
+            $authorized = $_POST['authorized'.$prices[$i]];
+            $monthOrYear = $_POST['monthOrYear'.$prices[$i]];
             $row = [$from, $to, $priceWord, $priceHour, $authorized, $monthOrYear];
             $emailContent .= printLangTableRow($row);
         }
     }
-    $emailContent .= "</tbody></table>";
+    $emailContent .= '</tbody></table>';
     $exp = ['1', '2', '3'];
     $emailContent .= "<h4>Bakgrundsinformation:</h4><table style='width: 80%;
                                     margin-left: 10%;
@@ -153,55 +153,55 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
                                             </tr>
                                             </thead>
                                             <tbody>";
-    for ($i = 0; $i < sizeof($exp); $i++) {
-        if (isset($_POST['training' . $exp[$i]]) && isset($_POST['period' . $exp[$i]]) && isset($_POST['degree' . $exp[$i]])
-            && isset($_POST['country' . $exp[$i]]) && isset($_POST['lang' . $exp[$i]])
+    for ($i = 0; $i < sizeof($exp); ++$i) {
+        if (isset($_POST['training'.$exp[$i]]) && isset($_POST['period'.$exp[$i]]) && isset($_POST['degree'.$exp[$i]])
+            && isset($_POST['country'.$exp[$i]]) && isset($_POST['lang'.$exp[$i]])
         ) {
-            $training = $_POST['training' . $exp[$i]];
-            $period = $_POST['period' . $exp[$i]];
-            $degree = $_POST['degree' . $exp[$i]];
-            $country = $_POST['country' . $exp[$i]];
-            $lang = $_POST['lang' . $exp[$i]];
+            $training = $_POST['training'.$exp[$i]];
+            $period = $_POST['period'.$exp[$i]];
+            $degree = $_POST['degree'.$exp[$i]];
+            $country = $_POST['country'.$exp[$i]];
+            $lang = $_POST['lang'.$exp[$i]];
 
             $row = [$training, $period, $degree, $country, $lang];
             $emailContent .= printExpTableRow($row);
         }
     }
-    $emailContent .= "</tbody></table>";
+    $emailContent .= '</tbody></table>';
     if (isset($_POST['education'])) {
-        $emailContent .= printRow("Har övriga kurs eller högskolutbildning eller arbetat som översättare:<br />", $_POST['education']);
+        $emailContent .= printRow('Har övriga kurs eller högskolutbildning eller arbetat som översättare:<br />', $_POST['education']);
     }
 
     if (isset($_POST['name1']) && isset($_POST['telephone1']) && isset($_POST['job1'])) {
-        $ref = "<br />Namn Efternamn: " . $_POST['name1'] . ", Telefon: " . $_POST['telephone1'] . ", Jobb & Bransch: " . $_POST['job1'];
-        $emailContent .= printRow("Referens för översättning:", $ref);
+        $ref = '<br />Namn Efternamn: '.$_POST['name1'].', Telefon: '.$_POST['telephone1'].', Jobb & Bransch: '.$_POST['job1'];
+        $emailContent .= printRow('Referens för översättning:', $ref);
     }
     if (isset($_POST['employed'])) {
-        $emailContent .= printRow("Egenföretagare:", $_POST['employed']);
+        $emailContent .= printRow('Egenföretagare:', $_POST['employed']);
     }
     if (isset($_POST['bankgiro'])) {
-        $emailContent .= printRow("Bankgiro:", $_POST['bankgiro']);
+        $emailContent .= printRow('Bankgiro:', $_POST['bankgiro']);
     }
     if (isset($_POST['plusgiro'])) {
-        $emailContent .= printRow("Plusgiro:", $_POST['plusgiro']);
+        $emailContent .= printRow('Plusgiro:', $_POST['plusgiro']);
     }
     if (isset($_POST['bankAccount'])) {
-        $emailContent .= printRow("Bank konto:", $_POST['bankAccount']);
+        $emailContent .= printRow('Bank konto:', $_POST['bankAccount']);
     }
     if (isset($_POST['bankName'])) {
-        $emailContent .= printRow("Bankensnamn:", $_POST['bankName']);
+        $emailContent .= printRow('Bankensnamn:', $_POST['bankName']);
     }
     if (isset($_POST['clearingNumber'])) {
-        $emailContent .= printRow("Clearing nu:", $_POST['clearingNumber']);
+        $emailContent .= printRow('Clearing nu:', $_POST['clearingNumber']);
     }
     if (isset($_POST['bankCardNumber'])) {
-        $emailContent .= printRow("Kontonummer:", $_POST['bankCardNumber']);
+        $emailContent .= printRow('Kontonummer:', $_POST['bankCardNumber']);
     }
 
-    $emailContent .= "</body></html>";
-    echo json_encode(["error" => $emailer->send_email("rekrytering@tolktjanst.se", "STÖ AB", "ÖVERSÄTTARE Intresseanmälan", $emailContent) ? 0 : 1]);
+    $emailContent .= '</body></html>';
+    echo json_encode(['error' => $emailer->send_email('rekrytering@c4tolk.se', 'Tolkning i Kristianstad AB', 'ÖVERSÄTTARE Intresseanmälan', $emailContent) ? 0 : 1]);
 } else {
-    echo json_encode(["error" => 1]);
+    echo json_encode(['error' => 1]);
 }
 
 function printRow($label, $data)
