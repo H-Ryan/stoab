@@ -189,7 +189,7 @@ if (isset($_POST['orderNumber']) && !empty($_POST['orderNumber'])) {
                     <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.c4tolk.se'> www.c4tolk.se</a></p>
 
                     <p><label style='font-weight:bold;'>TELEFON:</label> 010 516 42 10</p>
-                            <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 556951-0802</p>
+                            <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 559071-4134</p>
 
                             </footer>
                     </body>
