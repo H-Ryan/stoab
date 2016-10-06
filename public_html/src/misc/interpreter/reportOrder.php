@@ -93,7 +93,7 @@ WHERE (u.u_role = 3 OR u.u_role = 1) AND t.t_active = 1 AND t.t_tolkNumber=:tolk
                         $rep_ticket_cost.' SEK', $rep_customer_name, $rep_comments, ];
                     $emailContent = str_replace($var, $val, $contact_email_content);
 
-                    $subject = "Tolkning i Kristianstad AB - Uppdrag rapporten är klar: $rep_mission_id";
+                    $subject = "C4Tolk - Uppdrag rapporten är klar: $rep_mission_id";
 
                     $data['error'] = ($emailer->send_email($tolk->u_email, $tolk->u_firstName.' '.$tolk->u_lastName, $subject, $emailContent)) ? 0 : 1;
                 } else {

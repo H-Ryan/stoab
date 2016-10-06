@@ -82,7 +82,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                         <body>
                         <div>
                             <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
-                                Hej.<br/>Du har tilldelats följande tolkuppdrag. Uppgifter följer nedan.</p>
+                                Hej,<br/>Var vänlig kontrollera följande uppdrag om informationen ovan är felaktig, vänligen kontakta oss via telefon.</p>
                         </div>
                         <hr style='width: 80%; margin-left: 10%;'/>
                         <table style='width: 80%; margin-left: 10%; margin-right: 10%; text-align: center;
@@ -163,14 +163,14 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                         <hr style='width: 80%;margin-left: auto; margin-right: auto;'/>
                         <div>
                             <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
-                                Kontakta oss om ni har några frågor.
+                                Om informationen ovan är felaktig eller om du vill ändra något, vänligen kontakta oss via telefon.
                             </p>
                         </div>
                         <hr style='width: 80%;
                                         margin-left: 10%;'/>
                         <footer style='margin-left: 10%; width:80%'>
                         <h2>Tolkning i Kristianstad AB</h2>
-
+                        <p><label style='font-weight:bold;'>POSTADRESS:</label> BOX 21, 291 21 Kristianstad</p>
                         <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2, 291 36 Kristianstad</p>
 
                         <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@c4tolk.se'> info@c4tolk.se</a></p>
@@ -263,14 +263,14 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                                         margin-left: 10%;'/>
                         <div>
                             <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
-                                Om informationen ovan är felaktig eller om du vill ändra något, vänligen kontakta oss.
+                                Om informationen ovan är felaktig eller om du vill ändra något, vänligen kontakta oss via telefon.
                             </p>
                         </div>
                         <hr style='width: 80%;
                                         margin-left: 10%;'/>
                         <footer style='margin-left: 10%; width:80%'>
                         <h2>Tolkning i Kristianstad AB</h2>
-
+                        <p><label style='font-weight:bold;'>POSTADRESS:</label> BOX 21, 291 21 Kristianstad</p>
                         <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2, 291 36 Kristianstad</p>
 
                         <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@c4tolk.se'> info@c4tolk.se</a></p>
@@ -285,9 +285,9 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                         </body>
                         </html>";
 
-                        $tolk_subject = 'Tolkning i Kristianstad AB - Uppdrag.';
-                        $customer_subject = 'Tolkning i Kristianstad AB - Uppdragsbekräftelse.';
-                        $finance_subject = 'Tolkning i Kristianstad AB - Ekonomi.';
+                        $tolk_subject = 'C4Tolk - Uppdrag.';
+                        $customer_subject = 'C4Tolk - Uppdragsbekräftelse.';
+                        $finance_subject = 'C4Tolk (Ekonomi) - $order->o_orderNumber.';
 
                         if ($order->o_kunderPersonalNumber != '0000000000') {
                             $query = 'SELECT k_email, k_organizationName FROM t_kunder WHERE k_kundNumber=:clientNumber AND k_personalNumber=:organizationNumber';
@@ -415,9 +415,9 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                         //SMS
                         $smsService = new SMS_Service();
                         $text = 'Hej, '
-                            ."du har ett uppdrag ($orderNumber). "
-                            .'Var vänlig kontrollera din e-post. '
-                            .'OBS! Du kan inte svara på detta meddelande. '
+                            ."du har beviljad till följande  tolkuppdrag ($orderNumber)."
+                            .'Var vänlig kontrollera din e-post.'
+                            .'OBS! Du kan inte svara på detta meddelande.'
                             .'Mvh Tolkning i Kristianstad AB';
                         $smsService->setTo($tolk->u_mobile);
                         $smsService->setText($text);

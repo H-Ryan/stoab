@@ -197,8 +197,8 @@ if (isset($_POST['orderer']) && isset($_POST['organizationNumber']) && isset($_P
                     $bodyToCompany = str_replace($var, $val, $company_email_content);
                     $emailer = new Emails();
 
-                    $subjectClient = 'Tolkning i Kristianstad AB - Bokning';
-                    $subjectCompany = 'Ny order';
+                    $subjectClient = 'C4Tolk - Bokning';
+                    $subjectCompany = "Ny order - $orderNumber";
                     if ($organizationNumber != '0000000000') {
                         $query = 'SELECT k_email FROM t_kunder WHERE k_kundNumber=:clientNumber AND k_personalNumber=:organizationNumber';
 

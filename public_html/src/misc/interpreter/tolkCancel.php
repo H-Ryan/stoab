@@ -172,7 +172,7 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                                             margin-left: 10%;'/>
                             <footer style='margin-left: 10%; width:80%'>
                             <h2>Tolkning i Kristianstad AB</h2>
-
+                            <p><label style='font-weight:bold;'>POSTADRESS:</label> BOX 21, 291 21 Kristianstad</p>
                             <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2, 291 36 Kristianstad</p>
 
                             <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@c4tolk.se'> info@c4tolk.se</a></p>
