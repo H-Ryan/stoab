@@ -83,8 +83,8 @@
             <div class="row pt-lg">
                 <div class="col-md-12">
                     <h1 class="center heading-quaternary mb-xlg">Kurser</h1>
-                    <p class="center heading-quaternary mb-none">För bokning eller mer information av språkanalys, var
-                        god kontakta vår kundservice.</p>
+                    <p class="center heading-quaternary mb-none">Är den ofta målinriktade process där någon genom systematisk undervisning och träning utvecklas och skaffar sig kunskaper, bildning och  färdigheter.</p>
+                    <p class="center heading-quaternary mb-none">Vår målsättning är att nyanlända ska lära sig ,förstå sina rättigheter och skyldigheter inom områden såsom arbetsliv, utbildning och hälsa.</p>
                 </div>
             </div>
             <div class="row">
@@ -238,7 +238,7 @@
                             frågor. Undervisaren delar ut material som krävs.</p>
                         <h6 class="lead heading-primary m-none">Anmälan till denna kurs</h6>
                         <p>För bokning eller mer information av språkanalys, var god kontakta vår kundservice.
-                          Du anmäler dig genom att skicka dina personuppgifter till e-post info@c4tolk.se  Observera att anmälan är bindande.</p>
+                          Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@c4tolk.se  Observera att anmälan är bindande.</p>
                     </div>
                 </div>
             </div>
@@ -322,7 +322,7 @@
                         <p>Undervisningen kommer ske i förläsningsform och där det finns utrymme för diskussioner och
                             frågor. Undervisaren delar ut material som krävs.</p>
                         <h6 class="lead heading-primary m-none">Anmälan</h6>
-                        <p>Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@tolktjanst.se.
+                        <p>Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@c4tolk.se.
                             Observera att anmälan är bindande.</p>
                     </div>
                 </div>
@@ -400,7 +400,7 @@
                         <p>Undervisningen kommer ske i förläsningsform och det finns utrymme för diskussioner och
                             frågor. Undervisaren delar ut material som krävs. </p>
                         <h6 class="lead heading-primary m-none">Anmälan</h6>
-                        <p>Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@tolktjanst.se.
+                        <p>Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@c4tolk.se.
                             Observera att anmälan är bindande.</p>
                     </div>
                 </div>
@@ -439,7 +439,7 @@
                         <h6 class="lead heading-primary m-none">Litteratur/Material</h6>
                         <p>Undervisaren delar ut material som krävs.</p>
                         <h6 class="lead heading-primary m-none">Anmälan till denna kurs</h6>
-                        <p>Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@tolktjanst.se.
+                        <p>Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@c4tolk.se.
                             Observera att anmälan är bindande.</p>
                     </div>
                 </div>

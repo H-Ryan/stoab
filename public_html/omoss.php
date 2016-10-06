@@ -301,9 +301,9 @@
             </div>
         </div>
         <hr class="mb-none">
-        <div class="container pr-xlg pl-xlg">
+        <div class="container pr-xlg pl-xlg" style="display: none;">
             <h2 class="m-xlg center heading-quaternary"> Möt vår personal</h2>
-            <p class="lead">På STÖ arbetar vi som ett team för att ni som kund fullt ut ska kunna tillgodogöra all den
+            <p class="lead">Vi arbetar vi som ett team för att ni som kund fullt ut ska kunna tillgodogöra all den
                 kunskap, kompetens och erfarenhet som våra medarbetarna har. Vårt gemensamma mål är att alltid erbjuda
                 bästa möjliga service för våra kunder. Nedan finner ni kontaktuppgifter till alla våra medarbetare för
                 att ni på enklaste sätt ska kunna kontakta den person som ni söker.</p>

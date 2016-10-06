@@ -85,7 +85,7 @@
 
                     <h1 class="center heading-quaternary  mb-xlg">Översättning</h1>
 
-                    <p class="lead">Vi på Tolkning i Kristianstad översätter all form av dokumentation. Exempelvis validerar vi körkort och
+                    <p class="lead">Vi på Tolkning i Kristianstad AB översätter all form av dokumentation. Exempelvis validerar vi körkort och
                         betyg. Vi översätter juridiska dokument, dokument från myndigheter, bank, försäkringar, sjukvård
                         osv på alla språk.<br/> <br/> Våra översättare väljs ut med omsorg och vi är noga med att matcha
                         texten som ska översättas med lämplig kunskapsprofil.

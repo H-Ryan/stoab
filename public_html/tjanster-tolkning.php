@@ -105,7 +105,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Videotolkning">
                                     <i class="icon-featured fa fa-video-camera"></i>
-                                    <h4><strong>Videotolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Videotolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -116,7 +116,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Telefontolkning">
                                     <i class="icon-featured fa fa-phone"></i>
-                                    <h4><strong>Telefontolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Telefontolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -127,7 +127,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Kontakttolkning">
                                     <i class="icon-featured fa  fa-users"></i>
-                                    <h4><strong>Kontakttolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Kontakttolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -138,7 +138,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Affärstolkning">
                                     <i class="icon-featured fa fa-university"></i>
-                                    <h4><strong>Affärstolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Affärstolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -152,7 +152,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Konsekutivtolkning">
                                     <i class="icon-featured fa fa-share-alt"></i>
-                                    <h4><strong>Konsekutivtolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Konsekutivtolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -163,7 +163,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Simultantolkning">
                                     <i class="icon-featured fa fa-retweet"></i>
-                                    <h4><strong>Simultantolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Simultantolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -174,7 +174,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Viskningstolkning">
                                     <i class="icon-featured fa  fa-weixin"></i>
-                                    <h4><strong>Viskningstolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Viskningstolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -185,7 +185,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Resumétolkning">
                                     <i class="icon-featured fa  fa-sitemap"></i>
-                                    <h4><strong>Resumétolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Resumétolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -199,7 +199,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Samhällstolkning">
                                     <i class="icon-featured fa fa-tty"></i>
-                                    <h4><strong>Samhällstolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Samhällstolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -210,7 +210,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Rättstolkning">
                                     <i class="icon-featured fa fa-check"></i>
-                                    <h4><strong>Rättstolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Rättstolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -221,7 +221,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Konferenstolkning">
                                     <i class="icon-featured fa  fa-align-center"></i>
-                                    <h4><strong>Konferenstolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Konferenstolkning</strong></h4>
                                 </a>
 
                             </div>
@@ -232,7 +232,7 @@
                             <div class="box-content p-xs">
                                 <a href="#Sjukvårdstolkning">
                                     <i class="icon-featured fa fa-user-md"></i>
-                                    <h4><strong>Sjukvårdstolkning</strong></h4>
+                                    <h4><strong style="color: #343434;">Sjukvårdstolkning</strong></h4>
                                 </a>
 
                             </div>

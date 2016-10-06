@@ -81,8 +81,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="center">Tveka inte att ta kontakt med oss på STÖ tolktjänster om det är någonting som du
-                        undrar över, och inte har fått svar på här på webbplatsen.</h4>
+                    <h4 class="center">Hos oss kan ni  boka tolk dygnet runt.
+Ni kan boka tolk via vår web inloggning eller på telefon : <a href="tel:+46-10-516-4210">(010) 516 42 10</a>
+Observera , Övriga tjänster nås under kontorstid.</h4>
                 </div>
             </div>
             <hr>
@@ -177,11 +178,11 @@
 
                     <div id="googlemaps" class="google-map small mt-xs"></div>
                     <ul class="list list-icons list-icons-style-3 mt-sm">
-                        <li><i class="fa fa-map-marker"></i> <strong>Besök adress:</strong>
-                        </li>
                         <li><i class="fa fa-phone"></i> <strong>Telefon:</strong> <a href="tel:+46-10-516-4210">(010) 516 42 10</a></li>
                         <li><i class="fa fa-envelope"></i> <strong>E-Post:</strong> <a
                                 href="mailto: info@c4tolk.se"> info@c4tolk.se</a></li>
+                                <li><i class="fa fa-map-marker"></i> <strong>Besök adress: Industrigatan 2, 29136 Kristianstad</strong>
+                                </li>
                         <li><i class="fa fa-envelope"></i> <strong>Post Adress: BOX 21, 291 21, Kristianstad</strong></li>
                     </ul>
 
@@ -243,7 +244,7 @@
 
     // Map Markers
     var mapMarkers = [{
-        address: "Nya Boulevarden 10, 291 31 Kristianstad",
+        address: "Industrigatan 2, 291 36 Kristianstad",
         //html: "<strong>Kontor</strong><br>Nya Boulevarden 10,291 31 Kristianstad",
         icon: {
             image: "img/marker.png",
