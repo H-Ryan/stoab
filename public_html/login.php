@@ -95,14 +95,14 @@
                                                         <input type="text" name="customerNumber"
                                                                class="form-control input-lg"
                                                                id="customerNumber"
-                                                               data-rule-maxlength="6"
-                                                               data-rule-minlength="6"
+                                                               data-rule-maxlength="5"
+                                                               data-rule-minlength="5"
                                                                data-rile-digits="true"
                                                                data-rule-required="true"
                                                                data-msg-digits="Fält kundnummer får bara innehålla siffror."
                                                                data-msg-required="Fält kundnummer krävs."
-                                                               data-msg-minlength="Fält kundnummer bör innehålla 6 tecken."
-                                                               data-msg-maxlength="Fält kundnummer bör innehålla 6 tecken."
+                                                               data-msg-minlength="Fält kundnummer bör innehålla 5 tecken."
+                                                               data-msg-maxlength="Fält kundnummer bör innehålla 5 tecken."
                                                                maxlength="6">
                                                     </div>
                                                 </div>
@@ -157,14 +157,14 @@
                                                         <input type="text" name="customerNumber"
                                                                class="form-control input-lg"
                                                                id="customerNumber"
-                                                               data-rule-maxlength="6"
-                                                               data-rule-minlength="6"
+                                                               data-rule-maxlength="5"
+                                                               data-rule-minlength="5"
                                                                data-rile-digits="true"
                                                                data-rule-required="true"
                                                                data-msg-digits="Fält kundnummer får bara innehålla siffror."
                                                                data-msg-required="Fält kundnummer krävs."
-                                                               data-msg-minlength="Fält kundnummer bör innehålla 6 tecken."
-                                                               data-msg-maxlength="Fält kundnummer bör innehålla 6 tecken."
+                                                               data-msg-minlength="Fält kundnummer bör innehålla 5 tecken."
+                                                               data-msg-maxlength="Fält kundnummer bör innehålla 5 tecken."
                                                                maxlength="6">
                                                     </div>
                                                 </div>
