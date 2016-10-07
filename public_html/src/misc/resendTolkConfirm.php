@@ -150,7 +150,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && !empty($_POST
                         <footer style='margin-left: 10%; width:80%'>
                         <h2>Tolkning i Kristianstad AB</h2>
 
-                        <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2, 291 36 Kristianstad</p>
+                        <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2A, 291 36 Kristianstad</p>
 
                         <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@c4tolk.se'> info@c4tolk.se</a></p>
 

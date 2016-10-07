@@ -181,7 +181,7 @@ Observera , Övriga tjänster nås under kontorstid.</h4>
                         <li><i class="fa fa-phone"></i> <strong>Telefon:</strong> <a href="tel:+46-10-516-4210">(010) 516 42 10</a></li>
                         <li><i class="fa fa-envelope"></i> <strong>E-Post:</strong> <a
                                 href="mailto: info@c4tolk.se"> info@c4tolk.se</a></li>
-                                <li><i class="fa fa-map-marker"></i> <strong>Besöksadress: Industrigatan 2, 291 36 Kristianstad</strong>
+                                <li><i class="fa fa-map-marker"></i> <strong>Besöksadress: Industrigatan 2A, 291 36 Kristianstad</strong>
                                 </li>
                         <li><i class="fa fa-envelope"></i> <strong>Postadress: BOX 21, 291 21 Kristianstad</strong></li>
                     </ul>
@@ -244,7 +244,7 @@ Observera , Övriga tjänster nås under kontorstid.</h4>
 
     // Map Markers
     var mapMarkers = [{
-        address: "Industrigatan 2, 291 36 Kristianstad",
+        address: "Industrigatan 2A, 291 36 Kristianstad",
         //html: "<strong>Kontor</strong><br>Nya Boulevarden 10,291 31 Kristianstad",
         icon: {
             image: "img/marker.png",
