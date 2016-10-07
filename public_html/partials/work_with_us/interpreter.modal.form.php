@@ -206,7 +206,7 @@
                                                        data-msg-minlength="Fält Språk <?php echo $i; ?> bör innehålla mer än 3 tecken."
                                                        data-msg-maxlength="Fältet Språk <?php echo $i; ?> bör innehålla mindre än 90."
                                                        data-rule-maxlength="90"
-                                                    <?php if ($i == 1) {
+                                                    <?php if ($i == 0) {
         ?>
                                                         data-msg-required="Du måste välja minst ett språk."
                                                         data-rule-required='true' <?php
@@ -214,7 +214,7 @@
     } ?>>
                                             </div>
                                             <div class="col-sm-6">
-                                                <?php if ($i == 1) {
+                                                <?php if ($i == 0) {
         echo '<label for="languageCompetence1">Kompetens:</label>';
     } else {
         echo '';
@@ -223,7 +223,7 @@
                                                     class="form-control input-lg mb-md interpreter-language-competence-group"
                                                     name="langCompetence<?php echo $i; ?>"
                                                     id="langCompetence<?php echo $i; ?>"
-                                                    <?php if ($i == 1) {
+                                                    <?php if ($i == 0) {
         ?>
                                                         data-rule-required='true'
                                                         data-msg-required="Välj ett språk från listan." <?php
