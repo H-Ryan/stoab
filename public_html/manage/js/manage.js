@@ -293,6 +293,7 @@ $(document).ready(function () {
                     $('.tolkInfoName').text(tolk.u_firstName + " " + tolk.u_lastName);
                     $('.tolkInfoEmail').text(tolk.u_email);
                     $('.tolkInfoTelephone').text(tolk.u_tel);
+                    $('.tolkInfoMobile').text(tolk.u_mobile);
                     $('.tolkInfoCity').text(tolk.u_city);
                     isValid = true;
                     return false;

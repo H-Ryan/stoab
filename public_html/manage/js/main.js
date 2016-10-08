@@ -47,12 +47,12 @@ $(document).ready(function () {
                     manageWindow.location.reload();
                 else {
                     //manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
-                    manageWindow = window.open("http://localhost/workspace/stoab/public_html/manage/manage.php", "_blank");
+                    manageWindow = window.open("http://localhost/ws/stoab/public_html/manage/manage.php", "_blank");
                 }
             }
             else {
                 //manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
-                manageWindow = window.open("http://localhost/workspace/stoab/public_html/manage/manage.php", "_blank");
+                manageWindow = window.open("http://localhost/ws/stoab/public_html/manage/manage.php", "_blank");
             }
 
             btn.removeClass('loading');

@@ -1,16 +1,16 @@
 <?php
-ini_set("session.use_only_cookies", true);
-ini_set("session.use_trans_sid", false);
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 session_start();
 
 $referrer = $_SERVER['HTTP_REFERER'];
-if ( ! empty($referrer)) {
+if (!empty($referrer)) {
     $uri = parse_url($referrer);
     if ($uri['host'] != $_SERVER['HTTP_HOST']) {
-        exit ("Form submission from $referrer not allowed.");
+        exit("Form submission from $referrer not allowed.");
     }
 } else {
-    exit("Referrer not found. Please <a href='" . $_SERVER['SCRIPT_NAME'] . "'>try again</a>.");
+    exit("Referrer not found. Please <a href='".$_SERVER['SCRIPT_NAME']."'>try again</a>.");
 }
 
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3200)) {
@@ -18,9 +18,9 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     session_destroy();
 }
 $_SESSION['LAST_ACTIVITY'] = time();
-if ( ! isset($_SESSION['CREATED'])) {
+if (!isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();
-} else if (time() - $_SESSION['CREATED'] > 3200) {
+} elseif (time() - $_SESSION['CREATED'] > 3200) {
     session_regenerate_id(true);
     $_SESSION['CREATED'] = time();
 }
@@ -30,27 +30,27 @@ if (empty($_SESSION['personal_number']) &&
     header('Location: index.php');
 }
 $order = $_SESSION['order'];
-$tolk  = null;
+$tolk = null;
 try {
-    include "../src/db/dbConfig.php";
-    include_once "../src/db/dbConnection.php";
-    include_once "../src/misc/functions.php";
-    $db         = new dbConnection(HOST, DATABASE, USER, PASS);
-    $con        = $db->get_connection();
-    $tolkNumber = "";
+    include '../src/db/dbConfig.php';
+    include_once '../src/db/dbConnection.php';
+    include_once '../src/misc/functions.php';
+    $db = new dbConnection(HOST, DATABASE, USER, PASS);
+    $con = $db->get_connection();
+    $tolkNumber = '';
     if ($order->o_tolkarPersonalNumber != null) {
         $tolkNumber = $order->o_tolkarPersonalNumber;
-        $query      = "SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,"
-                      . " u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,"
-                      . " u.u_extraInfo, t.* FROM t_tolkar AS t, t_users AS u WHERE (u.u_role = 3 OR u.u_role = 1)"
-                      . " AND t.t_active = 1 AND t.t_personalNumber=:tolkNumber AND u.u_personalNumber = t.t_personalNumber";
-        $statement  = $con->prepare($query);
-        $statement->bindParam(":tolkNumber", $tolkNumber);
+        $query = 'SELECT u.u_personalNumber, u.u_firstName, u.u_lastName, u.u_email,'
+                      .' u.u_tel, u.u_mobile, u.u_address, u.u_zipCode, u.u_state, u.u_city,'
+                      .' u.u_extraInfo, t.* FROM t_tolkar AS t, t_users AS u WHERE (u.u_role = 3 OR u.u_role = 1)'
+                      .' AND t.t_active = 1 AND t.t_personalNumber=:tolkNumber AND u.u_personalNumber = t.t_personalNumber';
+        $statement = $con->prepare($query);
+        $statement->bindParam(':tolkNumber', $tolkNumber);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
         $orders = array();
         if ($statement->rowCount() > 0) {
-            $tolk       = $statement->fetch();
+            $tolk = $statement->fetch();
             $tolkNumber = $tolk->t_tolkNumber;
         }
     }
@@ -134,7 +134,7 @@ try {
                                         <div class="ui header">Tolkens nummer:</div>
                                     </td>
                                     <td class="tolkInfoNumber">
-                                        <?php echo(($tolk != null) ? $tolk->t_tolkNumber : "") ?>
+                                        <?php echo ($tolk != null) ? $tolk->t_tolkNumber : '' ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -142,7 +142,7 @@ try {
                                         <div class="ui header">Tolkens namn:</div>
                                     </td>
                                     <td class="tolkInfoName">
-                                        <?php echo(($tolk != null) ? ($tolk->u_firstName . " " . $tolk->u_lastName) : "") ?>
+                                        <?php echo ($tolk != null) ? ($tolk->u_firstName.' '.$tolk->u_lastName) : '' ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -150,7 +150,7 @@ try {
                                         <div class="ui header">Tolkens e-post:</div>
                                     </td>
                                     <td class="tolkInfoEmail">
-                                        <?php echo(($tolk != null) ? $tolk->u_email : "") ?>
+                                        <?php echo ($tolk != null) ? $tolk->u_email : '' ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -158,15 +158,15 @@ try {
                                         <div class="ui header">Tolkens telefonnummer:</div>
                                     </td>
                                     <td class="tolkInfoTelephone">
-                                        <?php echo(($tolk != null) ? $tolk->u_tel : "") ?>
+                                        <?php echo ($tolk != null) ? $tolk->u_tel : '' ?>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <div class="ui header">Tolkens mobilnummer:</div>
                                     </td>
-                                    <td class="tolkInfoTelephone">
-                                        <?php echo(($tolk != null) ? $tolk->u_mobile : "") ?>
+                                    <td class="tolkInfoMobile">
+                                        <?php echo ($tolk != null) ? $tolk->u_mobile : '' ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -174,7 +174,7 @@ try {
                                         <div class="ui header">Tolkens stad:</div>
                                     </td>
                                     <td class="tolkInfoCity">
-                                        <?php echo(($tolk != null) ? $tolk->u_city : "") ?>
+                                        <?php echo ($tolk != null) ? $tolk->u_city : '' ?>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -186,15 +186,15 @@ try {
                             </div>
                             <div class="field">
                                 <?php if ($tolk != null) {
-                                    echo "<button type='button' class='ui orange button btnTolkCancel'>Annulleras av tolk</button>";
-                                } ?>
+    echo "<button type='button' class='ui orange button btnTolkCancel'>Annulleras av tolk</button>";
+} ?>
                             </div>
                             <div class="field">
                                 <?php if ($tolk != null) {
-                                    echo "<button type='button' class='ui green button btnReAssign'>Överlåta</button>";
-                                } else {
-                                    echo "<button type='button' class='ui green button btnAssign'>Tilldela</button>";
-                                }
+    echo "<button type='button' class='ui green button btnReAssign'>Överlåta</button>";
+} else {
+    echo "<button type='button' class='ui green button btnAssign'>Tilldela</button>";
+}
 
                                 ?>
                             </div>
@@ -310,11 +310,11 @@ try {
                                     Skicka tolk uppdrag bekräftelse
                                 </div>
                                 <button type="button" id="resendToTolk"
-                                        class="ui teal inverted button <?php echo(($tolk == null) ? 'disabled' : '') ?>">
+                                        class="ui teal inverted button <?php echo ($tolk == null) ? 'disabled' : '' ?>">
                                     Till tolk
                                 </button>
                                 <button type="button" id="resendToClientAboutTolk"
-                                        class="ui purple inverted button <?php echo(($tolk == null) ? 'disabled' : '') ?>">
+                                        class="ui purple inverted button <?php echo ($tolk == null) ? 'disabled' : '' ?>">
                                     Till kunden
                                 </button>
                             </div>
@@ -541,24 +541,24 @@ try {
                                     <label for="startTime">Starttid</label>
                                     <div id="startTime" class="two fields">
                                         <?php
-                                        $startH = (integer)(($order->o_startTime - ($order->o_startTime % 4)) / 4);
-                                        $startM = (integer)($order->o_startTime % 4);
-                                        $endH = (integer)(($order->o_endTime - ($order->o_endTime % 4)) / 4);
-                                        $endM = (integer)($order->o_endTime % 4);
+                                        $startH = (int) (($order->o_startTime - ($order->o_startTime % 4)) / 4);
+                                        $startM = (int) ($order->o_startTime % 4);
+                                        $endH = (int) (($order->o_endTime - ($order->o_endTime % 4)) / 4);
+                                        $endM = (int) ($order->o_endTime % 4);
                                         $minutes = ['00', '15', '30', '45'];
                                         ?>
                                         <div class="field">
                                             <select class="ui fluid search selection dropdown" id="starttid"
                                                     name="start_hour">
                                                 <?php
-                                                for ($i = 0; $i < 3; $i++) {
-                                                    for ($j = 0; $j < 10; $j++) {
-                                                        if (intval($i . $j) === 24) {
+                                                for ($i = 0; $i < 3; ++$i) {
+                                                    for ($j = 0; $j < 10; ++$j) {
+                                                        if (intval($i.$j) === 24) {
                                                             break;
-                                                        } elseif (intval($i . $j) === $startH) {
-                                                            echo "<option selected value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                        } elseif (intval($i.$j) === $startH) {
+                                                            echo '<option selected value="'.intval($i.$j)."\">$i$j</option>";
                                                         } else {
-                                                            echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                            echo '<option value="'.intval($i.$j)."\">$i$j</option>";
                                                         }
                                                     }
                                                 }
@@ -569,11 +569,11 @@ try {
                                             <select name="start_minute" id="starttid1"
                                                     class="ui fluid dropdown">
                                                 <?php
-                                                for ($i = 0; $i < 4; $i++) {
+                                                for ($i = 0; $i < 4; ++$i) {
                                                     if ($i === $startM) {
-                                                        echo "<option selected value=\"" . $i . "\">$minutes[$i]</option>";
+                                                        echo '<option selected value="'.$i."\">$minutes[$i]</option>";
                                                     } else {
-                                                        echo "<option value=\"" . $i . "\">$minutes[$i]</option>";
+                                                        echo '<option value="'.$i."\">$minutes[$i]</option>";
                                                     }
                                                 }
                                                 ?>
@@ -589,14 +589,14 @@ try {
                                             <select class="ui fluid search selection dropdown" id="sluttid"
                                                     name="end_hour">
                                                 <?php
-                                                for ($i = 0; $i < 3; $i++) {
-                                                    for ($j = 0; $j < 10; $j++) {
-                                                        if (intval($i . $j) === 24) {
+                                                for ($i = 0; $i < 3; ++$i) {
+                                                    for ($j = 0; $j < 10; ++$j) {
+                                                        if (intval($i.$j) === 24) {
                                                             break;
-                                                        } elseif (intval($i . $j) === $endH) {
-                                                            echo "<option selected value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                        } elseif (intval($i.$j) === $endH) {
+                                                            echo '<option selected value="'.intval($i.$j)."\">$i$j</option>";
                                                         } else {
-                                                            echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                            echo '<option value="'.intval($i.$j)."\">$i$j</option>";
                                                         }
                                                     }
                                                 }
@@ -607,11 +607,11 @@ try {
                                             <select name="end_minute" id="sluttid1"
                                                     class="ui fluid dropdown">
                                                 <?php
-                                                for ($i = 0; $i < 4; $i++) {
+                                                for ($i = 0; $i < 4; ++$i) {
                                                     if ($i === $endM) {
-                                                        echo "<option selected value=\"" . $i . "\">$minutes[$i]</option>";
+                                                        echo '<option selected value="'.$i."\">$minutes[$i]</option>";
                                                     } else {
-                                                        echo "<option value=\"" . $i . "\">$minutes[$i]</option>";
+                                                        echo '<option value="'.$i."\">$minutes[$i]</option>";
                                                     }
                                                 }
                                                 ?>
