@@ -39,8 +39,8 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
     $address = $_POST['address'];
     $postNumber = $_POST['postNumber'];
     $city = $_POST['city'];
-    $languageOne = $_POST['language1'];
-    $langOneCompetence = $_POST['langCompetence1'];
+    $languageOne = $_POST['language0'];
+    $langOneCompetence = $_POST['langCompetence0'];
 
     $emailer = new Emails();
     $emailContent = "<html><head></head>
@@ -75,13 +75,15 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
     $emailContent .= printRow('Postort:', $city);
     $emailContent .= printRow('Modersmål:', $languageOne.' - '.$langOneCompetence);
     $langs = ['1', '2', '3', '4'];
-    for ($i = 0; $i < sizeof($langs); ++$i) {
+    for ($i = 0; $i < (sizeof($langs)); ++$i) {
+        echo $i;
+        echo $_POST['language'.$langs[$i]];
         if (isset($_POST['language'.$langs[$i]])) {
             $language = $_POST['language'.$langs[$i]];
-            if (strlen($language) > 3) {
+            if (strlen($language) >= 3) {
                 $lang = $_POST['language'.$langs[$i]];
                 $langComp = $_POST['langCompetence'.$langs[$i]];
-                $emailContent .= printRow('Språk:', $lang.' - '.$langComp);
+                $emailContent .= printRow('Språk '.($i + 1).':', $lang.' - '.$langComp);
             }
         }
     }

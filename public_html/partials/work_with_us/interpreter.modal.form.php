@@ -194,7 +194,7 @@
                                         <div class="form-group">
                                             <div class="col-sm-6">
                                                 <?php if ($i == 0) {
-        echo '<label for="language1">Språk:</label>';
+        echo '<label for="language0">Språk:</label>';
     } else {
         echo '';
     } ?>
