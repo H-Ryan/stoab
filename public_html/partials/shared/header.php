@@ -54,7 +54,7 @@ session_start();
                                             <a data-hash data-hash-offset="70" href="kontaktaoss.php">Kontakta
                                                 oss</a>
                                         </li>
-                                        <!-- <li>
+                                        <li>
                                             <?php
                                             if (!empty($_SESSION['organization_number']) && !empty($_SESSION['user_number'])) {
                                                 ?>
@@ -72,7 +72,7 @@ session_start();
                                             <?php
 
                                             } ?>
-                                        </li> -->
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
