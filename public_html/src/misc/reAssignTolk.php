@@ -215,7 +215,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                                             margin-left: 10%;'/>
                             <h2 style='text-align: center; margin-top: 5%;'>Tolkuppdrag</h2>
 
-                            <h2 style='text-align: center; margin-top: 5%;'>Uppdrag Nummer: " .$orderUpdated->o_orderNumber."</h2>
+                            <h2 style='text-align: center; margin-top: 5%;'>Bokningsnummer: " .$orderUpdated->o_orderNumber."</h2>
                             <table style='width: 80%;
                                             margin-left: 10%;
                                             margin-right: 10%;
