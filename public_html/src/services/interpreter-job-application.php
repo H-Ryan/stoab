@@ -27,7 +27,7 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
     && (isset($_POST['phoneHome']) || isset($_POST['phoneMobile']))
     && isset($_POST['address']) && isset($_POST['postNumber'])
     && isset($_POST['city']) && (isset($_POST['terms']) && $_POST['terms'] === 'on')
-    && isset($_POST['language1']) && isset($_POST['langCompetence1'])
+    && isset($_POST['language0']) && isset($_POST['langCompetence0'])
 ) {
     $fName = $_POST['firstName'];
     $lName = $_POST['lastName'];
@@ -74,7 +74,7 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
     $emailContent .= printRow('Postnummer:', $postNumber);
     $emailContent .= printRow('Postort:', $city);
     $emailContent .= printRow('Modersmål:', $languageOne.' - '.$langOneCompetence);
-    $langs = ['2', '3', '4', '5'];
+    $langs = ['1', '2', '3', '4'];
     for ($i = 0; $i < sizeof($langs); ++$i) {
         if (isset($_POST['language'.$langs[$i]])) {
             $language = $_POST['language'.$langs[$i]];
