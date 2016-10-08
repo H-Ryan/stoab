@@ -374,7 +374,7 @@ $(document).ready(function () {
                 }
             }).done(function (data) {
                 if (data.error == 0) {
-                  window.open(data.smsURL, "_blank");
+                  if (data.smsURL) {window.open(data.smsURL, "_blank")};
                   refreshWindow();
                 } else {
                     var errorElem = manageForm.find(".error.message");
