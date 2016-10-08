@@ -184,7 +184,7 @@ if (isset($_POST['orderNumber']) && !empty($_POST['orderNumber'])) {
 
                     <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2A, 291 36 Kristianstad</p>
 
-                    <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:info@c4tolk.se'> info@c4tolk.se</a></p>
+                    <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:kundtjanst@c4tolk.se'> kundtjanst@c4tolk.se</a></p>
 
                     <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.c4tolk.se'> www.c4tolk.se</a></p>
 
