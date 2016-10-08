@@ -2,7 +2,7 @@
 /**
  * User: Samuil
  * Date: 25-06-2015
- * Time: 12:33 AM
+ * Time: 12:33 AM.
  */
 ?>
 <div class="ui piled segment">
@@ -47,20 +47,19 @@
                 <div class="ui segment">
                     <div class="ui three cards uploadedImages">
                         <?php
-                        $files = glob("../img/uploaded/*.*");
+                        $files = glob('../img/uploaded/*.*');
                         $count = count($files);
 
                         $sortedArray = array();
-                        for ($i = 0; $i < $count; $i++) {
-                            $sortedArray[date ('YmdHis', filemtime($files[$i]))] = $files[$i];
+                        for ($i = 0; $i < $count; ++$i) {
+                            $sortedArray[date('YmdHis', filemtime($files[$i]))] = $files[$i];
                         }
 
                         krsort($sortedArray);
                         if ($count > 0) {
-                            foreach ($sortedArray as $image)
-                            {
+                            foreach ($sortedArray as $image) {
                                 $path = substr($image, 3);
-                                echo "<div class='ui blue card'><img class='ui image' width='100%' height='250px' src='$image' /><div class='extra content'><p class='header'>Vägen till bilden:</p><div class='description'><div class='ui segment' style='overflow: auto; overflow-y: hidden;'><span class='ui text'>http://tolktjanst.com/$path</span></div></div></div></div>";
+                                echo "<div class='ui blue card'><img class='ui image' width='100%' height='250px' src='$image' /><div class='extra content'><p class='header'>Vägen till bilden:</p><div class='description'><div class='ui segment' style='overflow: auto; overflow-y: hidden;'><span class='ui text'>http://c4tolk.com/$path</span></div></div></div></div>";
                             }
                         } else {
                             echo "<div id='noUploadedPictures'><span>Du behöver inte ha bilder några uppladdade just nu!</span></div>";
