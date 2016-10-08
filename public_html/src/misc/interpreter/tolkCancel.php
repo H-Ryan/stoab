@@ -25,7 +25,7 @@ if (!empty($referrer)) {
 $data = [];
 $db = null;
 $emailer = new Emails();
-$tolkSubject = 'Tolkning i Kristianstad AB - Avbokning.';
+$tolkSubject = 'C4Tolk - Avbokning.';
 if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
     $orderNumber = $_POST['orderNumber'];
     $employeeNumber = $_POST['employee'];
@@ -187,14 +187,16 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                             </body>
                             </html>";
                             $emailer->send_email($tolk->u_email, $tolk->u_firstName.' '.$tolk->u_lastName, $tolkSubject, $messageToOldTolkCancel);
+                            $finance_subject = "C4Tolk (Ekonomi Avbokning) - $orderNumber ";
+
+                            $emailer->send_email('ekonomi@sarvari.se', 'Ekonomi', $finance_subject, $messageToOldTolkCancel);
 
                             //Send SMS
                             $smsService = new SMS_Service();
                             $text = "Hej,
-                                Uppdrag ($orderNumber) har förändrats eller Avbrutits.
-                                Var vänlig kontrollera din e-post.
-                                OBS! Du kan inte svara på detta meddelande.
-                                Mvh Tolkning i Kristianstad AB";
+Uppdrag ($orderNumber) har förändrats eller avbrutits, kontrollera din e-post.
+OBS! Du kan inte svara på detta meddelande.
+Mvh Tolkning i Kristianstad AB";
                             $smsService->setTo($tolk->u_mobile);
                             $smsService->setText($text);
                             $data['smsURL'] = $smsService->generateSMS()->sendSMS();

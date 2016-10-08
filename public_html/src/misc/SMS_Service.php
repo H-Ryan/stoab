@@ -17,13 +17,13 @@ class SMS_Service
     public function generateSMS()
     {
         $data = array(
-            'username' => 'stoab',
-            'password' => 'Sarvari71',
+            'username' => 'c4tolk',
+            'password' => 'Sarvari.71',
             'from' => 'c4tolk',
             'to' => $this->to,
             'text' => $this->text,
         );
-        $this->url = 'https://www.rebvoice.com/myaccount/sendsms.php?'.http_build_query($data);
+        $this->url = 'https://www.rebvoice.com/reteye/sendsms.php?'.http_build_query($data); //myaccount
 
         return $this;
     }
