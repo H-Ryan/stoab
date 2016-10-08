@@ -47,12 +47,12 @@ $(document).ready(function () {
                     manageWindow.location.reload();
                 else {
                     //manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
-                    manageWindow = window.open("http://localhost/ws/stoab/public_html/manage/manage.php", "_blank");
+                    manageWindow = window.open("http://c4tolk.com/manage/manage.php", "_blank");
                 }
             }
             else {
                 //manageWindow = window.open("http://tolktjanst.com/manage/manage.php", "_blank");
-                manageWindow = window.open("http://localhost/ws/stoab/public_html/manage/manage.php", "_blank");
+                manageWindow = window.open("http://c4tolk.com/manage/manage.php", "_blank");
             }
 
             btn.removeClass('loading');
@@ -1846,6 +1846,9 @@ $(document).ready(function () {
 
     $('.button.reset-btn').click(function () {
         orderForm.form('clear');
+        $('#organizationID').val("0000000000");
+        $('#clientID').val("100000");
+        $('#ordererID').val($("#loggedPersonID").text());
         $("#date").datepicker({dateFormat: 'yy-mm-dd', firstDay: 1, minDate: 0,
             onSelect: function() {
                 orderForm.form('validate form');
@@ -1891,7 +1894,9 @@ $(document).ready(function () {
                 orderForm.removeClass("loading").addClass("error");
                 errorElem.children("p").text('There is a problem in the script');
                 errorElem.children('.header').text('PHP error');
-
+                $('#organizationID').val("0000000000");
+                $('#clientID').val("100000");
+                $('#ordererID').val($("#loggedPersonID").text());
             });
         }
     });

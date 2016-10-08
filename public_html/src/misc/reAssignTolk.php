@@ -81,7 +81,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
                             $statement = $con->prepare($query);
                             $statement->bindParam(':orderNumber', $orderNumber);
                             $statement->bindParam(':modifyPN', $employeeNumber);
-                            $statement->bindParam(':involvedPN', $order->o_kundNumber);
+                            $statement->bindParam(':involvedPN', $tolkNumber);
                             $statement->bindParam(':ipAddress', $ipAddress);
                             $statement->bindParam(':state', $booked);
                             $statement->execute();

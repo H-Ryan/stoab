@@ -76,8 +76,6 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
     $emailContent .= printRow('Modersmål:', $languageOne.' - '.$langOneCompetence);
     $langs = ['1', '2', '3', '4'];
     for ($i = 0; $i < (sizeof($langs)); ++$i) {
-        echo $i;
-        echo $_POST['language'.$langs[$i]];
         if (isset($_POST['language'.$langs[$i]])) {
             $language = $_POST['language'.$langs[$i]];
             if (strlen($language) >= 3) {

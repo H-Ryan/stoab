@@ -1,72 +1,70 @@
 <?php
-ini_set( "session.use_only_cookies", true );
-ini_set( "session.use_trans_sid", false );
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 
 session_start();
 
-include "../src/db/dbConfig.php";
-include_once "../src/db/dbConnection.php";
-include_once "../src/misc/functions.php";
+include '../src/db/dbConfig.php';
+include_once '../src/db/dbConnection.php';
+include_once '../src/misc/functions.php';
 include_once '../src/misc/Mobile_Detect.php';
 
-if ( isset( $_SESSION['LAST_ACTIVITY'] ) && ( time() - $_SESSION['LAST_ACTIVITY'] > 3200 ) ) {
-	session_unset();
-	session_destroy();
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3200)) {
+    session_unset();
+    session_destroy();
 }
 $_SESSION['LAST_ACTIVITY'] = time();
-if ( ! isset( $_SESSION['CREATED'] ) ) {
-	$_SESSION['CREATED'] = time();
-} else if ( time() - $_SESSION['CREATED'] > 3200 ) {
-	session_regenerate_id( true );
-	$_SESSION['CREATED'] = time();
+if (!isset($_SESSION['CREATED'])) {
+    $_SESSION['CREATED'] = time();
+} elseif (time() - $_SESSION['CREATED'] > 3200) {
+    session_regenerate_id(true);
+    $_SESSION['CREATED'] = time();
 }
-if ( empty( $_SESSION['personal_number'] ) ) {
-	header( 'Location: index.php' );
+if (empty($_SESSION['personal_number'])) {
+    header('Location: index.php');
 }
 
-$detect = new Mobile_Detect;
-$db     = null;
+$detect = new Mobile_Detect();
+$db = null;
 try {
+    $db = new dbConnection(HOST, DATABASE, USER, PASS);
+    $con = $db->get_connection();
 
-	$db  = new dbConnection( HOST, DATABASE, USER, PASS );
-	$con = $db->get_connection();
-
-	$query     = "SELECT u_firstName, u_lastName FROM t_users WHERE u_personalNumber=:personalNumber";
-	$statement = $con->prepare( $query );
-	$statement->bindParam( ":personalNumber", $_SESSION['personal_number'] );
-	$statement->execute();
-	$statement->setFetchMode( PDO::FETCH_OBJ );
-	$user = null;
-	if ( $statement->rowCount() > 0 ) {
-		$user = $statement->fetch();
-	}
-	$statement = $con->query( "SELECT * FROM t_languages ORDER BY l_languageName" );
-	$statement->setFetchMode( PDO::FETCH_OBJ );
-	$languages = array();
-	while ( $row = $statement->fetch() ) {
-		$languages[ $row->l_languageID ] = $row->l_languageName;
-	}
-	$statement = $con->query( "SELECT * FROM t_city ORDER BY c_cityName" );
-	$statement->setFetchMode( PDO::FETCH_OBJ );
-	$cities = array();
-	while ( $row = $statement->fetch() ) {
-		$cities[] = $row->c_cityName;
-	}
-	$kundOrgNums = array();
-	$statement   = $con->query( "SELECT DISTINCT k_organizationName, k_kundNumber FROM t_kunder" );
-	$statement->setFetchMode( PDO::FETCH_OBJ );
-	while ( $row = $statement->fetch() ) {
-		$kundOrgNums[ $row->k_kundNumber ] = $row->k_organizationName;
-	}
+    $query = 'SELECT u_firstName, u_lastName FROM t_users WHERE u_personalNumber=:personalNumber';
+    $statement = $con->prepare($query);
+    $statement->bindParam(':personalNumber', $_SESSION['personal_number']);
+    $statement->execute();
+    $statement->setFetchMode(PDO::FETCH_OBJ);
+    $user = null;
+    if ($statement->rowCount() > 0) {
+        $user = $statement->fetch();
+    }
+    $statement = $con->query('SELECT * FROM t_languages ORDER BY l_languageName');
+    $statement->setFetchMode(PDO::FETCH_OBJ);
+    $languages = array();
+    while ($row = $statement->fetch()) {
+        $languages[ $row->l_languageID ] = $row->l_languageName;
+    }
+    $statement = $con->query('SELECT * FROM t_city ORDER BY c_cityName');
+    $statement->setFetchMode(PDO::FETCH_OBJ);
+    $cities = array();
+    while ($row = $statement->fetch()) {
+        $cities[] = $row->c_cityName;
+    }
+    $kundOrgNums = array();
+    $statement = $con->query('SELECT DISTINCT k_organizationName, k_kundNumber FROM t_kunder');
+    $statement->setFetchMode(PDO::FETCH_OBJ);
+    while ($row = $statement->fetch()) {
+        $kundOrgNums[ $row->k_kundNumber ] = $row->k_organizationName;
+    }
     $customers = array();
-    $statement   = $con->query( "select k_organizationName as Namn, k_kundNumber as Kundnummer, k_tel as Telefon, k_mobile as Mobil, concat(k_firstName, ' ', k_lastName) as Kontaktperson, k_email as Epost , concat(k_address, ' - ', k_zipCode, ' ', k_city) as Adress from t_kunder where k_kundNumber != '100000' order by k_organizationName" );
-    $statement->setFetchMode( PDO::FETCH_OBJ );
-    while ( $row = $statement->fetch() ) {
+    $statement = $con->query("select k_organizationName as Namn, k_kundNumber as Kundnummer, k_tel as Telefon, k_mobile as Mobil, concat(k_firstName, ' ', k_lastName) as Kontaktperson, k_email as Epost , concat(k_address, ' - ', k_zipCode, ' ', k_city) as Adress from t_kunder where k_kundNumber != '100000' order by k_organizationName");
+    $statement->setFetchMode(PDO::FETCH_OBJ);
+    while ($row = $statement->fetch()) {
         $customers[ $row->Kundnummer ] = $row;
     }
-
-} catch ( PDOException $e ) {
-	return $e->getMessage();
+} catch (PDOException $e) {
+    return $e->getMessage();
 } ?>
 	<!DOCTYPE html>
 	<html>
@@ -105,6 +103,7 @@ try {
 		<![endif]-->
 	</head>
 	<body>
+	<span id="loggedPersonID" style="display: none"><?php echo $_SESSION['personal_number']; ?></span>
 	<div class="ui active page dimmer">
 		<div class="ui large text loader">Loading</div>
 	</div>
@@ -151,7 +150,7 @@ try {
 						<div class="right menu">
 							<div class="item">
 								Anställd: <span
-									id="employeeName"><?php echo $user->u_firstName . " " . $user->u_lastName; ?></span>
+									id="employeeName"><?php echo $user->u_firstName.' '.$user->u_lastName; ?></span>
 							</div>
 							<div class="item">
 								<button type="button" class="right labeled icon small ui red button logout-btn">
@@ -169,7 +168,7 @@ try {
 						</div>
 						<div class="item">
                             <span
-	                            class="name"><?php echo "Anställd: " . $user->u_firstName . " " . $user->u_lastName; ?></span>
+	                            class="name"><?php echo 'Anställd: '.$user->u_firstName.' '.$user->u_lastName; ?></span>
 						</div>
 					</div>
 				</div>
@@ -180,7 +179,7 @@ try {
 						</div>
 						<div class="right item">
                             <span
-	                            class="name"><?php echo "Anställd: " . $user->u_firstName . " " . $user->u_lastName; ?></span>
+	                            class="name"><?php echo 'Anställd: '.$user->u_firstName.' '.$user->u_lastName; ?></span>
 						</div>
 					</div>
 				</div>
@@ -191,31 +190,31 @@ try {
 				<div class="row">
 					<div class="column">
 						<div class="ui active tab" data-tab="first">
-							<?php include( './partials/tolk-search.php' ); ?>
+							<?php include './partials/tolk-search.php'; ?>
 						</div>
 						<div class="ui tab" data-tab="second">
-							<?php include( './partials/register-order.php' ); ?>
+							<?php include './partials/register-order.php'; ?>
 						</div>
 						<div class="ui tab" data-tab="third">
-							<?php include( './partials/manage-orders.php' ); ?>
+							<?php include './partials/manage-orders.php'; ?>
 						</div>
 						<div class="ui tab" data-tab="fourth">
-							<?php include( './partials/order-history.php' ); ?>
+							<?php include './partials/order-history.php'; ?>
 						</div>
 						<div class="ui tab" data-tab="fifth">
-							<?php include( './partials/manage-customers.php' ); ?>
+							<?php include './partials/manage-customers.php'; ?>
 						</div>
 						<div class="ui tab" data-tab="sixth">
-							<?php include( './partials/dashboard.php' ); ?>
+							<?php include './partials/dashboard.php'; ?>
 						</div>
 						<div class="ui tab" data-tab="seventh">
-							<?php include( './partials/newsletter-add.html' ); ?>
+							<?php include './partials/newsletter-add.html'; ?>
 						</div>
 						<div class="ui tab" data-tab="eight">
-							<?php include( './partials/newsletter-manage.php' ); ?>
+							<?php include './partials/newsletter-manage.php'; ?>
 						</div>
 						<div class="ui tab" data-tab="ninth">
-							<?php include( './partials/image-upload.php' ); ?>
+							<?php include './partials/image-upload.php'; ?>
 						</div>
 					</div>
 				</div>
@@ -263,6 +262,6 @@ try {
 	</div>
 	</body>
 	</html>
-<?php if ( $db != null ) {
-	$db->disconnect();
+<?php if ($db != null) {
+    $db->disconnect();
 } ?>

@@ -638,7 +638,9 @@ $(document).ready(function () {
                 $('#dateValue').text(data.order.o_date);
                 $('#startEndTime').text(convertTime(data.order.o_startTime) + " - " + convertTime(data.order.o_endTime));
 
-                if (data.order.o_interpretationType == "TT") {
+
+                switch (data.order.o_interpretationType) {
+                  case 'TT':
                     reportOutlay.prop('disabled', true);
                     repOutlay.addClass('disabled');
                     reportHours.prop('disabled', true);
@@ -649,6 +651,28 @@ $(document).ready(function () {
                     reportHours.parents('.dropdown').addClass('disabled');
                     reportMinutes.parents('.dropdown').addClass('disabled');
                     //$('#rep_customer_name').addClass('disabled');
+                    break;
+                  case 'KT':
+                    reportOutlay.prop('disabled', false);
+                    repOutlay.removeClass('disabled');
+                    reportHours.prop('disabled', false);
+                    reportMinutes.prop('disabled', false);
+                    reportMileage.prop('disabled', false);
+                    reportTicketCost.prop('disabled', false);
+
+                    reportHours.parents('.dropdown').removeClass('disabled');
+                    reportMinutes.parents('.dropdown').removeClass('disabled');
+                    break;
+                  default:
+                    reportOutlay.prop('disabled', false);
+                    repOutlay.removeClass('disabled');
+                    reportHours.prop('disabled', false);
+                    reportMinutes.prop('disabled', false);
+                    reportMileage.prop('disabled', false);
+                    reportTicketCost.prop('disabled', false);
+
+                    reportHours.parents('.dropdown').removeClass('disabled');
+                    reportMinutes.parents('.dropdown').removeClass('disabled');
                 }
                 reportingModal.modal('show');
                 $('#' + id).find('.button').removeClass('loading');

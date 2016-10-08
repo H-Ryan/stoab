@@ -2,7 +2,7 @@
 /**
  * User: Samuil
  * Date: 21-02-2015
- * Time: 3:45 PM
+ * Time: 3:45 PM.
  */
 ?>
 <div class="ui piled segment">
@@ -12,9 +12,9 @@
                 <form class="ui form orderForm">
                     <fieldset>
                         <h3>Beställ Tolk<br/>1. Uppdrag</h3>
-                        <input type="hidden" name="organizationNumber" value="0000000000">
-                        <input type="hidden" name="clientNumber" value="100000">
-                        <input type="hidden" name="orderer" value="<?php echo $_SESSION['personal_number'] ?>"/>
+                        <input type="hidden" name="organizationNumber" id="organizationID" value="0000000000">
+                        <input type="hidden" name="clientNumber" id="clientID" value="100000">
+                        <input type="hidden" name="orderer" id="ordererID" value="<?php echo $_SESSION['personal_number']; ?>"/>
                         <div class="field">
                             <label for="client">Klient:</label>
                             <input id="client" name="client" type="text" placeholder="Klient" autofocus=""/>
@@ -152,14 +152,14 @@
                                         <select class="ui fluid search selection dropdown" id="starttid"
                                                 name="start_hour">
                                             <?php
-                                            for ($i = 0; $i < 3; $i++) {
-                                                for ($j = 0; $j < 10; $j++) {
+                                            for ($i = 0; $i < 3; ++$i) {
+                                                for ($j = 0; $j < 10; ++$j) {
                                                     if ($i == 2 && $j == 4) {
                                                         break;
                                                     } elseif ($i == 1 && $j == 2) {
-                                                        echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                        echo '<option value="'.intval($i.$j)."\">$i$j</option>";
                                                     } else {
-                                                        echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                        echo '<option value="'.intval($i.$j)."\">$i$j</option>";
                                                     }
                                                 }
                                             }
@@ -184,14 +184,14 @@
                                     <div class="field">
                                         <select class="ui fluid search selection dropdown" id="sluttid" name="end_hour">
                                             <?php
-                                            for ($i = 0; $i < 3; $i++) {
-                                                for ($j = 0; $j < 10; $j++) {
+                                            for ($i = 0; $i < 3; ++$i) {
+                                                for ($j = 0; $j < 10; ++$j) {
                                                     if ($i == 2 && $j == 4) {
                                                         break;
                                                     } elseif ($i == 1 && $j == 3) {
-                                                        echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                        echo '<option value="'.intval($i.$j)."\">$i$j</option>";
                                                     } else {
-                                                        echo "<option value=\"" . intval($i . $j) . "\">$i$j</option>";
+                                                        echo '<option value="'.intval($i.$j)."\">$i$j</option>";
                                                     }
                                                 }
                                             }
@@ -241,7 +241,7 @@
                                 <option selected value=''>Organisation</option>
                                 <?php
                                 foreach ($kundOrgNums as $kundNum => $orgNam) {
-                                    echo "<option value='" . $kundNum . "'>" . $orgNam . "</option>";
+                                    echo "<option value='".$kundNum."'>".$orgNam.'</option>';
                                 }
                                 ?>
                             </select>
@@ -282,7 +282,7 @@
                                     <option value=''>Ort</option>
                                     <?php
                                     foreach ($cities as $city) {
-                                        echo "<option value='" . $city . "'>" . $city . "</option>";
+                                        echo "<option value='".$city."'>".$city.'</option>';
                                     }
                                     ?>
                                 </select>

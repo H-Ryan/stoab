@@ -76,7 +76,7 @@ if (isset($_POST['tolk_number']) && isset($_POST['rep_mission_id']) && isset($_P
             $statement->setFetchMode(PDO::FETCH_OBJ);
             $orders = array();
             if ($statement->rowCount() > 0) {
-                $query = 'SELECT u.u_firstName, u.u_lastName, u.u_email, t.* FROM t_tolkar AS t, t_users AS u
+                $query = 'SELECT u.u_firstName, u.u_lastName, u.u_email, u.u_personalNumber, t.* FROM t_tolkar AS t, t_users AS u
 WHERE (u.u_role = 3 OR u.u_role = 1) AND t.t_active = 1 AND t.t_tolkNumber=:tolkNumber AND u.u_personalNumber = t.t_personalNumber';
                 $statement = $con->prepare($query);
                 $statement->bindParam(':tolkNumber', $tolkNumber);
@@ -96,6 +96,23 @@ WHERE (u.u_role = 3 OR u.u_role = 1) AND t.t_active = 1 AND t.t_tolkNumber=:tolk
                     $subject = "C4Tolk - Uppdrag rapporten är klar: $rep_mission_id";
 
                     $data['error'] = ($emailer->send_email($tolk->u_email, $tolk->u_firstName.' '.$tolk->u_lastName, $subject, $emailContent)) ? 0 : 1;
+
+                    $query = 'INSERT INTO t_orderLog (o_orderNumber, o_modifyPersonalNumber, o_involvedPersonalNumber, '
+                                 .'o_ipAddress ,o_state) VALUES (:orderNumber, :modifyPN, :involvedPN, :ipAddress, :state)';
+                    $statement = $con->prepare($query);
+                    $ordererIP = getRealIpAddress();
+
+                    $statement->bindParam(':orderNumber', $rep_mission_id);
+                    $statement->bindParam(':modifyPN', $tolk->u_personalNumber);
+                    $statement->bindParam(':involvedPN', $tolk->u_personalNumber);
+                    $statement->bindParam(':ipAddress', $ordererIP);
+                    $statement->bindParam(':state', $state);
+                    $statement->execute();
+                    if ($statement->rowCount() > 0) {
+                        $data['error'] = 6;
+                        $data['messageHeader'] = 'Fel';
+                        $data['errorMessage'] = 'Error inserting data in order log table!';
+                    }
                 } else {
                     $data['error'] = 1;
                     $data['messageHeader'] = 'Fel';

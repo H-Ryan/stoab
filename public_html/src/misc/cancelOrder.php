@@ -4,9 +4,6 @@
  * Date: 27-02-2015
  * Time: 12:10 PM.
  */
- error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 ini_set('session.use_only_cookies', true);
 ini_set('session.use_trans_sid', false);
 session_start();
