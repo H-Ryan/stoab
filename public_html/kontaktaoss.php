@@ -101,30 +101,31 @@ Observera , Övriga tjänster nås under kontorstid.</h4>
                             <div class="form-group">
                                 <div class="col-md-4">
                                     <label for="name">Namn *</label>
-                                    <input type="text" value="" data-msg-required="Skriv ditt namn."
+                                    <input type="text"
+                                    data-rule-required="true"
                                            data-rule-minlength="3" data-rule-maxlength="90"
                                            data-msg-minlength="Fält namn bör innehålla mer än 3 tecken."
                                            data-msg-maxlength="Fält namn bör innehålla mindre än 90." maxlength="90"
-                                           class="form-control" name="name" id="name" required>
+                                           class="form-control" name="name" id="name" data-msg-required="Skriv ditt namn.">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="companyName">Företagsnamn *</label>
-                                    <input type="text" value="" data-msg-required="Skriv ditt företagsnamn."
+                                    <input type="text" data-msg-required="Skriv ditt företagsnamn."
                                            data-rule-minlength="3" data-rule-maxlength="90"
                                            data-msg-minlength="Fält företagsnamn bör innehålla mer än 3 tecken."
                                            data-msg-maxlength="Fält företagsnamn bör innehålla mindre än 90."
                                            maxlength="90" class="form-control" name="companyName"
-                                           id="companyName" required>
+                                           id="companyName"  data-rule-required="true">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="phone">Telefon *</label>
-                                    <input type="text" value="" data-msg-number="Det ska feiyll nummer."
+                                    <input type="text" data-rule-required="true" data-msg-number="Det ska feiyll nummer."
                                            data-rule-minlength="9" data-rule-maxlength="11"
                                            data-msg-required="Skriv ditt telefon nummer."
                                            data-msg-minlength="Fältet Telefon bör innehålla mer än 9."
                                            data-msg-maxlength="Fältet Telefon bör innehålla mindre än 11."
                                            maxlength="11" data-rule-number="true" class="form-control"
-                                           name="phone" id="phone" required>
+                                           name="phone" id="phone"  >
 
                                 </div>
                             </div>
@@ -133,19 +134,19 @@ Observera , Övriga tjänster nås under kontorstid.</h4>
                             <div class="form-group">
                                 <div class="col-md-6">
                                     <label for="subject">Ämne *</label>
-                                    <input type="text" value="" data-msg-required="Skriv ditt e-post ämne."
+                                    <input type="text" data-rule-required="true" data-msg-required="Skriv ditt e-post ämne."
                                            data-rule-minlength="3" data-rule-maxlength="90"
                                            data-msg-minlength="Fältet ämne bör innehålla mer än 3 tecken."
                                            data-msg-maxlength="Fält ämne bör innehålla mindre än 90." maxlength="90"
-                                           class="form-control" name="subject" id="subject" required>
+                                           class="form-control" name="subject" id="subject" >
                                 </div>
                                 <div class="col-md-6">
                                     <label for="email">E-post *</label>
-                                    <input type="email" value="" data-msg-required="Skriv ditt e-post adress."
+                                    <input type="email" data-rule-required="true" data-msg-required="Skriv ditt e-post adress."
                                            data-rule-email="true" data-rule-maxlength="90"
                                            data-msg-email="Den här e-post är inte giltig."
                                            data-msg-maxlength="Fältet e-postadress ska innehålla mindre än 90 tecken."
-                                           maxlength="90" class="form-control" name="email" id="email" required>
+                                           maxlength="90" class="form-control" name="email" id="email">
                                 </div>
                             </div>
                         </div>
@@ -153,19 +154,18 @@ Observera , Övriga tjänster nås under kontorstid.</h4>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <label for="message">Meddelande *</label>
-                                    <textarea maxlength="5000" data-msg-required="Skriv ditt medelande."
+                                    <textarea maxlength="5000" data-rule-required="true" data-msg-required="Skriv ditt medelande."
                                               data-rule-minlength="6" data-rule-maxlength="5000"
                                               data-msg-minlength="Fältet medelande bör innehålla mer än 6 tecken."
-                                              rows="10" class="form-control" name="message" id="message"
-                                              required></textarea>
+                                              rows="10" class="form-control" name="message" id="message"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="submit" value="Skicka" class="btn btn-primary btn-lg mb-xlg"
-                                       data-loading-text="Loading...">
-                                <input type="reset" id="resetForm" value="Rensa" class="btn btn-primary btn-lg mb-xlg"/>
+                              <button type="submit" name="submitForm" class="btn btn-primary btn-lg mb-xlg"
+                                     data-loading-text="Loading...">Skicka</button>
+                              <button type="button" name="resetForm" id="resetForm" class="btn btn-primary btn-lg mb-xlg">Rensa</button>
                             </div>
                         </div>
                     </form>
