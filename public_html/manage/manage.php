@@ -166,7 +166,7 @@ try {
                                         <div class="ui header">Tolkens mobilnummer:</div>
                                     </td>
                                     <td class="tolkInfoMobile">
-                                        <?php echo ($tolk != null) ? $tolk->u_mobile : '' ?>
+                                        <?php echo ($tolk != null) ? '0'.$tolk->u_mobile : '' ?>
                                     </td>
                                 </tr>
                                 <tr>

@@ -26,13 +26,13 @@ $emailer = new Emails();
 $data = array();
 $db = null;
 
-$finance_subject = 'Tolkning i Kristianstad AB - Ekonomi.';
 if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST['employee'])) {
     $tolkNumber = $_POST['tolkNumber'];
     $orderNumber = $_POST['orderNumber'];
     $employeeNumber = $_POST['employee'];
     $booked = 'B';
     $ipAddress = getRealIpAddress();
+    $finance_subject = "C4Tolk (Ekonomi) - $orderNumber ";
     try {
         $db = new dbConnection(HOST, DATABASE, USER, PASS);
         $con = $db->get_connection();

@@ -136,7 +136,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && !empty($_POST
                                         margin-left: 10%;'/>
                         </body>
                         </html>";
-                $customer_subject = 'Tolkning i Kristianstad AB - Ekonomi.';
+                $customer_subject = "C4Tolk (Ekonomi) - $order->o_orderNumber";
 
                 $emailer->send_email('ekonomi@sarvari.se', 'Ekonomi', $customer_subject, $messageToCustomerAssign);
                 $data['error'] = 0;

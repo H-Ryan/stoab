@@ -2,30 +2,34 @@
 /**
  * User: Samuil
  * Date: 25-08-2015
- * Time: 4:12 PM
+ * Time: 4:12 PM.
  */
 class SMS_Service
 {
-    var $url = "";
-    var $to = "";
-    var $text = "";
+    public $url = '';
+    public $to = '';
+    public $text = '';
 
-    function __construct() {}
+    public function __construct()
+    {
+    }
 
     public function generateSMS()
     {
         $data = array(
-            'username'  => "stoab",
-            'password'  => "Sarvari71",
-            'from'      => "stoab",
-            'to'        => $this->to,
-            'text'      => $this->text
+            'username' => 'stoab',
+            'password' => 'Sarvari71',
+            'from' => 'c4tolk',
+            'to' => $this->to,
+            'text' => $this->text,
         );
-        $this->url = "https://www.rebvoice.com/sadafa/sendsms.php?".http_build_query($data);
+        $this->url = 'https://www.rebvoice.com/myaccount/sendsms.php?'.http_build_query($data);
+
         return $this;
     }
 
-    public function sendSMS() {
+    public function sendSMS()
+    {
         return $this->url;
     }
 

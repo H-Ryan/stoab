@@ -287,7 +287,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && isset($_POST[
 
                         $tolk_subject = 'C4Tolk - Uppdrag.';
                         $customer_subject = 'C4Tolk - Uppdragsbekräftelse.';
-                        $finance_subject = 'C4Tolk (Ekonomi) - $order->o_orderNumber.';
+                        $finance_subject = "C4Tolk (Ekonomi) - $order->o_orderNumber";
 
                         if ($order->o_kunderPersonalNumber != '0000000000') {
                             $query = 'SELECT k_email, k_organizationName FROM t_kunder WHERE k_kundNumber=:clientNumber AND k_personalNumber=:organizationNumber';
