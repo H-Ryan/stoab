@@ -191,6 +191,9 @@
                                                     <strong>Fel!</strong> Det fanns ett problem att skicka din
                                                     förfrågan.
                                                 </div>
+                                                <div class="alert alert-danger hidden" id="forgotPassBlockedError">
+                                                    <strong>Fel!</strong> Ditt konto är blockerat. Kontakta administratören.
+                                                </div>
                                                 <div class="col-md-6">
                                                     <a href="#" id="linkToLogin">Logga in</a>
                                                 </div>
@@ -244,6 +247,7 @@
                                                 <div class="alert alert-danger hidden" id="interpreterLoginError">
                                                     <strong>Fel!</strong> Referenserna du har angett är felaktiga.
                                                 </div>
+
                                                 <div class="col-md-6">
                                                     <a href="#" id="linkToInterpreterForgotPass">Glömt lösenordet?</a>
                                                 </div>
@@ -312,6 +316,9 @@
                                                 <div class="alert alert-danger hidden" id="forgotInterpreterPassError">
                                                     <strong>Fel!</strong> Det fanns ett problem att skicka din
                                                     förfrågan.
+                                                </div>
+                                                <div class="alert alert-danger hidden" id="forgotInterpreterPassBlockedError">
+                                                    <strong>Fel!</strong> Ditt konto är blockerat. Kontakta administratören.
                                                 </div>
                                                 <div class="col-md-6">
                                                     <a href="#" id="linkToInterpreterLogin">Logga in</a>

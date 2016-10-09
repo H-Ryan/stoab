@@ -33,7 +33,7 @@ if (isset($_POST['tolk_number']) && isset($_POST['rep_mission_id']) && isset($_P
     }
     $rep_time = '';
     if (isset($_POST['rep_hours']) && isset($_POST['rep_minutes'])) {
-        $rep_time = ($_POST['rep_hours'] * 12) + $_POST['rep_minutes'];
+        $rep_time = convertTravelTime(($_POST['rep_hours'] * 12) + $_POST['rep_minutes']);
     }
     $rep_mileage = 0;
     if (isset($_POST['rep_mileage'])) {
@@ -89,7 +89,7 @@ WHERE (u.u_role = 3 OR u.u_role = 1) AND t.t_active = 1 AND t.t_tolkNumber=:tolk
                     $contact_email_content = file_get_contents('../../emailTemplates/report-confirmation-email.html');
                     $var = ['{rep_mission_id}', '{rep_extra_time}', '{rep_travel_time}', '{rep_mileage}',
                         '{rep_ticket_cost}', '{rep_client_name}', '{rep_comment}', ];
-                    $val = [$rep_mission_id, getExtraTime($rep_extra_time), convertTravelTime(($_POST['rep_hours'] * 12) + $_POST['rep_minutes']), $rep_mileage.' km',
+                    $val = [$rep_mission_id, getExtraTime($rep_extra_time), $rep_time, $rep_mileage.' km',
                         $rep_ticket_cost.' SEK', $rep_customer_name, $rep_comments, ];
                     $emailContent = str_replace($var, $val, $contact_email_content);
 
@@ -109,6 +109,8 @@ WHERE (u.u_role = 3 OR u.u_role = 1) AND t.t_active = 1 AND t.t_tolkNumber=:tolk
                     $statement->bindParam(':state', $state);
                     $statement->execute();
                     if ($statement->rowCount() > 0) {
+                        $data['error'] = 0;
+                    } else {
                         $data['error'] = 6;
                         $data['messageHeader'] = 'Fel';
                         $data['errorMessage'] = 'Error inserting data in order log table!';

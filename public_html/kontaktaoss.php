@@ -239,7 +239,7 @@ Observera , Övriga tjänster nås under kontorstid.</h4>
 <script src="js/views/view.orderTranslation.js"></script>
 <script src="js/views/view.contact.js"></script>
 
-<script src="http://maps.google.com/maps/api/js"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyD2wZMCzEnceJsC9kC_-4t7UZWBDYIDu8s"></script>
 <script>
 
     // Map Markers
@@ -252,14 +252,14 @@ Observera , Övriga tjänster nås under kontorstid.</h4>
             iconanchor: [23, 46]
         },
         popup: true
-    }];
+    }],
 
     // Map Initial Location
-    var initLatitude = 56.031330;
-    var initLongitude = 14.156055;
+      initLatitude = 56.042898,
+      initLongitude = 14.156860,
 
     // Map Extended Settings
-    var mapSettings = {
+      mapSettings = {
         controls: {
             draggable: (($.browser.mobile) ? false : true),
             panControl: true,
@@ -274,12 +274,11 @@ Observera , Övriga tjänster nås under kontorstid.</h4>
         latitude: initLatitude,
         longitude: initLongitude,
         zoom: 16
-    };
-
-    var map = $("#googlemaps").gMap(mapSettings);
+    },
+     map = $("#googlemaps").gMap(mapSettings),
 
     // Map Center At
-    var mapCenterAt = function (options, e) {
+     mapCenterAt = function (options, e) {
         e.preventDefault();
         $("#googlemaps").gMap("centerAt", options);
     };
