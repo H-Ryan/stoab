@@ -211,7 +211,7 @@ if (isset($_POST['orderer']) && isset($_POST['organizationNumber']) && isset($_P
                             $kund = $statement->fetch();
                             if ($kund->k_email === $email) {
                                 if ($emailer->send_email($email, $contactPerson, $subjectClient, $bodyToClient) &&
-                                    $emailer->send_email('kundtjanst@c4tolk.se', 'Tolkning i Kristianstad AB', $subjectCompany,
+                                    $emailer->send_email('kundtjanst@c4tolk.se', 'C4 SPRÅKPARTNER AB', $subjectCompany,
                                         $bodyToCompany)
                                 ) {
                                     $data['error'] = 0;
@@ -224,7 +224,7 @@ if (isset($_POST['orderer']) && isset($_POST['organizationNumber']) && isset($_P
                                 if ($emailer->send_email($email, $contactPerson, $subjectClient, $bodyToClient) &&
                                     $emailer->send_email($kund->k_email, $contactPerson, $subjectClient,
                                         $bodyToClient) &&
-                                    $emailer->send_email('kundtjanst@c4tolk.se', 'Tolkning i Kristianstad AB', $subjectCompany,
+                                    $emailer->send_email('kundtjanst@c4tolk.se', 'C4 SPRÅKPARTNER AB', $subjectCompany,
                                         $bodyToCompany)
                                 ) {
                                     $data['error'] = 0;
@@ -237,7 +237,7 @@ if (isset($_POST['orderer']) && isset($_POST['organizationNumber']) && isset($_P
                         }
                     } else {
                         if ($emailer->send_email($email, $contactPerson, $subjectClient, $bodyToClient) &&
-                            $emailer->send_email('kundtjanst@c4tolk.se', 'Tolkning i Kristianstad AB', $subjectCompany, $bodyToCompany)
+                            $emailer->send_email('kundtjanst@c4tolk.se', 'C4 SPRÅKPARTNER AB', $subjectCompany, $bodyToCompany)
                         ) {
                             $data['error'] = 0;
                         } else {

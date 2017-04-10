@@ -16,11 +16,11 @@ try {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tolkning i Kristianstad AB - Hem</title>
+    <title>C4 SPRÅKPARTNER AB - Hem</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="Tolkning i Kristianstad AB">
+    <meta name="author" content="C4 SPRÅKPARTNER AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -213,9 +213,10 @@ try {
                             <div class="featured-box featured-box-quaternary">
                                 <div class="box-content">
                                     <h4 class="heading-quaternary mb-xl"><strong>Tolkning</strong></h4>
-                                    <p>Vi erbjuder tolkning som möjliggör kommunikation när språkbarriärerna blir för
-                                        stora mellan två eller flera personer. Våra anslutna tolkar har kompetens till
-                                        och med auktorisation enligt kammarkollegiet.</p>
+                                    <p>Vi erbjuder tolkning som möjliggör kommunikation när språkbarriärerna
+                                        blir för stora mellan två eller flera personer. Vi har anslutna tolkar
+                                        på flera olika nivåer, från grundnivå till auktoriserade enligt
+                                        kammarkollegiets regelverk.</p>
                                 </div>
                             </div>
                         </li>
@@ -226,9 +227,9 @@ try {
                             <div class="featured-box featured-box-secondary">
                                 <div class="box-content">
                                     <h4 class="heading-secondary mb-xl"><strong>Översättning</strong></h4>
-                                    <p>Vi genomför översättning av all form av dokumentation. Allt från validering av
-                                        körkort och betyg till översättning av juridiska dokument, dokument från
-                                        myndigheter, medicinska handlingar osv på alla språk.</p>
+                                    <p>Vi utför översättning av all form av dokumentation på alla språk.
+                                        Allt från validering av körkort och betyg, till översättning av
+                                        juridiska dokument, dokument från myndigheter, medicinska handlingar etc.</p>
                                 </div>
                             </div>
                         </li>

@@ -4,14 +4,14 @@ ini_set('session.use_trans_sid', false);
 session_start();
 ?>
 <header id="header"
-        data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 40, "stickySetTop": "-40px", "stickyChangeLogo": true}'>
+        data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 30, "stickySetTop": "-50px", "stickyChangeLogo": true}'>
     <div class="header-body">
         <div class="header-container container">
             <div class="header-row">
                 <div class="header-column">
                     <div class="header-logo">
                         <a href="index.php">
-                            <img alt="Porto" width="87" height="98" data-sticky-width="43" data-sticky-height="50"
+                            <img alt="Porto" width="100" height="100" data-sticky-width="50" data-sticky-height="50"
                                  data-sticky-top="30" src="img/logo2.png">
                         </a>
                     </div>
@@ -21,7 +21,7 @@ session_start();
                         <nav class="header-nav-top">
                             <ul class="nav nav-pills">
                                 <li class="hidden-xs">
-                                    <span class="ws-nowrap"><i class="fa fa-phone"></i> <a href="tel:+46-10-516-4210">(010) 516 42 10</a></span>
+                                    <span class="ws-nowrap"><i class="fa fa-phone"></i> <a href="tel:+46-10-562-4210">(010) 562 42 10</a></span>
                                 </li>
                                 <li class="hidden-xs">
                                         <span class="ws-nowrap"><i class="fa fa-envelope"></i> <a

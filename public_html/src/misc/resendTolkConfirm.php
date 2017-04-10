@@ -53,7 +53,7 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && !empty($_POST
             $statement->setFetchMode(PDO::FETCH_OBJ);
             if ($statement->rowCount() > 0) {
                 $tolk = $statement->fetch();
-                $tolk_subject = 'Tolkning i Kristianstad AB - Uppdrag.';
+                $tolk_subject = 'C4 SPRÅKPARTNER AB - Uppdrag.';
                 $messageToTolkAssign = "<!DOCTYPE html><html>
                         <head>
                             <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
@@ -148,15 +148,15 @@ if (isset($_POST['tolkNumber']) && isset($_POST['orderNumber']) && !empty($_POST
                         <hr style='width: 80%;
                                         margin-left: 10%;'/>
                         <footer style='margin-left: 10%; width:80%'>
-                        <h2>Tolkning i Kristianstad AB</h2>
+                        <h2>C4 SPRÅKPARTNER AB</h2>
 
-                        <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2A, 291 36 Kristianstad</p>
+                        <p><label style='font-weight:bold;'>ADRESS:</label> Nya boulevarden 10 (Våning3), 291 31 Kristianstad</p>
 
                         <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:kundtjanst@c4tolk.se'> kundtjanst@c4tolk.se</a></p>
 
                         <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.c4tolk.se'> www.c4tolk.se</a></p>
 
-                        <p><label style='font-weight:bold;'>TELEFON:</label> 010 516 42 10</p>
+                        <p><label style='font-weight:bold;'>TELEFON:</label> 010 562 42 10</p>
 
                             <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 559071-4134</p>
 

@@ -59,7 +59,7 @@ if (isset($_POST['customerNumber']) && isset($_POST['email'])) {
                         $kund = $statementTwo->fetch();
                         $name = $kund->k_firstName.' '.$kund->k_lastName;
                         $emailer = new Emails();
-                        $subject = 'Tolkning i Kristianstad AB Inloggningsuppgifter hämtning.';
+                        $subject = 'C4 SPRÅKPARTNER AB Inloggningsuppgifter hämtning.';
                         $body = "<html><body style='color: #000000'>"
                         ."<p style='color: #000000'>Hej, $name!<br /><br />"
                         .'Här får du dina inloggningsuppgifter för tolkbokning hos oss.<br />'
@@ -68,7 +68,7 @@ if (isset($_POST['customerNumber']) && isset($_POST['email'])) {
                         .'För din egen säkerhet rekommenderar vi dig att byta lönsenord så snart du har loggat in.<br />'
                         .'<br /><br /><br /><br />'
                         .'Med vänliga hälsningar,'
-                        .'Tolkning i Kristianstad AB - Tolktjänst</p></body></html>';
+                        .'C4 SPRÅKPARTNER AB - Tolktjänst</p></body></html>';
                         $emailer->send_email($clientEmail, $name, $subject, $body);
 
                         $data['error'] = 0;

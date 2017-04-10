@@ -220,7 +220,7 @@ if (isset($_POST['organizationNumber']) && isset($_POST['clientNumber']) && isse
 
         $query = 'SELECT k_email FROM t_kunder WHERE k_kundNumber=:clientNumber AND k_personalNumber=:organizationNumber';
 
-        $data['error'] = ($emailer->send_email('kundtjanst@c4tolk.se', 'Tolkning i Kristianstad AB', $subjectCompany, $bodyToCompany)) ? 0 : 1;
+        $data['error'] = ($emailer->send_email('kundtjanst@c4tolk.se', 'C4 SPRÅKPARTNER AB', $subjectCompany, $bodyToCompany)) ? 0 : 1;
     } catch (PDOException $e) {
         $data['error'] = 2;
     }

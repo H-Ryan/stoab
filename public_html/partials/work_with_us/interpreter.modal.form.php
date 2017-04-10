@@ -304,7 +304,7 @@
                                             <p>Ja, jag samtycker till och är fullt
                                                 införstådd med att den information
                                                 jag skickar kan registreras och
-                                                lagras av Tolkning i Kristianstad AB enligt
+                                                lagras av C4 SPRÅKPARTNER AB enligt
                                                 personuppgiftslagen (1998:204).</p>
                                         </div>
                                         <div class="col-sm-1"></div>

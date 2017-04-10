@@ -406,7 +406,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-12">
                                             <p class="mb-none">* Översättningar som
-                                                förmedlas via Tolkning i Kristianstad AB ska utföras i
+                                                förmedlas via C4 SPRÅKPARTNER AB ska utföras i
                                                 enlighet medLagen 1975:689 Tystnadsplikt
                                                 för vissa översättare.<br/>
                                                 * Översättningen ska levereras i tid och

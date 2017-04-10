@@ -199,7 +199,7 @@ if (isset($_POST['firstName']) && isset($_POST['firstName']) && isset($_POST['pe
     }
 
     $emailContent .= '</body></html>';
-    echo json_encode(['error' => $emailer->send_email('rekrytering@c4tolk.se', 'Tolkning i Kristianstad AB', 'ÖVERSÄTTARE Intresseanmälan', $emailContent) ? 0 : 1]);
+    echo json_encode(['error' => $emailer->send_email('rekrytering@c4tolk.se', 'C4 SPRÅKPARTNER AB', 'ÖVERSÄTTARE Intresseanmälan', $emailContent) ? 0 : 1]);
 } else {
     echo json_encode(['error' => 1]);
 }

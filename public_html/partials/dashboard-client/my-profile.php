@@ -160,7 +160,7 @@
     <tfoot class="full-width">
         <tr>
             <th colspan="2">
-                <p>Kontakta Tolkning i Kristianstad AB om någon av informationen är felaktig.</p>
+                <p>Kontakta C4 SPRÅKPARTNER AB om någon av informationen är felaktig.</p>
             </th>
         </tr>
     </tfoot>

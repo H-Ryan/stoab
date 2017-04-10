@@ -158,7 +158,6 @@
                                 interpreterResetPasswordBtn.removeClass('disabled');
                                 linkToInterpreterLogin.trigger('click');
                                 break;
-                            case 5:
                             case 6:
                                 forgotInterpreterPassBlockedError.removeClass('hidden');
                                 forgotPassButton.removeClass('disabled');

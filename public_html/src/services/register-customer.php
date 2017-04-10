@@ -85,7 +85,7 @@ if (isset($_POST['org_name']) && isset($_POST['org_number'])
     }
     $emailContent .= '</body></html>';
 
-    echo json_encode(['error' => $emailer->send_email('info@sarvari.se', 'Tolkning i Kristianstad AB', 'Kund registrering begäran', $emailContent) ? 0 : 1]);
+    echo json_encode(['error' => $emailer->send_email('info@sarvari.se', 'C4 SPRÅKPARTNER AB', 'Kund registrering begäran', $emailContent) ? 0 : 1]);
 } else {
     echo json_encode(['error' => 1]);
 }

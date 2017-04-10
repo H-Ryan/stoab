@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tolkning i Kristianstad AB - Tjänster / Språkanalys</title>
+    <title>C4 SPRÅKPARTNER AB - Tjänster / Språkanalys</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="Tolkning i Kristianstad AB">
+    <meta name="author" content="C4 SPRÅKPARTNER AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>

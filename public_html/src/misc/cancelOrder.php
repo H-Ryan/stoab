@@ -152,15 +152,15 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                             </div>
                             <hr style='width: 80%;
                                             margin-left: 10%;'/>
-                                            <h2>Tolkning i Kristianstad AB</h2>
+                                            <h2>C4 SPRÅKPARTNER AB</h2>
                                               <p><label style='font-weight:bold;'>POSTADRESS:</label> BOX 21, 291 21 Kristianstad</p>
-                                            <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2A, 291 36 Kristianstad</p>
+                                            <p><label style='font-weight:bold;'>ADRESS:</label> Nya boulevarden 10 (Våning3), 291 31 Kristianstad</p>
 
                                             <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:kundtjanst@c4tolk.se'> kundtjanst@c4tolk.se</a></p>
 
                                             <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.c4tolk.se'> www.c4tolk.se</a></p>
 
-                                            <p><label style='font-weight:bold;'>TELEFON:</label> (010)516 42 10</p>
+                                            <p><label style='font-weight:bold;'>TELEFON:</label> (010)562 42 10</p>
 
                             <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 559071-4134</p>
 
@@ -261,15 +261,15 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                             <hr style='width: 80%;
                                             margin-left: 10%;'/>
                             <footer style='margin-left: 10%; width:80%'>
-                            <h2>Tolkning i Kristianstad AB</h2>
+                            <h2>C4 SPRÅKPARTNER AB</h2>
                             <p><label style='font-weight:bold;'>POSTADRESS:</label> BOX 21, 291 21 Kristianstad</p>
-                            <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2A, 291 36 Kristianstad</p>
+                            <p><label style='font-weight:bold;'>ADRESS:</label> Nya boulevarden 10 (Våning3), 291 31 Kristianstad</p>
 
                             <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:kundtjanst@c4tolk.se'> kundtjanst@c4tolk.se</a></p>
 
                             <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.c4tolk.se'> www.c4tolk.se</a></p>
 
-                            <p><label style='font-weight:bold;'>TELEFON:</label> (010)516 42 10</p>
+                            <p><label style='font-weight:bold;'>TELEFON:</label> (010)562 42 10</p>
 
                             <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 559071-4134</p>
 
@@ -319,7 +319,7 @@ if (isset($_POST['orderNumber']) && isset($_POST['employee'])) {
                             $text = "Hej,
 Uppdrag ($orderNumber) har förändrats eller avbrutits, kontrollera din e-post.
 OBS! Du kan inte svara på detta meddelande.
-Mvh Tolkning i Kristianstad AB";
+Mvh C4 SPRÅKPARTNER AB";
                             $smsService->setTo($tolk->u_mobile);
                             $smsService->setText($text);
                             $data['smsURL'] = $smsService->generateSMS()->sendSMS();
@@ -503,15 +503,15 @@ Mvh Tolkning i Kristianstad AB";
                             <hr style='width: 80%;
                                             margin-left: 10%;'/>
                             <footer style='margin-left: 10%; width:80%'>
-                            <h2>Tolkning i Kristianstad AB</h2>
+                            <h2>C4 SPRÅKPARTNER AB</h2>
                             <p><label style='font-weight:bold;'>POSTADRESS:</label> BOX 21, 291 21 Kristianstad</p>
-                            <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2A, 291 36 Kristianstad</p>
+                            <p><label style='font-weight:bold;'>ADRESS:</label> Nya boulevarden 10 (Våning3), 291 31 Kristianstad</p>
 
                             <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:kundtjanst@c4tolk.se'> kundtjanst@c4tolk.se</a></p>
 
                             <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.c4tolk.se'> www.c4tolk.se</a></p>
 
-                            <p><label style='font-weight:bold;'>TELEFON:</label> (010)516 42 10</p>
+                            <p><label style='font-weight:bold;'>TELEFON:</label> (010)562 42 10</p>
 
                             <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 559071-4134</p>
 

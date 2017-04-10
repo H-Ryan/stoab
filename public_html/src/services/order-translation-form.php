@@ -39,7 +39,7 @@ if (isset($_POST['name']) && isset($_POST['clientNumber'])
     $emailContent = str_replace($var, $val, $contact_email_content);
 
     if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] == UPLOAD_ERR_OK) {
-        echo json_encode(['error' => !$emailer->send_email_with_attachment('kundtjanst@c4tolk.se', 'Tolkning i Kristianstad AB', 'Beställning av översättning', $emailContent, $_FILES['attachment']['tmp_name'], $_FILES['attachment']['name'])]);
+        echo json_encode(['error' => !$emailer->send_email_with_attachment('kundtjanst@c4tolk.se', 'C4 SPRÅKPARTNER AB', 'Beställning av översättning', $emailContent, $_FILES['attachment']['tmp_name'], $_FILES['attachment']['name'])]);
     } else {
         echo json_encode(['error' => true]);
     }

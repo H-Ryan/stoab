@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tolkning i Kristianstad AB - Om oss</title>
+    <title>C4 SPRÅKPARTNER AB - Om oss</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="Tolkning i Kristianstad AB">
+    <meta name="author" content="C4 SPRÅKPARTNER AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -83,7 +83,7 @@
                 <div class="col-md-12">
                     <div class="toggle toggle-primary" data-plugin-toggle>
                         <section class="toggle active">
-                            <label>Kort om Tolkning i Kristianstad AB</label>
+                            <label>Kort om C4 SPRÅKPARTNER AB</label>
                             <div class="toggle-content pr-lg pl-lg">
                                 <p>Vi levererar kompletta kommunikationslösningar inom tolkning, översättning,
                                     språkstöd, utbildningar samt förmedling av kontaktpersoner. Våra uppdrag utförs till
@@ -237,7 +237,7 @@
                                 <p class="pl-md">Vår vision är att skapa ett ett samhälle där alla kan kommunicera med
                                     varandra.</p>
                                 <h6 class="lead heading-primary mb-none ">Affärsidé</h6>
-                                <p class="pl-md">Tolkning i Kristianstad AB är ett företag vars affärsidé är att skapa kommunikation mellan
+                                <p class="pl-md">C4 SPRÅKPARTNER AB är ett företag vars affärsidé är att skapa kommunikation mellan
                                     människor och kulturer. Genom innovativa kommunikationslösningar anpassar vi våra
                                     tjänster till modern tid. Våra tjänster lämpar sig främst till skolor, boende,
                                     myndigheter och kommuner och tjänsterna kännetecknas av hög kvalitet, stort
@@ -250,7 +250,7 @@
                                 <p>Vi vill vara den obestridda specialisten på tolkning och översättning i samhället. Vi
                                     strävar efter att vara förstahandsvalet och vi arbetar ständigt med att utveckla och
                                     förbättra vårt arbetssätt! Vi finns till för att underlätta i vardagen. Vi erbjuder
-                                    snabba och enkla lösningar till attraktiva priser! Vi på Tolkning i Kristianstad AB arbetar som ett team
+                                    snabba och enkla lösningar till attraktiva priser! Vi på C4 SPRÅKPARTNER AB arbetar som ett team
                                     vilket ger möjlighet till en snabb och god service!</p>
                             </div>
                         </section>
@@ -285,7 +285,7 @@
                                         <div>
                                             <h4>Personligt bemötande</h4>
                                             <p>Vi vill vara en verksamhet där våra kunder känner att de får personlig
-                                                kontakt. Var och en av oss som arbetar på Tolkning i Kristianstad AB vill vara där för dig som
+                                                kontakt. Var och en av oss som arbetar på C4 SPRÅKPARTNER AB vill vara där för dig som
                                                 kund, vilket innebär att vi föredrar den verbala kontakten med våra
                                                 kunder. Relationen mellan oss och våra kunder baseras på tillit och
                                                 engagemang, och vi strävar efter att vara 100% kontaktbar oavsett på

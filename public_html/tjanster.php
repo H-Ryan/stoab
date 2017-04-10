@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tolkning i Kristianstad AB - Tjänster</title>
+    <title>C4 SPRÅKPARTNER AB - Tjänster</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="Tolkning i Kristianstad AB">
+    <meta name="author" content="C4 SPRÅKPARTNER AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -139,11 +139,7 @@
             <div class="row p-lg">
                 <div class="center">
                     <h1 class="heading-quaternary">Vi har en genuin drivkraft att vilja hjälpa människor</h1>
-                    <p class="lead">Vi på företaget har en vilja att skapa möten mellan människor från olika kulturer
-                        och samhällsklasser. Genom att fungera som en kontaktlänk mellan olika människor, språk och
-                        kulturer vill vi bidra till uppbyggnaden av ett internationellt samhälle där acceptans, respekt
-                        och förståelse genomsyras. Våra ledord i företaget är Kvalitetsarbete, Genuin hjälpsamhet och
-                        Personligt bemötande.</p>
+                    <p class="lead">Vi på företaget har en vilja att skapa möten mellan människor från olika kulturer och samhällsklasser. Genom att fungera som en kontaktlänk mellan olika människor, språk och kulturer vill vi bidra till uppbyggnaden av ett internationellt samhälle som genomsyras av acceptans, respekt och förståelse. Våra ledord i företaget är <span style="font-style: italic">kvalitetsarbete, genuin hjälpsamhet och personligt bemötande.</span></p>
                 </div>
 
             </div>

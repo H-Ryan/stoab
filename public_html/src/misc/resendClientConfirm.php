@@ -49,7 +49,7 @@ if (isset($_POST['orderNumber']) && !empty($_POST['orderNumber'])) {
             if ($statementTwo->rowCount() > 0) {
                 $organizationName = $statementTwo->fetch()->e_organizationName;
 
-                $subjectClient = 'Tolkning i Kristianstad AB - Bokning';
+                $subjectClient = 'C4 SPRÅKPARTNER AB - Bokning';
 
                 $orgNum = $order->o_kunderPersonalNumber;
                 $clientNum = $order->o_kundNumber;
@@ -175,20 +175,20 @@ if (isset($_POST['orderNumber']) && !empty($_POST['orderNumber'])) {
                     <div>
                         <p style='font-size: 16px; margin-left: 10%; margin-top: 2.5%; margin-bottom:2.5%;'>
                             Om informationen ovan är felaktig eller om du vill ändra något, vänligen kontakta oss.
-                            Med vänliga hälsningar Tolkning i Kristianstad AB.
+                            Med vänliga hälsningar C4 SPRÅKPARTNER AB.
                         </p>
                     </div>
                     <hr style='width: 80%; margin-left: auto;margin-right: auto;'/>
                     <footer style='margin-left: 10%; width:80%'>
-                    <h2>Tolkning i Kristianstad AB</h2>
+                    <h2>C4 SPRÅKPARTNER AB</h2>
 
-                    <p><label style='font-weight:bold;'>ADRESS:</label> Industrigatan 2A, 291 36 Kristianstad</p>
+                    <p><label style='font-weight:bold;'>ADRESS:</label> Nya boulevarden 10 (Våning3), 291 31 Kristianstad</p>
 
                     <p><label style='font-weight:bold;'>E-POST:</label> <a href='mailto:kundtjanst@c4tolk.se'> kundtjanst@c4tolk.se</a></p>
 
                     <p><label style='font-weight:bold;'>HEMSIDA:</label> <a href='http://www.c4tolk.se'> www.c4tolk.se</a></p>
 
-                    <p><label style='font-weight:bold;'>TELEFON:</label> 010 516 42 10</p>
+                    <p><label style='font-weight:bold;'>TELEFON:</label> 010 562 42 10</p>
                             <p><label style='font-weight:bold;'>ORGANISATIONSNR:</label> 559071-4134</p>
 
                             </footer>

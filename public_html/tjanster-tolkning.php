@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tolkning i Kristianstad AB - Tjänster / Tolkning</title>
+    <title>C4 SPRÅKPARTNER AB - Tjänster / Tolkning</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="Tolkning i Kristianstad AB">
+    <meta name="author" content="C4 SPRÅKPARTNER AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -85,16 +85,18 @@
 
                     <h1 class="center heading-quaternary mb-xlg">Tolkning</h1>
 
-                    <p class="lead">Som tolkförmedlare har Tolkning i Kristianstad AB på kort tid blivit ett eftertraktat företag att samarbeta
-                        med. Företaget har tillgång till tolkar som innehar tolkkunskap inom 75 språk och ytterligare 25
-                        dialekter. Tolkarna som är anlitade av oss genomgår en noggrann rekrytering för att vi på Tolkning i Kristianstad AB
-                        vill upprätthålla den höga kvalitet vi är kända för. Vi erbjuder tolkar på olika nivå; övriga
-                        tolkar, godkända tolkar samt tolkar som är auktoriserade enligt kammarkollegiets regelverk.
-                        Genom att erbjuda kvalitetstolkar på olika nivå möjliggör det för våra kunder att anpassa våra
-                        tjänster till deras behov. <br/><br/>
-                        Tolkverksamheten inom Tolkning i Kristianstad AB möjliggör kommunikation när språkbarriärerna blir för stora mellan två
-                        eller flera personer. Med hjälp av våra tolkar, som behärskar språken från parterna i samtalet,
-                        kan tolken hjälpa personerna som inte förstår varandra att kommunicera.</p>
+                    <p class="lead">På kort tid har C4 SPRÅKPARTNER AB blivit en eftertraktad samarbetspartner för tolkförmedling.
+                        Vi har tillgång till personer med tolkkunskap inom 75 språk och ytterligare 25 dialekter.
+                        Alla tolkar som anlitas av oss genomgår en noggrann rekryteringsprocess, så att vi kan
+                        upprätthålla den höga kvalitet C4 SPRÅKPARTNER AB är kända för. Vi erbjuder tolkar på
+                        olika nivåer; tolkar som är auktoriserade enligt Kammarkollegiets regelverk, godkända
+                        tolkar samt övriga tolkar. Genom att erbjuda kvalitetstolkar på olika nivåer har våra
+                        kunder möjligheten att anpassa våra tjänster utefter deras specifika behov.
+                        <br><br>
+                        Tolkverksamheten inom C4 SPRÅKPARTNER AB möjliggör kommunikation när språkbarriärerna
+                        blir för stora mellan två eller flera personer. Med hjälp av våra tolkar, som behärskar
+                        språken från parterna i samtalet, kan personerna som inte förstår varandra få hjälp att
+                        kommunicera.</p>
                 </div>
             </div>
             <hr>
@@ -249,12 +251,14 @@
                     <div class="col-md-12">
                         <h2 class="center heading-primary">Videotolkning</h2>
                         <p class="lead pr-xs pl-xs">Videotolkning är både ekonomiskt och miljömässigt fördelaktigt.
-                            Precis som vid kontakttolkning finns det visuella fördelar med videotolkning och det innebär
-                            att det är högre kvalitet och rättsäkerhet än vid telefontolkning. Tekniken växer ständigt
-                            och videotolkning blir mer och mer tillgängligt. I dagsläget behövs kompatibel
-                            videokonferensutrustning och tillgång till modern teleteknik när man använder sig av
-                            videotolkning.<br/><br/>Videotolkning lämpar sig bra till affärsmöten eller
-                            domstolsförhandlingar, där parterna eller tolken befinner sig på olika geografiska platser.
+                            Precis som vid kontakttolkning finns det visuella fördelar med videotolkning, vilket innebär
+                            att det är högre kvalitet och rättssäkerhet än vid telefontolkning. Tekniken utvecklas ständigt
+                            och videotolkning blir mer och mer tillgängligt. I dagsläget behövs kompatibel videokonferensutrustning
+                            och tillgång till modern teleteknik när man använder sig av videotolkning.
+                            <br><br>
+                            Videotolkning lämpar sig bra för affärsmöten eller domstolsförhandlingar,
+                            där parterna eller tolken befinner sig på olika geografiska platser.
+
                         </p>
                     </div>
                 </div>
@@ -266,14 +270,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="center heading-primary">Telefontolkning</h2>
-                        <p class="lead pr-xs pl-xs">Vid telefontolkning är tolkanvändaren och dess klient på samma plats
-                            och tolken är med via telefon. Telefontolkning används oftast när avståndet till tolkplatsen
-                            är stort, eller om tolkuppdraget uppstår akut eller vid obekväma tider. Telefontolkning är
-                            det mest miljövänliga alternativet men även det mest ekonomiskt fördelaktiga. Denna typ av
-                            tolkning är ett utmärkt alternativ om specialkompetens inte finns i närheten, eller om ett
-                            mindre vanligt tolkspråk önskas. Det tillkommer inga resekostnader och arbetstiden är
-                            effektivare. Fördelen med telefontolkning är att det finns tillgång till ett större utbud
-                            tolkar, gäller även vid akuttolkning, där upptagningsområdet är mycket begränsat.</p>
+                        <p class="lead pr-xs pl-xs">Vid telefontolkning är tolkanvändaren och dess klient på samma
+                            plats och tolken deltar via telefon. Telefontolkning används oftast när avståndet
+                            från tolken till mötesplatsen är stort, eller om tolkuppdraget uppstår akut eller
+                            vid obekväma tider. Telefontolkning är det mest miljövänliga alternativet och även
+                            det mest ekonomiskt fördelaktiga. Denna typ av tolkning är ett utmärkt alternativ
+                            om specialkompetens inte finns i närheten, eller om ett mindre vanligt tolkspråk
+                            önskas. Det tillkommer inga resekostnader och arbetstiden är effektivare. Fördelen
+                            med telefontolkning är att det finns tillgång till ett större utbud av tolkar,
+                            vilket även gäller vid akuttolkning, där upptagningsområdet är mycket begränsat.</p>
                     </div>
                 </div>
             </div>
@@ -284,10 +289,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="center  heading-primary">Kontakttolkning</h2>
-                        <p class="lead pr-xs pl-xs">Vid kontakttolkning är tolkanvändare, klient och tolk på samma
-                            plats. Det finns visuella fördelar vid kontakttolkning där förmedling av synintryck, som
-                            minspel och gester, kan göras möjlig. Genom att kunna förmedla synintryck underlättar det
-                            kommunikationen och gör att kvaliteten på tolkuppdraget förhöjs.</p>
+                        <p class="lead pr-xs pl-xs">Vid kontakttolkning är tolkanvändare, klient och tolk på samma plats.
+                            Det finns visuella fördelar vid kontakttolkning då förmedling av synintryck, som minspel och
+                            gester, kan göras möjlig. Genom att kunna förmedla synintryck underlättas kommunikationen,
+                            vilket gör att kvaliteten på tolkuppdraget förhöjs.</p>
                     </div>
                 </div>
             </div>
@@ -311,12 +316,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="center  heading-primary">Konsekutivtolkning</h2>
-                        <p class="lead pr-xs pl-xs">Vid konsekutivtolkning återberättar tolken vad talaren sagt oftast
-                            en till två meningar i taget. Konsekutivtolkning sker åt båda hållen och personerna växlas
-                            om att tala. Konsekutivtolkning används vid kontakttolkning, när klienten behöver hjälp i
-                            kontakter med myndigheter eller sjukvården. Vid konsekutivtolkning förlängs ofta mötestiden,
-                            på grund av att tolk och talare turas om att prata, vilket är det viktigt att ta hänsyn till
-                            vid planering av mötet.</p>
+                        <p class="lead pr-xs pl-xs">Vid konsekutivtolkning återberättar tolken vad talaren sagt efter
+                            en kort tid, oftast en till två meningar i taget. Konsekutivtolkning sker åt båda hållen
+                            och personerna talar växelvis. Konsekutivtolkning används vid kontakttolkning, när klienten
+                            behöver hjälp i kontakter med myndigheter eller sjukvården. Vid konsekutivtolkning förlängs
+                            ofta mötestiden, på grund av att tolk och talare turas om att prata, vilket är viktigt att
+                            ta hänsyn till vid planering av mötet.</p>
                     </div>
                 </div>
             </div>
@@ -328,13 +333,7 @@
                     <div class="col-md-12">
                         <h2 class="center  heading-primary">Simultantolkning</h2>
                         <p class="lead pr-xs pl-xs">Vid simultantolkning sker tolkningen med några ords fördröjning
-                            samtidigt som föreläsaren talar. Vanligtvis sker simultantolkning åt ett håll, viss
-                            teknikutrustning krävs som exempelvis hörlurar och tolkkabiner. Tolken har ingen kontakt med
-                            talaren och kan därför inte be hen att upprepa meningen. Tolken borde i förväg få tillgång
-                            till material inom ämnet exempelvis presentation, källmaterial m.m. för att kvaliteten på
-                            tolken ska hålla högre klass. Vi anordnar helhetslösningar där vi bokar lokal och ordnar så
-                            att det finns tekniskutrusning på plats. Simultantolkning lämpar sig bäst för stora
-                            konferenser, stora möten, utbildningar med många åhörare och med ett eller flera språk.</p>
+                            samtidigt som föreläsaren talar. Vanligtvis sker simultantolkning åt ett håll, viss teknikutrustning krävs som exempelvis hörlurar och tolkkabiner. Tolken har ingen kontakt med talaren och kan därför inte be hen att upprepa meningen. Tolken bör i förväg få tillgång till material inom ämnet, exempelvis presentation, källmaterial m.m. för att kvaliteten på tolkningen ska hålla hög klass. Vi tillhandahåller helhetslösningar där vi bokar lokal och ordnar så att det finns tekniskutrusning på plats. Simultantolkning lämpar sig bäst för stora konferenser, stora möten, utbildningar med många åhörare och med ett eller flera språk.</p>
                     </div>
                 </div>
             </div>
@@ -345,12 +344,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="center  heading-primary">Viskningstolkning</h2>
-                        <p class="lead pr-xs pl-xs">Vid viskad simultantolkning närvarar tolken vid mötesdeltagarna och
-                            tolkar simultan och viskar tolkningen direkt i mötesdeltagarens öra. Viskad tolkning används
-                            endast vid möten där det är få deltagare och de är nära varandra. Viskningstolkning används
-                            vid tvåsidiga möten eller där det är få deltagare som inte talar samma språk. Denna
-                            tolkningsform används vanligtvis istället för konsekutivtolkning för att spara tid. Den
-                            viskande tolken använder ibland hörlurar för att höra talaren tydligare.</p>
+                        <p class="lead pr-xs pl-xs">Vid viskad simultantolkning närvarar tolken vid mötet, tolkar kontinuerligt och viskar tolkningen direkt i tolkanvändarens öra. Viskad tolkning används endast vid möten där det är få deltagare och de är nära varandra; vid tvåsidiga möten eller där det är få deltagare som inte talar samma språk. Denna tolkningsform används vanligtvis istället för konsekutivtolkning för att spara tid. Den viskande tolken använder ibland hörlurar för att höra talaren tydligare.</p>
                     </div>
                 </div>
             </div>
@@ -389,11 +383,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="center  heading-primary">Rättstolkning</h2>
-                        <p class="lead pr-xs pl-xs">Vid rättstolkning har tolken fördjupade kunskaper i såväl
-                            straffrätten som processrättens grunder, främst har tolken juridiska kunskaper i
-                            domstolsförhandlingar samt hos polis- och åklagarmyndigheten i samband med
-                            brottsutredningar. Tolken behärskar nödvändiga kunskaper i juridisk terminologi på såväl
-                            tolkspråket och svenska.</p>
+                        <p class="lead pr-xs pl-xs">Vid rättstolkning har tolken fördjupade kunskaper i såväl straffrättens som processrättens grunder. Tolk med juridiska kunskaper används främst i domstolsförhandlingar samt hos polis- och åklagarmyndigheten i samband med brottsutredningar. Tolken behärskar nödvändiga kunskaper i juridisk terminologi på såväl tolkspråket och svenska.</p>
                     </div>
                 </div>
             </div>

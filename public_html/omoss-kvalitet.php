@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tolkning i Kristianstad AB - Kvalitet</title>
+    <title>C4 SPRÅKPARTNER AB - Kvalitet</title>
 
     <meta name="keywords" content="HTML5 Template"/>
     <meta name="description" content="Porto - Responsive HTML5 Template">
@@ -67,21 +67,7 @@
 
                         <h1 class="center heading-primary text-xl mt-lg mb-xl">Våra interna medarbetare</h1>
 
-                        <p class="lead">Det är inom företaget vi kan utveckla kvaliteten på våra tjänster och atmosfär
-                            mest. Våra interna medarbetare är kärnan och därför strävar vi efter att vara en så
-                            ansvarsfull arbetsgivare som det är möjligt.<br/><br/>Detta innebär för oss att vi ska skapa
-                            en arbetsplats där trivselfaktorn är hög då vi av erfarenhet har upptäckt att om
-                            medarbetarna är tillfredsställda i sin arbetsposition så ökar även kvaliteten på deras
-                            arbete.<br/><br/>Vi på företaget tror också att många kompetenser blir ett bra resultat och
-                            därför fokuserar vi på att skapa en arbetsplats där mångfalden är varierad. Alla våra
-                            medarbetare behandlas lika och det främjar utveckling och de anställdas
-                            deltagande.<br/><br/>Vi erbjuder våra anställda möjligheter att utveckla sina kunskaper
-                            samtidigt som vi regelbundet mäter våra medarbetares tillfredsställelse.<br/><br/>Då vi har
-                            många olika ursprung och religionstillhörighet inom företaget uppmuntrar vi till att föregå
-                            med gott exempel mot omvärlden och acceptera varandra för den man är och inte för vilken
-                            religion, kön eller hudfärg man har.<br/><br/>Gentemot våra medarbetare använder vi
-                            värderingsstyrt ledarskap samt ger de anställda möjlighet att påverka sina egna resultat,
-                            vilket i sin tur ger kvaliteten ett högre värde.
+                        <p class="lead">Det är inom företaget vi kan utveckla kvaliteten på våra tjänster och vår arbetsatmosfär mest. Våra interna medarbetare är kärnan och därför strävar vi efter att vara en så ansvarsfull arbetsgivare som möjligt. Detta innebär för oss att vi ska skapa en arbetsplats där trivselfaktorn är hög, då vi av erfarenhet vet att om medarbetarna är tillfredsställda i sin arbetsposition så ökar även kvaliteten på deras arbete.<br/><br/>Vi på företaget tror också att många kompetenser ger ett bra resultat och därför fokuserar vi på att skapa en arbetsplats med mångfalden och variation. Alla våra medarbetare behandlas lika och det främjar utveckling och de anställdas deltagande. Vi erbjuder våra anställda möjligheter att utveckla sina kunskaper samtidigt som vi regelbundet mäter våra medarbetares tillfredsställelse.<br/><br/>Då vi har många olika ursprung och religionstillhörighet inom företaget uppmuntrar vi till att föregå med gott exempel mot omvärlden och acceptera varandra för den man är och inte för vilken religion, kön eller hudfärg man har.<br/><br/>Gentemot våra medarbetare använder vi värderingsstyrt ledarskap samt ger de anställda möjlighet att påverka sina egna resultat, vilket i sin tur ger högre kvalitet.
                         </p>
                     </div>
                 </div>
@@ -126,11 +112,7 @@
 
                         <h1 class="center heading-primary text-xl mt-lg mb-xl">Samhället</h1>
 
-                        <p class="lead">Genom det arbete vi gör inom företaget stödjer vi social integration och det
-                            mångkulturella samhället. Vi medverkar till sociala möten mellan personer som inte kan
-                            förstå varandra, vilket bidrar till att acceptans, respekt och förståelse ökar.<br/><br/>Vi
-                            ska även genom ett strategiskt kvalitets-och ansvarsarbete upprätthålla en transparent
-                            standard där tillit genomsyras.
+                        <p class="lead">Genom det arbete vi utför stödjer vi social integration och det mångkulturella samhället. Vi möjliggör sociala möten mellan personer som inte kan förstå varandra, vilket bidrar till att acceptans, respekt och förståelse ökar.<br/><br/>Vi ska även genom ett strategiskt kvalitets- och ansvarsarbete upprätthålla en transparent standard som genomsyras av tillit.
                         </p>
                     </div>
                 </div>
@@ -142,13 +124,7 @@
 
                         <h1 class="center heading-primary text-xl mt-lg mb-xl">Miljö</h1>
 
-                        <p class="lead">Som en röd tråd genom företaget ska vi värna om miljön. Då vår verksamhet inte
-                            innebär någon betydande miljöpåverkan ska vi istället lägga stor vikt på hänsynstagandet på
-                            miljön i de tjänster som vi erbjuder.<br/><br/>Vi ska av ovan nämnda anledning informera
-                            våra kunder inom tolkverksamheten om möjligheten till distanstolkning för att på så sätt
-                            bidra till att transportutsläppen minskar.<br/><br/>Genom att återanvända kontorsutrustning
-                            och minska pappersförbrukningen ska vi bidra till att miljön inte tar mer skada än
-                            nödvändigt.
+                        <p class="lead">Som en röd tråd genom företaget ska vi värna om miljön. Då vår verksamhet inte innebär någon betydande miljöpåverkan ska vi istället lägga stor vikt vid hänsynstagandet till miljön i de tjänster vi erbjuder. Vi ska av nämnda anledning informera våra kunder inom tolkverksamheten till distanstolkning för att på så sätt bidra till minskade transportutsläpp. Genom att återanvända kontorsutrustning och minska pappersförbrukningen ska vi bidra till att miljön inte tar onödig skada.
                         </p>
                     </div>
                 </div>

@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tolkning i Kristianstad AB - Tjänster / Kurser</title>
+    <title>C4 SPRÅKPARTNER AB - Tjänster / Kurser</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="Tolkning i Kristianstad AB">
+    <meta name="author" content="C4 SPRÅKPARTNER AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -83,8 +83,7 @@
             <div class="row pt-lg">
                 <div class="col-md-12">
                     <h1 class="center heading-quaternary mb-xlg">Kurser</h1>
-                    <p class="center heading-quaternary mb-none">Är den ofta målinriktade process där någon genom systematisk undervisning och träning utvecklas och skaffar sig kunskaper, bildning och  färdigheter.</p>
-                    <p class="center heading-quaternary mb-none">Vår målsättning är att nyanlända ska lära sig ,förstå sina rättigheter och skyldigheter inom områden såsom arbetsliv, utbildning och hälsa.</p>
+                    <p class="center heading-quaternary mb-none">Våra kurser är den ofta målinriktade process där någon genom systematisk undervisning och träning utvecklas och skaffar sig kunskaper, bildning samt färdigheter inom respektive område. Vår målsättning är att nyanlända ska få lära sig mer om, samt förstå sina rättigheter och skyldigheter inom områden som arbetsliv, utbildning och hälsa.</p>
                 </div>
             </div>
             <div class="row">
@@ -181,8 +180,7 @@
                         <h6 class="lead heading-primary m-none">Förkunskaper</h6>
                         <p>Det krävs inga förkunskaper.</p>
                         <h6 class="lead heading-primary m-none">Mål</h6>
-                        <p>Vår målsättning är att nyanlända ska lära sig känna till och förstå sina rättigheter och
-                            skyldigheter inom områden såsom arbetsliv, utbildning och hälsa.</p>
+                        <p>Vår målsättning är att nyanlända ska lära sig om och förstå sina rättigheter och skyldigheter inom områden som arbetsliv, utbildning och hälsa.</p>
                         <h6 class="lead heading-primary mb-xlg">I kursen ingår information om:</h6>
                         <ul class="list list-icons list-primary mb-md">
                             <li class="appear-animation fadeInUp appear-animation-visible"
@@ -234,11 +232,10 @@
                             </li>
                         </ul>
                         <h6 class="lead heading-primary m-none">Undervisningsform</h6>
-                        <p>Undervisningen kommer ske i förläsningsform och där finns utrymme för diskussioner och
-                            frågor. Undervisaren delar ut material som krävs.</p>
+                        <p>Undervisningen sker i föreläsningsform med utrymme för diskussioner och frågor. Undervisaren delar ut material som krävs.</p>
                         <h6 class="lead heading-primary m-none">Anmälan till denna kurs</h6>
-                        <p>För bokning eller mer information av språkanalys, var god kontakta vår kundservice.
-                          Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@c4tolk.se  Observera att anmälan är bindande.</p>
+                        <p>För mer information om kursen, var god kontakta vår kundservice. Du anmäler dig genom att skicka dina personuppgifter till e-postadressen <i class="fa fa-envelope"></i> <a
+                                    href="mailto: info@c4tolk.se">kurs@c4tolk.se</a> <br>Observera att anmälan är bindande.</p>
                     </div>
                 </div>
             </div>
@@ -259,9 +256,7 @@
                         <h6 class="lead heading-primary m-none">Förkunskaper</h6>
                         <p>Det krävs inga förkunskaper.</p>
                         <h6 class="lead heading-primary m-none">Mål</h6>
-                        <p>Vår målsättning är att nyanlända ska lära sig känna till den svenska lagen när det gäller
-                            äktenskap och samboförhållande. Du ska också känna till föräldraförsäkring och barns
-                            rättigheter men också mer om skola, förskola och fritidshem.</p>
+                        <p>Vår målsättning är att nyanlända ska känna till och lära sig om den svenska lagen för äktenskap och samboförhållande. Ni ska också känna till föräldraförsäkring, barns rättigheter samt information om skola, förskola och fritidshem.</p>
                         <h6 class="lead heading-primary mb-xlg">I kursen ingår information om:</h6>
                         <ul class="list list-icons list-primary mb-md">
                             <li class="appear-animation fadeInUp appear-animation-visible"
@@ -319,11 +314,10 @@
                             </li>
                         </ul>
                         <h6 class="lead heading-primary m-none">Undervisningsform</h6>
-                        <p>Undervisningen kommer ske i förläsningsform och där det finns utrymme för diskussioner och
-                            frågor. Undervisaren delar ut material som krävs.</p>
-                        <h6 class="lead heading-primary m-none">Anmälan</h6>
-                        <p>Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@c4tolk.se.
-                            Observera att anmälan är bindande.</p>
+                        <p>Undervisningen sker i föreläsningsform med utrymme för diskussioner och frågor. Undervisaren delar ut material som krävs.</p>
+                        <h6 class="lead heading-primary m-none">Anmälan till denna kurs</h6>
+                        <p>För mer information om kursen, var god kontakta vår kundservice. Du anmäler dig genom att skicka dina personuppgifter till e-postadressen <i class="fa fa-envelope"></i> <a
+                                    href="mailto: info@c4tolk.se">kurs@c4tolk.se</a> <br>Observera att anmälan är bindande.</p>
                     </div>
                 </div>
             </div>
@@ -337,15 +331,11 @@
                     <div class="col-md-12">
                         <h2 class="center heading-primary">Att vara kvinna i Sverige-kurs för nyanlända</h2>
                         <p class="lead">
-                            Att vara kvinna i Sverige-kursen är till för dig som är nyanländ i Sverige och ska veta din
-                            roll i svenska arbets-och samhällslivet. Skillnader mellan deras länder och Sverige. Hela
-                            kursen hålls på svenska med tolk. </p>
+                            Kursen är till för dig som är nyanländ i Sverige och vill veta mer om vad det innebär att vara kvinna i det svenska arbets- och samhällslivet. Skillnader mellan ursprungsland och Sverige. Hela kursen hålls på svenska med tolk.</p>
                         <h6 class="lead heading-primary m-none">Förkunskaper</h6>
                         <p>Det krävs inga förkunskaper.</p>
                         <h6 class="lead heading-primary m-none">Mål</h6>
-                        <p>Vår målsättning är att nyanlända ska lära sig känna till den svenska lagen när det gäller
-                            äktenskap och samboförhållande. Du ska också känna till föräldraförsäkring och barns
-                            rättigheter men också mer om skola, förskola och fritidshem.</p>
+                        <p>Vår målsättning är att nyanlända ska känna till och lära sig om den svenska lagen för äktenskap och samboförhållande, samt kvinnors rättigheter. Ni ska också känna till föräldraförsäkring, barns rättigheter samt information om skola, förskola och fritidshem.</p>
                         <h6 class="lead heading-primary mb-xlg">I kursen ingår information om:</h6>
                         <ul class="list list-icons list-primary mb-md">
                             <li class="appear-animation fadeInUp appear-animation-visible"
@@ -397,11 +387,10 @@
                             </li>
                         </ul>
                         <h6 class="lead heading-primary m-none">Undervisningsform</h6>
-                        <p>Undervisningen kommer ske i förläsningsform och det finns utrymme för diskussioner och
-                            frågor. Undervisaren delar ut material som krävs. </p>
-                        <h6 class="lead heading-primary m-none">Anmälan</h6>
-                        <p>Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@c4tolk.se.
-                            Observera att anmälan är bindande.</p>
+                        <p>Undervisningen sker i föreläsningsform med utrymme för diskussioner och frågor. Undervisaren delar ut material som krävs.</p>
+                        <h6 class="lead heading-primary m-none">Anmälan till denna kurs</h6>
+                        <p>För mer information om kursen, var god kontakta vår kundservice. Du anmäler dig genom att skicka dina personuppgifter till e-postadressen <i class="fa fa-envelope"></i> <a
+                                    href="mailto: info@c4tolk.se">kurs@c4tolk.se</a> <br>Observera att anmälan är bindande.</p>
                     </div>
                 </div>
             </div>
@@ -439,8 +428,8 @@
                         <h6 class="lead heading-primary m-none">Litteratur/Material</h6>
                         <p>Undervisaren delar ut material som krävs.</p>
                         <h6 class="lead heading-primary m-none">Anmälan till denna kurs</h6>
-                        <p>Du anmäler dig genom att skicka dina personuppgifter till e-post kurs@c4tolk.se.
-                            Observera att anmälan är bindande.</p>
+                        <p>För mer information om kursen, var god kontakta vår kundservice. Du anmäler dig genom att skicka dina personuppgifter till e-postadressen <i class="fa fa-envelope"></i> <a
+                                    href="mailto: info@c4tolk.se">kurs@c4tolk.se</a> <br>Observera att anmälan är bindande.</p>
                     </div>
                 </div>
             </div>

@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tolkning i Kristianstad AB - Tjänster / Översättning</title>
+    <title>C4 SPRÅKPARTNER AB - Tjänster / Översättning</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="Tolkning i Kristianstad AB">
+    <meta name="author" content="C4 SPRÅKPARTNER AB">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
@@ -85,7 +85,7 @@
 
                     <h1 class="center heading-quaternary  mb-xlg">Översättning</h1>
 
-                    <p class="lead">Vi på Tolkning i Kristianstad AB översätter all form av dokumentation. Exempelvis validerar vi körkort och
+                    <p class="lead">Vi på C4 SPRÅKPARTNER AB översätter all form av dokumentation. Exempelvis validerar vi körkort och
                         betyg. Vi översätter juridiska dokument, dokument från myndigheter, bank, försäkringar, sjukvård
                         osv på alla språk.<br/> <br/> Våra översättare väljs ut med omsorg och vi är noga med att matcha
                         texten som ska översättas med lämplig kunskapsprofil.
@@ -109,7 +109,7 @@
                             <div class="featured-box">
                                 <div class="box-content">
                                     <h4 class="heading-primary mb-xl"><strong>Facköversättningar</strong></h4>
-                                    <p>Dessa översättningar är genomförda och granskade av sakkunniga översättare.</p>
+                                    <p>Översättning av facktexter genomförs och kontrolleras av sakkunniga översättare.</p>
                                 </div>
                             </div>
                         </li>
@@ -120,8 +120,7 @@
                             <div class="featured-box">
                                 <div class="box-content">
                                     <h4 class="heading-primary mb-xl"><strong>Språkgranskning</strong></h4>
-                                    <p>Ursprungstexten och målgruppen tas hänsyn till och översättningen
-                                        kontrollera.</p>
+                                    <p>Översättningen granskas och speciell hänsyn tas till ursprungstext och målgrupp.</p>
                                 </div>
                             </div>
                         </li>
@@ -155,8 +154,7 @@
                             <div class="featured-box">
                                 <div class="box-content">
                                     <h4 class="heading-primary mb-xl"><strong>Bestyrkta översättningar</strong></h4>
-                                    <p>Auktoriserade translatorer stämplar texten intygar att denne överensstämmer med
-                                        originalhandlingarna.</p>
+                                    <p>Auktoriserade translatorer stämplar översättningen och intygar att den överensstämmer med originaltexten.</p>
                                 </div>
                             </div>
                         </li>
@@ -166,9 +164,8 @@
                             </div>
                             <div class="featured-box">
                                 <div class="box-content">
-                                    <h4 class="heading-primary mb-xl"><strong>Grafiskt arbete av översatt
-                                            material</strong></h4>
-                                    <p>Texten som översätts läggs in i en grafisk mall med bilder och textanpassas.</p>
+                                    <h4 class="heading-primary mb-xl"><strong>Grafisk anpassning av översatt material</strong></h4>
+                                    <p>Texten som översatts läggs in i en grafisk mall med bilder och anpassas.</p>
                                 </div>
                             </div>
                         </li>

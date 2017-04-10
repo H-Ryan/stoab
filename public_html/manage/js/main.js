@@ -175,12 +175,12 @@ $(document).ready(function () {
                 optional: true,
                 rules: [
                     {
-                        type: 'length[6]',
-                        prompt: 'Kund nummer måste vara minst 6 tecken.'
+                        type: 'length[5]',
+                        prompt: 'Kund nummer måste vara minst 5 tecken.'
                     },
                     {
-                        type: 'maxLength[6]',
-                        prompt: 'Kund nummer måste vara minst 6 tecken.'
+                        type: 'maxLength[5]',
+                        prompt: 'Kund nummer måste vara minst 5 tecken.'
                     },
                     {
                         type: 'integer',
@@ -234,12 +234,12 @@ $(document).ready(function () {
                 optional: true,
                 rules: [
                     {
-                        type: 'length[6]',
-                        prompt: 'Kund nummer måste vara minst 6 tecken.'
+                        type: 'length[5]',
+                        prompt: 'Kund nummer måste vara minst 5 tecken.'
                     },
                     {
-                        type: 'maxLength[6]',
-                        prompt: 'Kund nummer måste vara minst 6 tecken.'
+                        type: 'maxLength[5]',
+                        prompt: 'Kund nummer måste vara minst 5 tecken.'
                     },
                     {
                         type: 'integer',

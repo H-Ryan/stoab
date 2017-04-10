@@ -4,10 +4,10 @@
     <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Tolkning i Kristianstad AB - Samarbetsavtal</title>
+    <title>C4 SPRÅKPARTNER AB - Samarbetsavtal</title>
     <meta name="keywords" content=""/>
     <meta name="description" content="">
-    <meta name="author" content="Tolkning i Kristianstad AB">
+    <meta name="author" content="C4 SPRÅKPARTNER AB">
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -66,11 +66,11 @@
                       <li>Informera och bidra till att ansvariga upphandlare får en ökad förståelse för sambandet mellan relevanta anbudsvillkor och hög tjänstekvalitet.</li>
                     </ul>
                     <p class="lead" style="text-align: justify;">Överenskommelsens syfte är att genom samverkan mellan Vision och språkförmedlingen undanröja tvister samt verka för att kvalitetsutbudet av tolkar höjs.
-                      Denna överenskommelse skall innefatta de tolkar som tar sina uppdrag via <b>Tolkförmedlingen Tolkning i Kristianstad AB</b>
+                      Denna överenskommelse skall innefatta de tolkar som tar sina uppdrag via <b>Tolkförmedlingen C4 SPRÅKPARTNER AB</b>
                     </p>
                   </div>
                 </div>
-                <p class="lead" style="font-weight: bold;">§ 1 PRIORITERING HOS Tolkning i Kristianstad AB</p>
+                <p class="lead" style="font-weight: bold;">§ 1 PRIORITERING HOS C4 SPRÅKPARTNER AB</p>
                 <div class="row">
                 <div class="col-md-10 col-md-push-1">
                   <p class="lead">Vid tillsättning av uppdrag skall de tolkar som äger högsta kompetens prioriteras. Prioriteringsordning innebär att:</p>
@@ -83,7 +83,7 @@
                   </ul>
                   <p class="lead" >För uppdrag hos Migrationsverket, familjerätten, socialförvaltningen eller försäkringskassan skall uppdraget arvoderas som tolkning motsvarande specialkompetens om uppdraget är sådan art och svårighet att specialkompetens erfordras, samt att uppdraget utförs av en tolk som innehar sådan kompetens som uppdraget kräver. En förutsättning för att detta ska kunna tillämpas är att kunden godkänner detta,
                     All tolkning som innefattas av Domstolsverkets taxor för tolkar skall arvoderas enligt denna förordning.
-                    I denna överenskommelse är parterna överens om att <b>Tolkning i Kristianstad AB</b> ´s prioritering av tolk även tar hänsyn till:
+                    I denna överenskommelse är parterna överens om att <b>C4 SPRÅKPARTNER AB</b> ´s prioritering av tolk även tar hänsyn till:
                   </p>
                   <ul style="text-align: left;" class="lead" >
                     <li>Närhetsprincipen</li>
@@ -97,9 +97,9 @@
                 <div class="row">
                 <div class="col-md-10 col-md-push-1">
                   <ul style="text-align: left;" class="lead">
-                    <li>Kontakttolkning arvoderas alltid för minst en timme om ingen annan överenskommelse finns mellan Vision-tolk och Tolkning i Kristianstad AB.</li>
-                    <li>Tolkning i Kristianstad AB skall försöka verka för att upphandlande myndighetdefinierar förfrågningsunderlaget och skall-kraven utifrån denna princip.</li>
-                    <li>Tolk har rätt till full ersättning för varje utdebiterat/slutfört uppdrag samt uppdrag som omfattas av beskrivning i §4. I de fall felbokning/dubbelbokning sker utan hans/hennes påverkan skall tolken hållas skadelös och erhålla ersättning för uppdraget samt uppkomna kostnader. Detta förutsatt att Tolkning i Kristianstad AB och tolk är överens gällande den aktuellabokningen.</li>
+                    <li>Kontakttolkning arvoderas alltid för minst en timme om ingen annan överenskommelse finns mellan Vision-tolk och C4 SPRÅKPARTNER AB.</li>
+                    <li>C4 SPRÅKPARTNER AB skall försöka verka för att upphandlande myndighetdefinierar förfrågningsunderlaget och skall-kraven utifrån denna princip.</li>
+                    <li>Tolk har rätt till full ersättning för varje utdebiterat/slutfört uppdrag samt uppdrag som omfattas av beskrivning i §4. I de fall felbokning/dubbelbokning sker utan hans/hennes påverkan skall tolken hållas skadelös och erhålla ersättning för uppdraget samt uppkomna kostnader. Detta förutsatt att C4 SPRÅKPARTNER AB och tolk är överens gällande den aktuellabokningen.</li>
                     <li>Platstolkning skall i möjligaste mån följa närhetsprincipen ochmiljöcertifieringstänkandet varvid högst meriterande tolk med bostadsadress närmast tolkstället skallprioriteras.</li>
                   </ul>
                 </div>
@@ -120,10 +120,10 @@
                 <div class="col-md-10 col-md-push-1">
                   <ul style="text-align: left;" class="lead" >
                     <li>Avbokar tolken uppdraget (utan giltig orsak) senare än 18 timmar så debiteras tolken en avgift på 100 kr.
-                      Är avbokningen av sådan karaktär att <b>Tolkning i Kristianstad AB</b> inte har möjlighet att tillsätta uppdraget
+                      Är avbokningen av sådan karaktär att <b>C4 SPRÅKPARTNER AB</b> inte har möjlighet att tillsätta uppdraget
                       och företagets kund kräver vite är tolk skyldig att godkänna detta om tolken inte har giltiga skäl så som
                       dokumenterad sjukdom eller dylikt. Denna punkt förutsätter att det finns en dialog mellan tolken och
-                      <b>Tolkning i Kristianstad AB</b> och att man löser detta i dialog ochsamförstånd.
+                      <b>C4 SPRÅKPARTNER AB</b> och att man löser detta i dialog ochsamförstånd.
                     </li>
                   </ul>
                 </div>
@@ -132,9 +132,9 @@
               <p class="lead">
                   Om tolk är försenad till tolkuppdraget, skall motsvarande tid dras från arvodet. Ovanstående gäller dock inte
                   om förseningen beror på omständigheter som tolken inte kunnat påverka själv, dvs. force majeure eller sjukdom.
-                  Uteblir tolk från ett uppdrag utan att ha meddelat <b>Tolkning i Kristianstad AB</b> om orsaken, kommer avdrag
+                  Uteblir tolk från ett uppdrag utan att ha meddelat <b>C4 SPRÅKPARTNER AB</b> om orsaken, kommer avdrag
                   att ske. Avdraget kommer motsvara den ersättningen som skulle ha utgått om uppdraget utförts.
-                  Kräver kunden Vite – görs motsvarande avdrag på tolkens kommande ersättning hos <b>Tolkning i Kristianstad AB</b>.
+                  Kräver kunden Vite – görs motsvarande avdrag på tolkens kommande ersättning hos <b>C4 SPRÅKPARTNER AB</b>.
                   Krav på ersättning för utförda uppdrag, ska lämnas in snarast, dock senast första vardagen i nästkommande månad.
                   Sker inte detta kommer uppdraget att arvoderas utifrån beställd tid.
               </p>
@@ -151,7 +151,7 @@
               </div>
               <p class="lead" style="font-weight: bold;">§7 KOMPETENSUTVECKLING</p>
               <p class="lead">
-                  Tolk som är registrerad vid <b>Tolkning i Kristianstad AB</b> och tolkar kontinuerligt erhåller ersättning för:
+                  Tolk som är registrerad vid <b>C4 SPRÅKPARTNER AB</b> och tolkar kontinuerligt erhåller ersättning för:
               </p>
               <div class="row">
                 <div class="col-md-10 col-md-push-1">
@@ -178,7 +178,7 @@
               <div class="col-md-10 col-md-push-1">
                 <h3 style="text-align: center">Tystnadspliktsförbindelse</h3>
                 <p class="lead">
-                Undertecknad, som på uppdrag av Tolkning i Kristianstad AB utför uppdrag åt densammas kunder,
+                Undertecknad, som på uppdrag av C4 SPRÅKPARTNER AB utför uppdrag åt densammas kunder,
                 förbinder sig härmed att efter bästa förmåga fullgöra tolkuppdrag, och iakttaga i lag och förordning
                 stadgad tystnadsplikt avseende förhållanden som i samband med tolkuppdrag utförs av eller kommer
                 till undertecknads kännedom.

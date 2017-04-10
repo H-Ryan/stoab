@@ -36,7 +36,7 @@ if (isset($_POST['name']) && isset($_POST['companyName'])
     $var = ['{name}', '{companyName}', '{phone}', '{subject}', '{email}', '{message}'];
     $val = [$name, $foretagsnamn, $phone, $subject, $email, $message];
     $emailContent = str_replace($var, $val, $contact_email_content);
-    echo json_encode(['error' => !$emailer->send_email('kundtjanst@c4tolk.se', 'Tolkning i Kristianstad AB', 'Kontaktformulär', $emailContent)]);
+    echo json_encode(['error' => !$emailer->send_email('kundtjanst@c4tolk.se', 'C4 SPRÅKPARTNER AB', 'Kontaktformulär', $emailContent)]);
 } else {
     echo json_encode(['error' => true]);
 }
